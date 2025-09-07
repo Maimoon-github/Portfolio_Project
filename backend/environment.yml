@@ -1,0 +1,29 @@
+name: mysite
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+    - Django>=5.0
+    - djangorestframework
+    - djangorestframework-simplejwt[crypto]
+    - django-filter
+    - django-cors-headers
+    - psycopg[binary]
+    - boto3
+    - django-storages
+    - redis
+    - celery
+    - Pillow
+    - drf-spectacular
+    - django-environ
+    - django-axes
+    - django-ckeditor-5
+    - django-mptt
+    - beautifulsoup4
+    - textstat
+    - stripe
+    - django-extensions
+    - gunicorn
