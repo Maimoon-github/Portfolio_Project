@@ -6,6 +6,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -16,6 +17,8 @@ from drf_spectacular.views import (
     SpectacularRedocView,
     SpectacularSwaggerView,
 )
+
+from .core.sitemaps import sitemaps
 
 urlpatterns = [
     # Django Admin
@@ -42,6 +45,10 @@ urlpatterns = [
     
     # Health check endpoints
     path('api/health/', include('lms_backend.core.health_urls')),
+    
+    # SEO endpoints
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('api/v1/seo/preview/<str:model>/<slug:slug>/', include('lms_backend.core.seo_urls')),
 ]
 
 # Serve media files in development

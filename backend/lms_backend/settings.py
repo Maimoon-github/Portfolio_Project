@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'drf_spectacular',
     'axes',
+    'django_ckeditor_5',
+    'storages',
     
     # Local apps
     'lms_backend.core',
@@ -149,6 +151,15 @@ CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS', default=[
     'http://localhost:3000',
 ])
 CORS_ALLOW_CREDENTIALS = True
+
+# CKEditor Configuration
+CKEDITOR_5_UPLOAD_PATH = 'uploads/ckeditor/'
+CKEDITOR_5_CONFIGS = {
+    # Default config will be loaded from core/ckeditor_config.py
+}
+
+# Import CKEditor custom configuration
+from lms_backend.core.ckeditor_config import CKEDITOR_5_CONFIGS
 
 # REST Framework Configuration
 REST_FRAMEWORK = {

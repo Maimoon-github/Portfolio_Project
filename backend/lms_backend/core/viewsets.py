@@ -2,11 +2,13 @@
 Core API mixins and base viewset classes.
 """
 
-from rest_framework import viewsets, mixins
+import logging
+from django.utils import timezone
+from rest_framework import viewsets, mixins, status
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
-import logging
 
 # Configure logger for content access
 content_access_logger = logging.getLogger('content_access')
@@ -85,3 +87,105 @@ class AdminContentViewSet(AdminContentMixin, viewsets.ModelViewSet):
     Provides full CRUD operations for admin users.
     """
     pass
+
+
+class DashboardContentSyncViewSet(viewsets.ViewSet):
+    """
+    API endpoint for monitoring backend-frontend content synchronization.
+    """
+    permission_classes = [IsAuthenticated, IsAdminUser]
+    
+    def list(self, request):
+        """Get content synchronization status information."""
+        from django.utils import timezone
+        from lms_backend.pages.models import Page
+        from lms_backend.courses.models import Course
+        from lms_backend.blog.models import BlogPost
+        from lms_backend.news.models import NewsItem
+        from lms_backend.projects.models import Project
+        import logging
+        
+        # Get logger for sync issues
+        sync_logger = logging.getLogger('sync_issues')
+        
+        try:
+            # Get pending publications (content that will be published soon)
+            now = timezone.now()
+            one_day_future = now + timezone.timedelta(days=1)
+            pending_publications = {
+                'pages': Page.admin.filter(status='published', published_at__gt=now, published_at__lt=one_day_future).count(),
+                'courses': Course.admin.filter(status='published', published_at__gt=now, published_at__lt=one_day_future).count(),
+                'blog_posts': BlogPost.admin.filter(status='published', published_at__gt=now, published_at__lt=one_day_future).count(),
+                'news_items': NewsItem.admin.filter(status='published', published_at__gt=now, published_at__lt=one_day_future).count(),
+                'projects': Project.admin.filter(status='published', published_at__gt=now, published_at__lt=one_day_future).count(),
+            }
+            
+            # Get recently published content (in the last day)
+            one_day_ago = now - timezone.timedelta(days=1)
+            recent_publications = {
+                'pages': Page.admin.filter(status='published', published_at__range=(one_day_ago, now)).count(),
+                'courses': Course.admin.filter(status='published', published_at__range=(one_day_ago, now)).count(),
+                'blog_posts': BlogPost.admin.filter(status='published', published_at__range=(one_day_ago, now)).count(),
+                'news_items': NewsItem.admin.filter(status='published', published_at__range=(one_day_ago, now)).count(),
+                'projects': Project.admin.filter(status='published', published_at__range=(one_day_ago, now)).count(),
+            }
+            
+            # Get content with missing SEO fields
+            missing_seo = {
+                'pages': Page.admin.filter(meta_description='').count(),
+                'courses': Course.admin.filter(meta_description='').count(),
+                'blog_posts': BlogPost.admin.filter(meta_description='').count(),
+                'news_items': NewsItem.admin.filter(meta_description='').count(),
+                'projects': Project.admin.filter(meta_description='').count(),
+            }
+            
+            # Get total published content count
+            content_status_summary = {
+                'pages': {
+                    'published': Page.published.count(),
+                    'draft': Page.admin.filter(status='draft').count(),
+                    'archived': Page.admin.filter(status='archived').count(),
+                },
+                'courses': {
+                    'published': Course.published.count(),
+                    'draft': Course.admin.filter(status='draft').count(),
+                    'archived': Course.admin.filter(status='archived').count(),
+                },
+                'blog_posts': {
+                    'published': BlogPost.published.count(),
+                    'draft': BlogPost.admin.filter(status='draft').count(),
+                    'archived': BlogPost.admin.filter(status='archived').count(),
+                },
+                'news_items': {
+                    'published': NewsItem.published.count(),
+                    'draft': NewsItem.admin.filter(status='draft').count(),
+                    'archived': NewsItem.admin.filter(status='archived').count(),
+                },
+                'projects': {
+                    'published': Project.published.count(),
+                    'draft': Project.admin.filter(status='draft').count(),
+                    'archived': Project.admin.filter(status='archived').count(),
+                },
+            }
+            
+            # Get last sync time and recent errors (simplified implementation)
+            # In a production environment, this would be more sophisticated
+            last_sync = timezone.now()
+            sync_errors = []
+            
+            return Response({
+                'last_sync': last_sync,
+                'pending_publications': pending_publications,
+                'recent_publications': recent_publications,
+                'missing_seo': missing_seo,
+                'sync_errors': sync_errors,
+                'content_status_summary': content_status_summary,
+                'timestamp': timezone.now().isoformat(),
+            })
+            
+        except Exception as e:
+            sync_logger.error(f"Error in content sync dashboard: {str(e)}")
+            return Response(
+                {"error": f"Error generating dashboard data: {str(e)}"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )

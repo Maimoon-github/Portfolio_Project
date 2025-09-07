@@ -71,3 +71,27 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
             'bio', 'avatar', 'headline', 'website', 
             'social_links', 'location', 'timezone'
         ]
+
+
+class UserMinimalSerializer(serializers.ModelSerializer):
+    """Minimal user information for related objects."""
+    
+    full_name = serializers.SerializerMethodField()
+    avatar_url = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'full_name', 'avatar_url', 'role']
+    
+    def get_full_name(self, obj):
+        if obj.first_name or obj.last_name:
+            return f"{obj.first_name} {obj.last_name}".strip()
+        return obj.username
+    
+    def get_avatar_url(self, obj):
+        try:
+            if obj.profile and obj.profile.avatar:
+                return obj.profile.avatar.url
+        except Profile.DoesNotExist:
+            pass
+        return None
