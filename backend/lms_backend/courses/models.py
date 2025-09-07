@@ -4,6 +4,8 @@ Course models for the LMS backend.
 
 from django.db import models
 from django.conf import settings
+from django.core.exceptions import ValidationError
+from django.utils import timezone
 from lms_backend.core.models import BaseContentModel
 
 
@@ -87,20 +89,143 @@ class Course(BaseContentModel):
         return self.description[:200] + ('...' if len(self.description) > 200 else '')
 
 
-# Placeholder for models needed by health checks
-class Lesson(models.Model):
-    """Placeholder for Lesson model."""
+class Lesson(BaseContentModel):
+    """
+    Lesson model for course content.
+    """
+    
+    # Lesson type choices
+    LESSON_TYPE_CHOICES = (
+        ('video', 'Video Lesson'),
+        ('text', 'Text Lesson'),
+        ('quiz', 'Quiz'),
+        ('assignment', 'Assignment'),
+    )
+    
+    # Basic lesson info
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons')
-    title = models.CharField(max_length=200)
+    lesson_type = models.CharField(max_length=20, choices=LESSON_TYPE_CHOICES, default='video')
+    content = models.TextField()
+    
+    # Media content
+    video_url = models.URLField(blank=True)
+    duration_minutes = models.PositiveIntegerField(default=0)
+    
+    # Ordering
+    order = models.PositiveIntegerField(default=0)
+    
+    # Required to complete
+    is_required = models.BooleanField(default=True)
+    
+    # Access control
+    is_preview = models.BooleanField(default=False, help_text="Available in course preview")
+    
+    class Meta:
+        ordering = ['course', 'order', 'title']
     
     def __str__(self):
-        return self.title
+        return f"{self.course.title} - {self.title}"
+    
+    def get_content_for_seo_analysis(self):
+        """Return lesson content for SEO analysis."""
+        return self.content
+    
+    def get_excerpt(self):
+        """Get lesson excerpt for meta description."""
+        return self.content[:200] + ('...' if len(self.content) > 200 else '')
+
+
+class LessonCompletion(models.Model):
+    """
+    Tracks which lessons a student has completed.
+    """
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name='completions')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='completed_lessons')
+    completed_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        unique_together = ['lesson', 'user']
+        ordering = ['completed_at']
+    
+    def __str__(self):
+        return f"{self.user} completed {self.lesson}"
 
 
 class Enrollment(models.Model):
-    """Placeholder for Enrollment model."""
+    """
+    Student enrollment in a course.
+    """
+    # Status choices
+    STATUS_CHOICES = (
+        ('active', 'Active'),
+        ('completed', 'Completed'),
+        ('expired', 'Expired'),
+        ('refunded', 'Refunded'),
+    )
+    
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='enrollments')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='enrollments')
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='active')
+    enrolled_at = models.DateTimeField(auto_now_add=True)
+    completed_at = models.DateTimeField(null=True, blank=True)
+    
+    # Payment information
+    payment_id = models.CharField(max_length=100, blank=True)
+    amount_paid = models.IntegerField(default=0)  # in cents
+    
+    # Progress tracking
+    progress_percent = models.IntegerField(default=0)
+    last_accessed_at = models.DateTimeField(null=True, blank=True)
+    
+    class Meta:
+        unique_together = ['course', 'user']
+        ordering = ['-enrolled_at']
     
     def __str__(self):
         return f"{self.user} enrolled in {self.course}"
+        
+    def update_progress(self):
+        """Update the user's progress in this course."""
+        total_lessons = self.course.lessons.filter(is_required=True).count()
+        if total_lessons == 0:
+            self.progress_percent = 100
+            return
+            
+        completed_lessons = LessonCompletion.objects.filter(
+            user=self.user,
+            lesson__course=self.course,
+            lesson__is_required=True
+        ).count()
+        
+        self.progress_percent = int((completed_lessons / total_lessons) * 100)
+        self.save(update_fields=['progress_percent'])
+        
+        # Mark as completed if 100%
+        if self.progress_percent == 100 and not self.completed_at:
+            self.completed_at = timezone.now()
+            self.status = 'completed'
+            self.save(update_fields=['completed_at', 'status'])
+
+
+class Review(models.Model):
+    """
+    Course review by enrolled students.
+    """
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    rating = models.IntegerField()
+    comment = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        unique_together = ['course', 'user']
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        return f"{self.user} review for {self.course}"
+        
+    def clean(self):
+        """Validate the rating is between 1 and 5."""
+        if self.rating < 1 or self.rating > 5:
+            raise ValidationError({'rating': 'Rating must be between 1 and 5.'})
