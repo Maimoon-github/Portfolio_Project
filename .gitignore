@@ -13,3 +13,6 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Node_modules
+node_modules/   
