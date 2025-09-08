@@ -75,8 +75,8 @@ class LessonAdmin(admin.ModelAdmin):
     """
     Admin configuration for Lesson model.
     """
-    list_display = ['title', 'course', 'order', 'duration_minutes', 'is_free', 'created_at']
-    list_filter = ['course', 'is_free', 'created_at']
+    list_display = ['title', 'course', 'order', 'duration_minutes', 'is_preview', 'created_at']
+    list_filter = ['course', 'is_preview', 'created_at']
     search_fields = ['title', 'content', 'course__title']
     ordering = ['course', 'order']
     
@@ -85,7 +85,7 @@ class LessonAdmin(admin.ModelAdmin):
             'fields': ('course', 'title', 'slug', 'order')
         }),
         ('Content', {
-            'fields': ('content', 'video_url', 'duration_minutes', 'resources', 'is_free')
+            'fields': ('content', 'video_url', 'duration_minutes', 'is_preview')
         }),
     )
 
@@ -95,14 +95,14 @@ class ReviewAdmin(admin.ModelAdmin):
     """
     Admin configuration for Review model.
     """
-    list_display = ['course', 'user', 'rating', 'is_approved', 'created_at']
-    list_filter = ['rating', 'is_approved', 'created_at']
+    list_display = ['course', 'user', 'rating', 'created_at']
+    list_filter = ['rating', 'created_at']
     search_fields = ['course__title', 'user__username', 'comment']
     ordering = ['-created_at']
     
     fieldsets = (
         (None, {
-            'fields': ('course', 'user', 'rating', 'is_approved')
+            'fields': ('course', 'user', 'rating')
         }),
         ('Review Content', {
             'fields': ('comment',)

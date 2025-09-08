@@ -35,23 +35,17 @@ class ProfileAdmin(admin.ModelAdmin):
     """
     Admin configuration for Profile model.
     """
-    list_display = ['user', 'bio_short', 'is_verified', 'created_at']
-    list_filter = ['is_verified', 'skills', 'created_at']
-    search_fields = ['user__username', 'user__email', 'bio', 'location', 'company']
-    ordering = ['-created_at']
+    list_display = ['user', 'bio_short', 'location']
+    list_filter = ['location']
+    search_fields = ['user__username', 'user__email', 'bio', 'location']
+    ordering = ['user__username']
     
     fieldsets = (
         (None, {
             'fields': ('user',)
         }),
         ('Profile Information', {
-            'fields': ('bio', 'avatar', 'cover_image', 'location', 'company', 'website', 'github_url', 'linkedin_url')
-        }),
-        ('Skills & Expertise', {
-            'fields': ('skills', 'experience_years', 'specializations')
-        }),
-        ('Verification', {
-            'fields': ('is_verified',)
+            'fields': ('bio', 'avatar', 'headline', 'location', 'website', 'social_links', 'timezone')
         }),
     )
     
