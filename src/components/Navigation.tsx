@@ -20,8 +20,7 @@ export function Navigation({ activeSection, setActiveSection }: NavigationProps)
     { id: 'blog', label: 'Blog', icon: BookOpen },
     { id: 'news', label: 'News', icon: Newspaper },
     { id: 'courses', label: 'Courses', icon: GraduationCap },
-    // Show diagnostics only in development to avoid exposing test UI
-  ...(((import.meta as any).env?.MODE === 'development') ? [{ id: 'test', label: 'Diagnostics', icon: TestTube }] : []),
+    // Diagnostics item removed
   ];
 
   const handleLogout = () => {
@@ -41,9 +40,11 @@ export function Navigation({ activeSection, setActiveSection }: NavigationProps)
         <div className="flex justify-between items-center h-16">
           {/* Logo - Ultra-modern redesign */}
           <motion.div 
-            className="flex items-center"
-            whileHover={{ scale: 1.02 }}
+            className="flex items-center cursor-pointer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.2 }}
+            onClick={() => setActiveSection('home')}
           >
             <div className="flex-shrink-0">
               <div className="relative">
@@ -94,7 +95,7 @@ export function Navigation({ activeSection, setActiveSection }: NavigationProps)
                         : 'var(--text-secondary)',
                     }}
                     whileHover={{ 
-                      scale: 1.02,
+                      scale: 1.04,
                       backgroundColor: isActive 
                         ? 'var(--accent-primary)' 
                         : 'var(--background-glass)'
@@ -304,7 +305,7 @@ export function Navigation({ activeSection, setActiveSection }: NavigationProps)
               
               {/* Mobile Auth Section */}
               {isAuthenticated && (
-                <motion.div 
+                  <motion.button
                   className="border-t border-border pt-3 mt-3 space-y-2"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -346,7 +347,7 @@ export function Navigation({ activeSection, setActiveSection }: NavigationProps)
                     <LogOut size={18} style={{ color: 'var(--text-secondary)' }} />
                     <span style={{ color: 'var(--text-secondary)' }}>Sign Out</span>
                   </button>
-                </motion.div>
+                </motion.button>
               )}
             </div>
           </motion.div>

@@ -41,7 +41,7 @@ class Project(BaseContentModel):
     
     summary = models.CharField(max_length=300)
     description = models.TextField()
-    thumbnail = models.ImageField(upload_to='project_thumbnails/')
+    thumbnail = models.ImageField(upload_to='project_thumbnails/', blank=True)
     tech_stack = models.ManyToManyField(Technology)
     github_url = models.URLField(blank=True)
     live_url = models.URLField(blank=True)
