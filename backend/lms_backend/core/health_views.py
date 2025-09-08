@@ -145,3 +145,18 @@ class SeoHealthView(APIView):
                 'error': str(e),
                 'timestamp': timezone.now().isoformat(),
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class SimpleHealthView(APIView):
+    """
+    Simple health check endpoint that doesn't require authentication.
+    """
+    permission_classes = []
+    authentication_classes = []
+    
+    def get(self, request):
+        return Response({
+            'status': 'healthy',
+            'timestamp': timezone.now().isoformat(),
+            'service': 'Portfolio Backend'
+        })
