@@ -20,7 +20,7 @@ SECRET_KEY = env('SECRET_KEY', default='django-insecure-key-for-development-only
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=True)
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1', 'testserver'])
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1', 'testserver', '0.0.0.0'])
 
 # Application definition
 INSTALLED_APPS = [
