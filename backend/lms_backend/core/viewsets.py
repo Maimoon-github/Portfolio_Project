@@ -54,6 +54,7 @@ class BaseContentViewSet(viewsets.ReadOnlyModelViewSet):
     """
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     permission_classes = [IsAuthenticatedOrReadOnly]
+    lookup_field = 'slug'  # Use slug for detail lookups by default
     
     def get_serializer_context(self):
         context = super().get_serializer_context()

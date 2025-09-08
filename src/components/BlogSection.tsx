@@ -1,11 +1,16 @@
+import React from 'react';
 import { Calendar, Clock, User, ArrowRight, Tag, Eye } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { motion } from 'motion/react';
+import { useBlogPosts } from '../services/hooks';
+import type { BlogPost as ApiBlogPost } from '../services/api';
+import { useUserTracking } from '../services/hooks';
 
 interface BlogPost {
   id: string;
+  slug?: string;
   title: string;
   excerpt: string;
   content: string;
@@ -19,86 +24,38 @@ interface BlogPost {
 }
 
 export function BlogSection() {
-  const blogPosts: BlogPost[] = [
-    {
-      id: '1',
-      title: 'The Future of Transformer Architectures in Natural Language Processing',
-      excerpt: 'Exploring the latest advances in transformer models and their impact on NLP applications, from GPT to specialized domain models.',
-      content: '',
-      category: 'AI Research',
-      author: 'Dr. AI Researcher',
-      publishDate: '2024-12-15',
-      readTime: 8,
-      views: 2340,
-      featured: true,
-      tags: ['Transformers', 'NLP', 'Deep Learning', 'Research']
-    },
-    {
-      id: '2',
-      title: 'MLOps Best Practices: From Experiment to Production',
-      excerpt: 'A comprehensive guide to implementing robust MLOps pipelines that scale from proof-of-concept to enterprise deployment.',
-      content: '',
-      category: 'Engineering',
-      author: 'Dr. AI Researcher',
-      publishDate: '2024-12-08',
-      readTime: 12,
-      views: 1850,
-      featured: true,
-      tags: ['MLOps', 'DevOps', 'Production', 'Scaling']
-    },
-    {
-      id: '3',
-      title: 'Computer Vision in Healthcare: Ethical Considerations and Bias Mitigation',
-      excerpt: 'Addressing the critical challenges of bias, fairness, and ethical AI deployment in medical imaging applications.',
-      content: '',
-      category: 'Ethics & AI',
-      author: 'Dr. AI Researcher',
-      publishDate: '2024-11-29',
-      readTime: 10,
-      views: 1620,
-      featured: false,
-      tags: ['Computer Vision', 'Healthcare', 'Ethics', 'Bias']
-    },
-    {
-      id: '4',
-      title: 'Optimizing Deep Learning Models for Edge Computing',
-      excerpt: 'Techniques for model compression, quantization, and deployment strategies for resource-constrained environments.',
-      content: '',
-      category: 'Technical',
-      author: 'Dr. AI Researcher',
-      publishDate: '2024-11-15',
-      readTime: 15,
-      views: 2100,
-      featured: true,
-      tags: ['Edge Computing', 'Optimization', 'Mobile AI', 'Performance']
-    },
-    {
-      id: '5',
-      title: 'The Rise of Multimodal AI: Combining Vision, Language, and Audio',
-      excerpt: 'Exploring the convergence of different AI modalities and the emergence of unified models that understand multiple data types.',
-      content: '',
-      category: 'AI Research',
-      author: 'Dr. AI Researcher',
-      publishDate: '2024-11-01',
-      readTime: 9,
-      views: 1450,
-      featured: false,
-      tags: ['Multimodal AI', 'Computer Vision', 'NLP', 'Audio Processing']
-    },
-    {
-      id: '6',
-      title: 'Data Privacy in Machine Learning: Federated Learning and Beyond',
-      excerpt: 'Examining privacy-preserving techniques in ML, including federated learning, differential privacy, and secure multi-party computation.',
-      content: '',
-      category: 'Privacy & Security',
-      author: 'Dr. AI Researcher',
-      publishDate: '2024-10-20',
-      readTime: 11,
-      views: 1780,
-      featured: false,
-      tags: ['Privacy', 'Federated Learning', 'Security', 'Data Protection']
-    }
-  ];
+  const { data: apiPosts, loading, error } = useBlogPosts({ 
+    featured: true, 
+    realTime: true 
+  });
+  const { trackContentView, trackClick } = useUserTracking();
+
+  // Transform API data to match local interface (no mock fallback)
+  const blogPosts: BlogPost[] = apiPosts ? (apiPosts as ApiBlogPost[]).map(post => ({
+    id: String(post.id),
+    slug: (post as any).slug,
+    title: post.title,
+    excerpt: (post as any).excerpt || '',
+    content: (post as any).content || '',
+    category: ((post as any).categories?.[0]?.name) || 'General',
+    author: (post as any).author?.name || 'Unknown Author',
+    publishDate: (post as any).publish_date || (post as any).published_at || post.updated_at,
+    readTime: (post as any).reading_time_minutes || Math.ceil(((post as any).content || '').length / 1000),
+    views: (post as any).view_count || 0,
+    featured: (post as any).featured || false,
+    tags: ((post as any).tags || []).map((tag: any) => tag.name) || []
+  })) : [];
+
+  // Track page view
+  React.useEffect(() => {
+    trackContentView('blog_section', 'all');
+  }, [trackContentView]);
+
+  const handlePostClick = (post: BlogPost) => {
+    trackClick('blog_post', { post_id: post.id, title: post.title });
+    trackContentView('blog_post', post.id);
+  window.dispatchEvent(new CustomEvent('navigate-detail', { detail: { type: 'blog', slug: post.slug || post.id } }));
+  };
 
   const getCategoryColor = (category: string) => {
     const colors = {
@@ -129,6 +86,12 @@ export function BlogSection() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'var(--primary-dark)' }}>
       <div className="max-w-7xl mx-auto">
+        {/* Empty state when no posts */}
+        {!loading && blogPosts.length === 0 && (
+          <div className="text-center py-16" style={{ color: 'var(--light-text-60)' }}>
+            No articles yet. Create published blog posts in the Django admin.
+          </div>
+        )}
         {/* Section Header */}
         <motion.div 
           className="text-center mb-16"
@@ -175,6 +138,7 @@ export function BlogSection() {
                     borderColor: 'var(--purple-20)',
                     border: '1px solid'
                   }}
+                  onClick={() => handlePostClick(post)}
                 >
                   {/* Featured Image Placeholder */}
                   <div 
@@ -264,7 +228,7 @@ export function BlogSection() {
                         backgroundColor: 'var(--accent-purple)', 
                         color: '#ffffff'
                       }}
-                    >
+                    onClick={() => handlePostClick(post)}>
                       Read Full Article
                       <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                     </Button>

@@ -2,6 +2,8 @@ import { Calendar, MapPin, Award, TrendingUp, Users, Code } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { motion } from 'motion/react';
+import { useApi } from '../services/api';
+import { useApiCall } from '../services/hooks';
 
 interface Experience {
   id: string;
@@ -18,6 +20,34 @@ interface Experience {
 }
 
 export function ExperienceSection() {
+  // Try loading 'experience' page from CMS; fall back to timeline if not present
+  const { client } = useApi();
+  const { data: experiencePage } = useApiCall(() => client.getPage('experience'), []);
+
+  if (experiencePage && (experiencePage as any).content) {
+    return (
+      <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'var(--secondary-dark)' }}>
+        <div className="max-w-4xl mx-auto">
+          <motion.div 
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--light-text)' }}>
+              Professional <span style={{ color: 'var(--accent-purple)' }}>Experience</span>
+            </h2>
+            <p className="text-lg max-w-3xl mx-auto" style={{ color: 'var(--light-text-60)' }}>
+              Latest roles, achievements, and milestones
+            </p>
+          </motion.div>
+          <article className="prose prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: (experiencePage as any).content }} />
+        </div>
+      </section>
+    );
+  }
+
   const experiences: Experience[] = [
     {
       id: '1',

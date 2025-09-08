@@ -4,13 +4,13 @@ URLs for page-related endpoints.
 
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import PageViewSet, PageAdminViewSet
+from .views import PageViewSet, AdminPageViewSet
 
 router = DefaultRouter()
 router.register(r'', PageViewSet, basename='page')
 
 admin_router = DefaultRouter()
-admin_router.register(r'', PageAdminViewSet, basename='admin-page')
+admin_router.register(r'', AdminPageViewSet, basename='admin-page')
 
 urlpatterns = [
     path('', include(router.urls)),

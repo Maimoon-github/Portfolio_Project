@@ -195,6 +195,51 @@ def generate_page_schema(page, request=None):
     return json.dumps(page_schema)
 
 
+def generate_news_schema(news_item, request=None):
+    """
+    Generate JSON-LD schema.org markup for NewsArticle.
+    """
+    base_url = get_base_url(request)
+    
+    news_schema = {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "headline": news_item.title,
+        "datePublished": news_item.published_at.isoformat() if news_item.published_at else news_item.created_at.isoformat(),
+        "dateModified": news_item.updated_at.isoformat(),
+        "description": news_item.meta_description or news_item.title[:160],
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": f"{base_url}{news_item.get_absolute_url()}"
+        }
+    }
+    
+    # Add publisher information
+    news_schema["publisher"] = {
+        "@type": "Organization",
+        "name": "Data Science Portfolio",
+        "logo": {
+            "@type": "ImageObject",
+            "url": f"{base_url}/static/images/logo.png"  # Update with actual logo path
+        }
+    }
+    
+    # Add source information if available
+    if news_item.source_name:
+        news_schema["provider"] = {
+            "@type": "Organization",
+            "name": news_item.source_name
+        }
+        if news_item.source_url:
+            news_schema["provider"]["url"] = news_item.source_url
+    
+    # Add category information
+    if hasattr(news_item, 'category') and news_item.category:
+        news_schema["articleSection"] = news_item.category.name
+    
+    return json.dumps(news_schema)
+
+
 def get_base_url(request):
     """
     Get the base URL for the site based on the request or settings.

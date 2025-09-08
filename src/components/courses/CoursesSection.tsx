@@ -7,6 +7,8 @@ import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import { CourseCard, Course } from './CourseCard';
 import { useAuth } from '../auth/AuthContext';
+import { useCourses } from '../../services/hooks';
+import type { Course as ApiCourse } from '../../services/api';
 
 // Mock course data
 const mockCourses: Course[] = [
@@ -162,11 +164,39 @@ export function CoursesSection() {
   const [loading, setLoading] = useState(true);
 
   // Load courses and enrollments
+  const { data: apiCourses, loading: apiLoading } = useCourses({ realTime: true });
   useEffect(() => {
     const loadData = async () => {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 800));
-      setCourses(mockCourses);
+      // Prefer backend data when available
+      if (apiCourses && apiCourses.length) {
+        const mapped: Course[] = (apiCourses as ApiCourse[]).map((c) => ({
+          id: String(c.id),
+          title: c.title,
+          subtitle: (c as any).subtitle || '',
+          slug: (c as any).slug,
+          description: c.description || '',
+          category: ((c as any).categories?.[0]?.name) || 'General',
+          tags: ((c as any).tags || []).map((t: any) => t.name),
+          price: (c as any).price_cents ? Math.round(((c as any).price_cents as number) / 100) : 0,
+          visibility: ((c as any).status === 'published') ? 'public' : 'draft',
+          instructor_id: (c as any).instructor?.id || '1',
+          instructor_name: (c as any).instructor?.email || 'Instructor',
+          instructor_avatar: undefined,
+          thumbnail: (c as any).thumbnail_url,
+          duration: `${(c as any).duration_hours || 0} hours`,
+          level: (((c as any).level || 'Beginner') as any),
+          rating: (c as any).rating || 4.7,
+          student_count: (c as any).enrollment_count || 0,
+          lesson_count: (c as any).lesson_count || 0,
+          created_at: (c as any).created_at || new Date().toISOString(),
+          updated_at: (c as any).updated_at || new Date().toISOString(),
+        }));
+        setCourses(mapped);
+      } else {
+        // Fallback mock data
+        await new Promise(resolve => setTimeout(resolve, 300));
+        setCourses(mockCourses);
+      }
       if (isAuthenticated) {
         setEnrollments(mockEnrollments.filter(e => e.user_id === user?.id));
       }
@@ -174,7 +204,7 @@ export function CoursesSection() {
     };
 
     loadData();
-  }, [isAuthenticated, user]);
+  }, [isAuthenticated, user, apiCourses]);
 
   // Filter and sort courses
   const filteredCourses = courses
@@ -222,15 +252,14 @@ export function CoursesSection() {
   };
 
   const handleViewCourse = (courseId: string) => {
-    // Navigate to course detail
-    console.log('View course:', courseId);
+  window.dispatchEvent(new CustomEvent('navigate-detail', { detail: { type: 'course', slug: (apiCourses as any)?.find((c: any) => String(c.id) === courseId)?.slug || courseId } }));
   };
 
   // Get unique categories and levels
   const categories = Array.from(new Set(courses.map(course => course.category)));
   const levels = Array.from(new Set(courses.map(course => course.level)));
 
-  if (loading) {
+  if (loading || apiLoading) {
     return (
       <div 
         className="min-h-screen flex items-center justify-center"

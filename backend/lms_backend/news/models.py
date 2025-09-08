@@ -51,3 +51,7 @@ class NewsItem(BaseContentModel):
         """Get news excerpt for meta description."""
         # Get first 200 characters of body
         return self.body[:200] + ('...' if len(self.body) > 200 else '')
+    
+    def get_absolute_url(self):
+        """Generate frontend URL for this news item."""
+        return f"/news/{self.slug}/"

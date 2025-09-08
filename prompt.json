@@ -1,0 +1,334 @@
+{
+  "task": "Implement website project logic based on provided context file",
+  "steps": [
+    {
+      "step": 1,
+      "description": "Read and analyze the provided context file and project details."
+    },
+    {
+      "step": 2,
+      "description": "Build strong implementation logic while keeping Django core concepts in memory.",
+      "core_concepts": {
+        "Models": "Database structure and ORM",
+        "Views": "Application logic",
+        "React Frontend": "UI rendering",
+        "URLs": "Routing between APIs and views",
+        "Forms_Admin_ORM": "Helpers for validation, admin, and DB queries",
+        "Middleware": "Request/response processing layers (security, authentication, logging)",
+        "Authentication_Authorization": "User sessions, login/logout, permissions, groups",
+        "Signals": "Event-driven hooks (e.g., post-save actions)",
+        "DRF": "APIs (serialization, viewsets, routers)"
+      }
+    },
+    {
+      "step": 3,
+      "description": "Implement project using API-driven architecture.",
+      "details": {
+        "UI": "React handles all frontend rendering.",
+        "Django": "Provides RESTful APIs or GraphQL endpoints.",
+        "Tools": ["Django REST Framework", "Graphene-Django"]
+      }
+    },
+    {
+      "step": 4,
+      "description": "Configure CORS for frontend-backend communication.",
+      "instructions": {
+        "library": "django-cors-headers",
+        "settings": {
+          "INSTALLED_APPS": ["corsheaders"],
+          "MIDDLEWARE": ["corsheaders.middleware.CorsMiddleware"],
+          "CORS_ALLOW_ALL_ORIGINS": true
+        }
+      }
+    },
+    {
+      "step": 5,
+      "description": "Setup Authentication & Authorization.",
+      "methods": ["JWT (preferred for React)", "Session Authentication", "OAuth"],
+      "libraries": ["djangorestframework-simplejwt", "dj-rest-auth"]
+    },
+    {
+      "step": 6,
+      "description": "Establish data flow between Django and React.",
+      "flow": {
+        "Django_to_React": "APIs return JSON responses.",
+        "React_to_Django": "React sends POST/PUT/PATCH/DELETE requests for CRUD operations."
+      }
+    },
+    {
+      "step": 7,
+      "description": "Handle routing separately for frontend and backend.",
+      "routing": {
+        "React": "React Router manages client-side navigation.",
+        "Django": "Manages only API endpoints.",
+        "Deployment_Note": "Django should serve React index.html as fallback in production."
+      }
+    },
+    {
+      "step": 8,
+      "description": "Setup production build and deployment.",
+      "options": {
+        "Decoupled": "React deployed on Netlify/Vercel, Django on Heroku/AWS/DigitalOcean.",
+        "Single": "React build bundled into Django static files."
+      }
+    },
+    {
+      "step": 9,
+      "description": "Integrate state management on frontend.",
+      "tools": ["React Query", "Redux Toolkit", "Axios", "Fetch API"]
+    },
+    {
+      "step": 10,
+      "description": "Apply security best practices.",
+      "security_measures": {
+        "csrf_protection": true,
+        "jwt_storage": "httpOnly cookies",
+        "settings": {
+          "SECURE_SSL_REDIRECT": true,
+          "CSRF_COOKIE_HTTPONLY": true,
+          "SESSION_COOKIE_SECURE": true
+        }
+      }
+    }
+  ],
+  "workflow_recap": [
+    "Django REST API serves data at /api/...",
+    "React fetches data and renders UI",
+    "React sends updates to Django for DB changes",
+    "Authentication handled securely with JWT or sessions"
+  ]
+}
+
+
+{
+    "implementation_prompt": {
+        "project_title": "Django-React CMS Integration Fix",
+        "version": "1.0.0",
+        "objective": "Resolve endpoint mismatches and complete missing configurations between Django backend and React frontend",
+        "priority": "critical",
+        
+        "critical_fixes_required": {
+            "auth_endpoint_alignment": {
+                "issue": "Frontend expects /api/v1/auth/* endpoints but backend only provides /api/token/*",
+                "impact": "Authentication completely broken",
+                "solution_options": [
+                    {
+                        "option_1": "Create auth adapter endpoints in Django",
+                        "files_to_modify": ["lms_backend/users/urls.py", "lms_backend/users/views.py"],
+                        "implementation": {
+                            "create_auth_views": {
+                                "login_view": "Wrapper around JWT token obtain view",
+                                "logout_view": "Token blacklist endpoint",
+                                "register_view": "Move from /users/register/ to /auth/register/"
+                            },
+                            "url_routing": {
+                                "add_path": "path('auth/', include('users.auth_urls'))",
+                                "create_auth_urls_py": "Separate auth URL configuration"
+                            }
+                        }
+                    },
+                    {
+                        "option_2": "Update frontend to use existing JWT endpoints",
+                        "files_to_modify": ["frontend/src/lib/api.tsx", "frontend/src/contexts/AuthContext.tsx"],
+                        "implementation": {
+                            "update_endpoints": {
+                                "login": "Change to POST /api/token/",
+                                "refresh": "Already aligned",
+                                "register": "Change to POST /api/v1/users/register/"
+                            }
+                        }
+                    }
+                ],
+                "recommended_solution": "option_1"
+            },
+
+            "missing_profile_endpoint": {
+                "issue": "Frontend calls /api/v1/users/profile/ but endpoint doesn't exist",
+                "files_to_modify": ["lms_backend/users/views.py"],
+                "implementation": {
+                    "add_profile_action": {
+                        "decorator": "@action(detail=False, methods=['get'], url_path='profile')",
+                        "function": "def profile(self, request): return Response(UserSerializer(request.user).data)",
+                        "permissions": "IsAuthenticated"
+                    }
+                }
+            },
+
+            "missing_events_endpoint": {
+                "issue": "Frontend logs events to /api/v1/events/log/ but endpoint doesn't exist",
+                "files_to_create": [
+                    "lms_backend/events/__init__.py",
+                    "lms_backend/events/apps.py", 
+                    "lms_backend/events/models.py",
+                    "lms_backend/events/views.py",
+                    "lms_backend/events/urls.py"
+                ],
+                "implementation": {
+                    "create_events_app": {
+                        "model": "EventLog with fields: user, event_type, data, timestamp",
+                        "view": "EventLogCreateView for POST requests",
+                        "serializer": "EventLogSerializer",
+                        "url": "path('log/', EventLogCreateView.as_view())"
+                    },
+                    "register_app": "Add 'events' to INSTALLED_APPS",
+                    "include_urls": "Add events URLs to main routing"
+                }
+            },
+
+            "slug_lookup_configuration": {
+                "issue": "Frontend expects slug-based detail lookups but viewsets may use pk",
+                "files_to_modify": [
+                    "lms_backend/blog/views.py",
+                    "lms_backend/projects/views.py", 
+                    "lms_backend/news/views.py",
+                    "lms_backend/courses/views.py",
+                    "lms_backend/pages/views.py"
+                ],
+                "implementation": {
+                    "add_lookup_field": "lookup_field = 'slug'",
+                    "ensure_slug_uniqueness": "Add unique=True to slug fields in models",
+                    "update_router_registration": "Verify router supports slug lookups"
+                }
+            },
+
+            "seo_urls_nesting_fix": {
+                "issue": "SEO URLs incorrectly nested causing robots.txt duplication",
+                "files_to_modify": ["lms_backend/lms_backend/urls.py", "lms_backend/core/seo_urls.py"],
+                "implementation": {
+                    "fix_include_path": "Change to path('api/v1/seo/', include('lms_backend.core.seo_urls'))",
+                    "update_seo_urls": "Add preview/<str:model>/<slug:slug>/ inside seo_urls.py",
+                    "remove_duplicate_robots": "Keep only root robots.txt mapping"
+                }
+            }
+        },
+
+        "configuration_fixes": {
+            "vite_port_alignment": {
+                "issue": "Vite configured for port 3000 but scripts reference 5173",
+                "files_to_modify": ["start_servers.bat", "README copy.md"],
+                "solution": "Update script echo messages and docs to reference port 3000"
+            },
+
+            "css_imports": {
+                "issue": "globals.css with @apply utilities not imported anywhere",
+                "files_to_modify": ["frontend/src/main.tsx"],
+                "solution_options": [
+                    "Import globals.css in main.tsx if utilities are needed",
+                    "Remove globals.css if superseded by compiled index.css"
+                ]
+            },
+
+            "duplicate_auth_context": {
+                "issue": "AuthContext_NEW.tsx duplicates AuthContext.tsx",
+                "solution": "Remove AuthContext_NEW.tsx to prevent confusion"
+            },
+
+            "batch_script_hardcoding": {
+                "issue": "start_servers.bat has hardcoded Python path",
+                "solution": "Use generic 'python' command or reference activated environment"
+            }
+        },
+
+        "implementation_priority_order": [
+            {
+                "step": 1,
+                "task": "Fix auth endpoint alignment",
+                "reason": "Blocks all authenticated functionality"
+            },
+            {
+                "step": 2, 
+                "task": "Add missing profile endpoint",
+                "reason": "Required for user data display"
+            },
+            {
+                "step": 3,
+                "task": "Create events logging endpoint", 
+                "reason": "Prevents frontend logging errors"
+            },
+            {
+                "step": 4,
+                "task": "Configure slug lookups for detail views",
+                "reason": "Required for content detail pages"
+            },
+            {
+                "step": 5,
+                "task": "Fix SEO URL nesting and duplicates",
+                "reason": "Prevents routing conflicts"
+            },
+            {
+                "step": 6,
+                "task": "Align port configurations and clean up files",
+                "reason": "Developer experience improvements"
+            }
+        ],
+
+        "testing_requirements": {
+            "auth_flow_testing": [
+                "Test login with valid credentials",
+                "Test registration flow", 
+                "Test token refresh",
+                "Test logout and token invalidation",
+                "Test profile data retrieval"
+            ],
+            "content_api_testing": [
+                "Test all list endpoints return data",
+                "Test detail endpoints work with slugs",
+                "Test filtering and pagination",
+                "Test events logging endpoint"
+            ],
+            "integration_testing": [
+                "Test frontend can authenticate",
+                "Test content displays correctly",
+                "Test all API calls succeed",
+                "Test error handling"
+            ]
+        },
+
+        "success_criteria": {
+            "technical": [
+                "All frontend API calls return valid responses",
+                "Authentication flow works end-to-end", 
+                "Content detail pages load via slug URLs",
+                "No 404 errors on expected endpoints",
+                "Events logging works without errors"
+            ],
+            "functional": [
+                "Users can log in and access profile",
+                "All content types display correctly",
+                "Navigation works between pages",
+                "SEO URLs function properly",
+                "Development servers start without issues"
+            ]
+        },
+
+        "environment_setup": {
+            "backend_requirements": [
+                "Ensure all apps are in INSTALLED_APPS",
+                "Run migrations after model changes",
+                "Verify CORS settings allow frontend origin",
+                "Check JWT token settings are correct"
+            ],
+            "frontend_requirements": [
+                "Verify API base URL points to Django server",
+                "Ensure all dependencies are installed",
+                "Check that environment variables are set",
+                "Confirm port configuration matches scripts"
+            ]
+        },
+
+        "documentation_updates": {
+            "api_documentation": [
+                "Update API endpoint documentation",
+                "Document new auth endpoints",
+                "Add events logging endpoint docs",
+                "Update authentication flow documentation"
+            ],
+            "setup_documentation": [
+                "Consolidate README files",
+                "Update port references",
+                "Add troubleshooting section",
+                "Update startup instructions"
+            ]
+        }
+    }
+}
