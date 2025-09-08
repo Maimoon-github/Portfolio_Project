@@ -1,0 +1,220 @@
+Defaulting to user installation because normal site-packages is not writeable
+Collecting Django
+  Downloading django-5.2.6-py3-none-any.whl.metadata
+     - 4.1 kB ? 0:00:00
+Collecting djangorestframework
+  Downloading djangorestframework-3.16.1-py3-none-any.whl.metadata
+     - 11.1 kB 34.2 MB/s 0:00:00
+Collecting djangorestframework-simplejwt
+  Downloading djangorestframework_simplejwt-5.5.1-py3-none-any.whl.metadata
+     - 4.6 kB ? 0:00:00
+Collecting django-filter
+  Downloading django_filter-25.1-py3-none-any.whl.metadata
+     - 5.1 kB ? 0:00:00
+Collecting django-cors-headers
+  Downloading django_cors_headers-4.7.0-py3-none-any.whl.metadata
+     - 16.4 kB 137.0 MB/s 0:00:00
+Collecting psycopg2-binary
+  Downloading psycopg2_binary-2.9.10-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata
+     - 4.9 kB ? 0:00:00
+Requirement already satisfied: boto3 in /usr/lib/python3/dist-packages (1.34.46)
+Collecting django-storages
+  Downloading django_storages-1.14.6-py3-none-any.whl.metadata
+     - 4.7 kB ? 0:00:00
+Collecting redis
+  Downloading redis-6.4.0-py3-none-any.whl.metadata
+     - 10.8 kB 24.3 MB/s 0:00:00
+Collecting celery
+  Downloading celery-5.5.3-py3-none-any.whl.metadata
+     - 23.0 kB 169.1 MB/s 0:00:00
+Collecting Pillow
+  Downloading pillow-11.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata
+     - 9.0 kB ? 0:00:00
+Collecting drf-spectacular
+  Downloading drf_spectacular-0.28.0-py3-none-any.whl.metadata
+     - 14.2 kB 167.4 MB/s 0:00:00
+Collecting django-environ
+  Downloading django_environ-0.12.0-py2.py3-none-any.whl.metadata
+     - 12.9 kB 121.9 MB/s 0:00:00
+Collecting django-axes
+  Downloading django_axes-8.0.0-py3-none-any.whl.metadata
+     - 40.2 kB 223.8 MB/s 0:00:00
+Collecting django-ckeditor-5
+  Downloading django_ckeditor_5-0.2.18-py3-none-any.whl.metadata
+     - 15.6 kB 162.7 MB/s 0:00:00
+Collecting django-mptt
+  Downloading django_mptt-0.18.0-py3-none-any.whl.metadata
+     - 5.3 kB ? 0:00:00
+Collecting beautifulsoup4
+  Downloading beautifulsoup4-4.13.5-py3-none-any.whl.metadata
+     - 3.8 kB ? 0:00:00
+Collecting textstat
+  Downloading textstat-0.7.10-py3-none-any.whl.metadata
+     - 15.2 kB 147.1 MB/s 0:00:00
+Collecting stripe
+  Downloading stripe-12.5.1-py2.py3-none-any.whl.metadata
+     - 2.9 kB ? 0:00:00
+Collecting django-extensions
+  Downloading django_extensions-4.1-py3-none-any.whl.metadata
+     - 6.1 kB ? 0:00:00
+Collecting gunicorn
+  Downloading gunicorn-23.0.0-py3-none-any.whl.metadata
+     - 4.4 kB ? 0:00:00
+Collecting asgiref>=3.8.1 (from Django)
+  Downloading asgiref-3.9.1-py3-none-any.whl.metadata
+     - 9.3 kB ? 0:00:00
+Collecting sqlparse>=0.3.1 (from Django)
+  Downloading sqlparse-0.5.3-py3-none-any.whl.metadata
+     - 3.9 kB ? 0:00:00
+Requirement already satisfied: pyjwt>=1.7.1 in /usr/lib/python3/dist-packages (from djangorestframework-simplejwt) (2.7.0)
+Collecting billiard<5.0,>=4.2.1 (from celery)
+  Downloading billiard-4.2.1-py3-none-any.whl.metadata
+     - 4.4 kB ? 0:00:00
+Collecting kombu<5.6,>=5.5.2 (from celery)
+  Downloading kombu-5.5.4-py3-none-any.whl.metadata
+     - 3.5 kB ? 0:00:00
+Collecting vine<6.0,>=5.1.0 (from celery)
+  Downloading vine-5.1.0-py3-none-any.whl.metadata
+     - 2.7 kB ? 0:00:00
+Requirement already satisfied: click<9.0,>=8.1.2 in /usr/lib/python3/dist-packages (from celery) (8.1.6)
+Collecting click-didyoumean>=0.3.0 (from celery)
+  Downloading click_didyoumean-0.3.1-py3-none-any.whl.metadata
+     - 3.9 kB ? 0:00:00
+Collecting click-repl>=0.2.0 (from celery)
+  Downloading click_repl-0.3.0-py3-none-any.whl.metadata
+     - 3.6 kB ? 0:00:00
+Collecting click-plugins>=1.1.1 (from celery)
+  Downloading click_plugins-1.1.1.2-py2.py3-none-any.whl.metadata
+     - 6.5 kB ? 0:00:00
+Requirement already satisfied: python-dateutil>=2.8.2 in /usr/lib/python3/dist-packages (from celery) (2.8.2)
+Collecting uritemplate>=2.0.0 (from drf-spectacular)
+  Downloading uritemplate-4.2.0-py3-none-any.whl.metadata
+     - 2.6 kB ? 0:00:00
+Requirement already satisfied: PyYAML>=5.1 in /usr/lib/python3/dist-packages (from drf-spectacular) (6.0.1)
+Requirement already satisfied: jsonschema>=2.6.0 in /usr/lib/python3/dist-packages (from drf-spectacular) (4.10.3)
+Collecting inflection>=0.3.1 (from drf-spectacular)
+  Downloading inflection-0.5.1-py2.py3-none-any.whl.metadata
+     - 1.7 kB ? 0:00:00
+Collecting django-js-asset (from django-mptt)
+  Downloading django_js_asset-3.1.2-py3-none-any.whl.metadata
+     - 6.4 kB ? 0:00:00
+Collecting soupsieve>1.2 (from beautifulsoup4)
+  Downloading soupsieve-2.8-py3-none-any.whl.metadata
+     - 4.6 kB ? 0:00:00
+Requirement already satisfied: typing-extensions>=4.0.0 in /usr/lib/python3/dist-packages (from beautifulsoup4) (4.10.0)
+Collecting pyphen (from textstat)
+  Downloading pyphen-0.17.2-py3-none-any.whl.metadata
+     - 3.2 kB ? 0:00:00
+Collecting nltk (from textstat)
+  Downloading nltk-3.9.1-py3-none-any.whl.metadata
+     - 2.9 kB ? 0:00:00
+Requirement already satisfied: setuptools in /usr/lib/python3/dist-packages (from textstat) (68.1.2)
+Requirement already satisfied: requests>=2.20 in /usr/lib/python3/dist-packages (from stripe) (2.31.0)
+Requirement already satisfied: packaging in /usr/lib/python3/dist-packages (from gunicorn) (24.0)
+Collecting prompt-toolkit>=3.0.36 (from click-repl>=0.2.0->celery)
+  Downloading prompt_toolkit-3.0.52-py3-none-any.whl.metadata
+     - 6.4 kB ? 0:00:00
+Requirement already satisfied: attrs>=17.4.0 in /usr/lib/python3/dist-packages (from jsonschema>=2.6.0->drf-spectacular) (23.2.0)
+Requirement already satisfied: pyrsistent!=0.17.0,!=0.17.1,!=0.17.2,>=0.14.0 in /usr/lib/python3/dist-packages (from jsonschema>=2.6.0->drf-spectacular) (0.20.0)
+Collecting amqp<6.0.0,>=5.1.1 (from kombu<5.6,>=5.5.2->celery)
+  Downloading amqp-5.3.1-py3-none-any.whl.metadata
+     - 8.9 kB ? 0:00:00
+Collecting tzdata>=2025.2 (from kombu<5.6,>=5.5.2->celery)
+  Downloading tzdata-2025.2-py2.py3-none-any.whl.metadata
+     - 1.4 kB ? 0:00:00
+Collecting joblib (from nltk->textstat)
+  Downloading joblib-1.5.2-py3-none-any.whl.metadata
+     - 5.6 kB ? 0:00:00
+Collecting regex>=2021.8.3 (from nltk->textstat)
+  Downloading regex-2025.9.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata
+     - 40.5 kB 233.6 MB/s 0:00:00
+Collecting tqdm (from nltk->textstat)
+  Downloading tqdm-4.67.1-py3-none-any.whl.metadata
+     - 57.7 kB 200.1 MB/s 0:00:00
+Collecting wcwidth (from prompt-toolkit>=3.0.36->click-repl>=0.2.0->celery)
+  Downloading wcwidth-0.2.13-py2.py3-none-any.whl.metadata
+     - 15.0 kB 143.1 MB/s 0:00:00
+Downloading django-5.2.6-py3-none-any.whl
+   - 8.3 MB 161.4 MB/s 0:00:00
+Downloading djangorestframework-3.16.1-py3-none-any.whl
+   - 1.1 MB 223.2 MB/s 0:00:00
+Downloading djangorestframework_simplejwt-5.5.1-py3-none-any.whl
+   - 107.7 kB 179.1 MB/s 0:00:00
+Downloading django_filter-25.1-py3-none-any.whl
+   - 94.1 kB 214.9 MB/s 0:00:00
+Downloading django_cors_headers-4.7.0-py3-none-any.whl
+   - 12.8 kB 72.2 MB/s 0:00:00
+Downloading psycopg2_binary-2.9.10-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+   - 3.0 MB 204.9 MB/s 0:00:00
+Downloading django_storages-1.14.6-py3-none-any.whl
+   - 33.1 kB 174.7 MB/s 0:00:00
+Downloading redis-6.4.0-py3-none-any.whl
+   - 279.8 kB 180.5 MB/s 0:00:00
+Downloading celery-5.5.3-py3-none-any.whl
+   - 438.8 kB 208.3 MB/s 0:00:00
+Downloading pillow-11.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
+   - 6.6 MB 192.0 MB/s 0:00:00
+Downloading drf_spectacular-0.28.0-py3-none-any.whl
+   - 103.9 kB 146.3 MB/s 0:00:00
+Downloading django_environ-0.12.0-py2.py3-none-any.whl
+   - 20.0 kB 125.7 MB/s 0:00:00
+Downloading django_axes-8.0.0-py3-none-any.whl
+   - 68.9 kB 186.7 MB/s 0:00:00
+Downloading django_ckeditor_5-0.2.18-py3-none-any.whl
+   - 2.7 MB 171.8 MB/s 0:00:00
+Downloading django_mptt-0.18.0-py3-none-any.whl
+   - 120.2 kB 184.3 MB/s 0:00:00
+Downloading beautifulsoup4-4.13.5-py3-none-any.whl
+   - 105.1 kB 184.8 MB/s 0:00:00
+Downloading textstat-0.7.10-py3-none-any.whl
+   - 239.2 kB 185.2 MB/s 0:00:00
+Downloading stripe-12.5.1-py2.py3-none-any.whl
+   - 1.7 MB 210.4 MB/s 0:00:00
+Downloading django_extensions-4.1-py3-none-any.whl
+   - 233.0 kB 179.7 MB/s 0:00:00
+Downloading gunicorn-23.0.0-py3-none-any.whl
+   - 85.0 kB 225.9 MB/s 0:00:00
+Downloading asgiref-3.9.1-py3-none-any.whl
+   - 23.8 kB 160.6 MB/s 0:00:00
+Downloading billiard-4.2.1-py3-none-any.whl
+   - 86.8 kB 220.2 MB/s 0:00:00
+Downloading click_didyoumean-0.3.1-py3-none-any.whl
+   - 3.6 kB ? 0:00:00
+Downloading click_plugins-1.1.1.2-py2.py3-none-any.whl
+   - 11.1 kB 35.9 MB/s 0:00:00
+Downloading click_repl-0.3.0-py3-none-any.whl
+   - 10.3 kB 2.4 MB/s 0:00:00
+Downloading inflection-0.5.1-py2.py3-none-any.whl
+   - 9.5 kB ? 0:00:00
+Downloading kombu-5.5.4-py3-none-any.whl
+   - 210.0 kB 191.5 MB/s 0:00:00
+Downloading vine-5.1.0-py3-none-any.whl
+   - 9.6 kB ? 0:00:00
+Downloading soupsieve-2.8-py3-none-any.whl
+   - 36.7 kB 198.1 MB/s 0:00:00
+Downloading sqlparse-0.5.3-py3-none-any.whl
+   - 44.4 kB 188.2 MB/s 0:00:00
+Downloading uritemplate-4.2.0-py3-none-any.whl
+   - 11.5 kB 58.6 MB/s 0:00:00
+Downloading django_js_asset-3.1.2-py3-none-any.whl
+   - 5.9 kB ? 0:00:00
+Downloading nltk-3.9.1-py3-none-any.whl
+   - 1.5 MB 207.2 MB/s 0:00:00
+Downloading pyphen-0.17.2-py3-none-any.whl
+   - 2.1 MB 181.3 MB/s 0:00:00
+Downloading amqp-5.3.1-py3-none-any.whl
+   - 50.9 kB 208.8 MB/s 0:00:00
+Downloading prompt_toolkit-3.0.52-py3-none-any.whl
+   - 391.4 kB 199.7 MB/s 0:00:00
+Downloading regex-2025.9.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+   - 802.0 kB 222.3 MB/s 0:00:00
+Downloading tzdata-2025.2-py2.py3-none-any.whl
+   - 347.8 kB 192.5 MB/s 0:00:00
+Downloading joblib-1.5.2-py3-none-any.whl
+   - 308.4 kB 193.7 MB/s 0:00:00
+Downloading tqdm-4.67.1-py3-none-any.whl
+   - 78.5 kB 232.2 MB/s 0:00:00
+Downloading wcwidth-0.2.13-py2.py3-none-any.whl
+   - 34.2 kB 177.7 MB/s 0:00:00
+Installing collected packages: wcwidth, vine, uritemplate, tzdata, tqdm, stripe, sqlparse, soupsieve, regex, redis, pyphen, psycopg2-binary, prompt-toolkit, Pillow, joblib, inflection, gunicorn, django-environ, click-plugins, click-didyoumean, billiard, asgiref, nltk, Django, click-repl, beautifulsoup4, amqp, textstat, kombu, djangorestframework, django-storages, django-js-asset, django-filter, django-extensions, django-cors-headers, django-ckeditor-5, django-axes, drf-spectacular, djangorestframework-simplejwt, django-mptt, celery
+Successfully installed Django-5.2.6 Pillow-11.3.0 amqp-5.3.1 asgiref-3.9.1 beautifulsoup4-4.13.5 billiard-4.2.1 celery-5.5.3 click-didyoumean-0.3.1 click-plugins-1.1.1.2 click-repl-0.3.0 django-axes-8.0.0 django-ckeditor-5-0.2.18 django-cors-headers-4.7.0 django-environ-0.12.0 django-extensions-4.1 django-filter-25.1 django-js-asset-3.1.2 django-mptt-0.18.0 django-storages-1.14.6 djangorestframework-3.16.1 djangorestframework-simplejwt-5.5.1 drf-spectacular-0.28.0 gunicorn-23.0.0 inflection-0.5.1 joblib-1.5.2 kombu-5.5.4 nltk-3.9.1 prompt-toolkit-3.0.52 psycopg2-binary-2.9.10 pyphen-0.17.2 redis-6.4.0 regex-2025.9.1 soupsieve-2.8 sqlparse-0.5.3 stripe-12.5.1 textstat-0.7.10 tqdm-4.67.1 tzdata-2025.2 uritemplate-4.2.0 vine-5.1.0 wcwidth-0.2.13

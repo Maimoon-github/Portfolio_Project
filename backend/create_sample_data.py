@@ -19,6 +19,7 @@ if __name__ == "__main__":
     from lms_backend.courses.models import Course, Category, Tag
     from lms_backend.pages.models import Page
     from django.utils import timezone
+    from django.utils.text import slugify
     
     User = get_user_model()
     
@@ -32,8 +33,19 @@ if __name__ == "__main__":
             role='admin'
         )
         print("Created admin user")
+
+    # Get or create instructor user
+    instructor_user = User.objects.filter(email='instructor@example.com').first()
+    if not instructor_user:
+        instructor_user = User.objects.create_user(
+            email='instructor@example.com',
+            username='instructor',
+            password='password123',
+            role='instructor'
+        )
+        print("Created instructor user")
     
-    # Create blog categories
+    # Create blog categories (shared with courses)
     ai_category, _ = Category.objects.get_or_create(
         name='AI Research', 
         slug='ai-research'
@@ -81,7 +93,6 @@ if __name__ == "__main__":
             'featured': True,
             'published_at': timezone.now(),
             'author': admin_user,
-            'category': ai_category,
             'meta_title': 'Future of Transformer Architectures in NLP',
             'meta_description': 'Discover the latest advances in transformer models and their revolutionary impact on natural language processing applications.',
             'focus_keyword': 'transformer architectures'
@@ -126,7 +137,6 @@ if __name__ == "__main__":
             'featured': True,
             'published_at': timezone.now(),
             'author': admin_user,
-            'category': tech_category,
             'meta_title': 'MLOps Best Practices Guide',
             'meta_description': 'Learn essential MLOps practices for deploying and maintaining machine learning models at scale in production.',
             'focus_keyword': 'MLOps best practices'
@@ -140,6 +150,11 @@ if __name__ == "__main__":
         )
         if created:
             print(f"Created blog post: {post.title}")
+        # Assign categories based on the slug
+        if 'transformer' in post.slug:
+            post.categories.add(ai_category)
+        else:
+            post.categories.add(tech_category)
     
     # Create news categories
     news_category, _ = NewsCategory.objects.get_or_create(
@@ -185,19 +200,13 @@ if __name__ == "__main__":
     
     # Create technologies for projects
     technologies = [
-        {'name': 'Python', 'category': 'Programming Language'},
-        {'name': 'TensorFlow', 'category': 'ML Framework'},
-        {'name': 'PyTorch', 'category': 'ML Framework'},
-        {'name': 'React', 'category': 'Frontend Framework'},
-        {'name': 'Django', 'category': 'Backend Framework'},
-        {'name': 'Docker', 'category': 'DevOps'},
-        {'name': 'Kubernetes', 'category': 'DevOps'},
+        'Python', 'TensorFlow', 'PyTorch', 'React', 'Django', 'Docker', 'Kubernetes'
     ]
     
-    for tech_data in technologies:
+    for tech_name in technologies:
         tech, created = Technology.objects.get_or_create(
-            name=tech_data['name'],
-            defaults=tech_data
+            slug=slugify(tech_name),
+            defaults={'name': tech_name}
         )
         if created:
             print(f"Created technology: {tech.name}")
@@ -313,7 +322,7 @@ if __name__ == "__main__":
             'price_cents': 9999,  # $99.99
             'level': 'beginner',
             'duration_hours': 40.0,
-            'instructor': admin_user,
+            'instructor': instructor_user,
             'learning_outcomes': [
                 'Understand key machine learning algorithms',
                 'Build and evaluate ML models',
