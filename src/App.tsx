@@ -48,6 +48,14 @@ export default function App() {
     trackPageView(activeSection);
   }, [activeSection, trackPageView]);
 
+  // When navigating to a new section, ensure any open detail view is cleared
+  useEffect(() => {
+    if (detailRoute) {
+      setDetailRoute(null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSection]);
+
   // Ultra-modern loading screen
   if (isLoading) {
     return (

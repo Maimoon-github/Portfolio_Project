@@ -56,6 +56,8 @@ urlpatterns = [
     
     # Django Admin
     path('admin/', admin.site.urls),
+    # TinyMCE widget assets
+    path('tinymce/', include('tinymce.urls')),
     
     # API Documentation
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

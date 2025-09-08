@@ -3,6 +3,8 @@ Admin configuration for news app.
 """
 
 from django.contrib import admin
+from django import forms
+from tinymce.widgets import TinyMCE
 from .models import NewsItem, NewsCategory
 
 
@@ -17,14 +19,24 @@ class NewsCategoryAdmin(admin.ModelAdmin):
     ordering = ['name']
 
 
+class NewsItemAdminForm(forms.ModelForm):
+    class Meta:
+        model = NewsItem
+        fields = '__all__'
+        widgets = {
+            'body': TinyMCE(attrs={'cols': 100, 'rows': 25}),
+        }
+
+
 @admin.register(NewsItem)
 class NewsItemAdmin(admin.ModelAdmin):
     """
     Admin configuration for NewsItem model.
     """
+    form = NewsItemAdminForm
     list_display = ['title', 'status', 'priority', 'category', 'featured', 'published_at', 'created_at']
     list_filter = ['status', 'priority', 'category', 'featured', 'created_at']
-    search_fields = ['title', 'excerpt', 'body']
+    search_fields = ['title', 'body']
     prepopulated_fields = {'slug': ('title',)}
     date_hierarchy = 'published_at'
     ordering = ['-created_at']
@@ -34,17 +46,17 @@ class NewsItemAdmin(admin.ModelAdmin):
             'fields': ('title', 'slug', 'status', 'featured')
         }),
         ('Content', {
-            'fields': ('excerpt', 'body', 'cover_image')
+            'fields': ('body',)
         }),
         ('Categorization', {
-            'fields': ('category', 'priority', 'external_url')
+            'fields': ('category', 'priority', 'source_url', 'source_name')
         }),
         ('Publishing', {
             'fields': ('published_at',),
             'classes': ('collapse',)
         }),
         ('SEO', {
-            'fields': ('meta_title', 'meta_description', 'meta_keywords'),
+            'fields': ('meta_title', 'meta_description', 'focus_keyword', 'secondary_keywords'),
             'classes': ('collapse',)
         }),
     )

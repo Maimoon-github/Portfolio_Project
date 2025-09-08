@@ -11,6 +11,14 @@ export function BlogDetail({ slug, onBack }: { slug: string; onBack: () => void 
     trackContentView('blog_post', slug);
   }, [slug, trackContentView]);
 
+  // Ensure viewport resets when opening a new post
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    return () => {
+      // No persistent listeners to clean up, but keep hook to clarify unmount behavior
+    };
+  }, [slug]);
+
   if (loading || !post) {
     return (
       <div className="py-20 text-center" style={{ color: 'var(--text-secondary)' }}>Loading article...</div>

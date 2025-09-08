@@ -47,7 +47,7 @@ class Course(BaseContentModel):
     # Basic course info
     subtitle = models.CharField(max_length=200, blank=True)
     description = models.TextField()
-    thumbnail = models.ImageField(upload_to='course_thumbnails/')
+    thumbnail = models.ImageField(upload_to='course_thumbnails/', blank=True)
     price_cents = models.IntegerField(default=0)
     is_free = models.BooleanField(default=False)
     

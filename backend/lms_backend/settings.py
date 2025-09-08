@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'axes',
     'django_ckeditor_5',
+    'tinymce',
     'storages',
     
     # Local apps
@@ -158,7 +159,7 @@ CORS_ALLOWED_ORIGINS = env.list('CORS_ALLOWED_ORIGINS', default=[
 ])
 CORS_ALLOW_CREDENTIALS = True
 
-# CKEditor Configuration
+# CKEditor Configuration (legacy)
 CKEDITOR_5_UPLOAD_PATH = 'uploads/ckeditor/'
 CKEDITOR_5_CONFIGS = {
     # Default config will be loaded from core/ckeditor_config.py
@@ -166,6 +167,17 @@ CKEDITOR_5_CONFIGS = {
 
 # Import CKEditor custom configuration
 from lms_backend.core.ckeditor_config import CKEDITOR_5_CONFIGS
+
+# TinyMCE basic configuration (used in Admin widgets)
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 400,
+    'menubar': True,
+    'plugins': 'link image code lists table media autoresize',
+    'toolbar': 'undo redo | styles | bold italic underline | alignleft aligncenter alignright alignjustify | '
+               'bullist numlist outdent indent | link image media | table | code',
+    'branding': False,
+    'convert_urls': False,
+}
 
 # REST Framework Configuration
 REST_FRAMEWORK = {

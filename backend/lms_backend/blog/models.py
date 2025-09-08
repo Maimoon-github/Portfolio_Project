@@ -13,7 +13,7 @@ class BlogPost(BaseContentModel):
     
     excerpt = models.TextField(max_length=300)
     content = models.TextField()
-    cover_image = models.ImageField(upload_to='blog_covers/')
+    cover_image = models.ImageField(upload_to='blog_covers/', blank=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     categories = models.ManyToManyField(Category, blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
