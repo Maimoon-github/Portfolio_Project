@@ -1,0 +1,10 @@
+node_modules
+build/node_modules
+.git
+.env
+*.pyc
+__pycache__
+backend/db.sqlite3
+.env.*
+.vscode
+.DS_Store
