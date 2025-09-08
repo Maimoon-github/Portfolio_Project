@@ -36,22 +36,16 @@ class ProfileAdmin(admin.ModelAdmin):
     Admin configuration for Profile model.
     """
     list_display = ['user', 'bio_short', 'location']
-    list_filter = ['user__date_joined']
+    list_filter = ['location']
     search_fields = ['user__username', 'user__email', 'bio', 'location']
-    ordering = ['-user__date_joined']
+    ordering = ['user__username']
     
     fieldsets = (
         (None, {
             'fields': ('user',)
         }),
         ('Profile Information', {
-            'fields': ('bio', 'avatar', 'headline', 'location', 'website')
-        }),
-        ('Social Links', {
-            'fields': ('social_links',)
-        }),
-        ('Settings', {
-            'fields': ('timezone',)
+            'fields': ('bio', 'avatar', 'headline', 'location', 'website', 'social_links', 'timezone')
         }),
     )
     
