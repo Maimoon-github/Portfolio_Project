@@ -3,7 +3,7 @@ Admin configuration for courses app.
 """
 
 from django.contrib import admin
-from .models import Category, Tag, Course, Lesson, Review
+from .models import Category, Tag, Course, Lesson, Review, Enrollment, LessonCompletion
 
 
 @admin.register(Category)
@@ -75,8 +75,8 @@ class LessonAdmin(admin.ModelAdmin):
     """
     Admin configuration for Lesson model.
     """
-    list_display = ['title', 'course', 'order', 'duration_minutes', 'is_free', 'created_at']
-    list_filter = ['course', 'is_free', 'created_at']
+    list_display = ['title', 'course', 'order', 'duration_minutes', 'is_preview', 'created_at']
+    list_filter = ['course', 'is_preview', 'created_at']
     search_fields = ['title', 'content', 'course__title']
     ordering = ['course', 'order']
     
@@ -85,7 +85,7 @@ class LessonAdmin(admin.ModelAdmin):
             'fields': ('course', 'title', 'slug', 'order')
         }),
         ('Content', {
-            'fields': ('content', 'video_url', 'duration_minutes', 'resources', 'is_free')
+            'fields': ('content', 'video_url', 'duration_minutes', 'is_preview')
         }),
     )
 
@@ -95,14 +95,14 @@ class ReviewAdmin(admin.ModelAdmin):
     """
     Admin configuration for Review model.
     """
-    list_display = ['course', 'user', 'rating', 'is_approved', 'created_at']
-    list_filter = ['rating', 'is_approved', 'created_at']
+    list_display = ['course', 'user', 'rating', 'created_at']
+    list_filter = ['rating', 'created_at']
     search_fields = ['course__title', 'user__username', 'comment']
     ordering = ['-created_at']
     
     fieldsets = (
         (None, {
-            'fields': ('course', 'user', 'rating', 'is_approved')
+            'fields': ('course', 'user', 'rating')
         }),
         ('Review Content', {
             'fields': ('comment',)
@@ -114,3 +114,27 @@ class ReviewAdmin(admin.ModelAdmin):
     )
     
     readonly_fields = ['created_at']
+
+
+@admin.register(Enrollment)
+class EnrollmentAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for Enrollment model.
+    """
+    list_display = ['user', 'course', 'status', 'progress_percent', 'enrolled_at']
+    list_filter = ['status', 'enrolled_at']
+    search_fields = ['user__username', 'user__email', 'course__title']
+    ordering = ['-enrolled_at']
+    readonly_fields = ['enrolled_at', 'completed_at']
+
+
+@admin.register(LessonCompletion)
+class LessonCompletionAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for LessonCompletion model.
+    """
+    list_display = ['user', 'lesson', 'completed_at']
+    list_filter = ['completed_at', 'lesson__course']
+    search_fields = ['user__username', 'lesson__title', 'lesson__course__title']
+    ordering = ['-completed_at']
+    readonly_fields = ['completed_at']

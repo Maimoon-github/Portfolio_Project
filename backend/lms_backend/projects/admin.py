@@ -23,8 +23,8 @@ class ProjectAdmin(admin.ModelAdmin):
     Admin configuration for Project model.
     """
     list_display = ['title', 'status', 'project_type', 'featured', 'published_at', 'created_at']
-    list_filter = ['status', 'project_type', 'featured', 'technologies', 'created_at']
-    search_fields = ['title', 'description', 'content']
+    list_filter = ['status', 'project_type', 'featured', 'tech_stack', 'created_at']
+    search_fields = ['title', 'description', 'summary']
     prepopulated_fields = {'slug': ('title',)}
     date_hierarchy = 'published_at'
     ordering = ['-created_at']
@@ -34,10 +34,10 @@ class ProjectAdmin(admin.ModelAdmin):
             'fields': ('title', 'slug', 'status', 'featured')
         }),
         ('Content', {
-            'fields': ('description', 'content', 'cover_image', 'gallery_images')
+            'fields': ('summary', 'description', 'thumbnail')
         }),
         ('Project Details', {
-            'fields': ('project_type', 'technologies', 'github_url', 'live_demo_url', 'start_date', 'end_date')
+            'fields': ('project_type', 'tech_stack', 'github_url', 'live_url', 'demo_video', 'completion_date')
         }),
         ('Publishing', {
             'fields': ('published_at',),
@@ -49,4 +49,4 @@ class ProjectAdmin(admin.ModelAdmin):
         }),
     )
     
-    filter_horizontal = ['technologies']
+    filter_horizontal = ['tech_stack']

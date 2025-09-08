@@ -13,10 +13,10 @@ if __name__ == "__main__":
     django.setup()
     
     from django.contrib.auth import get_user_model
-    from lms_backend.blog.models import BlogPost, BlogCategory
+    from lms_backend.blog.models import BlogPost
     from lms_backend.news.models import NewsItem, NewsCategory
     from lms_backend.projects.models import Project, Technology
-    from lms_backend.courses.models import Course, Category as CourseCategory
+    from lms_backend.courses.models import Course, Category, Tag
     from lms_backend.pages.models import Page
     from django.utils import timezone
     
@@ -34,11 +34,11 @@ if __name__ == "__main__":
         print("Created admin user")
     
     # Create blog categories
-    ai_category, _ = BlogCategory.objects.get_or_create(
+    ai_category, _ = Category.objects.get_or_create(
         name='AI Research', 
         slug='ai-research'
     )
-    tech_category, _ = BlogCategory.objects.get_or_create(
+    tech_category, _ = Category.objects.get_or_create(
         name='Technology', 
         slug='technology'
     )
@@ -283,7 +283,7 @@ if __name__ == "__main__":
             print(f"Created project: {project.title}")
     
     # Create course category
-    course_category, _ = CourseCategory.objects.get_or_create(
+    course_category, _ = Category.objects.get_or_create(
         name='Machine Learning',
         slug='machine-learning'
     )
