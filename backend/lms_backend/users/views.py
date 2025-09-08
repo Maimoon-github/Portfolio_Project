@@ -35,6 +35,15 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
     
+    @action(detail=False, methods=['get'], permission_classes=[permissions.IsAuthenticated], url_path='profile')
+    def profile(self, request):
+        """
+        Get the current user's profile information.
+        Maps to /api/v1/users/profile/ to match frontend expectations.
+        """
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
+    
     @action(detail=True, methods=['patch'], permission_classes=[permissions.IsAuthenticated])
     def update_profile(self, request, pk=None):
         """

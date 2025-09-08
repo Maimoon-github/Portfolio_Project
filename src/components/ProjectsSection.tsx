@@ -3,10 +3,13 @@ import { Filter, Search, Grid, List } from 'lucide-react';
 import { Button } from './ui/button';
 import { motion, AnimatePresence } from 'motion/react';
 import { ProjectCard } from './ProjectCard';
+import { useProjects } from '../services/hooks';
+import type { Project as ApiProject } from '../services/api';
 import { DataMetrics } from './DataMetrics';
 
 interface Project {
   id: string;
+  slug?: string;
   title: string;
   description: string;
   category: 'Research' | 'Production' | 'Open Source';
@@ -26,6 +29,7 @@ export function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState('all');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [searchQuery, setSearchQuery] = useState('');
+  const { data: apiProjects, loading: loadingProjects } = useProjects({ realTime: true });
 
   const categories = [
     { id: 'all', label: 'All Projects', count: 8 },
@@ -34,7 +38,25 @@ export function ProjectsSection() {
     { id: 'Open Source', label: 'Open Source', count: 2 },
   ];
 
-  const projects: Project[] = [
+  const projectsFromApi: Project[] | null = apiProjects ? apiProjects.map((p: ApiProject) => ({
+    id: String(p.id),
+  slug: (p as any).slug,
+    title: p.title,
+    description: p.description || (p as any).content || (p as any).summary || '',
+    category: (p as any).project_type_display || 'Production',
+    status: ((p as any).status === 'published' ? 'Live' : 'Completed') as Project['status'],
+    technologies: (p.technologies || (p as any).tech_stack || []).map((t: any) => t.name),
+    image: (p as any).thumbnail_url || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1080&q=80',
+    metrics: [],
+    links: {
+      demo: (p as any).live_url,
+      github: (p as any).github_url,
+      case_study: `/projects/${p.slug}`
+    },
+    featured: p.featured,
+  })) : null;
+
+  const projects: Project[] = projectsFromApi || [
     {
       id: '1',
       title: 'AI-Powered Healthcare Diagnostics',
@@ -277,19 +299,27 @@ export function ProjectsSection() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.6 }}
           >
+            {loadingProjects && !projectsFromApi && (
+              <div className="col-span-full text-center" style={{ color: 'var(--text-secondary)' }}>
+                Loading projects...
+              </div>
+            )}
             {filteredProjects.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                title={project.title}
-                description={project.description}
-                image={project.image}
-                technologies={project.technologies}
-                metrics={project.metrics}
-                links={project.links}
-                category={project.category}
-                status={project.status}
-                delay={index * 0.1}
-              />
+              <div key={project.id}>
+                <div onClick={() => window.dispatchEvent(new CustomEvent('navigate-detail', { detail: { type: 'project', slug: (apiProjects?.find((p: any) => String(p.id) === project.id)?.slug) || project.id } }))}>
+                <ProjectCard
+                  title={project.title}
+                  description={project.description}
+                  image={project.image}
+                  technologies={project.technologies}
+                  metrics={project.metrics}
+                  links={project.links}
+                  category={project.category}
+                  status={project.status}
+                  delay={index * 0.1}
+                />
+                </div>
+              </div>
             ))}
           </motion.div>
         </AnimatePresence>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, User, Briefcase, BookOpen, Newspaper, Home, GraduationCap, LogIn, LogOut, Settings, Users, ChevronDown } from 'lucide-react';
+import { Menu, X, User, Briefcase, BookOpen, Newspaper, Home, GraduationCap, LogIn, LogOut, Settings, Users, ChevronDown, TestTube } from 'lucide-react';
 import { useAuth } from './auth/AuthContext';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -20,6 +20,8 @@ export function Navigation({ activeSection, setActiveSection }: NavigationProps)
     { id: 'blog', label: 'Blog', icon: BookOpen },
     { id: 'news', label: 'News', icon: Newspaper },
     { id: 'courses', label: 'Courses', icon: GraduationCap },
+    // Show diagnostics only in development to avoid exposing test UI
+  ...(((import.meta as any).env?.MODE === 'development') ? [{ id: 'test', label: 'Diagnostics', icon: TestTube }] : []),
   ];
 
   const handleLogout = () => {

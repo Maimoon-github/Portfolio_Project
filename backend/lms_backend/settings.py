@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'lms_backend.projects',
     'lms_backend.news',
     'lms_backend.pages',
+    'lms_backend.events',
 ]
 
 MIDDLEWARE = [
@@ -98,6 +99,12 @@ DATABASES = {
 # Custom User model
 AUTH_USER_MODEL = 'users.User'
 
+# Authentication backends
+AUTHENTICATION_BACKENDS = [
+    'axes.backends.AxesStandaloneBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -121,8 +128,7 @@ AXES_FAILURE_LIMIT = 5
 AXES_LOCK_OUT_AT_FAILURE = True
 AXES_COOLOFF_TIME = 1  # hours
 AXES_RESET_ON_SUCCESS = True
-AXES_USE_USER_AGENT = True
-AXES_LOCKOUT_TEMPLATE = 'account/lockout.html'
+AXES_LOCKOUT_TEMPLATE = None  # Use default template
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/

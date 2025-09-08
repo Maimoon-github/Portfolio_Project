@@ -3,9 +3,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { motion } from 'motion/react';
+import { useNews } from '../services/hooks';
+import type { NewsItem as ApiNewsItem } from '../services/api';
 
 interface NewsItem {
   id: string;
+  slug?: string;
   title: string;
   description: string;
   date: string;
@@ -16,87 +19,41 @@ interface NewsItem {
 }
 
 export function NewsSection() {
-  const newsItems: NewsItem[] = [
-    {
-      id: '1',
-      title: 'Keynote Speaker at AI Summit 2024',
-      description: 'Delivered keynote presentation on "The Future of Ethical AI in Healthcare" to an audience of 3,000+ AI practitioners and researchers.',
-      date: '2024-12-10',
-      type: 'speaking',
-      source: 'AI Summit 2024',
-      link: 'https://aisummit2024.com/speakers',
-      featured: true
-    },
-    {
-      id: '2',
-      title: 'Research Paper Accepted at NeurIPS 2024',
-      description: 'Co-authored paper "Adaptive Neural Architecture Search for Edge Computing" accepted at one of the premier AI conferences with acceptance rate <20%.',
-      date: '2024-11-28',
-      type: 'publication',
-      source: 'NeurIPS 2024',
-      link: 'https://neurips.cc/2024',
-      featured: true
-    },
-    {
-      id: '3',
-      title: 'Featured in MIT Technology Review',
-      description: 'Quoted as AI expert in cover story "The Next Generation of Machine Learning Leaders" discussing the democratization of AI tools.',
-      date: '2024-11-15',
-      type: 'media',
-      source: 'MIT Technology Review',
-      link: 'https://technologyreview.com',
-      featured: true
-    },
-    {
-      id: '4',
-      title: 'Winner: Best Innovation Award',
-      description: 'TechCorp AI team awarded "Best Innovation in Healthcare AI" at the Digital Health Awards for breakthrough diagnostic imaging platform.',
-      date: '2024-10-22',
-      type: 'award',
-      source: 'Digital Health Awards',
-      link: 'https://digitalhealthawards.com',
-      featured: false
-    },
-    {
-      id: '5',
-      title: 'Promoted to Senior Data Scientist',
-      description: 'Recognized for exceptional leadership and technical contributions, promoted to lead the AI research division at TechCorp AI.',
-      date: '2024-10-01',
-      type: 'achievement',
-      source: 'TechCorp AI',
-      featured: false
-    },
-    {
-      id: '6',
-      title: 'Guest on The AI Podcast',
-      description: 'Discussed the challenges and opportunities in deploying large language models at scale on one of the top-rated AI podcasts.',
-      date: '2024-09-18',
-      type: 'media',
-      source: 'The AI Podcast',
-      link: 'https://theaipodcast.com',
-      featured: false
-    },
-    {
-      id: '7',
-      title: 'Open Source Project Reaches 10K Stars',
-      description: 'MLOptimizer framework surpassed 10,000 GitHub stars, becoming one of the most popular model optimization libraries.',
-      date: '2024-08-30',
-      type: 'achievement',
-      source: 'GitHub',
-      link: 'https://github.com/mloptimizer',
-      featured: false
-    },
-    {
-      id: '8',
-      title: 'Panel Discussion at Stanford AI Conference',
-      description: 'Participated in expert panel on "AI Safety and Alignment" alongside leading researchers from top technology companies.',
-      date: '2024-08-12',
-      type: 'speaking',
-      source: 'Stanford AI Conference',
-      link: 'https://stanford.edu/ai-conference',
-      featured: false
-    }
-  ];
+  // Load from backend only
+  const { data: apiNews, loading, error } = useNews({ featured: true, realTime: true });
+  const newsItems: NewsItem[] = apiNews?.map((n: ApiNewsItem) => ({
+    id: String(n.id),
+  slug: (n as any).slug,
+    title: n.title,
+    description: n.excerpt || n.body || '',
+    date: (n as any).publish_date || (n as any).published_at || n.updated_at,
+    type: (n.category?.name?.toLowerCase()?.includes('award') ? 'award' :
+      n.priority === 'urgent' ? 'achievement' : 'publication') as NewsItem['type'],
+    source: (n as any).source_name,
+    link: (n as any).source_url,
+    featured: n.featured,
+  })) || [];
+
+  // Optional subtle loading state styling (keeps theme consistent)
+  if (loading && !apiNews) {
+    return (
+      <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'var(--secondary-dark)' }}>
+        <div className="max-w-7xl mx-auto text-center" style={{ color: 'var(--light-text-60)' }}>
+          Loading latest news...
+        </div>
+      </section>
+    );
+  }
+
+  if (!loading && newsItems.length === 0) {
+    return (
+      <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'var(--secondary-dark)' }}>
+        <div className="max-w-7xl mx-auto text-center" style={{ color: 'var(--light-text-60)' }}>
+          No news yet. Create published news in the Django admin.
+        </div>
+      </section>
+    );
+  }
 
   const getIcon = (type: string) => {
     switch (type) {
@@ -182,6 +139,7 @@ export function NewsSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
                   whileHover={{ y: -5 }}
+                  onClick={() => window.dispatchEvent(new CustomEvent('navigate-detail', { detail: { type: 'news', slug: item.slug || item.id } }))}
                 >
                   <Card 
                     className="h-full purple-border-hover purple-glow-hover cursor-pointer transition-all duration-300 overflow-hidden group"
@@ -298,6 +256,7 @@ export function NewsSection() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: index * 0.1 }}
+                    onClick={() => window.dispatchEvent(new CustomEvent('navigate-detail', { detail: { type: 'news', slug: item.slug || item.id } }))}
                   >
                     {/* Timeline Node */}
                     <div className="relative z-10 mr-6">

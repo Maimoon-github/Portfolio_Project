@@ -9,13 +9,21 @@ import { CoursesSection } from './components/courses/CoursesSection';
 import { AuthPage } from './components/auth/AuthPage';
 import { InstructorDashboard } from './components/dashboard/InstructorDashboard';
 import { AdminDashboard } from './components/dashboard/AdminDashboard';
+import IntegrationTestDashboard from './components/IntegrationTestDashboard';
 import { AuthProvider } from './components/auth/AuthContext';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
 import { motion, AnimatePresence } from 'motion/react';
+import { useUserTracking } from './services/hooks';
+import { BlogDetail } from './components/blog/BlogDetail';
+import { ProjectDetail } from './components/projects/ProjectDetail';
+import { NewsDetail } from './components/news/NewsDetail';
+import { CourseDetail } from './components/courses/CourseDetail';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
+  const [detailRoute, setDetailRoute] = useState<{ type: 'blog' | 'project' | 'news' | 'course'; slug: string } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { trackPageView } = useUserTracking();
 
   useEffect(() => {
     // Simulate loading time for the modern theme to load
@@ -25,6 +33,20 @@ export default function App() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    const handler = (e: any) => {
+      setDetailRoute(e.detail);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+    window.addEventListener('navigate-detail', handler);
+    return () => window.removeEventListener('navigate-detail', handler);
+  }, []);
+
+  // Track page views when section changes
+  useEffect(() => {
+    trackPageView(activeSection);
+  }, [activeSection, trackPageView]);
 
   // Ultra-modern loading screen
   if (isLoading) {
@@ -83,23 +105,35 @@ export default function App() {
   }
 
   const renderSection = () => {
+    if (detailRoute) {
+      const back = () => setDetailRoute(null);
+      switch (detailRoute.type) {
+        case 'blog':
+          return <BlogDetail slug={detailRoute.slug} onBack={back} />;
+        case 'project':
+          return <ProjectDetail slug={detailRoute.slug} onBack={back} />;
+        case 'news':
+          return <NewsDetail slug={detailRoute.slug} onBack={back} />;
+        case 'course':
+          return <CourseDetail slug={detailRoute.slug} onBack={back} />;
+      }
+    }
     switch (activeSection) {
       case 'home':
         return <HeroSection key="hero" />;
       case 'projects':
-        return <ProjectsSection key="projects" />;
+  return <ProjectsSection key="projects" />;
       case 'experience':
         return <ExperienceSection key="experience" />;
       case 'blog':
-        return <BlogSection key="blog" />;
+  return <BlogSection key="blog" />;
       case 'news':
-        return <NewsSection key="news" />;
+  return <NewsSection key="news" />;
       case 'courses':
-        return <CoursesSection key="courses" />;
+  return <CoursesSection key="courses" />;
       case 'auth':
         return (
           <AuthPage 
-            key="auth"
             onBack={() => setActiveSection('home')}
             onSuccess={() => setActiveSection('home')}
           />
@@ -107,7 +141,6 @@ export default function App() {
       case 'dashboard':
         return (
           <ProtectedRoute 
-            key="dashboard"
             requiredRole={['instructor', 'admin']}
             onUnauthorized={() => setActiveSection('auth')}
           >
@@ -117,15 +150,16 @@ export default function App() {
       case 'admin':
         return (
           <ProtectedRoute 
-            key="admin"
             requiredRole={['admin']}
             onUnauthorized={() => setActiveSection('auth')}
           >
             <AdminDashboard />
           </ProtectedRoute>
         );
+      case 'test':
+        return <IntegrationTestDashboard />;
       default:
-        return <HeroSection key="hero" />;
+        return <HeroSection />;
     }
   };
 
