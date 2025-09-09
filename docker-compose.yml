@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: portfolio-project:latest
+    container_name: portfolio-container
+    ports:
+      - "80:80"     # Nginx - serves frontend & routes API requests
+      - "8000:8000" # Direct access to Django backend (optional)
+      - "3000:80"   # Additional port mapping to access frontend on port 3000
+    volumes:
+      - ./backend/logs:/app/logs
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+    environment:
+      # Django settings
+      - DEBUG=False
+      - SECRET_KEY=django-insecure-production-key-change-this
+      - ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0
+      - DATABASE_URL=sqlite:///db.sqlite3
+      # CORS settings for local development
+      - CORS_ALLOWED_ORIGINS=http://localhost:3000,http://localhost:80
+    restart: unless-stopped
+    networks:
+      - portfolio_network
+
+networks:
+  portfolio_network:
+    driver: bridge
+
+volumes:
+  static_volume:
+  media_volume:
