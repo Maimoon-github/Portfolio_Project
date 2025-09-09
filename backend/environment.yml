@@ -27,4 +27,4 @@ dependencies:
     - stripe
     - django-extensions
   - django-tinymce
-    - gunicorn
+  - gunicorn
