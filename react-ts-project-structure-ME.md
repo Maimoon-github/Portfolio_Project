@@ -5,17 +5,6 @@
 >
 > Based on research into production-grade React/TypeScript architectures (bulletproof-react, feature-based directory patterns, and Vite toolchain best practices as of 2024–2025). The structure below converts the existing `.jsx` / `.js` codebase to fully typed `.tsx` / `.ts` files, adds TypeScript-specific layers (`types/`, `services/`, strict config files), and introduces clean separation of concerns across every layer of the application.
 
-
-#!/bin/bash
-
-# Script to create the React component folder structure and files
-# Run this from the project root (where src/ is located)
-
-set -e  # Exit on error
-
-
-
-
 ---
 
 ## Full Project Hierarchy
