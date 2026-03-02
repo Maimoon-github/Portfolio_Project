@@ -1,35 +1,35 @@
-/* Design tokens – fallbacks in case global CSS is not loaded */
+/* specialist-portfolio/src/components/ui/Badge/Badge.module.css */
+/* Design tokens – can be imported from global tokens.css */
 :root {
-  --color-surface: #3b4859;   /* Slate Blue */
-  --color-accent: #d9ae89;     /* Gold Fleck */
-  --color-bg: #141a26;         /* Midnight Shale (for text on accent) */
+  --color-surface: #3b4859;      /* Slate Blue */
+  --color-accent: #d9ae89;        /* Gold Fleck */
+  --color-bg-dark: #141a26;        /* Midnight Shale */
+  --font-ui: 'Inter', system-ui, sans-serif;
 }
 
 .badge {
-  display: inline-block;
-  padding: 4px 8px;            /* matches 8px base unit: 0.5 * 8px, 1 * 8px */
-  border-radius: 4px;          /* 0.5 * 8px */
-  font-family: 'Inter', system-ui, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui, 'Inter', system-ui, sans-serif);
   font-weight: 600;
-  font-size: 0.75rem;          /* 12px, typical for badges */
+  font-size: 0.75rem;          /* 12px */
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.02em;
+  padding: 4px 8px;
+  border-radius: 4px;
   white-space: nowrap;
+  transition: background-color 0.2s ease;
 }
 
-/* Default variant – Slate Blue background, white text */
+/* Variants */
 .badge--default {
   background-color: var(--color-surface, #3b4859);
   color: #ffffff;
 }
 
-/* Accent variant – Gold Fleck background, dark text (Midnight Shale) */
 .badge--accent {
   background-color: var(--color-accent, #d9ae89);
-  color: var(--color-bg, #141a26);
+  color: var(--color-bg-dark, #141a26);
 }
-
-/* If the badge is interactive (e.g., used as a filter button), we could add hover states.
-   By design, this component is non-interactive, so no hover effects are applied.
-*/
