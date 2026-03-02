@@ -1,0 +1,8 @@
+# Allow all search engine crawlers to access the entire site
+# This ensures maximum visibility for the portfolio content
+User-agent: *
+Allow: /
+
+# Specify the location of the XML sitemap to help crawlers discover all pages
+# Update this URL when deploying to your actual domain
+Sitemap: https://yourdomain.com/sitemap.xml

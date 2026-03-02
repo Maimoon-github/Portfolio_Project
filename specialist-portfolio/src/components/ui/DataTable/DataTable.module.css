@@ -1,0 +1,159 @@
+/* Design System Tokens - "The Data Specialist" */
+:root {
+  --color-primary: #0d33a6;        /* Lapis Deep */
+  --color-primary-hover: #3258a6;   /* Lapis Medium */
+  --color-accent: #d9ae89;          /* Gold Fleck */
+  --color-bg: #141a26;              /* Midnight Shade */
+  --color-surface: #3b4859;         /* Slate Blue */
+  --color-text: #ffffff;
+  --color-text-dim: #b0b0b0;
+  --font-ui: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --spacing-unit: 8px;
+  --row-bg-alt: #1e2633;            /* Slightly lighter than Midnight Shade for striping */
+}
+
+/* Container for horizontal scroll on small screens */
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 4px;
+}
+
+/* Base table styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-ui);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Header styles */
+.thead {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+.th {
+  padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2);
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.th:last-child {
+  border-right: none;
+}
+
+/* Sortable headers */
+.thSortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.thSortable:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.thSortable:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+.thContent {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 1);
+}
+
+.sortIndicator {
+  display: inline-block;
+  width: 1.2em;
+  text-align: center;
+  color: var(--color-accent);
+  font-size: 1.1em;
+}
+
+/* Numeric header alignment */
+.thNumeric {
+  text-align: right;
+}
+
+.thNumeric .thContent {
+  justify-content: flex-end;
+}
+
+/* Body rows */
+.tbody {
+  background-color: var(--color-bg);
+}
+
+.tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color 0.2s ease;
+}
+
+.tr:nth-child(even) {
+  background-color: var(--row-bg-alt);
+}
+
+.tr:hover {
+  background-color: rgba(50, 88, 166, 0.2); /* Lapis Medium at 20% opacity */
+}
+
+/* Cell styles */
+.td {
+  padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.td:last-child {
+  border-right: none;
+}
+
+/* Numeric cell alignment */
+.tdNumeric {
+  text-align: right;
+  font-family: var(--font-mono);
+}
+
+.numericValue {
+  font-family: var(--font-mono);
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* Accessibility focus styles */
+.tr:focus-within {
+  outline: none;
+}
+
+.tr:focus-within .td:first-child {
+  box-shadow: inset 2px 0 0 var(--color-accent);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .th,
+  .td {
+    padding: var(--spacing-unit) calc(var(--spacing-unit) * 1.5);
+    font-size: 0.875rem;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .th,
+  .tr,
+  .thSortable {
+    transition: none;
+  }
+}

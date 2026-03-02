@@ -1,0 +1,185 @@
+/* ============================================================
+   animations.css
+   Global Animation System – "The Data Specialist"
+   Core keyframes and utility classes for refined, purposeful motion.
+   All animations use transform/opacity for GPU acceleration [citation:2].
+   ============================================================ */
+
+/* --------------------------------------------
+   Keyframes
+   High-impact, minimalist motion per SKILL.md
+   -------------------------------------------- */
+
+/* Fade up with slight translation – for section reveals */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide in from left – for drawers, side panels */
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Subtle gold pulse for CTAs – scales slightly with gold glow */
+@keyframes pulseGold {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 var(--color-accent-gold, #D9AE89);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 12px var(--color-accent-gold, #D9AE89);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 var(--color-accent-gold, #D9AE89);
+  }
+}
+
+/* Shimmer – for loading skeletons (gradient animation) */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Gentle vertical float – for decorative background elements */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+/* --------------------------------------------
+   Base Animation Utility Classes
+   Apply these to elements that need an entrance animation.
+   Default durations use design tokens (fallbacks provided).
+   -------------------------------------------- */
+
+.animate-fade-in {
+  animation: fadeInUp var(--duration-base, 0.3s) var(--easing-enter, ease-out) forwards;
+}
+
+.animate-slide-up {
+  animation: fadeInUp var(--duration-base, 0.3s) var(--easing-enter, ease-out) forwards; /* same as fadeInUp for simplicity */
+}
+
+.animate-slide-left {
+  animation: slideInLeft var(--duration-slow, 0.4s) var(--easing-enter, ease-out) forwards;
+}
+
+.animate-pulse-gold {
+  animation: pulseGold var(--duration-slow, 0.6s) var(--easing-spring, ease) infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 1.5s linear infinite;
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-slate, #3B4859) 25%,
+    var(--color-accent-gold, #D9AE89) 50%,
+    var(--color-surface-slate, #3B4859) 75%
+  );
+  background-size: 200% 100%;
+}
+
+.animate-float {
+  animation: float var(--duration-slow, 0.6s) var(--easing-default, ease) infinite;
+}
+
+
+/* --------------------------------------------
+   Stagger Delays
+   Use with .animate-* classes for grid/list reveals.
+   Based on 8px rhythm: each step = 100ms.
+   -------------------------------------------- */
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+
+
+/* --------------------------------------------
+   State Utilities – Hover & Focus
+   Used directly on interactive elements.
+   -------------------------------------------- */
+
+.hover-lift {
+  transition: transform var(--duration-fast, 0.15s) var(--easing-default, ease);
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.hover-glow {
+  transition: box-shadow var(--duration-fast, 0.15s) var(--easing-default, ease);
+}
+.hover-glow:hover {
+  box-shadow: 0 0 12px var(--color-accent-gold, #D9AE89);
+}
+
+
+/* --------------------------------------------
+   Accessibility – Reduced Motion
+   Respects user OS preference (WCAG 2.3.3) [citation:8][citation:3]
+   Disables all non‑essential animations.
+   -------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  /* Essential opacity fades may remain, but we disable them for safety */
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-slide-left,
+  .animate-pulse-gold,
+  .animate-float {
+    animation: none !important;
+    opacity: 1; /* Ensure content is visible */
+    transform: none;
+  }
+
+  .hover-lift:hover {
+    transform: none;
+  }
+
+  .hover-glow:hover {
+    box-shadow: none;
+  }
+}
