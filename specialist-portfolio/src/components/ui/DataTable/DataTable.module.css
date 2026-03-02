@@ -1,159 +1,135 @@
-/* Design System Tokens - "The Data Specialist" */
+/* specialist-portfolio/src/components/ui/DataTable/DataTable.module.css */
+/* Design System Tokens – "The Data Specialist" */
 :root {
   --color-primary: #0d33a6;        /* Lapis Deep */
   --color-primary-hover: #3258a6;   /* Lapis Medium */
   --color-accent: #d9ae89;          /* Gold Fleck */
-  --color-bg: #141a26;              /* Midnight Shade */
-  --color-surface: #3b4859;         /* Slate Blue */
-  --color-text: #ffffff;
-  --color-text-dim: #b0b0b0;
+  --color-bg: #141a26;              /* Midnight Shale */
+  --color-surface-light: #1e2633;   /* Alternating row background */
+  --color-border: rgba(255, 255, 255, 0.1);
   --font-ui: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --font-mono: 'JetBrains Mono', 'Roboto Mono', monospace;
   --spacing-unit: 8px;
-  --row-bg-alt: #1e2633;            /* Slightly lighter than Midnight Shade for striping */
 }
 
-/* Container for horizontal scroll on small screens */
-.tableContainer {
+/* Scrollable wrapper */
+.tableWrapper {
   width: 100%;
   overflow-x: auto;
   border-radius: 4px;
 }
 
-/* Base table styles */
+/* Base table */
 .table {
   width: 100%;
   border-collapse: collapse;
   font-family: var(--font-ui);
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 0.9375rem;
+  line-height: 1.5;
 }
 
 /* Header styles */
-.thead {
-  background-color: var(--color-primary);
-  color: var(--color-text);
+.headerRow {
+  background-color: var(--color-primary); /* Lapis Deep */
 }
 
-.th {
+.headerCell {
   padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2);
-  text-align: left;
   font-weight: 600;
-  font-size: 0.875rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  transition: background-color 0.2s ease;
+  color: #ffffff;
+  text-align: left;
+  white-space: nowrap;
+  border-right: 1px solid var(--color-border);
 }
 
-.th:last-child {
+.headerCell:last-child {
   border-right: none;
 }
 
-/* Sortable headers */
-.thSortable {
+/* Header alignment utilities */
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+/* Body rows */
+.bodyRow {
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.2s ease;
+}
+
+.bodyRow:nth-child(even) {
+  background-color: var(--color-surface-light);
+}
+
+.bodyRow:hover {
+  background-color: rgba(50, 88, 166, 0.2); /* Lapis Medium with 20% opacity */
+}
+
+/* Row clickable styles */
+.rowClickable {
   cursor: pointer;
-  user-select: none;
 }
 
-.thSortable:hover {
-  background-color: var(--color-primary-hover);
-}
-
-.thSortable:focus-visible {
+.rowClickable:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: -2px;
 }
 
-.thContent {
-  display: flex;
-  align-items: center;
-  gap: calc(var(--spacing-unit) * 1);
-}
-
-.sortIndicator {
-  display: inline-block;
-  width: 1.2em;
-  text-align: center;
-  color: var(--color-accent);
-  font-size: 1.1em;
-}
-
-/* Numeric header alignment */
-.thNumeric {
-  text-align: right;
-}
-
-.thNumeric .thContent {
-  justify-content: flex-end;
-}
-
-/* Body rows */
-.tbody {
-  background-color: var(--color-bg);
-}
-
-.tr {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: background-color 0.2s ease;
-}
-
-.tr:nth-child(even) {
-  background-color: var(--row-bg-alt);
-}
-
-.tr:hover {
-  background-color: rgba(50, 88, 166, 0.2); /* Lapis Medium at 20% opacity */
-}
-
-/* Cell styles */
-.td {
+/* Cells */
+.cell {
   padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2);
-  font-size: 0.9375rem;
-  line-height: 1.5;
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid var(--color-border);
 }
 
-.td:last-child {
+.cell:last-child {
   border-right: none;
 }
 
-/* Numeric cell alignment */
-.tdNumeric {
-  text-align: right;
+/* Numeric cells (monospaced) */
+.numberCell {
   font-family: var(--font-mono);
+  font-feature-settings: 'tnum' 1;
 }
 
-.numericValue {
+/* Total cells (gold + monospaced) */
+.totalCell {
   font-family: var(--font-mono);
   color: var(--color-accent);
   font-weight: 500;
+  font-feature-settings: 'tnum' 1;
 }
 
-/* Accessibility focus styles */
-.tr:focus-within {
-  outline: none;
+/* Empty state */
+.emptyCell {
+  padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 2);
+  text-align: center;
+  color: #b0b0b0;
+  font-style: italic;
 }
 
-.tr:focus-within .td:first-child {
-  box-shadow: inset 2px 0 0 var(--color-accent);
+/* Caption (visually hidden, accessible) */
+.caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .th,
-  .td {
-    padding: var(--spacing-unit) calc(var(--spacing-unit) * 1.5);
-    font-size: 0.875rem;
-  }
-}
-
-/* Reduced motion preference */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .th,
-  .tr,
-  .thSortable {
+  .bodyRow {
     transition: none;
   }
 }
