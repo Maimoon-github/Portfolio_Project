@@ -1,35 +1,24 @@
-import React from 'react';
+// specialist-portfolio/src/components/ui/Badge/Badge.tsx
+import { FC } from 'react';
 import clsx from 'clsx';
 import { BadgeProps } from './Badge.types';
 import styles from './Badge.module.css';
 
-/**
- * Badge component – small status indicator (new, experimental, category, etc.)
- */
-export const Badge: React.FC<BadgeProps> = ({
+export const Badge: FC<BadgeProps> = ({
   children,
   variant = 'default',
   className,
-  ...rest
 }) => {
   return (
     <span
       className={clsx(
         styles.badge,
-        styles[`badge--${variant}`],
+        variant === 'accent' && styles['badge--accent'],
+        variant === 'default' && styles['badge--default'],
         className
       )}
-      {...rest}
     >
       {children}
     </span>
   );
 };
-
-Badge.displayName = 'Badge';
-
-
-
-
-
-

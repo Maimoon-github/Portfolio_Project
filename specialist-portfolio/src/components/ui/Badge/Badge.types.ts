@@ -1,12 +1,13 @@
-import { ReactNode, HTMLAttributes } from 'react';
+// specialist-portfolio/src/components/ui/Badge/Badge.types.ts
+import { ReactNode } from 'react';
 
 export type BadgeVariant = 'default' | 'accent';
 
-export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
-  /** Content of the badge (text, icon, etc.) */
+export interface BadgeProps {
+  /** Content of the badge */
   children: ReactNode;
   /** Visual style variant */
   variant?: BadgeVariant;
-  /** Optional additional CSS class name */
+  /** Additional CSS class name */
   className?: string;
 }
