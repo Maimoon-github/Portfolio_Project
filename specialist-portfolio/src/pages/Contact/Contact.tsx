@@ -1,10 +1,12 @@
+// specialist-portfolio/src/pages/Contact/Contact.tsx
+
 import { useState, FormEvent, ChangeEvent, memo } from 'react';
 import { Helmet } from 'react-helmet-async';
-import SectionContainer from '@/components/layout/SectionContainer/SectionContainer';
-import Button from '@/components/ui/Button/Button';
+import SectionContainer from '@/components/layout/SectionContainer';
+import Button from '@/components/ui/Button';
+import FormInput from '@/components/ui/FormInput';
 import styles from './Contact.module.css';
 
-// Export type for barrel
 export interface ContactFormData {
   name: string;
   email: string;
@@ -12,7 +14,6 @@ export interface ContactFormData {
   message: string;
 }
 
-// Type for validation errors
 interface FormErrors {
   name?: string;
   email?: string;
@@ -22,8 +23,8 @@ interface FormErrors {
 
 /**
  * Contact page – low‑friction gateway for professional opportunities.
- * Implements controlled form with validation, direct contact info,
- * and "The Data Specialist" design system.
+ * Uses FormInput component for name, email, and message (textarea).
+ * Implements validation and submission simulation.
  */
 const Contact = memo(() => {
   const [formData, setFormData] = useState<ContactFormData>({
@@ -38,15 +39,12 @@ const Contact = memo(() => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  // Handle field changes
+  // Handle field changes (including select)
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
     // Clear error when user types
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
@@ -60,7 +58,7 @@ const Contact = memo(() => {
   };
 
   // Validate a single field
-  const validateField = (field: keyof FormErrors) => {
+  const validateField = (field: keyof FormErrors): boolean => {
     let error = '';
     switch (field) {
       case 'name':
@@ -164,47 +162,30 @@ const Contact = memo(() => {
                 <legend>Your details</legend>
 
                 <div className={styles.form__field}>
-                  <label htmlFor="name" className={styles.form__label}>
-                    Name
-                  </label>
-                  <input
-                    type="text"
+                  <FormInput
                     id="name"
                     name="name"
-                    className={styles.form__input}
+                    label="Name"
                     value={formData.name}
                     onChange={handleChange}
                     onBlur={() => handleBlur('name')}
-                    aria-invalid={!!errors.name && touched.name}
-                    aria-describedby={errors.name ? 'name-error' : undefined}
+                    error={touched.name ? errors.name : undefined}
+                    fullWidth
                   />
-                  {touched.name && errors.name && (
-                    <p id="name-error" className={styles.form__error} role="alert">
-                      {errors.name}
-                    </p>
-                  )}
                 </div>
 
                 <div className={styles.form__field}>
-                  <label htmlFor="email" className={styles.form__label}>
-                    Email
-                  </label>
-                  <input
-                    type="email"
+                  <FormInput
                     id="email"
                     name="email"
-                    className={styles.form__input}
+                    type="email"
+                    label="Email"
                     value={formData.email}
                     onChange={handleChange}
                     onBlur={() => handleBlur('email')}
-                    aria-invalid={!!errors.email && touched.email}
-                    aria-describedby={errors.email ? 'email-error' : undefined}
+                    error={touched.email ? errors.email : undefined}
+                    fullWidth
                   />
-                  {touched.email && errors.email && (
-                    <p id="email-error" className={styles.form__error} role="alert">
-                      {errors.email}
-                    </p>
-                  )}
                 </div>
               </fieldset>
 
@@ -237,21 +218,18 @@ const Contact = memo(() => {
               <fieldset className={styles.fieldset}>
                 <legend>Message</legend>
                 <div className={styles.form__field}>
-                  <textarea
+                  <FormInput
                     id="message"
                     name="message"
-                    className={styles.form__textarea}
+                    label="Message"
+                    multiline
+                    rows={5}
                     value={formData.message}
                     onChange={handleChange}
                     onBlur={() => handleBlur('message')}
-                    aria-invalid={!!errors.message && touched.message}
-                    aria-describedby={errors.message ? 'message-error' : undefined}
+                    error={touched.message ? errors.message : undefined}
+                    fullWidth
                   />
-                  {touched.message && errors.message && (
-                    <p id="message-error" className={styles.form__error} role="alert">
-                      {errors.message}
-                    </p>
-                  )}
                 </div>
               </fieldset>
 

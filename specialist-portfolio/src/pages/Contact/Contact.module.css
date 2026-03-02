@@ -1,4 +1,6 @@
-/* Contact page styles – "The Data Specialist" design system */
+/* specialist-portfolio/src/pages/Contact/Contact.module.css */
+
+/* Design System Tokens - "The Data Specialist" */
 :root {
   --color-bg: #141a26;              /* Midnight Shale */
   --color-surface: #3b4859;          /* Slate Blue */
@@ -10,10 +12,9 @@
   --font-ui: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
   --spacing-unit: 8px;
-  --max-content-width: 1280px;
 }
 
-/* Noise overlay for atmosphere (avoid flat "AI slop") */
+/* Noise overlay for atmosphere */
 .contact::before {
   content: '';
   position: fixed;
@@ -90,64 +91,45 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
+/* Form field (wrapper for each FormInput) */
 .form__field {
   margin-bottom: calc(var(--spacing-unit) * 3);
 }
 
-.form__label {
-  display: block;
-  font-family: var(--font-ui);
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-text-dim);
-  margin-bottom: calc(var(--spacing-unit) * 1);
-}
-
-.form__input,
-.form__select,
-.form__textarea {
+/* Custom select styling (since FormInput doesn't support select) */
+.form__select {
   width: 100%;
   font-family: var(--font-ui);
   font-size: 1rem;
   color: var(--color-text);
-  background-color: #1e2633; /* Slightly lighter than Midnight Shale */
+  background-color: #1e2633;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
+  border-radius: 4px;
   padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2);
   transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23d9ae89' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
 }
 
-.form__input:focus,
-.form__select:focus,
-.form__textarea:focus {
+.form__select:focus {
   outline: none;
   border-color: var(--color-accent);
   box-shadow: 0 0 0 2px rgba(217, 174, 137, 0.2);
 }
 
-.form__textarea {
-  min-height: 120px;
-  resize: vertical;
+.form__select option {
+  background-color: var(--color-surface);
+  color: var(--color-text);
 }
 
-.form__error {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: #ff6b6b; /* Soft red for errors */
-  margin-top: calc(var(--spacing-unit) * 1);
-}
-
-.form__actions {
-  margin-top: calc(var(--spacing-unit) * 4);
-}
-
-/* Fieldset for radio‑like select? But we use select – still use fieldset for group */
+/* Fieldset for grouping */
 .fieldset {
   border: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 calc(var(--spacing-unit) * 4) 0;
 }
 
 .fieldset legend {
@@ -157,7 +139,10 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--color-text-dim);
-  margin-bottom: calc(var(--spacing-unit) * 1);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: calc(var(--spacing-unit) * 1);
 }
 
 /* Direct info sidebar */
