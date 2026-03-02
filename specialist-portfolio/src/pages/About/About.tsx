@@ -1,30 +1,43 @@
+// specialist-portfolio/src/pages/About/About.tsx
+
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import SectionContainer from '@/components/layout/SectionContainer/SectionContainer';
-import Button from '@/components/ui/Button/Button';
+import SectionContainer from '@/components/layout/SectionContainer';
+import Card from '@/components/ui/Card';
+import Badge from '@/components/ui/Badge';
+import Button from '@/components/ui/Button';
 import styles from './About.module.css';
 
 /**
- * Discipline card component for the Disciplines of Practice grid.
- * Displays a core competency with description and filtered link.
+ * Discipline card component using Card and Badge components.
+ * Displays a core competency with description, tags, and filtered link.
  */
 const DisciplineCard = ({
   title,
   description,
   filter,
+  tags,
 }: {
   title: string;
   description: string;
   filter: string;
+  tags: string[];
 }) => (
-  <article className={styles.discipline}>
+  <Card className={styles.discipline} interactive>
     <h3 className={styles.discipline__title}>{title}</h3>
     <p className={styles.discipline__description}>{description}</p>
+    <div className={styles.discipline__tags}>
+      {tags.map((tag) => (
+        <Badge key={tag} variant="primary">
+          {tag}
+        </Badge>
+      ))}
+    </div>
     <Link to={`/work/projects?type=${filter}`} className={styles.discipline__link}>
       View projects <span aria-hidden="true">→</span>
     </Link>
-  </article>
+  </Card>
 );
 
 /**
@@ -71,21 +84,25 @@ const About = memo(() => {
               title="AI Engineering"
               description="Building intelligent agents, RAG pipelines, and LLM-powered systems that augment human decision-making."
               filter="ai-engineering"
+              tags={['AI', 'LLM', 'Python']}
             />
             <DisciplineCard
               title="Web Applications"
               description="Crafting scalable, performant web apps with modern React, TypeScript, and Node.js."
               filter="web-apps"
+              tags={['React', 'TypeScript', 'Node']}
             />
             <DisciplineCard
               title="Automation Architecture"
               description="Designing autonomous workflows and integration systems that eliminate toil and reduce errors."
               filter="automation"
+              tags={['Workflow', 'CI/CD', 'Python']}
             />
             <DisciplineCard
               title="Digital Strategy"
               description="Aligning technical execution with business goals to deliver measurable impact."
               filter="strategy"
+              tags={['Strategy', 'Consulting', 'Analytics']}
             />
           </div>
         </SectionContainer>
