@@ -1,3 +1,4 @@
+// specialist-portfolio/src/components/ui/Button/Button.types.ts
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 
 /**
@@ -7,8 +8,9 @@ import { ButtonHTMLAttributes, ReactNode } from 'react';
  * - `primary`: High-emphasis actions using Lapis Deep (`#0D33A6`)
  * - `secondary`: Medium-emphasis outline variant with Lapis Deep border
  * - `accent`: High-emphasis special actions using Gold Fleck (`#D9AE89`)
+ * - `text`: Low-emphasis text button, transparent background with hover underline
  */
-export type ButtonVariant = 'primary' | 'secondary' | 'accent';
+export type ButtonVariant = 'primary' | 'secondary' | 'accent' | 'text';
 
 /**
  * Size variants for the Button component.

@@ -1,3 +1,4 @@
+/* specialist-portfolio/src/components/ui/Button/Button.module.css */
 /* Design System Tokens - "The Data Specialist" */
 :root {
   --color-primary: #0d33a6;        /* Lapis Deep */
@@ -73,6 +74,21 @@
   transform: translateY(-2px);
 }
 
+.button--text {
+  background-color: transparent;
+  color: var(--color-text);
+  padding-left: calc(var(--spacing-unit) * 1);
+  padding-right: calc(var(--spacing-unit) * 1);
+}
+
+.button--text:hover:not(:disabled) {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  background-color: transparent;
+  transform: none;
+}
+
 /* Size variants */
 .button--sm {
   padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2);
@@ -87,6 +103,20 @@
 .button--lg {
   padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
   font-size: 1.125rem;
+}
+
+/* Text variant size overrides – keep minimal horizontal padding */
+.button--text.button--sm {
+  padding-left: calc(var(--spacing-unit) * 1);
+  padding-right: calc(var(--spacing-unit) * 1);
+}
+.button--text.button--md {
+  padding-left: calc(var(--spacing-unit) * 1.5);
+  padding-right: calc(var(--spacing-unit) * 1.5);
+}
+.button--text.button--lg {
+  padding-left: calc(var(--spacing-unit) * 2);
+  padding-right: calc(var(--spacing-unit) * 2);
 }
 
 /* Focus styles */
@@ -105,7 +135,7 @@
   opacity: 0;
 }
 
-/* Spinner styles (border spinner) */
+/* Spinner styles */
 .spinner {
   position: absolute;
   left: 50%;
