@@ -1,13 +1,20 @@
+// specialist-portfolio/src/pages/Documentation/TutorialTemplate.tsx
+
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import SectionContainer from '@/components/layout/SectionContainer/SectionContainer';
-import Button from '@/components/ui/Button/Button';
+import ReactMarkdown from 'react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import SectionContainer from '@/components/layout/SectionContainer';
+import Button from '@/components/ui/Button';
+import Badge from '@/components/ui/Badge';
+import { Tutorial } from './Documentation.types';
 import styles from './TutorialTemplate.module.css';
-import type { Tutorial } from './Documentation';
 
 // Mock data (same as listing)
-const mockTutorials: Tutorial[] = [
+const tutorials: Tutorial[] = [
+  // ... same as above
   {
     slug: 'building-rag-pipeline',
     title: 'Building a RAG Pipeline with LangChain',
@@ -123,85 +130,31 @@ print(result["result"])
     format: 'Tutorial',
     lastUpdated: '2025-04-10',
   },
-  // other tutorials omitted for brevity
+  // ... other tutorials
 ];
 
-// Helper to find tutorial by slug
 const getTutorialBySlug = (slug: string): Tutorial | undefined => {
-  return mockTutorials.find((t) => t.slug === slug);
+  return tutorials.find((t) => t.slug === slug);
 };
 
 /**
- * Individual tutorial page.
- * Fetches tutorial data based on slug from URL params.
- * Renders content with code blocks, prerequisites, and next‑steps links.
+ * Individual tutorial page with step‑by‑step instructions, code blocks, and next‑steps links.
  */
 export const TutorialTemplate = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const [tutorial, setTutorial] = useState<Tutorial | null>(null);
   const [loading, setLoading] = useState(true);
-  const [copiedCodeIndex, setCopiedCodeIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (!slug) {
       setLoading(false);
       return;
     }
-    // Simulate async fetch
     const found = getTutorialBySlug(slug);
     setTutorial(found || null);
     setLoading(false);
   }, [slug]);
-
-  // Simple copy to clipboard function
-  const handleCopyCode = (code: string, index: number) => {
-    navigator.clipboard.writeText(code);
-    setCopiedCodeIndex(index);
-    setTimeout(() => setCopiedCodeIndex(null), 2000);
-  };
-
-  // Simple Markdown renderer for code blocks
-  const renderContent = (content: string) => {
-    const blocks = content.split('```');
-    return blocks.map((block, index) => {
-      if (index % 2 === 1) {
-        // Code block
-        const lines = block.split('\n');
-        const language = lines[0].trim();
-        const code = lines.slice(1).join('\n');
-        return (
-          <div key={index} className={styles.codeBlockWrapper}>
-            <pre className={styles.codeBlock}>
-              <code>{code}</code>
-            </pre>
-            <button
-              className={`${styles.copyButton} ${
-                copiedCodeIndex === index ? styles.copied : ''
-              }`}
-              onClick={() => handleCopyCode(code, index)}
-              aria-label="Copy code"
-            >
-              {copiedCodeIndex === index ? '✓ Copied!' : 'Copy'}
-            </button>
-          </div>
-        );
-      } else {
-        // Regular markdown – simple line‑by‑line parsing (in production, use react‑markdown)
-        return (
-          <div key={index} className={styles.prose}>
-            {block.split('\n').map((line, i) => {
-              if (line.startsWith('## ')) return <h2 key={i}>{line.slice(3)}</h2>;
-              if (line.startsWith('### ')) return <h3 key={i}>{line.slice(4)}</h3>;
-              if (line.startsWith('- ')) return <li key={i}>{line.slice(2)}</li>;
-              if (line.trim() === '') return <br key={i} />;
-              return <p key={i}>{line}</p>;
-            })}
-          </div>
-        );
-      }
-    });
-  };
 
   if (loading) {
     return (
@@ -227,14 +180,14 @@ export const TutorialTemplate = () => {
     );
   }
 
-  // Extract objective (first paragraph after "Objective" heading)
+  // Extract objective (first paragraph after "## Objective")
   const objectiveMatch = tutorial.content.match(/## Objective\s+(.+?)(?=\n##|\n\n)/s);
   const objective = objectiveMatch ? objectiveMatch[1].trim() : 'Learn to build this system.';
 
-  // Extract prerequisites (if present)
+  // Extract prerequisites list
   const prereqMatch = tutorial.content.match(/## Prerequisites\s+((?:- .+\n?)+)/);
   const prerequisites = prereqMatch
-    ? prereqMatch[1].split('\n').filter((line) => line.startsWith('- ')).map((line) => line.slice(2))
+    ? prereqMatch[1].split('\n').filter(line => line.startsWith('- ')).map(line => line.slice(2))
     : ['Python 3.9+', 'Basic programming knowledge'];
 
   return (
@@ -251,7 +204,7 @@ export const TutorialTemplate = () => {
       <main>
         {/* Back link */}
         <SectionContainer id="tutorial-back" paddingSize="sm" backgroundVariant="default">
-          <button onClick={() => navigate('/mind/docs')} className={styles.backLink} aria-label="Go back">
+          <button onClick={() => navigate('/mind/docs')} className={styles.backLink}>
             ← Back to Knowledge Base
           </button>
         </SectionContainer>
@@ -259,20 +212,16 @@ export const TutorialTemplate = () => {
         {/* Header */}
         <SectionContainer id="tutorial-header" paddingSize="md" backgroundVariant="default">
           <div className={styles.header}>
+            <div className={styles.header__badges}>
+              <Badge variant="primary">{tutorial.category.toUpperCase()}</Badge>
+              <Badge variant="accent">{tutorial.difficulty}</Badge>
+              <Badge variant="default">{tutorial.format}</Badge>
+            </div>
             <h1 className={styles.header__title}>{tutorial.title}</h1>
             <div className={styles.header__meta}>
               <span className={styles.header__metaItem}>
-                <span className={styles.header__metaIcon}>📚</span>
-                {tutorial.category.toUpperCase()}
-              </span>
-              <span className={styles.header__metaItem}>
-                <span className={styles.header__metaIcon}>⚡</span>
-                {tutorial.difficulty}
-              </span>
-              <span className={styles.header__metaItem}>
-                <span className={styles.header__metaIcon}>📅</span>
-                Updated {new Date(tutorial.lastUpdated).toLocaleDateString('en-US', {
-                  month: 'short',
+                📅 Updated {new Date(tutorial.lastUpdated).toLocaleDateString('en-US', {
+                  month: 'long',
                   day: 'numeric',
                   year: 'numeric',
                 })}
@@ -299,12 +248,36 @@ export const TutorialTemplate = () => {
           </ul>
         </SectionContainer>
 
-        {/* Main content (step‑by‑step) */}
+        {/* Main content */}
         <SectionContainer id="tutorial-content" paddingSize="md" backgroundVariant="default">
-          {renderContent(tutorial.content)}
+          <div className={styles.prose}>
+            <ReactMarkdown
+              components={{
+                code({ node, inline, className, children, ...props }) {
+                  const match = /language-(\w+)/.exec(className || '');
+                  return !inline && match ? (
+                    <SyntaxHighlighter
+                      style={vscDarkPlus}
+                      language={match[1]}
+                      PreTag="div"
+                      {...props}
+                    >
+                      {String(children).replace(/\n$/, '')}
+                    </SyntaxHighlighter>
+                  ) : (
+                    <code className={className} {...props}>
+                      {children}
+                    </code>
+                  );
+                },
+              }}
+            >
+              {tutorial.content}
+            </ReactMarkdown>
+          </div>
         </SectionContainer>
 
-        {/* System Diagram (placeholder) */}
+        {/* System Diagram */}
         <SectionContainer id="tutorial-diagram" paddingSize="md" backgroundVariant="surface">
           <h2 className={styles.sectionHeading}>System Diagram</h2>
           <div className={styles.diagram}>
