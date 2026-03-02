@@ -1,8 +1,4 @@
-/**
- * useScrollPosition.ts
- * Custom hook for tracking scroll position, direction, and threshold.
- * Performance‑optimized with requestAnimationFrame throttling.
- */
+// specialist-portfolio/src/hooks/useScrollPosition.ts
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 
@@ -18,19 +14,16 @@ export interface ScrollPosition {
 const SCROLL_THRESHOLD = 10;
 
 /**
- * useScrollPosition hook
- * @returns { scrollY: number; isScrolled: boolean; direction: 'up' | 'down' }
+ * Custom hook for tracking scroll position, direction, and threshold.
+ * Performance‑optimized with requestAnimationFrame throttling.
  *
- * - Throttles updates via requestAnimationFrame
- * - Uses passive event listener for performance
- * - Tracks scroll direction and threshold
+ * @returns { scrollY: number; isScrolled: boolean; direction: 'up' | 'down' }
  */
 export function useScrollPosition(): ScrollPosition {
   const [scrollY, setScrollY] = useState(0);
   const [direction, setDirection] = useState<'up' | 'down'>('down');
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Use refs to avoid stale values in animation frame callback
   const lastScrollYRef = useRef(0);
   const tickingRef = useRef(false);
 

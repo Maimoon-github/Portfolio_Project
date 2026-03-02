@@ -1,8 +1,4 @@
-/**
- * useTheme.ts
- * Custom hook for theme state management with localStorage persistence.
- * Defaults to 'dark' per "The Data Specialist" design system.
- */
+// specialist-portfolio/src/hooks/useTheme.ts
 
 import { useState, useEffect, useCallback } from 'react';
 
@@ -12,34 +8,49 @@ const STORAGE_KEY = 'theme';
 const DEFAULT_THEME: Theme = 'dark';
 
 /**
- * useTheme hook
- * @returns { theme: Theme; toggleTheme: () => void }
+ * Custom hook for theme management with localStorage persistence.
+ * Respects system preference initially, falls back to dark.
+ * Updates `data-theme` attribute on <html> element.
  *
- * - Reads initial theme from localStorage (falls back to DEFAULT_THEME)
- * - Persists theme changes to localStorage
- * - Syncs `data-theme` attribute on <html> element for CSS consumption
- * - SSR‑safe (checks for window before accessing browser APIs)
+ * @returns { theme: Theme; toggleTheme: () => void }
  */
 export function useTheme() {
-  // Initialize theme state (lazy initializer to avoid hydration mismatch)
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window === 'undefined') return DEFAULT_THEME;
+
+    // 1. Check localStorage
     const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
-    return stored === 'light' ? 'light' : DEFAULT_THEME; // only accept 'light' if explicitly stored
+    if (stored === 'light' || stored === 'dark') return stored;
+
+    // 2. Check system preference
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return prefersDark ? 'dark' : 'light';
   });
 
   // Sync data-theme attribute and localStorage whenever theme changes
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    // Update <html> data-theme attribute
     document.documentElement.setAttribute('data-theme', theme);
-
-    // Persist to localStorage
     localStorage.setItem(STORAGE_KEY, theme);
   }, [theme]);
 
-  // Memoized toggle function
+  // Optional: listen for system preference changes (if no localStorage override)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      // Only update if user hasn't explicitly set a preference in localStorage
+      if (!localStorage.getItem(STORAGE_KEY)) {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
   const toggleTheme = useCallback(() => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
   }, []);
