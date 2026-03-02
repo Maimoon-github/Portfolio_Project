@@ -1,8 +1,4 @@
-/**
- * useFilteredProjects.ts
- * Custom hook for filtering and sorting projects.
- * Memoized for performance with large datasets.
- */
+// specialist-portfolio/src/hooks/useFilteredProjects.ts
 
 import { useMemo } from 'react';
 import type { Project, ProjectCategory, ProjectStatus } from '@/types/project.types';
@@ -14,14 +10,15 @@ export interface FilterOptions {
 }
 
 /**
- * useFilteredProjects hook
+ * Custom hook for filtering and sorting projects.
+ * Memoized for performance with large datasets.
+ *
  * @param projects - Readonly array of all projects
  * @param filters - Filter options (category, status, search)
  * @returns Filtered and sorted readonly array of projects
  *
- * - Filters by category, status, and search (title/summary)
+ * - Filters by category, status, and search (title/summary/tags)
  * - Sorts by: featured first, then year (descending), then title (ascending)
- * - Uses useMemo to recompute only when inputs change
  */
 export function useFilteredProjects(
   projects: readonly Project[],
@@ -29,7 +26,7 @@ export function useFilteredProjects(
 ): readonly Project[] {
   return useMemo(() => {
     // Start with all projects
-    let filtered = [...projects] as Project[]; // copy for mutation, but we'll return readonly
+    let filtered = [...projects] as Project[];
 
     // Apply category filter
     if (filters.category && filters.category !== 'all') {
@@ -41,7 +38,7 @@ export function useFilteredProjects(
       filtered = filtered.filter((p) => p.status === filters.status);
     }
 
-    // Apply search filter (case‑insensitive in title + summary)
+    // Apply search filter (case‑insensitive in title, summary, tags)
     if (filters.search && filters.search.trim() !== '') {
       const query = filters.search.toLowerCase().trim();
       filtered = filtered.filter(

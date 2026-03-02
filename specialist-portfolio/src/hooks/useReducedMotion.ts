@@ -1,15 +1,13 @@
-/**
- * useReducedMotion.ts
- * Custom hook to detect OS‑level "reduce motion" preference.
- * Reacts to preference changes and updates automatically.
- */
+// specialist-portfolio/src/hooks/useReducedMotion.ts
 
 import { useState, useEffect } from 'react';
 
 const QUERY = '(prefers-reduced-motion: reduce)';
 
 /**
- * useReducedMotion hook
+ * Custom hook to detect OS‑level "reduce motion" preference.
+ * Reacts to preference changes and updates automatically.
+ *
  * @returns boolean – true if user prefers reduced motion, false otherwise
  *
  * - Uses window.matchMedia with proper cleanup
@@ -20,23 +18,19 @@ export function useReducedMotion(): boolean {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
-    // SSR guard
     if (typeof window === 'undefined') return;
 
     const mediaQuery = window.matchMedia(QUERY);
-    // Initial value
     setPrefersReducedMotion(mediaQuery.matches);
 
-    // Handler for changes
     const onChange = (event: MediaQueryListEvent) => {
       setPrefersReducedMotion(event.matches);
     };
 
-    // Use the appropriate listener method (modern + fallback for older browsers)
+    // Use appropriate listener method
     if (mediaQuery.addEventListener) {
       mediaQuery.addEventListener('change', onChange);
     } else {
-      // Deprecated but needed for older browsers
       (mediaQuery as any).addListener?.(onChange);
     }
 
