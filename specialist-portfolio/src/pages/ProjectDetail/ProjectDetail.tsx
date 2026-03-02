@@ -1,13 +1,16 @@
+// specialist-portfolio/src/pages/ProjectDetail/ProjectDetail.tsx
+
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useProjectBySlug } from '@/hooks/useProjectBySlug';
-import SectionContainer from '@/components/layout/SectionContainer/SectionContainer';
-import DataTable from '@/components/ui/DataTable/DataTable';
-import Button from '@/components/ui/Button/Button';
-import { MarkdownRenderer } from '@/components/ui/MarkdownRenderer/MarkdownRenderer';
-import { ProjectMetric } from '@/components/ui/ProjectCard/ProjectCard.types';
+import { useRelatedProjects } from '@/hooks/useRelatedProjects';
+import SectionContainer from '@/components/layout/SectionContainer';
+import DataTable from '@/components/ui/DataTable';
+import Button from '@/components/ui/Button';
+import ProjectCard from '@/components/ui/ProjectCard';
+import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
+import type { ProjectMetric } from '@/types/project.types';
 import styles from './ProjectDetail.module.css';
-import type { Project } from '@/types/project';
 
 // Helper component for skeleton loading states
 const ProjectDetailSkeleton = () => (
@@ -30,12 +33,13 @@ const ProjectDetailSkeleton = () => (
  * ProjectDetail page – displays full information about a single project.
  * Uses the slug from URL params to fetch project data and renders
  * all sections (problem, architecture, implementation, results, learnings)
- * with proper design system styling.
+ * with proper design system styling. Includes related projects.
  */
 export const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { project, isLoading, error } = useProjectBySlug(slug || '');
+  const { relatedProjects, isLoading: relatedLoading } = useRelatedProjects(project?.id, 3);
 
   if (isLoading) {
     return (
@@ -63,8 +67,8 @@ export const ProjectDetail = () => {
 
   // Convert project.metrics to DataTable format
   const metricColumns = [
-    { key: 'label', header: 'Metric', type: 'text' },
-    { key: 'value', header: 'Value', type: 'number' },
+    { key: 'label', header: 'Metric', type: 'text' as const },
+    { key: 'value', header: 'Value', type: 'number' as const },
   ];
   const metricData = project.metrics?.map((m: ProjectMetric) => ({
     label: m.label,
@@ -204,6 +208,24 @@ export const ProjectDetail = () => {
                 Case Study
               </Button>
             )}
+          </div>
+        </SectionContainer>
+      )}
+
+      {/* Related projects */}
+      {!relatedLoading && relatedProjects.length > 0 && (
+        <SectionContainer id="related" paddingSize="lg" backgroundVariant="surface">
+          <div className={styles.relatedSection}>
+            <h2 className={styles.relatedHeading}>Related Projects</h2>
+            <div className={styles.relatedGrid}>
+              {relatedProjects.map((related) => (
+                <ProjectCard
+                  key={related.id}
+                  {...related}
+                  variant="compact"
+                />
+              ))}
+            </div>
           </div>
         </SectionContainer>
       )}

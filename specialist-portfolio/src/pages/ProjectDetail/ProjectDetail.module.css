@@ -1,3 +1,5 @@
+/* specialist-portfolio/src/pages/ProjectDetail/ProjectDetail.module.css */
+
 /* Design System Tokens - "The Data Specialist" */
 :root {
   --color-bg: #141a26;              /* Midnight Shale */
@@ -149,6 +151,40 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-top: calc(var(--spacing-unit) * 2);
+}
+
+/* Related projects */
+.relatedSection {
+  margin-top: calc(var(--spacing-unit) * 8);
+  padding-top: calc(var(--spacing-unit) * 6);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.relatedHeading {
+  font-family: var(--font-ui);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: calc(var(--spacing-unit) * 4);
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--spacing-unit) * 3);
+}
+
+@media (max-width: 1024px) {
+  .relatedGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .relatedGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Error state */
