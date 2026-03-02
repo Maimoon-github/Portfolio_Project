@@ -1,9 +1,10 @@
+// specialist-portfolio/src/components/ui/Button/Button.tsx
 import { forwardRef, ButtonHTMLAttributes, ReactNode, ForwardedRef } from 'react';
 import styles from './Button.module.css';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Visual style variant following design system */
-  variant?: 'primary' | 'secondary' | 'accent';
+  variant?: 'primary' | 'secondary' | 'accent' | 'text';
   /** Size variant affecting padding and font size */
   size?: 'sm' | 'md' | 'lg';
   /** Whether button is in loading state (shows spinner, disables interactions) */
@@ -61,9 +62,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
       >
         {isLoading && (
-          <span className={styles.spinner} aria-hidden="true">
-            <span className={styles.spinner__dot} />
-          </span>
+          <span className={styles.spinner} aria-hidden="true" />
         )}
         {!isLoading && leftIcon && (
           <span className={styles.iconLeft} aria-hidden="true">

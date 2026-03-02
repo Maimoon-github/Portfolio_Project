@@ -1,3 +1,4 @@
+// specialist-portfolio/src/components/ui/Button/Button.test.tsx
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
@@ -35,6 +36,9 @@ describe('Button', () => {
 
       rerender(<Button variant="accent">Click</Button>);
       expect(screen.getByRole('button')).toHaveClass('button--accent');
+
+      rerender(<Button variant="text">Click</Button>);
+      expect(screen.getByRole('button')).toHaveClass('button--text');
     });
 
     it('applies correct size classes', () => {
