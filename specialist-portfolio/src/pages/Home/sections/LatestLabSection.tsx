@@ -1,7 +1,10 @@
+// specialist-portfolio/src/pages/Home/sections/LatestLabSection.tsx
+
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
-import SectionContainer from '@/components/layout/SectionContainer/SectionContainer';
-import styles from './LatestLabSection.module.css';
+import { useInView } from 'react-intersection-observer';
+import SectionContainer from '@/components/layout/SectionContainer';
+import styles from './Section.module.css';
 
 const latestItems = [
   {
@@ -21,9 +24,11 @@ const latestItems = [
 ];
 
 const LatestLabSection = memo(() => {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+
   return (
-    <SectionContainer id="latest-lab" paddingSize="lg" backgroundVariant="default">
-      <h2 className={styles.heading}>Latest from the Lab.</h2>
+    <SectionContainer id="latest-lab" paddingSize="lg" backgroundVariant="default" ref={ref}>
+      <h2 className={`${styles.heading} ${inView ? styles.animate : ''}`}>Latest from the Lab.</h2>
       <div className={styles.grid}>
         {latestItems.map((item) => (
           <article key={item.id} className={styles.card}>

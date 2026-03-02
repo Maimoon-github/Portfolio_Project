@@ -1,10 +1,13 @@
+// specialist-portfolio/src/pages/Home/sections/FeaturedProjectsSection.tsx
+
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
-import SectionContainer from '@/components/layout/SectionContainer/SectionContainer';
-import ProjectCard from '@/components/ui/ProjectCard/ProjectCard';
-import styles from './FeaturedProjectsSection.module.css';
+import { useInView } from 'react-intersection-observer';
+import SectionContainer from '@/components/layout/SectionContainer';
+import ProjectCard from '@/components/ui/ProjectCard';
+import styles from './Section.module.css';
 
-// Mock data – would come from CMS/API in production
+// Mock data – would come from CMS/API
 const featuredProjects = [
   {
     id: '1',
@@ -17,6 +20,7 @@ const featuredProjects = [
     imageAlt: 'Agentic Research Workflow diagram',
     featured: true,
     variant: 'compact' as const,
+    slug: 'agentic-research',
   },
   {
     id: '2',
@@ -29,6 +33,7 @@ const featuredProjects = [
     imageAlt: 'E‑commerce platform dashboard',
     featured: true,
     variant: 'compact' as const,
+    slug: 'scalable-ecom',
   },
   {
     id: '3',
@@ -41,13 +46,16 @@ const featuredProjects = [
     imageAlt: 'Analytics dashboard preview',
     featured: true,
     variant: 'compact' as const,
+    slug: 'predictive-dashboard',
   },
 ];
 
 const FeaturedProjectsSection = memo(() => {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+
   return (
-    <SectionContainer id="featured-projects" paddingSize="lg" backgroundVariant="default">
-      <div className={styles.header}>
+    <SectionContainer id="featured-projects" paddingSize="lg" backgroundVariant="default" ref={ref}>
+      <div className={`${styles.header} ${inView ? styles.animate : ''}`}>
         <h2 className={styles.heading}>Active Nodes.</h2>
         <p className={styles.subheading}>A Selection of High‑Impact Systems.</p>
       </div>
