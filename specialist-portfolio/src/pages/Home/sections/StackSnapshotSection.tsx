@@ -1,6 +1,9 @@
+// specialist-portfolio/src/pages/Home/sections/StackSnapshotSection.tsx
+
 import { memo } from 'react';
-import SectionContainer from '@/components/layout/SectionContainer/SectionContainer';
-import styles from './StackSnapshotSection.module.css';
+import { useInView } from 'react-intersection-observer';
+import SectionContainer from '@/components/layout/SectionContainer';
+import styles from './Section.module.css';
 
 const skills = [
   'Python', 'TypeScript', 'React', 'Node.js', 'LangChain',
@@ -9,9 +12,11 @@ const skills = [
 ];
 
 const StackSnapshotSection = memo(() => {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+
   return (
-    <SectionContainer id="stack-snapshot" paddingSize="lg" backgroundVariant="surface">
-      <h2 className={styles.heading}>Current Stack & Toolkits.</h2>
+    <SectionContainer id="stack-snapshot" paddingSize="lg" backgroundVariant="surface" ref={ref}>
+      <h2 className={`${styles.heading} ${inView ? styles.animate : ''}`}>Current Stack & Toolkits.</h2>
       <div className={styles.tagCloud}>
         {skills.map((skill) => (
           <span key={skill} className={styles.tag}>

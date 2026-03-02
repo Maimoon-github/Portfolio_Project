@@ -1,12 +1,26 @@
+// specialist-portfolio/src/pages/Home/sections/HeroSection.tsx
+
 import { memo } from 'react';
-import SectionContainer from '@/components/layout/SectionContainer/SectionContainer';
-import Button from '@/components/ui/Button/Button';
-import styles from './HeroSection.module.css';
+import { useInView } from 'react-intersection-observer';
+import SectionContainer from '@/components/layout/SectionContainer';
+import Button from '@/components/ui/Button';
+import HeroKPIStrip from '@/components/ui/HeroKPIStrip';
+import styles from './Section.module.css';
+
+// Mock KPI data
+const kpiData = [
+  { label: 'Projects Delivered', value: '15+' },
+  { label: 'Years Experience', value: '8' },
+  { label: 'Client Satisfaction', value: '98%' },
+  { label: 'Automation Efficiency', value: '40%' },
+];
 
 const HeroSection = memo(() => {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+
   return (
-    <SectionContainer id="hero" paddingSize="xl" backgroundVariant="default">
-      <div className={styles.heroGrid}>
+    <SectionContainer id="hero" paddingSize="xl" backgroundVariant="default" ref={ref}>
+      <div className={`${styles.heroGrid} ${inView ? styles.animate : ''}`}>
         <div className={styles.heroContent}>
           <h1 className={styles.title}>
             <span className={styles.titleLine}>Building Intelligent Systems.</span>
@@ -25,6 +39,7 @@ const HeroSection = memo(() => {
           <div className={styles.visualElement} />
         </div>
       </div>
+      <HeroKPIStrip data={kpiData} />
     </SectionContainer>
   );
 });
