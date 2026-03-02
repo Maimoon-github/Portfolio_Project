@@ -2,4 +2,4 @@
 
 export { default as Documentation } from './Documentation';
 export { default as TutorialTemplate } from './TutorialTemplate';
-export type { Tutorial, TutorialCategory, TutorialDifficulty } from './Documentation.types';
+export type { Tutorial, TutorialCategory, TutorialDifficulty, TutorialFormat } from './Documentation';

@@ -5,13 +5,27 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import SectionContainer from '@/components/layout/SectionContainer';
 import Card from '@/components/ui/Card';
-import Badge from '@/components/ui/Badge';
 import FilterBar from '@/components/ui/FilterBar';
-import { Tutorial, TutorialCategory, TutorialDifficulty } from './Documentation.types';
 import styles from './Documentation.module.css';
 
-// Mock data (would come from data/tutorials.ts)
-const tutorials: Tutorial[] = [
+export type TutorialCategory = 'llms' | 'python' | 'workflows' | 'automation';
+export type TutorialDifficulty = 'Beginner' | 'Intermediate' | 'Advanced';
+export type TutorialFormat = 'Tutorial' | 'Reference' | 'Blueprint';
+
+export interface Tutorial {
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  category: TutorialCategory;
+  difficulty: TutorialDifficulty;
+  format: TutorialFormat;
+  lastUpdated: string;
+  duration?: string; // optional e.g., "2h"
+}
+
+// Mock data – replace with actual data import
+export const tutorials: Tutorial[] = [
   {
     slug: 'building-rag-pipeline',
     title: 'Building a RAG Pipeline with LangChain',
@@ -32,7 +46,7 @@ const tutorials: Tutorial[] = [
     difficulty: 'Advanced',
     format: 'Tutorial',
     lastUpdated: '2025-04-05',
-    duration: '1.5h',
+    duration: '2.5h',
   },
   {
     slug: 'python-async-best-practices',
@@ -43,7 +57,7 @@ const tutorials: Tutorial[] = [
     difficulty: 'Intermediate',
     format: 'Reference',
     lastUpdated: '2025-03-28',
-    duration: '45min',
+    duration: '1h',
   },
   {
     slug: 'automation-decision-framework',
@@ -54,7 +68,7 @@ const tutorials: Tutorial[] = [
     difficulty: 'Beginner',
     format: 'Blueprint',
     lastUpdated: '2025-03-20',
-    duration: '30min',
+    duration: '1.5h',
   },
   {
     slug: 'llm-evaluation-metrics',
@@ -65,11 +79,10 @@ const tutorials: Tutorial[] = [
     difficulty: 'Advanced',
     format: 'Reference',
     lastUpdated: '2025-03-15',
-    duration: '1h',
+    duration: '1.5h',
   },
 ];
 
-// Category display names
 const categoryLabels: Record<TutorialCategory, string> = {
   llms: 'LLMs',
   python: 'Python',
@@ -77,37 +90,54 @@ const categoryLabels: Record<TutorialCategory, string> = {
   automation: 'Automation',
 };
 
-// Difficulty display names
 const difficultyLabels: Record<TutorialDifficulty, string> = {
   Beginner: 'Beginner',
   Intermediate: 'Intermediate',
   Advanced: 'Advanced',
 };
 
+const formatLabels: Record<TutorialFormat, string> = {
+  Tutorial: 'Tutorial',
+  Reference: 'Reference',
+  Blueprint: 'Blueprint',
+};
+
 interface FilterState {
   category: TutorialCategory | 'all';
   difficulty: TutorialDifficulty | 'all';
+  format: TutorialFormat | 'all';
 }
 
 /**
- * Documentation listing page – "Knowledge Base" with category and difficulty filters.
+ * Documentation listing page – "Knowledge Base"
  */
 const Documentation = memo(() => {
+  const [searchQuery, setSearchQuery] = useState('');
   const [filters, setFilters] = useState<FilterState>({
     category: 'all',
     difficulty: 'all',
+    format: 'all',
   });
 
   const filteredTutorials = useMemo(() => {
     return tutorials.filter((tutorial) => {
+      if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        const matchesSearch =
+          tutorial.title.toLowerCase().includes(query) ||
+          tutorial.excerpt.toLowerCase().includes(query);
+        if (!matchesSearch) return false;
+      }
       if (filters.category !== 'all' && tutorial.category !== filters.category) return false;
       if (filters.difficulty !== 'all' && tutorial.difficulty !== filters.difficulty) return false;
+      if (filters.format !== 'all' && tutorial.format !== filters.format) return false;
       return true;
     });
-  }, [filters]);
+  }, [searchQuery, filters]);
 
   const categoryOptions = ['all', ...Object.keys(categoryLabels)] as const;
   const difficultyOptions = ['all', ...Object.keys(difficultyLabels)] as const;
+  const formatOptions = ['all', ...Object.keys(formatLabels)] as const;
 
   return (
     <>
@@ -120,7 +150,6 @@ const Documentation = memo(() => {
       </Helmet>
 
       <main className={styles.documentation}>
-        {/* Header */}
         <SectionContainer id="docs-header" paddingSize="lg" backgroundVariant="default">
           <div className={styles.header}>
             <h1 className={styles.header__title}>Knowledge Base</h1>
@@ -128,9 +157,21 @@ const Documentation = memo(() => {
           </div>
         </SectionContainer>
 
-        {/* Filters */}
+        <SectionContainer id="docs-search" paddingSize="md" backgroundVariant="default">
+          <div className={styles.searchWrapper}>
+            <input
+              type="text"
+              placeholder="Search tutorials..."
+              className={styles.searchInput}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label="Search tutorials"
+            />
+          </div>
+        </SectionContainer>
+
         <SectionContainer id="docs-filters" paddingSize="md" backgroundVariant="default">
-          <div className={styles.filterBars}>
+          <div className={styles.filterWrapper}>
             <FilterBar
               filters={categoryOptions.map((opt) =>
                 opt === 'all' ? 'All Categories' : categoryLabels[opt as TutorialCategory]
@@ -142,9 +183,7 @@ const Documentation = memo(() => {
                 if (label === 'All Categories') {
                   setFilters((prev) => ({ ...prev, category: 'all' }));
                 } else {
-                  const found = Object.entries(categoryLabels).find(
-                    ([, value]) => value === label
-                  );
+                  const found = Object.entries(categoryLabels).find(([, v]) => v === label);
                   if (found) {
                     setFilters((prev) => ({ ...prev, category: found[0] as TutorialCategory }));
                   }
@@ -152,7 +191,8 @@ const Documentation = memo(() => {
               }}
               ariaLabel="Filter by category"
             />
-
+          </div>
+          <div className={styles.filterWrapper}>
             <FilterBar
               filters={difficultyOptions.map((opt) =>
                 opt === 'all' ? 'All Levels' : opt
@@ -173,22 +213,45 @@ const Documentation = memo(() => {
               ariaLabel="Filter by difficulty"
             />
           </div>
+          <div className={styles.filterWrapper}>
+            <FilterBar
+              filters={formatOptions.map((opt) =>
+                opt === 'all' ? 'All Formats' : opt
+              )}
+              activeFilter={
+                filters.format === 'all' ? 'All Formats' : filters.format
+              }
+              onFilterChange={(label) => {
+                if (label === 'All Formats') {
+                  setFilters((prev) => ({ ...prev, format: 'all' }));
+                } else {
+                  setFilters((prev) => ({
+                    ...prev,
+                    format: label as TutorialFormat,
+                  }));
+                }
+              }}
+              ariaLabel="Filter by format"
+            />
+          </div>
         </SectionContainer>
 
-        {/* Tutorial Grid */}
         <SectionContainer id="docs-tutorials" paddingSize="lg" backgroundVariant="default">
           {filteredTutorials.length === 0 ? (
-            <div className={styles.noResults}>
-              No tutorials match your filters.
-            </div>
+            <div className={styles.noResults}>No tutorials match your filters.</div>
           ) : (
             <div className={styles.tutorialsGrid}>
               {filteredTutorials.map((tutorial) => (
                 <Card key={tutorial.slug} as="article" interactive className={styles.tutorialCard}>
                   <Link to={`/mind/docs/${tutorial.slug}`} className={styles.tutorialCard__link}>
                     <div className={styles.tutorialCard__meta}>
-                      <Badge variant="primary">{categoryLabels[tutorial.category]}</Badge>
-                      <Badge variant="accent">{tutorial.difficulty}</Badge>
+                      <span className={styles.tutorialCard__badge}>
+                        {categoryLabels[tutorial.category]}
+                      </span>
+                      <span className={`${styles.tutorialCard__badge} ${styles['tutorialCard__badge--difficulty']}`}>
+                        {tutorial.difficulty}
+                      </span>
+                      <span className={styles.tutorialCard__badge}>{tutorial.format}</span>
                     </div>
                     <h2 className={styles.tutorialCard__title}>{tutorial.title}</h2>
                     <p className={styles.tutorialCard__excerpt}>{tutorial.excerpt}</p>
@@ -200,9 +263,7 @@ const Documentation = memo(() => {
                           year: 'numeric',
                         })}
                       </span>
-                      {tutorial.duration && (
-                        <span className={styles.tutorialCard__duration}>⏱️ {tutorial.duration}</span>
-                      )}
+                      {tutorial.duration && <span>⏱️ {tutorial.duration}</span>}
                     </div>
                   </Link>
                 </Card>
