@@ -1,6 +1,7 @@
+// specialist-portfolio/src/components/layout/SectionContainer.tsx
 import { forwardRef, ElementType, HTMLAttributes } from 'react';
 import clsx from 'clsx';
-import styles from './SectionContainer.module.css';
+import styles from './layout.module.css'; // reuse layout module for consistency
 
 export type PaddingSize = 'sm' | 'md' | 'lg' | 'xl';
 export type BackgroundVariant = 'default' | 'accent' | 'surface';
@@ -25,7 +26,7 @@ export interface SectionContainerProps extends HTMLAttributes<HTMLElement> {
 /**
  * SectionContainer – a layout primitive for page sections.
  * Provides consistent vertical padding, background options, and accessibility support.
- * Uses "The Data Specialist" design tokens.
+ * Uses "The Data Specialist" design tokens via CSS variables.
  */
 const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
   (
@@ -56,9 +57,7 @@ const SectionContainer = forwardRef<HTMLElement, SectionContainerProps>(
         aria-labelledby={titleId}
         {...rest}
       >
-        <div className={styles.container__inner}>
-          {children}
-        </div>
+        <div className={styles.container__inner}>{children}</div>
       </Component>
     );
   }

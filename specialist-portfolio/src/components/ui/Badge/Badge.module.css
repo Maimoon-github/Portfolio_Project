@@ -1,0 +1,35 @@
+/* Design tokens – fallbacks in case global CSS is not loaded */
+:root {
+  --color-surface: #3b4859;   /* Slate Blue */
+  --color-accent: #d9ae89;     /* Gold Fleck */
+  --color-bg: #141a26;         /* Midnight Shale (for text on accent) */
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 8px;            /* matches 8px base unit: 0.5 * 8px, 1 * 8px */
+  border-radius: 4px;          /* 0.5 * 8px */
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;          /* 12px, typical for badges */
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* Default variant – Slate Blue background, white text */
+.badge--default {
+  background-color: var(--color-surface, #3b4859);
+  color: #ffffff;
+}
+
+/* Accent variant – Gold Fleck background, dark text (Midnight Shale) */
+.badge--accent {
+  background-color: var(--color-accent, #d9ae89);
+  color: var(--color-bg, #141a26);
+}
+
+/* If the badge is interactive (e.g., used as a filter button), we could add hover states.
+   By design, this component is non-interactive, so no hover effects are applied.
+*/
