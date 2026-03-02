@@ -1,3 +1,5 @@
+// specialist-portfolio/src/config/seo.ts
+
 /**
  * seo.ts
  * SEO metadata configuration.

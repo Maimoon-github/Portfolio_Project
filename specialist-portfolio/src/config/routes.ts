@@ -1,3 +1,5 @@
+// specialist-portfolio/src/config/routes.ts
+
 /**
  * routes.ts
  * Centralised route map for the entire application.
