@@ -1,0 +1,141 @@
+/* Portfolio page styles – "The Data Specialist" design system */
+:root {
+  --color-bg: #141a26;              /* Midnight Shale */
+  --color-surface: #3b4859;          /* Slate Blue */
+  --color-primary: #0d33a6;           /* Lapis Deep */
+  --color-primary-hover: #3258a6;      /* Lapis Medium */
+  --color-accent: #d9ae89;             /* Gold Fleck */
+  --color-text: #ffffff;
+  --color-text-dim: #b0b0b0;
+  --font-ui: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --spacing-unit: 8px;
+  --max-content-width: 1280px;
+}
+
+/* Noise overlay for atmosphere (avoid flat "AI slop") */
+.portfolio::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 30% 50%, rgba(217, 174, 137, 0.03) 0%, transparent 50%),
+                    repeating-linear-gradient(45deg, rgba(13, 51, 166, 0.02) 0px, rgba(13, 51, 166, 0.02) 2px, transparent 2px, transparent 8px);
+  z-index: 0;
+}
+
+.portfolio {
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  position: relative;
+}
+
+.portfolio > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Page header */
+.header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto calc(var(--spacing-unit) * 6) auto;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.header__title {
+  font-family: var(--font-ui);
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 calc(var(--spacing-unit) * 2) 0;
+}
+
+.header__subtitle {
+  font-family: var(--font-ui);
+  font-size: 1.25rem;
+  color: var(--color-text-dim);
+  margin: 0;
+}
+
+/* Filter bar wrapper */
+.filterWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: calc(var(--spacing-unit) * 6);
+}
+
+/* Project grid – asymmetric, intentional layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: calc(var(--spacing-unit) * 4);
+  margin-bottom: calc(var(--spacing-unit) * 6);
+  animation: fadeUp 0.8s 0.2s ease forwards;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+/* First card slightly offset for asymmetry */
+.grid > :first-child {
+  transform: translateY(calc(var(--spacing-unit) * -2));
+}
+
+@media (max-width: 768px) {
+  .grid > :first-child {
+    transform: none;
+  }
+}
+
+/* Archive CTA section */
+.archiveCta {
+  text-align: center;
+  padding: calc(var(--spacing-unit) * 8) 0;
+  background: linear-gradient(180deg, transparent, rgba(13, 51, 166, 0.1));
+  border-radius: 4px;
+}
+
+.archiveCta__title {
+  font-family: var(--font-ui);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: calc(var(--spacing-unit) * 3);
+}
+
+.archiveCta__text {
+  font-family: var(--font-ui);
+  font-size: 1.125rem;
+  color: var(--color-text-dim);
+  margin-bottom: calc(var(--spacing-unit) * 4);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* No results state */
+.noResults {
+  text-align: center;
+  padding: calc(var(--spacing-unit) * 8) 0;
+  color: var(--color-text-dim);
+  font-family: var(--font-ui);
+  font-size: 1.125rem;
+  border: 1px dashed var(--color-accent);
+  border-radius: 4px;
+  margin-bottom: calc(var(--spacing-unit) * 6);
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

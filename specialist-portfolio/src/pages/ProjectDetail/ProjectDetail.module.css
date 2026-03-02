@@ -1,0 +1,275 @@
+/* Design System Tokens - "The Data Specialist" */
+:root {
+  --color-bg: #141a26;              /* Midnight Shale */
+  --color-primary: #0d33a6;          /* Lapis Deep */
+  --color-primary-hover: #3258a6;     /* Lapis Medium */
+  --color-accent: #d9ae89;            /* Gold Fleck */
+  --color-surface: #3b4859;           /* Slate Blue */
+  --color-text: #ffffff;
+  --color-text-dim: #b0b0b0;
+  --font-ui: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --spacing-unit: 8px;
+  --max-content-width: 1280px;
+}
+
+/* Back link */
+.backLink {
+  background: none;
+  border: none;
+  color: var(--color-text-dim);
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: calc(var(--spacing-unit) * 1) 0;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 1);
+}
+
+.backLink:hover {
+  color: var(--color-accent);
+}
+
+.backLink:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Hero section */
+.hero {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: var(--font-ui);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: calc(var(--spacing-unit) * 3);
+  line-height: 1.2;
+}
+
+.summary {
+  font-family: var(--font-ui);
+  font-size: 1.25rem;
+  color: var(--color-text-dim);
+  margin-bottom: calc(var(--spacing-unit) * 4);
+  line-height: 1.6;
+}
+
+.badges {
+  display: flex;
+  gap: calc(var(--spacing-unit) * 2);
+}
+
+.badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2);
+  border-radius: 2px;
+  background-color: var(--color-surface);
+  color: var(--color-text-dim);
+}
+
+.badge[data-type="category"] {
+  background-color: var(--color-primary);
+  color: var(--color-text);
+}
+
+.badge[data-type="status"] {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* Section headings */
+.sectionHeading {
+  font-family: var(--font-ui);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-block: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 2);
+  position: relative;
+}
+
+.sectionHeading::after {
+  content: '';
+  position: absolute;
+  bottom: calc(var(--spacing-unit) * -1);
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background-color: var(--color-accent);
+}
+
+/* Markdown content */
+.markdownContent {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.markdownContent pre {
+  background-color: var(--color-surface);
+  padding: calc(var(--spacing-unit) * 3);
+  border-radius: 4px;
+  overflow-x: auto;
+  border-left: 3px solid var(--color-accent);
+  margin: calc(var(--spacing-unit) * 3) 0;
+}
+
+.markdownContent code {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-accent);
+  background-color: rgba(217, 174, 137, 0.1);
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+.markdownContent p {
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+/* Metrics table */
+.metricsTable {
+  margin: calc(var(--spacing-unit) * 3) 0;
+}
+
+/* Action buttons */
+.actionButtons {
+  display: flex;
+  gap: calc(var(--spacing-unit) * 3);
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: calc(var(--spacing-unit) * 2);
+}
+
+/* Error state */
+.errorContainer {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: calc(var(--spacing-unit) * 10) 0;
+}
+
+.errorTitle {
+  font-family: var(--font-ui);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: calc(var(--spacing-unit) * 3);
+}
+
+.errorMessage {
+  font-family: var(--font-ui);
+  color: var(--color-text-dim);
+  margin-bottom: calc(var(--spacing-unit) * 4);
+}
+
+/* Skeleton loaders */
+.skeleton {
+  width: 100%;
+  animation: fadePulse 1.5s ease-in-out infinite;
+}
+
+.skeletonHero {
+  margin-bottom: calc(var(--spacing-unit) * 6);
+}
+
+.skeletonTitle {
+  width: 60%;
+  height: 3rem;
+  background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-primary-hover) 50%, var(--color-surface) 75%);
+  background-size: 200% 100%;
+  margin-bottom: calc(var(--spacing-unit) * 3);
+  border-radius: 4px;
+}
+
+.skeletonSummary {
+  width: 80%;
+  height: 1.5rem;
+  background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-primary-hover) 50%, var(--color-surface) 75%);
+  background-size: 200% 100%;
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  border-radius: 4px;
+}
+
+.skeletonBadges {
+  display: flex;
+  gap: calc(var(--spacing-unit) * 2);
+}
+
+.skeletonBadges::before,
+.skeletonBadges::after {
+  content: '';
+  width: 80px;
+  height: 2rem;
+  background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-primary-hover) 50%, var(--color-surface) 75%);
+  background-size: 200% 100%;
+  border-radius: 2px;
+}
+
+.skeletonSection {
+  margin-bottom: calc(var(--spacing-unit) * 6);
+}
+
+.skeletonHeading {
+  width: 30%;
+  height: 2rem;
+  background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-primary-hover) 50%, var(--color-surface) 75%);
+  background-size: 200% 100%;
+  margin-bottom: calc(var(--spacing-unit) * 3);
+  border-radius: 4px;
+}
+
+.skeletonContent {
+  width: 100%;
+  height: 6rem;
+  background: linear-gradient(90deg, var(--color-surface) 25%, var(--color-primary-hover) 50%, var(--color-surface) 75%);
+  background-size: 200% 100%;
+  border-radius: 4px;
+}
+
+@keyframes fadePulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .summary {
+    font-size: 1rem;
+  }
+  
+  .sectionHeading {
+    font-size: 1.25rem;
+  }
+  
+  .actionButtons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton,
+  .skeletonTitle,
+  .skeletonSummary,
+  .skeletonHeading,
+  .skeletonContent {
+    animation: none;
+  }
+}

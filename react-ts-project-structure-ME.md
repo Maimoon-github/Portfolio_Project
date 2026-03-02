@@ -154,6 +154,7 @@ data-specialist-portfolio/
 │   │   │   └── 📄 index.ts
 │   │   ├── Tools/
 │   │   │   ├── 📄 Tools.tsx
+│   │   │   ├── 📄 ListofTools.tsx
 │   │   │   ├── 📄 Tools.module.css
 │   │   │   └── 📄 index.ts
 │   │   ├── Blog/
