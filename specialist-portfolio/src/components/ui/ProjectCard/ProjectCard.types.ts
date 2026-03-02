@@ -1,34 +1,20 @@
+// specialist-portfolio/src/components/ui/ProjectCard/ProjectCard.types.ts
+
 /**
  * Metric data point displayed on project cards.
  * Values use JetBrains Mono for precision, with optional Gold Fleck highlighting.
  */
 export interface ProjectMetric {
-  /** Emoji or icon character (e.g., "⚡") */
-  icon: string;
   /** Numeric or short string value (e.g., "40%", "2.5s") */
   value: string | number;
   /** Metric label (e.g., "Efficiency", "Response Time") */
   label: string;
-  /** Whether to highlight this metric with Gold Fleck accent color */
+  /** Whether to highlight this metric with Gold Fleck accent color (for totals) */
   highlight?: boolean;
 }
 
 /**
- * Badge displayed on project cards.
- * Variant maps to design system color roles.
- */
-export interface ProjectBadge {
-  /** Badge text */
-  label: string;
-  /** Color variant following "The Data Specialist" schema */
-  variant: 'primary' | 'secondary' | 'accent';
-  /** Badge semantic type (affects styling and grouping) */
-  type?: 'category' | 'status' | 'tech';
-}
-
-/**
  * External links associated with a project.
- * Matches deep‑link structure from navigation.
  */
 export interface ProjectLinks {
   /** Link to live demo */
@@ -43,15 +29,11 @@ export interface ProjectLinks {
 
 /**
  * Project status for filtering and display.
- * - `active`: Currently maintained / in development
- * - `archived`: Stable but no longer actively developed
- * - `experimental`: Proof‑of‑concept / research stage
  */
 export type ProjectStatus = 'active' | 'archived' | 'experimental';
 
 /**
  * Project category for filtering and grouping.
- * Aligns with Portfolio page filter options.
  */
 export type ProjectCategory =
   | 'ai-engineering'
@@ -61,39 +43,36 @@ export type ProjectCategory =
 
 /**
  * Props for the ProjectCard component.
- * All data props are readonly to prevent accidental mutation.
  */
 export interface ProjectCardProps {
   /** Unique project identifier (used for keys) */
-  readonly id: string | number;
+  id: string | number;
   /** Project title */
-  readonly title: string;
+  title: string;
   /** URL slug for deep linking */
-  readonly slug?: string;
+  slug?: string;
   /** One‑line project summary */
-  readonly summary: string;
+  summary: string;
   /** Full description (used in detailed view) */
-  readonly description?: string;
+  description?: string;
   /** Project category for filtering */
-  readonly category?: ProjectCategory;
+  category?: ProjectCategory;
   /** Project status badge */
-  readonly status?: ProjectStatus;
+  status?: ProjectStatus;
   /** Array of metric objects to display */
-  readonly metrics?: readonly ProjectMetric[];
-  /** Array of badge objects */
-  readonly badges?: readonly ProjectBadge[];
-  /** Array of technology/category tags (simpler alternative to badges) */
-  readonly tags?: readonly string[];
+  metrics?: readonly ProjectMetric[];
+  /** Array of technology/category tags (will be rendered as Badge components) */
+  tags?: readonly string[];
   /** External links */
-  readonly links?: ProjectLinks;
+  links?: ProjectLinks;
   /** URL to project thumbnail/image */
-  readonly image?: string;
+  image?: string;
   /** Alt text for image (required if image is provided) */
-  readonly imageAlt?: string;
+  imageAlt?: string;
   /** Whether this project should be featured (Gold Fleck accent) */
-  readonly featured?: boolean;
+  featured?: boolean;
   /** Card layout variant */
-  readonly variant?: 'compact' | 'detailed';
+  variant?: 'compact' | 'detailed';
   /** Additional CSS class names */
-  readonly className?: string;
+  className?: string;
 }
