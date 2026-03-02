@@ -1,3 +1,5 @@
+/* specialist-portfolio/src/components/ui/ProjectCard/ProjectCard.module.css */
+
 /* Design System Tokens - "The Data Specialist" */
 :root {
   --color-primary: #0d33a6;
@@ -12,7 +14,7 @@
   --spacing-unit: 8px;
 }
 
-/* Base card styles */
+/* Base card styles (extending Card component – additional overrides) */
 .projectCard {
   background-color: var(--color-surface);
   border-radius: 4px;
@@ -108,7 +110,7 @@
   font-size: 1.5rem;
 }
 
-/* Status badge */
+/* Status badge (simplified, but we'll use Badge component) – keeping for reference */
 .projectCard__status {
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -120,17 +122,9 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.status--active {
-  color: #4caf50;
-}
-
-.status--archived {
-  color: var(--color-text-dim);
-}
-
-.status--experimental {
-  color: var(--color-accent);
-}
+.status--active { color: #4caf50; }
+.status--archived { color: var(--color-text-dim); }
+.status--experimental { color: var(--color-accent); }
 
 /* Summary text */
 .projectCard__summary {
@@ -170,28 +164,11 @@
   color: var(--color-text-dim);
 }
 
-/* Tags */
+/* Tags container (Badge components will be used, but we keep container styling) */
 .projectCard__tags {
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-unit);
-}
-
-.tag {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  padding: calc(var(--spacing-unit) / 2) var(--spacing-unit);
-  background-color: var(--color-bg);
-  color: var(--color-text-dim);
-  border-radius: 2px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: all 0.2s ease;
-}
-
-.projectCard:hover .tag {
-  color: var(--color-text);
-  background-color: var(--color-primary);
 }
 
 /* Action links */
@@ -244,7 +221,6 @@
 @media (prefers-reduced-motion: reduce) {
   .projectCard,
   .projectCard__image,
-  .tag,
   .actionLink {
     transition: none;
   }
