@@ -1,27 +1,16 @@
 // specialist-portfolio/src/config/navigation.ts
 
-/**
- * navigation.ts
- * Navigation structure configuration based on Full Navigation Structure.md.
- * Defines primary (header) and secondary (footer) navigation items.
- */
-
 import type { NavItem } from '@/types/navigation.types';
 import { ROUTES } from './routes';
 
 /**
- * Primary navigation shown in the global header.
- * Matches the blueprint:
- * - Work (dropdown) → Portfolio, Projects
- * - Capabilities (dropdown) → Tools, Resume
- * - Mind (dropdown) → Blog
- * - Knowledge Base (dropdown) → Documentation
- * - Connect → Contact
+ * Primary navigation for the global header.
+ * Matches the "Digital Headquarters" blueprint.
  */
-export const primaryNav: readonly NavItem[] = [
+export const primaryNav: NavItem[] = [
   {
     label: 'Work',
-    href: '#', // parent with dropdown
+    href: '#', // parent dropdown placeholder
     children: [
       { label: 'Portfolio', href: ROUTES.PORTFOLIO },
       { label: 'Projects', href: ROUTES.PROJECTS },
@@ -43,29 +32,31 @@ export const primaryNav: readonly NavItem[] = [
   {
     label: 'Knowledge Base',
     href: '#',
-    children: [{ label: 'Documentation', href: ROUTES.DOCUMENTATION }],
+    children: [
+      { label: 'Documentation', href: ROUTES.DOCUMENTATION },
+      { label: 'Tutorials', href: ROUTES.TUTORIALS },
+    ],
   },
   {
     label: 'Connect',
-    href: ROUTES.CONTACT,
+    href: '#',
+    children: [{ label: 'Contact', href: ROUTES.CONTACT }],
   },
-] as const;
+];
 
 /**
- * Secondary navigation shown in the footer.
- * Includes links to About, social profiles, and meta pages.
+ * Secondary navigation for the footer.
+ * Includes internal links and external social profiles.
  */
-export const secondaryNav: readonly NavItem[] = [
+export const secondaryNav: NavItem[] = [
   { label: 'About', href: ROUTES.ABOUT },
   { label: 'GitHub', href: 'https://github.com/dataspecialist', external: true },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/dataspecialist', external: true },
-  { label: 'All Content', href: '/sitemap' },
-  { label: 'Colophon / Site Ethics', href: '/colophon' },
-] as const;
+  { label: 'All Content', href: ROUTES.SITEMAP },
+  { label: 'Colophon', href: ROUTES.COLOPHON },
+];
 
-/**
- * Combined navigation object for convenience.
- */
+/** Combined navigation object for convenience. */
 export const NAVIGATION = {
   primary: primaryNav,
   secondary: secondaryNav,

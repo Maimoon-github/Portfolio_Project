@@ -1,23 +1,32 @@
 // specialist-portfolio/src/config/seo.ts
 
 /**
- * seo.ts
- * SEO metadata configuration.
- * Defines default values and page‑specific overrides.
+ * Global SEO constants and per‑page metadata.
  * Used with react‑helmet‑async to populate <head>.
  */
 
-import type { SEOMeta } from '@/types/common.types';
-import { SITE_URL, SITE_NAME } from '@/utils/constants';
+export const SITE_TITLE = 'The Data Specialist';
+export const SITE_DESCRIPTION =
+  'Developer, AI Engineer, and Agentic Workflow Architect. I craft scalable systems where engineering meets strategy.';
+export const SITE_URL = 'https://dataspecialist.dev';
+export const AUTHOR = 'Your Name';
+export const TWITTER_HANDLE = '@dataspecialist';
+
+export interface SEOMeta {
+  title: string;
+  description: string;
+  keywords?: string[];
+  canonical?: string;
+  ogImage?: string;
+  noIndex?: boolean;
+}
 
 /**
- * Default SEO metadata used as fallback for all pages.
- * The title will be appended with the site name.
+ * Default SEO values used as a base for all pages.
  */
 export const DEFAULT_SEO: SEOMeta = {
-  title: SITE_NAME,
-  description:
-    'Developer, AI Engineer, and Agentic Workflow Architect. I craft scalable systems where engineering meets strategy.',
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   keywords: [
     'AI Engineer',
     'Developer',
@@ -33,8 +42,7 @@ export const DEFAULT_SEO: SEOMeta = {
 
 /**
  * Page‑specific SEO overrides.
- * Keys correspond to route names (as defined in ROUTES) or actual paths.
- * Values are partial SEOMeta objects that are merged with DEFAULT_SEO.
+ * Keys correspond to route paths (as defined in ROUTES).
  */
 export const PAGE_SEO: Record<string, Partial<SEOMeta>> = {
   '/': {
@@ -73,30 +81,44 @@ export const PAGE_SEO: Record<string, Partial<SEOMeta>> = {
       'In‑depth articles and analysis on AI engineering, system design, automation, and digital strategy.',
   },
   '/mind/docs': {
-    title: 'Knowledge Base',
+    title: 'Documentation',
     description:
       'Structured guides and technical references for AI engineering, automation, and modern development.',
+  },
+  '/mind/tutorials': {
+    title: 'Tutorials',
+    description:
+      'Step‑by‑step tutorials to build intelligent systems and workflows.',
   },
   '/connect': {
     title: 'Contact',
     description:
       'Reach out for collaborations, consulting on AI systems, or to discuss a project.',
   },
+  '/colophon': {
+    title: 'Colophon',
+    description:
+      'The tech stack, tools, and design decisions behind this site.',
+  },
+  '/sitemap': {
+    title: 'Sitemap',
+    description: 'Find all pages on this site.',
+    noIndex: true,
+  },
 };
 
 /**
- * Helper to merge page‑specific SEO with defaults.
+ * Build complete SEO metadata for a given route.
  * @param path - The current route path (e.g., '/work/portfolio')
- * @returns Complete SEOMeta object with all fields.
+ * @returns Complete SEOMeta object with defaults merged.
  */
 export function getPageSEO(path: string): SEOMeta {
   const pageOverrides = PAGE_SEO[path] || {};
   return {
     ...DEFAULT_SEO,
     ...pageOverrides,
-    // Ensure title always includes the site name (unless already fully customised)
     title: pageOverrides.title
-      ? `${pageOverrides.title} | ${SITE_NAME}`
+      ? `${pageOverrides.title} | ${SITE_TITLE}`
       : DEFAULT_SEO.title,
   };
 }

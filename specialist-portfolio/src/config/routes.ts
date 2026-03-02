@@ -1,49 +1,116 @@
 // specialist-portfolio/src/config/routes.ts
 
+import { lazy } from 'react';
+import type { RouteObject } from 'react-router-dom';
+
+// Lazy-load page components
+const Home = lazy(() => import('@/pages/Home'));
+const About = lazy(() => import('@/pages/About'));
+const Resume = lazy(() => import('@/pages/Resume'));
+const Portfolio = lazy(() => import('@/pages/Portfolio'));
+const Projects = lazy(() => import('@/pages/Projects'));
+const ProjectDetail = lazy(() => import('@/pages/ProjectDetail'));
+const Tools = lazy(() => import('@/pages/Tools'));
+const Blog = lazy(() => import('@/pages/Blog'));
+const BlogPost = lazy(() => import('@/pages/BlogPost'));
+const Documentation = lazy(() => import('@/pages/Documentation'));
+const Tutorials = lazy(() => import('@/pages/Tutorials'));
+const TutorialDetail = lazy(() => import('@/pages/TutorialDetail'));
+const Contact = lazy(() => import('@/pages/Contact'));
+const Colophon = lazy(() => import('@/pages/Colophon'));
+const Sitemap = lazy(() => import('@/pages/Sitemap'));
+const NotFound = lazy(() => import('@/pages/NotFound'));
+
 /**
- * routes.ts
- * Centralised route map for the entire application.
- * All route paths are defined here as constants to prevent hardcoded strings.
- * Use `as const` to infer literal types for type-safe navigation.
+ * Route configuration for React Router.
+ * All paths are defined as constants for consistency.
  */
-
 export const ROUTES = {
-  /** Homepage */
   HOME: '/',
-
-  /** About page */
   ABOUT: '/about',
-
-  /** Resume / CV page */
   RESUME: '/resume',
-
-  /** Curated portfolio (level 2) */
   PORTFOLIO: '/work/portfolio',
-
-  /** Comprehensive project archive (level 2) */
   PROJECTS: '/work/projects',
-
-  /** Individual project detail (level 3) */
-  PROJECT_DETAIL: '/work/portfolio/:slug',
-
-  /** Tools & utilities (level 2) */
+  PROJECT_DETAIL: '/work/projects/:slug',
   TOOLS: '/capabilities/tools',
-
-  /** Blog listing (level 2) */
   BLOG: '/mind/blog',
-
-  /** Individual blog post (level 3) */
   BLOG_POST: '/mind/blog/:slug',
-
-  /** Documentation / knowledge base listing (level 2) */
   DOCUMENTATION: '/mind/docs',
-
-  /** Individual tutorial (level 3) */
-  TUTORIAL: '/mind/docs/:slug',
-
-  /** Contact page */
+  TUTORIALS: '/mind/tutorials',
+  TUTORIAL_DETAIL: '/mind/tutorials/:slug',
   CONTACT: '/connect',
+  COLOPHON: '/colophon',
+  SITEMAP: '/sitemap',
 } as const;
 
-// Type helper: extract all route paths as a union (if needed elsewhere)
 export type RoutePath = typeof ROUTES[keyof typeof ROUTES];
+
+/**
+ * Routes array for use with createBrowserRouter.
+ */
+export const routes: RouteObject[] = [
+  {
+    path: ROUTES.HOME,
+    element: <Home />,
+  },
+  {
+    path: ROUTES.ABOUT,
+    element: <About />,
+  },
+  {
+    path: ROUTES.RESUME,
+    element: <Resume />,
+  },
+  {
+    path: ROUTES.PORTFOLIO,
+    element: <Portfolio />,
+  },
+  {
+    path: ROUTES.PROJECTS,
+    element: <Projects />,
+  },
+  {
+    path: ROUTES.PROJECT_DETAIL,
+    element: <ProjectDetail />,
+  },
+  {
+    path: ROUTES.TOOLS,
+    element: <Tools />,
+  },
+  {
+    path: ROUTES.BLOG,
+    element: <Blog />,
+  },
+  {
+    path: ROUTES.BLOG_POST,
+    element: <BlogPost />,
+  },
+  {
+    path: ROUTES.DOCUMENTATION,
+    element: <Documentation />,
+  },
+  {
+    path: ROUTES.TUTORIALS,
+    element: <Tutorials />,
+  },
+  {
+    path: ROUTES.TUTORIAL_DETAIL,
+    element: <TutorialDetail />,
+  },
+  {
+    path: ROUTES.CONTACT,
+    element: <Contact />,
+  },
+  {
+    path: ROUTES.COLOPHON,
+    element: <Colophon />,
+  },
+  {
+    path: ROUTES.SITEMAP,
+    element: <Sitemap />,
+  },
+  {
+    path: '*',
+    element: <NotFound />,
+  },
+];
