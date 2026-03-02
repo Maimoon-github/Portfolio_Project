@@ -1,10 +1,12 @@
+// specialist-portfolio/src/pages/Portfolio/Portfolio.tsx
+
 import { useState, useMemo, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import SectionContainer from '@/components/layout/SectionContainer/SectionContainer';
-import FilterBar from '@/components/ui/FilterBar/FilterBar';
-import ProjectCard from '@/components/ui/ProjectCard/ProjectCard';
-import Button from '@/components/ui/Button/Button';
+import SectionContainer from '@/components/layout/SectionContainer';
+import FilterBar from '@/components/ui/FilterBar';
+import ProjectCard from '@/components/ui/ProjectCard';
+import Button from '@/components/ui/Button';
 import styles from './Portfolio.module.css';
 import type { ProjectCardProps } from '@/components/ui/ProjectCard/ProjectCard.types';
 
