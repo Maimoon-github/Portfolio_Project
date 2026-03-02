@@ -1,0 +1,307 @@
+/* specialist-portfolio/src/components/ui/Navigation/Nav.module.css */
+/* Design System Tokens - "The Data Specialist" */
+:root {
+  --color-primary: #0d33a6;        /* Lapis Deep */
+  --color-primary-hover: #3258a6;   /* Lapis Medium */
+  --color-accent: #d9ae89;          /* Gold Fleck */
+  --color-bg: #141a26;              /* Midnight Shale */
+  --color-surface: #3b4859;         /* Slate Blue */
+  --color-text: #ffffff;
+  --color-text-dim: #b0b0b0;
+  --font-ui: 'Inter', system-ui, sans-serif;
+  --spacing-unit: 8px;
+  --nav-height: 80px;
+  --mobile-nav-width: 300px;
+}
+
+/* Navbar container */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+}
+
+/* Desktop navigation */
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 3);
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .desktopNav {
+    display: none;
+  }
+}
+
+/* Nav link base */
+.navLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  padding: 0 calc(var(--spacing-unit) * 1);
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  color: var(--color-accent);
+}
+
+.navLink:hover::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-accent);
+  transform: scaleX(1);
+  transition: transform 0.2s ease;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-primary);
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+
+/* Active state */
+.navLink--active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.navLink--active::after {
+  transform: scaleX(1);
+  background-color: var(--color-primary);
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  height: 100%;
+}
+
+.dropdown__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 0.5);
+  cursor: pointer;
+}
+
+.dropdown__arrow {
+  font-size: 0.75rem;
+  transition: transform 0.2s ease;
+}
+
+.dropdown--open .dropdown__arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown__menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background-color: var(--color-surface);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  padding: calc(var(--spacing-unit) * 1) 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  z-index: 100;
+}
+
+.dropdown:hover .dropdown__menu,
+.dropdown:focus-within .dropdown__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown__item {
+  display: block;
+  padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2);
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown__item:hover,
+.dropdown__item:focus {
+  background-color: var(--color-primary-hover);
+  color: var(--color-text);
+  outline: none;
+}
+
+.dropdown__item--active {
+  background-color: var(--color-primary);
+  font-weight: 500;
+}
+
+/* Mobile navigation */
+.mobileNav__toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  position: relative;
+  z-index: 200;
+}
+
+@media (max-width: 768px) {
+  .mobileNav__toggle {
+    display: block;
+  }
+}
+
+.mobileNav__toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text);
+  margin: 6px 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mobileNav__toggle--open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.mobileNav__toggle--open span:nth-child(2) {
+  opacity: 0;
+}
+.mobileNav__toggle--open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.mobileNav__panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: var(--mobile-nav-width);
+  height: 100vh;
+  background-color: var(--color-bg);
+  border-left: 1px solid rgba(255,255,255,0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 150;
+  padding: calc(var(--nav-height) + var(--spacing-unit) * 2) calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 4);
+  overflow-y: auto;
+  box-shadow: -4px 0 12px rgba(0,0,0,0.2);
+}
+
+.mobileNav__panel--open {
+  transform: translateX(0);
+}
+
+.mobileNav__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 140;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobileNav__overlay--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobileNav__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobileNav__item {
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.mobileNav__link {
+  display: block;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 1.125rem;
+  font-weight: 500;
+  padding: calc(var(--spacing-unit) * 1) 0;
+  transition: color 0.2s ease;
+}
+
+.mobileNav__link:hover,
+.mobileNav__link:focus {
+  color: var(--color-accent);
+}
+
+.mobileNav__link--active {
+  color: var(--color-primary);
+  border-left: 3px solid var(--color-primary);
+  padding-left: calc(var(--spacing-unit) * 2);
+}
+
+/* Submenu for mobile */
+.mobileNav__submenu {
+  list-style: none;
+  padding-left: calc(var(--spacing-unit) * 3);
+  margin-top: calc(var(--spacing-unit) * 1);
+}
+
+.mobileNav__sublink {
+  display: block;
+  color: var(--color-text-dim);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  padding: calc(var(--spacing-unit) * 0.75) 0;
+}
+
+.mobileNav__sublink:hover,
+.mobileNav__sublink:focus {
+  color: var(--color-accent);
+}
+
+/* Accessibility focus */
+.navLink:focus-visible,
+.dropdown__trigger:focus-visible,
+.dropdown__item:focus-visible,
+.mobileNav__toggle:focus-visible,
+.mobileNav__link:focus-visible,
+.mobileNav__sublink:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .navLink,
+  .navLink::after,
+  .dropdown__arrow,
+  .dropdown__menu,
+  .mobileNav__toggle span,
+  .mobileNav__panel,
+  .mobileNav__overlay {
+    transition: none;
+  }
+}
