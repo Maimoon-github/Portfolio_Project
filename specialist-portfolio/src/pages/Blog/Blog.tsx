@@ -6,10 +6,11 @@ import { Helmet } from 'react-helmet-async';
 import SectionContainer from '@/components/layout/SectionContainer';
 import FilterBar from '@/components/ui/FilterBar';
 import Card from '@/components/ui/Card';
-// import Badge from '@/components/ui/Badge'; // if needed
-import { blogPosts } from '@/data/blog';
+import { BlogPost, BlogCategory } from './Blog.types';
 import styles from './Blog.module.css';
-import type { BlogCategory, BlogPost } from './Blog.types';
+
+// Import blog data (assumes data/blog.ts exports an array of BlogPost)
+import { blogPosts } from '@/data/blog';
 
 // Category display names for filter bar
 const categoryLabels: Record<BlogCategory, string> = {
@@ -42,23 +43,6 @@ const Blog = memo(() => {
 
   const filterOptions = ['all', ...Object.keys(categoryLabels)] as const;
 
-  // Map filter option to display label
-  const getFilterLabel = (opt: typeof filterOptions[number]) => {
-    if (opt === 'all') return 'All';
-    return categoryLabels[opt as BlogCategory];
-  };
-
-  const handleFilterChange = (label: string) => {
-    if (label === 'All') {
-      setActiveCategory('all');
-      return;
-    }
-    const found = Object.entries(categoryLabels).find(([, value]) => value === label);
-    if (found) {
-      setActiveCategory(found[0] as BlogCategory);
-    }
-  };
-
   return (
     <>
       <Helmet>
@@ -79,9 +63,16 @@ const Blog = memo(() => {
         <SectionContainer id="blog-filter" paddingSize="md" backgroundVariant="default">
           <div className={styles.filterWrapper}>
             <FilterBar
-              filters={filterOptions.map(getFilterLabel)}
-              activeFilter={getFilterLabel(activeCategory)}
-              onFilterChange={handleFilterChange}
+              filters={filterOptions.map((opt) =>
+                opt === 'all' ? 'All' : categoryLabels[opt as BlogCategory]
+              )}
+              activeFilter={activeCategory === 'all' ? 'All' : categoryLabels[activeCategory as BlogCategory]}
+              onFilterChange={(label) => {
+                const found = Object.entries(categoryLabels).find(
+                  ([, value]) => value === label
+                );
+                setActiveCategory(found ? (found[0] as BlogCategory) : 'all');
+              }}
               ariaLabel="Filter posts by category"
             />
           </div>
@@ -120,7 +111,7 @@ const Blog = memo(() => {
               {/* Regular post grid */}
               <div className={styles.postsGrid}>
                 {regularPosts.map((post) => (
-                  <Card key={post.slug} className={styles.postCard} interactive>
+                  <Card key={post.slug} as="article" interactive className={styles.postCard}>
                     <Link to={`/mind/blog/${post.slug}`} className={styles.postCard__link}>
                       <div className={styles.postCard__meta}>
                         <span>{new Date(post.meta.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>

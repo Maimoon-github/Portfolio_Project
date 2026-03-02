@@ -3,14 +3,19 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import ReactMarkdown from 'react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import SectionContainer from '@/components/layout/SectionContainer';
 import Button from '@/components/ui/Button';
+import { BlogPost as BlogPostType } from './Blog.types';
+import styles from './Blog.module.css';
+
+// Import blog data
 import { blogPosts } from '@/data/blog';
-import styles from './BlogPost.module.css';
-import type { BlogPost } from './Blog.types';
 
 // Helper to find post by slug
-const getPostBySlug = (slug: string): BlogPost | undefined => {
+const getPostBySlug = (slug: string): BlogPostType | undefined => {
   return blogPosts.find((p) => p.slug === slug);
 };
 
@@ -22,7 +27,7 @@ const getPostBySlug = (slug: string): BlogPost | undefined => {
 export const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const [post, setPost] = useState<BlogPost | null>(null);
+  const [post, setPost] = useState<BlogPostType | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -30,7 +35,7 @@ export const BlogPost = () => {
       setLoading(false);
       return;
     }
-    // Simulate async fetch
+    // Simulate async fetch (could be real API)
     const found = getPostBySlug(slug);
     setPost(found || null);
     setLoading(false);
@@ -92,20 +97,20 @@ export const BlogPost = () => {
 
         {/* Header */}
         <SectionContainer id="post-header" paddingSize="md" backgroundVariant="default">
-          <div className={styles.header}>
+          <div className={styles.postHeader}>
             <span className={styles.category}>{post.meta.category.replace('-', ' ')}</span>
-            <h1 className={styles.header__title}>{post.title}</h1>
-            <div className={styles.header__meta}>
-              <span className={styles.header__metaItem}>
-                <span className={styles.header__metaIcon}>📅</span>
+            <h1 className={styles.postHeader__title}>{post.title}</h1>
+            <div className={styles.postHeader__meta}>
+              <span className={styles.postHeader__metaItem}>
+                <span className={styles.postHeader__metaIcon}>📅</span>
                 {new Date(post.meta.date).toLocaleDateString('en-US', {
                   month: 'long',
                   day: 'numeric',
                   year: 'numeric',
                 })}
               </span>
-              <span className={styles.header__metaItem}>
-                <span className={styles.header__metaIcon}>⏱️</span>
+              <span className={styles.postHeader__metaItem}>
+                <span className={styles.postHeader__metaIcon}>⏱️</span>
                 {post.meta.readTime}
               </span>
             </div>
@@ -115,31 +120,45 @@ export const BlogPost = () => {
         {/* Content */}
         <SectionContainer id="post-content" paddingSize="md" backgroundVariant="default">
           <div className={styles.prose}>
-            {/* In a real app, use a Markdown renderer like react-markdown */}
-            {post.content.split('\n').map((line, i) => {
-              if (line.startsWith('# ')) return <h1 key={i}>{line.slice(2)}</h1>;
-              if (line.startsWith('## ')) return <h2 key={i}>{line.slice(3)}</h2>;
-              if (line.startsWith('### ')) return <h3 key={i}>{line.slice(4)}</h3>;
-              if (line.startsWith('```')) {
-                const codeContent = line.slice(3).trim();
-                return <pre key={i}><code>{codeContent}</code></pre>;
-              }
-              if (line.trim() === '') return <br key={i} />;
-              return <p key={i}>{line}</p>;
-            })}
+            <ReactMarkdown
+              components={{
+                code({ node, inline, className, children, ...props }) {
+                  const match = /language-(\w+)/.exec(className || '');
+                  return !inline && match ? (
+                    <SyntaxHighlighter
+                      style={vscDarkPlus}
+                      language={match[1]}
+                      PreTag="div"
+                      {...props}
+                    >
+                      {String(children).replace(/\n$/, '')}
+                    </SyntaxHighlighter>
+                  ) : (
+                    <code className={className} {...props}>
+                      {children}
+                    </code>
+                  );
+                },
+              }}
+            >
+              {post.content}
+            </ReactMarkdown>
           </div>
         </SectionContainer>
 
-        {/* Next steps */}
+        {/* Next steps (Further Reading) */}
         <SectionContainer id="post-next" paddingSize="lg" backgroundVariant="surface">
           <div className={styles.nextSteps}>
-            <h2 className={styles.nextSteps__title}>Continue Exploring</h2>
+            <h2 className={styles.nextSteps__title}>Further Reading</h2>
             <div className={styles.nextSteps__links}>
               <Link to="/mind/docs/rag-pipeline-tutorial" className={styles.nextSteps__link}>
-                Related Tutorial →
+                RAG Pipeline Tutorial →
               </Link>
               <Link to="/work/portfolio/agentic-research" className={styles.nextSteps__link}>
-                Related Project →
+                Agentic Research Project →
+              </Link>
+              <Link to="/mind/blog/automation-philosophy" className={styles.nextSteps__link}>
+                Automation Philosophy →
               </Link>
             </div>
           </div>
