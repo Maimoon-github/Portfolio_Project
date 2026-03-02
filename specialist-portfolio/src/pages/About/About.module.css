@@ -1,3 +1,5 @@
+/* specialist-portfolio/src/pages/About/About.module.css */
+
 /* Design System Tokens - "The Data Specialist" */
 :root {
   --color-bg: #141a26;              /* Midnight Shale */
@@ -137,20 +139,11 @@
   }
 }
 
+/* Discipline card – uses Card component, additional styling */
 .discipline {
-  padding: calc(var(--spacing-unit) * 3);
-  background-color: var(--color-surface);
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.2s ease;
+  height: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.discipline:hover {
-  transform: translateY(-2px);
-  border-color: var(--color-accent);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .discipline__title {
@@ -168,6 +161,13 @@
   color: var(--color-text-dim);
   margin: 0 0 calc(var(--spacing-unit) * 3) 0;
   flex: 1;
+}
+
+.discipline__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-unit);
+  margin-bottom: calc(var(--spacing-unit) * 3);
 }
 
 .discipline__link {
