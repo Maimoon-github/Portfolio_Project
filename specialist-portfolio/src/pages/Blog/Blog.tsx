@@ -1,68 +1,15 @@
+// specialist-portfolio/src/pages/Blog/Blog.tsx
+
 import { useState, useMemo, memo } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import SectionContainer from '@/components/layout/SectionContainer/SectionContainer';
-import FilterBar from '@/components/ui/FilterBar/FilterBar';
+import SectionContainer from '@/components/layout/SectionContainer';
+import FilterBar from '@/components/ui/FilterBar';
+import Card from '@/components/ui/Card';
+// import Badge from '@/components/ui/Badge'; // if needed
+import { blogPosts } from '@/data/blog';
 import styles from './Blog.module.css';
-import type { BlogCategory, BlogPost, BlogPageData } from './Blog.types';
-
-// Mock data – would come from CMS/API
-const mockPosts: BlogPost[] = [
-  {
-    slug: 'future-agentic-workflows',
-    title: 'The Future of Agentic Workflows',
-    excerpt: 'Exploring autonomous systems and their impact on digital infrastructure.',
-    content: '# Full content here...',
-    meta: {
-      date: '2025-04-15',
-      readTime: '6 min read',
-      category: 'ai-strategy',
-    },
-    featured: true,
-    image: '/images/blog/agentic-workflows.jpg',
-    imageAlt: 'Agentic workflow diagram',
-  },
-  {
-    slug: 'building-rag-pipeline',
-    title: 'Building a RAG Pipeline with LangChain',
-    excerpt: 'Step‑by‑step tutorial to create a retrieval‑augmented generation system.',
-    content: '# Full content here...',
-    meta: {
-      date: '2025-04-10',
-      readTime: '8 min read',
-      category: 'engineering',
-    },
-    featured: false,
-    image: '/images/blog/rag-pipeline.jpg',
-    imageAlt: 'RAG architecture',
-  },
-  {
-    slug: 'automation-philosophy',
-    title: 'The Philosophy of Automation',
-    excerpt: 'Why thoughtful automation creates more value than brute‑force efficiency.',
-    content: '# Full content here...',
-    meta: {
-      date: '2025-04-05',
-      readTime: '5 min read',
-      category: 'automation',
-    },
-    featured: false,
-    image: '/images/blog/automation.jpg',
-    imageAlt: 'Abstract automation concept',
-  },
-  {
-    slug: 'digital-growth-strategy',
-    title: 'Digital Growth in 2025',
-    excerpt: 'How to align technical execution with business outcomes.',
-    content: '# Full content here...',
-    meta: {
-      date: '2025-03-28',
-      readTime: '7 min read',
-      category: 'digital-growth',
-    },
-    featured: false,
-  },
-];
+import type { BlogCategory, BlogPost } from './Blog.types';
 
 // Category display names for filter bar
 const categoryLabels: Record<BlogCategory, string> = {
@@ -79,10 +26,10 @@ const categoryLabels: Record<BlogCategory, string> = {
 const Blog = memo(() => {
   const [activeCategory, setActiveCategory] = useState<BlogCategory | 'all'>('all');
 
-  const featuredPost = mockPosts.find((post) => post.featured) || null;
+  const featuredPost = blogPosts.find((post) => post.featured) || null;
 
   const filteredPosts = useMemo(() => {
-    return mockPosts.filter((post) => {
+    return blogPosts.filter((post) => {
       if (activeCategory === 'all') return true;
       return post.meta.category === activeCategory;
     });
@@ -94,6 +41,23 @@ const Blog = memo(() => {
   );
 
   const filterOptions = ['all', ...Object.keys(categoryLabels)] as const;
+
+  // Map filter option to display label
+  const getFilterLabel = (opt: typeof filterOptions[number]) => {
+    if (opt === 'all') return 'All';
+    return categoryLabels[opt as BlogCategory];
+  };
+
+  const handleFilterChange = (label: string) => {
+    if (label === 'All') {
+      setActiveCategory('all');
+      return;
+    }
+    const found = Object.entries(categoryLabels).find(([, value]) => value === label);
+    if (found) {
+      setActiveCategory(found[0] as BlogCategory);
+    }
+  };
 
   return (
     <>
@@ -115,16 +79,9 @@ const Blog = memo(() => {
         <SectionContainer id="blog-filter" paddingSize="md" backgroundVariant="default">
           <div className={styles.filterWrapper}>
             <FilterBar
-              filters={filterOptions.map((opt) =>
-                opt === 'all' ? 'All' : categoryLabels[opt as BlogCategory]
-              )}
-              activeFilter={activeCategory === 'all' ? 'All' : categoryLabels[activeCategory]}
-              onFilterChange={(label) => {
-                const found = Object.entries(categoryLabels).find(
-                  ([, value]) => value === label
-                );
-                setActiveCategory(found ? (found[0] as BlogCategory) : 'all');
-              }}
+              filters={filterOptions.map(getFilterLabel)}
+              activeFilter={getFilterLabel(activeCategory)}
+              onFilterChange={handleFilterChange}
               ariaLabel="Filter posts by category"
             />
           </div>
@@ -163,7 +120,7 @@ const Blog = memo(() => {
               {/* Regular post grid */}
               <div className={styles.postsGrid}>
                 {regularPosts.map((post) => (
-                  <article key={post.slug} className={styles.postCard}>
+                  <Card key={post.slug} className={styles.postCard} interactive>
                     <Link to={`/mind/blog/${post.slug}`} className={styles.postCard__link}>
                       <div className={styles.postCard__meta}>
                         <span>{new Date(post.meta.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
@@ -172,7 +129,7 @@ const Blog = memo(() => {
                       <h3 className={styles.postCard__title}>{post.title}</h3>
                       <p className={styles.postCard__excerpt}>{post.excerpt}</p>
                     </Link>
-                  </article>
+                  </Card>
                 ))}
               </div>
             </>

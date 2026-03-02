@@ -1,3 +1,5 @@
+// specialist-portfolio/src/pages/Blog/Blog.types.ts
+
 /**
  * Blog category options.
  * Aligns with "The Data Specialist" content strategy.

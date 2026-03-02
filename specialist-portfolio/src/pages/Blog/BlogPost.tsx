@@ -1,70 +1,17 @@
+// specialist-portfolio/src/pages/Blog/BlogPost.tsx
+
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import SectionContainer from '@/components/layout/SectionContainer/SectionContainer';
-import Button from '@/components/ui/Button/Button';
+import SectionContainer from '@/components/layout/SectionContainer';
+import Button from '@/components/ui/Button';
+import { blogPosts } from '@/data/blog';
 import styles from './BlogPost.module.css';
 import type { BlogPost } from './Blog.types';
 
-// Mock data (same as listing, for demo)
-const mockPosts: BlogPost[] = [
-  {
-    slug: 'future-agentic-workflows',
-    title: 'The Future of Agentic Workflows',
-    excerpt: 'Exploring autonomous systems and their impact on digital infrastructure.',
-    content: `
-# The Future of Agentic Workflows
-
-Agentic workflows represent a paradigm shift in how we build autonomous systems. Unlike traditional automation that follows rigid rules, agentic systems can reason, plan, and adapt.
-
-## Why Now?
-
-The convergence of large language models, robust orchestration frameworks (like LangChain), and increasing compute power makes this possible.
-
-\`\`\`python
-from langchain.agents import create_react_agent
-
-agent = create_react_agent(
-    tools=[search_tool, calculator],
-    llm=ChatOpenAI(model="gpt-4")
-)
-\`\`\`
-
-## Key Design Principles
-
-1. **Observability**: Every decision must be traceable.
-2. **Fallback Mechanisms**: Agents should degrade gracefully.
-3. **Human-in-the-loop**: Critical decisions still require human approval.
-
-The next frontier is multi‑agent collaboration – systems where agents debate, critique, and improve each other's outputs.
-    `,
-    meta: {
-      date: '2025-04-15',
-      readTime: '6 min read',
-      category: 'ai-strategy',
-    },
-    featured: true,
-    image: '/images/blog/agentic-workflows.jpg',
-    imageAlt: 'Agentic workflow diagram',
-  },
-  {
-    slug: 'building-rag-pipeline',
-    title: 'Building a RAG Pipeline with LangChain',
-    excerpt: 'Step‑by‑step tutorial to create a retrieval‑augmented generation system.',
-    content: '# Full content here...',
-    meta: {
-      date: '2025-04-10',
-      readTime: '8 min read',
-      category: 'engineering',
-    },
-    featured: false,
-  },
-  // ... other posts
-];
-
 // Helper to find post by slug
 const getPostBySlug = (slug: string): BlogPost | undefined => {
-  return mockPosts.find((p) => p.slug === slug);
+  return blogPosts.find((p) => p.slug === slug);
 };
 
 /**
@@ -173,7 +120,10 @@ export const BlogPost = () => {
               if (line.startsWith('# ')) return <h1 key={i}>{line.slice(2)}</h1>;
               if (line.startsWith('## ')) return <h2 key={i}>{line.slice(3)}</h2>;
               if (line.startsWith('### ')) return <h3 key={i}>{line.slice(4)}</h3>;
-              if (line.startsWith('```')) return <pre key={i}><code>{line.slice(3, -3)}</code></pre>;
+              if (line.startsWith('```')) {
+                const codeContent = line.slice(3).trim();
+                return <pre key={i}><code>{codeContent}</code></pre>;
+              }
               if (line.trim() === '') return <br key={i} />;
               return <p key={i}>{line}</p>;
             })}
