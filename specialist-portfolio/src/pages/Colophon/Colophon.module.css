@@ -1,0 +1,169 @@
+/* specialist-portfolio/src/pages/Colophon/Colophon.module.css */
+
+/* Design System Tokens - "The Data Specialist" */
+:root {
+  --color-bg: #141a26;              /* Midnight Shale */
+  --color-surface: #3b4859;          /* Slate Blue */
+  --color-primary: #0d33a6;           /* Lapis Deep */
+  --color-accent: #d9ae89;             /* Gold Fleck */
+  --color-text: #ffffff;
+  --color-text-dim: #b0b0b0;
+  --font-ui: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --spacing-unit: 8px;
+  --max-content-width: 800px;
+}
+
+/* Base page container with subtle noise */
+.colophon {
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  position: relative;
+}
+
+.colophon::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 30% 50%, rgba(217, 174, 137, 0.03) 0%, transparent 50%);
+  z-index: 0;
+}
+
+.colophon > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Page header */
+.header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto calc(var(--spacing-unit) * 8) auto;
+}
+
+.header__title {
+  font-family: var(--font-ui);
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 calc(var(--spacing-unit) * 2) 0;
+  letter-spacing: -0.02em;
+}
+
+.header__subtitle {
+  font-family: var(--font-ui);
+  font-size: 1.25rem;
+  color: var(--color-text-dim);
+  margin: 0;
+}
+
+/* Section styling */
+.section {
+  margin-bottom: calc(var(--spacing-unit) * 8);
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.section__title {
+  font-family: var(--font-ui);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0 0 calc(var(--spacing-unit) * 3) 0;
+  position: relative;
+}
+
+.section__title::after {
+  content: '';
+  position: absolute;
+  bottom: calc(var(--spacing-unit) * -1);
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background-color: var(--color-accent);
+}
+
+.section__content {
+  font-family: var(--font-ui);
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--color-text-dim);
+}
+
+.section__content p {
+  margin: 0 0 calc(var(--spacing-unit) * 3) 0;
+}
+
+.section__content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Grid for tools list */
+.toolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: calc(var(--spacing-unit) * 2);
+  margin-top: calc(var(--spacing-unit) * 2);
+}
+
+.toolItem {
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  background-color: rgba(13, 51, 166, 0.2);
+  padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2);
+  border-radius: 4px;
+  border-left: 2px solid var(--color-accent);
+}
+
+/* Ethics list */
+.ethicsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ethicsItem {
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  padding-left: calc(var(--spacing-unit) * 3);
+  position: relative;
+}
+
+.ethicsItem::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+}
+
+.ethicsItem strong {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header__title {
+    font-size: 2.5rem;
+  }
+
+  .section__title {
+    font-size: 1.75rem;
+  }
+
+  .section__content {
+    font-size: 1rem;
+  }
+
+  .toolsGrid {
+    grid-template-columns: 1fr;
+  }
+}
