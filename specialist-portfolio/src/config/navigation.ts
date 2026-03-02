@@ -1,3 +1,5 @@
+// specialist-portfolio/src/config/navigation.ts
+
 /**
  * navigation.ts
  * Navigation structure configuration based on Full Navigation Structure.md.
@@ -57,7 +59,7 @@ export const secondaryNav: readonly NavItem[] = [
   { label: 'About', href: ROUTES.ABOUT },
   { label: 'GitHub', href: 'https://github.com/dataspecialist', external: true },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/dataspecialist', external: true },
-  { label: 'All Content', href: '/sitemap' }, // placeholder, could link to a sitemap page
+  { label: 'All Content', href: '/sitemap' },
   { label: 'Colophon / Site Ethics', href: '/colophon' },
 ] as const;
 
