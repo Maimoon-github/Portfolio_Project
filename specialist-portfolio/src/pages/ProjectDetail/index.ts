@@ -1,3 +1,3 @@
-export { ProjectDetail } from './ProjectDetail';
-export type { ProjectDetailProps, ProjectDetailParams } from './ProjectDetail.types';
-export { useProjectDetail } from './useProjectDetail.hook';
+// specialist-portfolio/src/pages/ProjectDetail/index.ts
+
+export { default as ProjectDetail } from './ProjectDetail';
