@@ -1,3 +1,5 @@
+// specialist-portfolio/src/utils/index.ts
+
 /**
  * Utilities barrel export
  * Provides a single entry point for all utility functions.

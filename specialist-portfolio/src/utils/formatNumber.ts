@@ -1,3 +1,5 @@
+// specialist-portfolio/src/utils/formatNumber.ts
+
 /**
  * formatNumber.ts
  * Utility for formatting numbers as metrics and KPIs.
