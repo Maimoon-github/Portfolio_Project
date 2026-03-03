@@ -29,6 +29,7 @@
   font-weight: 600;
   text-decoration: none;
   border-radius: 0 0 4px 4px;
+  padding: 8px;
   z-index: 1000;
   transition: top 0.2s ease;
 }
@@ -162,6 +163,10 @@
   }
 
   .layout__main {
+    flex: 1;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
     padding: calc(var(--spacing-unit, 8px) * 3) calc(var(--spacing-unit, 8px) * 2);
   }
 }

@@ -27,6 +27,8 @@
   line-height: 1.5;
   position: relative;
   white-space: nowrap;
+  text-decoration: none;
+  border: none;
 }
 
 /* Disabled state */
@@ -48,6 +50,11 @@
   color: var(--color-text);
 }
 
+.button--primary:hover {
+  background-color: var(--color-primary-hover, #3258a6);
+  transform: translateY(-2px);
+}
+
 .button--primary:hover:not(:disabled) {
   background-color: var(--color-primary-hover);
   transform: translateY(-2px);
@@ -59,6 +66,10 @@
   border: 2px solid var(--color-primary);
 }
 
+.button--secondary:hover {
+  background-color: rgba(13,51,166,0.1);
+}
+
 .button--secondary:hover:not(:disabled) {
   background-color: rgba(13, 51, 166, 0.1);
   transform: translateY(-2px);
@@ -67,6 +78,10 @@
 .button--accent {
   background-color: var(--color-accent);
   color: var(--color-bg);
+}
+
+.button--accent:hover {
+  filter: brightness(1.1);
 }
 
 .button--accent:hover:not(:disabled) {
