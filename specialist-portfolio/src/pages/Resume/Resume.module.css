@@ -1,3 +1,5 @@
+/* specialist-portfolio/src/pages/Resume/Resume.module.css */
+
 /* Resume page styles – "The Data Specialist" design system + print styles */
 :root {
   --color-bg: #141a26;              /* Midnight Shale */
@@ -129,39 +131,9 @@
   background-color: var(--color-accent);
 }
 
-/* Stack category */
-.stackCategory {
+/* Table wrapper for skills matrix */
+.tableWrapper {
   margin-bottom: calc(var(--spacing-unit) * 4);
-}
-
-.stackCategory__title {
-  font-family: var(--font-mono);
-  font-size: 1.125rem;
-  font-weight: 500;
-  color: var(--color-accent);
-  margin: 0 0 calc(var(--spacing-unit) * 2) 0;
-}
-
-.stackCategory__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.stackCategory__item {
-  font-family: var(--font-ui);
-  font-size: 1rem;
-  color: var(--color-text-dim);
-  margin-bottom: calc(var(--spacing-unit) * 1.5);
-  display: flex;
-  align-items: baseline;
-}
-
-.stackCategory__item::before {
-  content: '▹';
-  color: var(--color-accent);
-  margin-right: calc(var(--spacing-unit) * 1.5);
-  font-size: 0.875rem;
 }
 
 /* Certifications list */
@@ -369,16 +341,12 @@
 
   .header__title,
   .sectionHeader,
-  .stackCategory__title,
-  .certification__name,
   .timeline__role,
   .achievement__title {
     color: black;
   }
 
   .header__subtitle,
-  .stackCategory__item,
-  .certification__issuer,
   .timeline__date,
   .timeline__description li {
     color: #333;
@@ -397,7 +365,6 @@
     box-shadow: none;
   }
 
-  .stackCategory__item::before,
   .timeline__description li::before {
     color: #666;
   }

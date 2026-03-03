@@ -1,8 +1,11 @@
+// specialist-portfolio/src/pages/Resume/Resume.tsx
+
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import SectionContainer from '@/components/layout/SectionContainer/SectionContainer';
-import Button from '@/components/ui/Button/Button';
+import SectionContainer from '@/components/layout/SectionContainer';
+import Button from '@/components/ui/Button';
+import DataTable from '@/components/ui/DataTable';
 import styles from './Resume.module.css';
 
 // Types
@@ -51,6 +54,11 @@ const stack: SkillCategory[] = [
     skills: ['Docker', 'Kubernetes', 'AWS (Lambda, SageMaker)', 'PostgreSQL', 'Redis'],
   },
 ];
+
+// Flatten skills into rows for DataTable
+const skillRows = stack.flatMap((cat) =>
+  cat.skills.map((skill) => ({ category: cat.category, skill }))
+);
 
 const experiences: Experience[] = [
   {
@@ -133,7 +141,7 @@ const certifications = [
 /**
  * Resume page – "Capabilities & Trajectory"
  * Structured timeline with quantifiable impact, core competencies,
- * technical stack, and print‑optimized styles.
+ * technical stack (displayed as DataTable), and print‑optimized styles.
  */
 const Resume = memo(() => {
   return (
@@ -171,24 +179,22 @@ const Resume = memo(() => {
           </div>
         </SectionContainer>
 
-        {/* Technical Stack + Certifications (2‑col) */}
+        {/* Technical Stack (DataTable) + Certifications (2‑col) */}
         <SectionContainer id="stack-cert" paddingSize="md" backgroundVariant="default">
           <div className={styles.grid2}>
-            {/* Stack */}
+            {/* Stack as DataTable */}
             <div>
               <h2 className={styles.sectionHeader}>Technical Stack</h2>
-              {stack.map((cat) => (
-                <div key={cat.category} className={styles.stackCategory}>
-                  <h3 className={styles.stackCategory__title}>{cat.category}</h3>
-                  <ul className={styles.stackCategory__list}>
-                    {cat.skills.map((skill) => (
-                      <li key={skill} className={styles.stackCategory__item}>
-                        {skill}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+              <div className={styles.tableWrapper}>
+                <DataTable
+                  columns={[
+                    { key: 'category', header: 'Category' },
+                    { key: 'skill', header: 'Skill' },
+                  ]}
+                  data={skillRows}
+                  caption="Technical skills by category"
+                />
+              </div>
             </div>
 
             {/* Certifications */}
