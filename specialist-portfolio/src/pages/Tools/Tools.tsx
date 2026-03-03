@@ -1,8 +1,9 @@
+// specialist-portfolio/src/pages/Tools/Tools.tsx
+
 import { useState, useMemo, memo } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import SectionContainer from '@/components/layout/SectionContainer/SectionContainer';
-import FilterBar from '@/components/ui/FilterBar/FilterBar';
+import SectionContainer from '@/components/layout/SectionContainer';
+import FilterBar from '@/components/ui/FilterBar';
 import ListofTools from './ListofTools';
 import styles from './Tools.module.css';
 
@@ -92,7 +93,6 @@ const categoryLabels: Record<ToolCategory, string> = {
  * and distinctive gold‑accented cards.
  */
 const Tools = memo(() => {
-  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState<ToolCategory | 'all'>('all');
 
   const filteredTools = useMemo(() => {
