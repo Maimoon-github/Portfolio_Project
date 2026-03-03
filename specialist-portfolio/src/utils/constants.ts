@@ -1,3 +1,5 @@
+// specialist-portfolio/src/utils/constants.ts
+
 /**
  * constants.ts
  * Application‑wide constants and configuration values.

@@ -1,3 +1,5 @@
+// specialist-portfolio/src/utils/animations.ts
+
 /**
  * animations.ts
  * Animation utility constants and helper functions.
