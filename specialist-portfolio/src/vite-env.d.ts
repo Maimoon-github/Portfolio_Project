@@ -1,23 +1,64 @@
+// specialist-portfolio/src/vite-env.d.ts
+
 /// <reference types="vite/client" />
 
-/**
- * Type definitions for Vite environment variables.
- * Ensures type safety and autocomplete for import.meta.env.
- */
-interface ImportMetaEnv {
-  /** API base URL (required) */
-  readonly VITE_API_URL: string;
-
-  /** Application name (required) */
-  readonly VITE_APP_NAME: string;
-
-  /** Enable analytics tracking (optional, union type for safety) */
-  readonly VITE_ENABLE_ANALYTICS?: 'true' | 'false';
-
-  /** GitHub API token (optional, sensitive) */
-  readonly VITE_GITHUB_TOKEN?: string;
+// Declare modules for static asset imports
+declare module '*.svg' {
+  const content: string;
+  export default content;
 }
 
-interface ImportMeta {
-  readonly env: ImportMetaEnv;
+declare module '*.png' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.jpg' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.jpeg' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.gif' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.webp' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.avif' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.woff2' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.woff' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.ttf' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.eot' {
+  const content: string;
+  export default content;
+}
+
+declare module '*.otf' {
+  const content: string;
+  export default content;
 }
