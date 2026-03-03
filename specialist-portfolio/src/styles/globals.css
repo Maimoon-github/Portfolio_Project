@@ -1,3 +1,5 @@
+/* specialist-portfolio/src/styles/globals.css */
+
 /* ============================================================
    @font-face — Inter (UI & Heading Typeface)
    Weights: 400 (Regular), 500 (Medium), 600 (SemiBold), 700 (Bold)
@@ -48,7 +50,6 @@
     U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-
 /* ============================================================
    @font-face — JetBrains Mono (Code & Numeric Typeface)
    Weights: 400 (Regular), 500 (Medium)
@@ -76,7 +77,6 @@
     U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC,
     U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
 
 /* ============================================================
    CSS Reset — Modern minimal reset
@@ -153,7 +153,6 @@
   padding: 0;
 }
 
-
 /* ============================================================
    Design Tokens (CSS Custom Properties)
    "The Data Specialist" color scheme, typography, spacing, layout
@@ -201,7 +200,6 @@
   --transition-base: 0.2s ease;
   --transition-slow: 0.3s ease;
 }
-
 
 /* ============================================================
    Base element styles
@@ -294,7 +292,6 @@ select:focus {
   box-shadow: 0 0 0 2px rgba(217, 174, 137, 0.2);
 }
 
-
 /* ============================================================
    Accessibility – Focus and reduced motion
    ============================================================ */
@@ -326,7 +323,6 @@ select:focus {
     scroll-behavior: auto;
   }
 }
-
 
 /* ============================================================
    Utility classes

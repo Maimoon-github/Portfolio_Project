@@ -1,3 +1,5 @@
+/* specialist-portfolio/src/styles/typography.css */
+
 /* ============================================================
    typography.css
    Global Typography System – "The Data Specialist"
@@ -45,7 +47,6 @@
   font-display: swap;
 }
 
-
 /* --------------------------------------------
    @font-face – JetBrains Mono (Code & Numeric Typeface)
    Weights: 400 (Regular), 500 (Medium)
@@ -69,7 +70,6 @@
   font-style: normal;
   font-display: swap;
 }
-
 
 /* --------------------------------------------
    Typography Tokens (CSS Custom Properties)
@@ -120,7 +120,6 @@
   --text-link: var(--color-primary-medium, #3258A6);
   --text-link-hover: var(--color-accent-gold, #D9AE89);
 }
-
 
 /* --------------------------------------------
    Base Typography Styles
@@ -207,7 +206,6 @@ hr {
   margin: 2rem 0;
 }
 
-
 /* --------------------------------------------
    Typography Utility Classes
    -------------------------------------------- */
@@ -259,7 +257,6 @@ hr {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
 
 /* --------------------------------------------
    Prose Styles – for long‑form content (Blog, Documentation)
@@ -399,7 +396,6 @@ hr {
 .prose tr:nth-child(even) td {
   background: var(--color-input-bg, #1E2633);
 }
-
 
 /* --------------------------------------------
    Accessibility & Motion Preferences
