@@ -1,8 +1,10 @@
+// specialist-portfolio/src/pages/Projects/Projects.tsx
+
 import { useState, useMemo, memo } from 'react';
 import { Helmet } from 'react-helmet-async';
-import SectionContainer from '@/components/layout/SectionContainer/SectionContainer';
-import FilterBar from '@/components/ui/FilterBar/FilterBar';
-import ProjectCard from '@/components/ui/ProjectCard/ProjectCard';
+import SectionContainer from '@/components/layout/SectionContainer';
+import FilterBar from '@/components/ui/FilterBar';
+import ProjectCard from '@/components/ui/ProjectCard';
 import styles from './Projects.module.css';
 import type { ProjectCardProps } from '@/components/ui/ProjectCard/ProjectCard.types';
 
@@ -189,15 +191,9 @@ const Projects = memo(() => {
   // Filter projects based on all active filters
   const filteredProjects = useMemo(() => {
     return mockProjects.filter((project) => {
-      // Category filter
       if (filters.category !== 'all' && project.category !== filters.category) return false;
-      
-      // Status filter
       if (filters.status !== 'all' && project.status !== filters.status) return false;
-      
-      // Year filter
       if (filters.year !== 'all' && project.year !== filters.year) return false;
-      
       return true;
     });
   }, [filters]);
@@ -373,7 +369,7 @@ const Projects = memo(() => {
                 <ProjectCard
                   key={project.id}
                   {...project}
-                  variant="compact" // Archive uses compact variant
+                  variant="compact"
                 />
               ))}
             </div>

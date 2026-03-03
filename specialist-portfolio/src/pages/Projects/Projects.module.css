@@ -1,4 +1,6 @@
-/* Projects archive page styles – "The Data Specialist" design system */
+/* specialist-portfolio/src/pages/Projects/Projects.module.css */
+
+/* Design System Tokens - "The Data Specialist" */
 :root {
   --color-bg: #141a26;              /* Midnight Shale */
   --color-surface: #3b4859;          /* Slate Blue */
@@ -13,7 +15,7 @@
   --max-content-width: 1280px;
 }
 
-/* Noise overlay for atmosphere (avoid flat "AI slop") */
+/* Noise overlay for atmosphere */
 .projects::before {
   content: '';
   position: fixed;
