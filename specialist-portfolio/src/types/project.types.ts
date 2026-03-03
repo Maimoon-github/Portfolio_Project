@@ -1,3 +1,5 @@
+// specialist-portfolio/src/types/project.types.ts
+
 /**
  * Core type definitions for project data.
  * Aligns with "The Data Specialist" design system and Full Navigation Structure.

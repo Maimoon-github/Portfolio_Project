@@ -1,3 +1,5 @@
+// specialist-portfolio/src/types/tool.types.ts
+
 /**
  * Tool utility type definitions.
  * Aligns with "The Data Specialist" design system and Full Navigation Structure.

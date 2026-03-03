@@ -1,3 +1,5 @@
+// specialist-portfolio/src/types/navigation.types.ts
+
 /**
  * Navigation structure type definitions.
  * Aligns exactly with "Full Navigation Structure.md".
