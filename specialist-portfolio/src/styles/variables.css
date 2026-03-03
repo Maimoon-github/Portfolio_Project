@@ -1,3 +1,5 @@
+/* specialist-portfolio/src/styles/variables.css */
+
 /* ============================================================
    variables.css
    Design Tokens - "The Data Specialist"
@@ -35,7 +37,6 @@
   --color-row-alt: #1E2633;                /* Alternating row background */
   --color-hover-overlay: rgba(50, 88, 166, 0.2); /* Hover state with Lapis Medium */
 
-
   /* --------------------------------------------
      Typography
      Inter (UI) + JetBrains Mono (Code/Numbers)
@@ -67,7 +68,6 @@
   --font-weight-semi-bold: 600;
   --font-weight-bold: 700;
 
-
   /* --------------------------------------------
      Spacing Scale - 8px Base Unit
      -------------------------------------------- */
@@ -83,7 +83,6 @@
   --space-24: 6rem;     /* 96px */
   --space-32: 8rem;     /* 128px */
 
-
   /* --------------------------------------------
      Layout & Grid
      -------------------------------------------- */
@@ -93,7 +92,6 @@
   --grid-gutter: 24px;
   --grid-column-count: 12;
 
-
   /* --------------------------------------------
      Border Radius
      -------------------------------------------- */
@@ -102,7 +100,6 @@
   --radius-md: 8px;
   --radius-lg: 16px;
   --radius-full: 9999px;
-
 
   /* --------------------------------------------
      Shadows - Layered for Depth
@@ -126,7 +123,6 @@
     0 8px 12px -4px rgba(0, 0, 0, 0.3),
     0 0 0 1px rgba(217, 174, 137, 0.15); /* gold accent border */
 
-
   /* --------------------------------------------
      Transitions
      -------------------------------------------- */
@@ -135,7 +131,6 @@
   --transition-base: 0.2s ease;
   --transition-slow: 0.3s ease;
   --transition-bounce: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-
 
   /* --------------------------------------------
      Z-Index Scale
@@ -149,7 +144,6 @@
   --z-tooltip: 600;
   --z-toast: 700;
 }
-
 
 /* ============================================================
    Dark Theme Overrides (if needed)

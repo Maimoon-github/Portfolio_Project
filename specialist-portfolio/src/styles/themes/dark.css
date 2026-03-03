@@ -1,3 +1,5 @@
+/* specialist-portfolio/src/styles/themes/dark.css */
+
 /* ============================================================
    dark.css
    Dark Theme – "The Data Specialist"
@@ -47,15 +49,6 @@
     #3258A6 100%
   );
 
-
-  /* --------------------------------------------
-     Typography Tokens
-     (Font families and weights unchanged; sizes unchanged)
-     -------------------------------------------- */
-
-  /* Text colors are already covered above – no need to duplicate */
-
-
   /* --------------------------------------------
      Shadow Tokens
      Dark theme shadows are slightly stronger for depth
@@ -71,7 +64,6 @@
                      0 0 0 1px rgba(217, 174, 137, 0.2);
   --shadow-glow: 0 0 12px #D9AE89;
 
-
   /* --------------------------------------------
      Border Radius Tokens
      (Unchanged – kept here for completeness)
@@ -81,7 +73,6 @@
   --radius-md: 8px;
   --radius-lg: 16px;
   --radius-full: 9999px;
-
 
   /* --------------------------------------------
      Z-Index Tokens
