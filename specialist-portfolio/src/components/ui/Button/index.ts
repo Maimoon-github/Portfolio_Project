@@ -1,3 +1,4 @@
-// specialist-portfolio/src/components/ui/Button/index.ts
-export { Button } from './Button';
-export type { ButtonProps, ButtonVariant, ButtonSize } from './Button.types';
+// src/components/ui/Button/index.ts
+export { default as Button } from './Button';
+export { default } from './Button';
+export type { ButtonProps } from './Button.types';

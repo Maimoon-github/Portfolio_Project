@@ -1,7 +1,7 @@
-// specialist-portfolio/src/components/layout/Layout.tsx
+// src/components/layout/Layout.tsx
 import { ReactNode } from 'react';
 import Header from './Header';
-import Footer from '../ui/Footer/Footer';
+import Footer from '../ui/Footer/Footer'; // adjust path if needed
 import styles from './layout.module.css';
 
 export interface LayoutProps {
@@ -9,10 +9,6 @@ export interface LayoutProps {
   className?: string;
 }
 
-/**
- * Main layout component – provides persistent header, footer, and main content area.
- * Does NOT handle page metadata (delegated to PageWrapper).
- */
 const Layout = ({ children, className = '' }: LayoutProps) => {
   return (
     <div className={`${styles.layout} ${className}`}>

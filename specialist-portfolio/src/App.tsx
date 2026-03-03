@@ -1,7 +1,8 @@
 // specialist-portfolio/src/App.tsx
 
-import { lazy, Suspense, Component, ErrorInfo, ReactNode, useEffect } from 'react';
-import { RouterProvider, createBrowserRouter, useLocation } from 'react-router-dom';
+import { Suspense, Component, useEffect } from 'react';
+import type { ErrorInfo, ReactNode } from 'react';
+import { RouterProvider, createBrowserRouter, Outlet, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { routes } from './config/routes';
 import { trackPageView } from './services/analytics.service';
@@ -13,7 +14,7 @@ import './styles/globals.css'; // Imports all global styles and design tokens
 // ----------------------------------------------------------------------
 const LoadingFallback = () => (
   <div
-    style={{
+    style={ {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -22,16 +23,16 @@ const LoadingFallback = () => (
       color: 'var(--color-accent, #D9AE89)',
       fontFamily: 'var(--font-ui, Inter, system-ui, sans-serif)',
       fontSize: 'var(--text-lg, 1.125rem)',
-    }}
+    } }
   >
     <div
-      style={{
+      style={ {
         animation: 'pulse 1.5s ease-in-out infinite',
-      }}
+      } }
     >
       Loading...
     </div>
-    <style>{`
+    <style>{ `
       @keyframes pulse {
         0%, 100% { opacity: 1; }
         50% { opacity: 0.5; }
@@ -59,17 +60,17 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+  override componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     console.error('Error caught by boundary:', error, errorInfo);
     // Optionally track error in analytics
     // trackError({ error, context: 'App' });
   }
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       return (
         <div
-          style={{
+          style={ {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -80,12 +81,12 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
             fontFamily: 'var(--font-ui, Inter, system-ui, sans-serif)',
             padding: '2rem',
             textAlign: 'center',
-          }}
+          } }
         >
-          <h1 style={{ fontSize: 'var(--text-4xl, 2rem)', marginBottom: '1rem' }}>
+          <h1 style={ { fontSize: 'var(--text-4xl, 2rem)', marginBottom: '1rem' } }>
             Something went wrong
           </h1>
-          <p style={{ fontSize: 'var(--text-lg, 1.125rem)', color: 'var(--color-text, #FFFFFF)' }}>
+          <p style={ { fontSize: 'var(--text-lg, 1.125rem)', color: 'var(--color-text, #FFFFFF)' } }>
             Please try refreshing the page
           </p>
         </div>
@@ -132,18 +133,32 @@ const ThemeInitializer = () => {
 };
 
 // ----------------------------------------------------------------------
+// Root layout rendered INSIDE the router – safe to use router hooks here
+// ----------------------------------------------------------------------
+const RootLayout = () => (
+  <>
+    <ThemeInitializer />
+    <AnalyticsTracker />
+    <Outlet />
+  </>
+);
+
+// ----------------------------------------------------------------------
 // Main App component
 // ----------------------------------------------------------------------
-const router = createBrowserRouter(routes);
+const router = createBrowserRouter([
+  {
+    element: <RootLayout />,
+    children: routes,
+  },
+]);
 
 function App() {
   return (
     <HelmetProvider>
       <ErrorBoundary>
-        <Suspense fallback={<LoadingFallback />}>
-          <ThemeInitializer />
-          <RouterProvider router={router} />
-          <AnalyticsTracker />
+        <Suspense fallback={ <LoadingFallback /> }>
+          <RouterProvider router={ router } />
         </Suspense>
       </ErrorBoundary>
     </HelmetProvider>
