@@ -1,22 +1,6 @@
-# Dependency directories
-node_modules/
-jspm_packages/
-
-# Build outputs
-dist/
-build/
-out/
-target/
-*.tsbuildinfo
-
-# Environment files
-.env
-.env.local
-.env.*.local
-.env.production
-.env.development
-
-# OS generated files
+# ─────────────────────────────────────────────────────────────
+# System / OS files
+# ─────────────────────────────────────────────────────────────
 .DS_Store
 .DS_Store?
 ._*
@@ -27,19 +11,102 @@ Thumbs.db
 *.swp
 *.swo
 *~
+.*.swp
+.*.swo
+\#*\#
+*.elc
+auto-save-list
+tramp
+.\#*
 
-# Editor directories and files
-.vscode/
+# ─────────────────────────────────────────────────────────────
+# Editor / IDE files
+# ─────────────────────────────────────────────────────────────
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.history/
+
+# JetBrains (WebStorm, IntelliJ, etc.)
 .idea/
+*.iws
+*.iml
+*.ipr
+atlassian-ide-plugin.xml
+
+# Sublime Text
 *.sublime-project
 *.sublime-workspace
-*.vscode
-.project
-.classpath
-.settings/
-*.code-workspace
 
-# Logs and databases
+# Eclipse
+.settings/
+.classpath
+.project
+.factorypath
+*.prefs
+
+# NetBeans
+nb-configuration.xml
+nbactions.xml
+nbdist/
+.nb-gradle/
+
+# Vim
+*.swp
+*.swo
+*~
+.*.swp
+.*.swo
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Others
+.vscode-test
+.theia/
+
+# ─────────────────────────────────────────────────────────────
+# Dependency directories
+# ─────────────────────────────────────────────────────────────
+node_modules/
+jspm_packages/
+
+# ─────────────────────────────────────────────────────────────
+# Build outputs
+# ─────────────────────────────────────────────────────────────
+dist/
+build/
+out/
+target/
+*.tsbuildinfo
+.next/
+.nuxt/
+.vuepress/dist
+.serverless/
+
+# ─────────────────────────────────────────────────────────────
+# Environment files
+# ─────────────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# ─────────────────────────────────────────────────────────────
+# Logs, databases, debugging files
+# ─────────────────────────────────────────────────────────────
 logs/
 *.log
 npm-debug.log*
@@ -48,18 +115,46 @@ yarn-error.log*
 lerna-debug.log*
 *.sqlite
 *.db
+*.pid
+*.pid.lock
 
+# ─────────────────────────────────────────────────────────────
 # Testing and coverage
+# ─────────────────────────────────────────────────────────────
 coverage/
 .nyc_output/
 *.lcov
 .junit.xml
 test-results/
 
-# Dependency lockfiles – usually should be committed, but if you prefer to ignore:
+# ─────────────────────────────────────────────────────────────
+# Cache and temporary files
+# ─────────────────────────────────────────────────────────────
+.npm
+.eslintcache
+.node_repl_history
+.cache
+.parcel-cache
+.fusebox/
+.dynamodb/
+.tern-port
+*.tgz
+*.bak
+*.orig
+*.old
+*.md.html
+*.seed
+
+# ─────────────────────────────────────────────────────────────
+# Dependency lockfiles – usually should be committed.
+# Uncomment the following lines if you prefer to ignore them:
 # package-lock.json
 # yarn.lock
 # pnpm-lock.yaml
+# ─────────────────────────────────────────────────────────────
+
+# Yarn Integrity file
+.yarn-integrity
 
 # Optional npm cache directory
 .npm
@@ -73,7 +168,7 @@ test-results/
 # Output of 'npm pack'
 *.tgz
 
-# Yarn Integrity file
+# Yarn Integrity file (duplicate – keep for clarity)
 .yarn-integrity
 
 # parcel-bundler cache
@@ -104,61 +199,7 @@ test-results/
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
-# IDE – Vim
-*.swp
-*.swo
-*~
-.*.swp
-.*.swo
-
-# IDE – Emacs
-*~
-\#*\#
-/.emacs.desktop
-/.emacs.desktop.lock
-*.elc
-auto-save-list
-tramp
-.\#*
-
-# IDE – Sublime Text
-*.sublime-workspace
-
-# IDE – Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-*.code-workspace
-
-# Local History for Visual Studio Code
-.history/
-
-# IDE – JetBrains (WebStorm, IntelliJ, etc.)
-.idea/
-*.iws
-*.iml
-*.ipr
-atlassian-ide-plugin.xml
-
-# IDE – Eclipse
-.settings/
-.classpath
-.project
-.factorypath
-*.prefs
-
-# IDE – NetBeans
-nb-configuration.xml
-nbactions.xml
-nbdist/
-.nb-gradle/
-
-# IDE – Red Hat CodeReady Workspaces
-.theia/
-
-# Miscellaneous
+# Miscellaneous (already covered above, but left for completeness)
 *.bak
 *.orig
 *.old
@@ -166,3 +207,6 @@ nbdist/
 *.seed
 *.pid
 *.pid.lock
+
+# ─────────────────────────────────────────────────────────────
+# End of file
