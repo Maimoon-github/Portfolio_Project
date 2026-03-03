@@ -1,4 +1,6 @@
-/* Tools page styles – "The Data Specialist" design system with distinctive visual details */
+/* specialist-portfolio/src/pages/Tools/Tools.module.css */
+
+/* Design System Tokens - "The Data Specialist" */
 :root {
   --color-bg: #141a26;              /* Midnight Shale */
   --color-surface: #3b4859;          /* Slate Blue */
@@ -13,7 +15,7 @@
   --max-content-width: 1280px;
 }
 
-/* Gradient mesh overlay (distinctive atmosphere) */
+/* Gradient mesh overlay for distinctive atmosphere */
 .tools::before {
   content: '';
   position: fixed;
@@ -82,334 +84,50 @@
   margin-bottom: calc(var(--spacing-unit) * 6);
 }
 
-/* Tool grid container (delegated to ListofTools) */
+/* Tool grid – used by ListofTools */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--spacing-unit) * 4);
+  margin-bottom: calc(var(--spacing-unit) * 4);
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Featured tool spans 2 columns */
+.grid > :first-child.featured {
+  grid-column: span 2;
+}
+
+@media (max-width: 640px) {
+  .grid > :first-child.featured {
+    grid-column: span 1;
+  }
+}
+
+/* No results state */
+.noResults {
+  text-align: center;
+  padding: calc(var(--spacing-unit) * 8) 0;
+  color: var(--color-text-dim);
+  font-family: var(--font-ui);
+  font-size: 1.125rem;
+  border: 1px dashed var(--color-accent);
+  border-radius: 4px;
+  grid-column: 1 / -1;
+}
 
 /* Animations */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Card styles (used by ListofTools) */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: calc(var(--spacing-unit) * 4);
-  margin-bottom: calc(var(--spacing-unit) * 4);
-}
-
-@media (max-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Featured tool spans 2 columns */
-.grid > :first-child.featured {
-  grid-column: span 2;
-}
-
-@media (max-width: 640px) {
-  .grid > :first-child.featured {
-    grid-column: span 1;
-  }
-}
-
-.card {
-  background-color: var(--color-surface);
-  border-radius: 4px;
-  padding: calc(var(--spacing-unit) * 3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  animation: fadeUp 0.5s ease forwards;
-  opacity: 0;
-  position: relative;
-}
-
-/* Featured tool gets gold top border */
-.card.featured {
-  border-top: 2px solid var(--color-accent);
-  box-shadow: 0 4px 12px rgba(217, 174, 137, 0.1);
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  border-color: var(--color-accent);
-  box-shadow: 0 8px 24px rgba(217, 174, 137, 0.15);
-}
-
-.card__title {
-  font-family: var(--font-ui);
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--color-text);
-  margin: 0 0 calc(var(--spacing-unit) * 2) 0;
-}
-
-.card__description {
-  font-family: var(--font-ui);
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--color-text-dim);
-  margin: 0 0 calc(var(--spacing-unit) * 3) 0;
-  flex: 1;
-}
-
-.card__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: calc(var(--spacing-unit) * 1);
-  margin-bottom: calc(var(--spacing-unit) * 3);
-}
-
-.card__tag {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  padding: 2px calc(var(--spacing-unit) * 1);
-  background-color: var(--color-primary);
-  color: var(--color-text);
-  border-radius: 2px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.card__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: calc(var(--spacing-unit) * 1);
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  color: var(--color-accent);
-  text-decoration: none;
-  align-self: flex-start;
-  transition: all 0.2s ease;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2);
-  border: 1px solid transparent;
-}
-
-.card__cta:hover {
-  color: var(--color-text);
-  border-color: var(--color-accent);
-  transform: translateY(-2px);
-}
-
-.card__cta:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
-/* No results state */
-.noResults {
-  text-align: center;
-  padding: calc(var(--spacing-unit) * 8) 0;
-  color: var(--color-text-dim);
-  font-family: var(--font-ui);
-  font-size: 1.125rem;
-  border: 1px dashed var(--color-accent);
-  border-radius: 4px;
-  grid-column: 1 / -1;
-}
-
-/* Staggered animation delays */
-@for $i from 1 to 10 {
-  .card:nth-child(#{$i}) {
-    animation-delay: calc(0.05s * #{$i});
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ListofTools.module.css – styles for the tool grid and cards */
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: calc(var(--spacing-unit) * 4);
-  margin-bottom: calc(var(--spacing-unit) * 4);
-}
-
-@media (max-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Featured tool spans 2 columns */
-.grid > :first-child.featured {
-  grid-column: span 2;
-}
-
-@media (max-width: 640px) {
-  .grid > :first-child.featured {
-    grid-column: span 1;
-  }
-}
-
-.card {
-  background-color: var(--color-surface);
-  border-radius: 4px;
-  padding: calc(var(--spacing-unit) * 3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  animation: fadeUp 0.5s ease forwards;
-  opacity: 0;
-  position: relative;
-}
-
-/* Featured tool gets gold top border */
-.card.featured {
-  border-top: 2px solid var(--color-accent);
-  box-shadow: 0 4px 12px rgba(217, 174, 137, 0.1);
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  border-color: var(--color-accent);
-  box-shadow: 0 8px 24px rgba(217, 174, 137, 0.15);
-}
-
-.card__title {
-  font-family: var(--font-ui);
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--color-text);
-  margin: 0 0 calc(var(--spacing-unit) * 2) 0;
-}
-
-.card__description {
-  font-family: var(--font-ui);
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--color-text-dim);
-  margin: 0 0 calc(var(--spacing-unit) * 3) 0;
-  flex: 1;
-}
-
-.card__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: calc(var(--spacing-unit) * 1);
-  margin-bottom: calc(var(--spacing-unit) * 3);
-}
-
-.card__tag {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  padding: 2px calc(var(--spacing-unit) * 1);
-  background-color: var(--color-primary);
-  color: var(--color-text);
-  border-radius: 2px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.card__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: calc(var(--spacing-unit) * 1);
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  color: var(--color-accent);
-  text-decoration: none;
-  align-self: flex-start;
-  transition: all 0.2s ease;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2);
-  border: 1px solid transparent;
-}
-
-.card__cta:hover {
-  color: var(--color-text);
-  border-color: var(--color-accent);
-  transform: translateY(-2px);
-}
-
-.card__cta:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
-/* No results state */
-.noResults {
-  text-align: center;
-  padding: calc(var(--spacing-unit) * 8) 0;
-  color: var(--color-text-dim);
-  font-family: var(--font-ui);
-  font-size: 1.125rem;
-  border: 1px dashed var(--color-accent);
-  border-radius: 4px;
-  grid-column: 1 / -1;
-}
-
-/* Staggered animation delays */
-.card:nth-child(1) { animation-delay: 0.05s; }
-.card:nth-child(2) { animation-delay: 0.1s; }
-.card:nth-child(3) { animation-delay: 0.15s; }
-.card:nth-child(4) { animation-delay: 0.2s; }
-.card:nth-child(5) { animation-delay: 0.25s; }
-.card:nth-child(6) { animation-delay: 0.3s; }
-.card:nth-child(7) { animation-delay: 0.35s; }
-.card:nth-child(8) { animation-delay: 0.4s; }
-.card:nth-child(9) { animation-delay: 0.45s; }
-
 @keyframes fadeUp {
   from {
     opacity: 0;
