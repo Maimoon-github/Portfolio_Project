@@ -4,7 +4,7 @@
  * analytics.service.ts
  * Provider‑agnostic analytics abstraction.
  * Tracks page views, CTA clicks, and errors.
- * Initializes with tracking ID from environment variable.
+ * Uses import.meta.env.VITE_ANALYTICS_ID for the tracking ID.
  */
 
 // ----------------------------------------------------------------------
