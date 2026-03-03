@@ -1,7 +1,94 @@
-dist
-build
-node_modules
-coverage
+# .prettierignore – Files and directories that Prettier should ignore
+# Prettier will not format any files matching these patterns.
+
+# ─────────────────────────────────────────────────────────────
+# Build outputs
+# ─────────────────────────────────────────────────────────────
+dist/
+build/
+out/
+target/
+*.tsbuildinfo
+.next/
+.nuxt/
+.vuepress/dist
+.serverless/
+
+# ─────────────────────────────────────────────────────────────
+# Dependencies
+# ─────────────────────────────────────────────────────────────
+node_modules/
+jspm_packages/
+
+# ─────────────────────────────────────────────────────────────
+# Environment and configuration files
+# ─────────────────────────────────────────────────────────────
 .env
-.DS_Store
+.env.*
+*.config.js
+*.config.ts
+.eslintrc.*
+.prettierrc.*
+tsconfig.json
+tsconfig.*.json
+
+# ─────────────────────────────────────────────────────────────
+# Logs, databases, and runtime files
+# ─────────────────────────────────────────────────────────────
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.sqlite
+*.db
+*.pid
+*.pid.lock
+
+# ─────────────────────────────────────────────────────────────
+# Test coverage and reports
+# ─────────────────────────────────────────────────────────────
+coverage/
+.nyc_output/
+*.lcov
+.junit.xml
+test-results/
+
+# ─────────────────────────────────────────────────────────────
+# OS generated files
+# ─────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ─────────────────────────────────────────────────────────────
+# Editor and IDE files
+# ─────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.sublime-*
+*.code-workspace
+*.swp
+*.swo
+*~
+.*.swp
+.*.swo
+
+# ─────────────────────────────────────────────────────────────
+# Cache and temporary files
+# ─────────────────────────────────────────────────────────────
+.cache
+.parcel-cache
+.eslintcache
+.npm
+.node_repl_history
+*.tgz
+*.bak
+*.orig
+*.old
+
+# ─────────────────────────────────────────────────────────────
+# End of file
