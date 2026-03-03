@@ -1,42 +1,71 @@
+/* specialist-portfolio/src/App.css */
+
+/**
+ * Minimal global app-level styles.
+ * Most styling is handled via CSS modules and the global styles in `styles/`.
+ * This file contains only essential overrides and print styles.
+ */
+
+/* Ensure the root element spans the full viewport height */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  isolation: isolate; /* create new stacking context */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Optional: smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* ========== PRINT STYLES ========== */
+@media print {
+  /* Hide interactive elements like buttons, navigation, footer */
+  header,
+  footer,
+  button,
+  .no-print {
+    display: none !important;
   }
-}
 
-.card {
-  padding: 2em;
-}
+  /* Ensure content spans full width */
+  #root,
+  main {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: white;
+    color: black;
+  }
 
-.read-the-docs {
-  color: #888;
+  /* Reset link styling to show URLs */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.9em;
+    font-weight: normal;
+    color: #333;
+    text-decoration: none;
+  }
+
+  /* Avoid breaking inside elements */
+  article,
+  section,
+  table,
+  pre,
+  blockquote {
+    break-inside: avoid;
+  }
+
+  /* Ensure page breaks are handled gracefully */
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
 }
