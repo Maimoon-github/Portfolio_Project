@@ -1,3 +1,5 @@
+// specialist-portfolio/src/services/index.ts
+
 /**
  * Services barrel export
  */

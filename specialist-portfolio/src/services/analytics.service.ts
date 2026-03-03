@@ -1,8 +1,10 @@
+// specialist-portfolio/src/services/analytics.service.ts
+
 /**
  * analytics.service.ts
  * Provider‑agnostic analytics abstraction.
  * Tracks page views, CTA clicks, and errors.
- * Uses import.meta.env.VITE_ANALYTICS_ID for the tracking ID.
+ * Initializes with tracking ID from environment variable.
  */
 
 // ----------------------------------------------------------------------
