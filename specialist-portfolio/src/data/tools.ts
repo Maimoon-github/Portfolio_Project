@@ -1,8 +1,4 @@
-/**
- * tools.ts
- * Typed tools data store.
- * All tools match the Tool interface from '@/types/tool.types'.
- */
+// specialist-portfolio/src/data/tools.ts
 
 import type { Tool } from '@/types/tool.types';
 

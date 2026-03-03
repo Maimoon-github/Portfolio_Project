@@ -1,13 +1,8 @@
-/**
- * project.schema.ts
- * Zod validation schema for Project data.
- * Provides runtime validation for API responses and data integrity.
- */
+// specialist-portfolio/src/data/schemas/project.schema.ts
 
 import { z } from 'zod';
 import type { Project, ProjectMetric, ProjectBadge, ProjectLinks } from '@/types/project.types';
 
-// Helper for slug validation (kebab‑case, lowercase, letters/numbers/hyphens)
 const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export const ProjectMetricSchema = z.object({
@@ -53,7 +48,6 @@ export const ProjectSchema = z.object({
   learnings: z.string().optional(),
 }) satisfies z.ZodType<Project>;
 
-// Helper functions for runtime validation
 export function validateProject(data: unknown): Project {
   return ProjectSchema.parse(data);
 }

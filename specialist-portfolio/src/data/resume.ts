@@ -1,8 +1,4 @@
-/**
- * resume.ts
- * Typed resume data store.
- * All data matches the ResumeData interface from '@/types/resume.types'.
- */
+// specialist-portfolio/src/data/resume.ts
 
 import type { ResumeData } from '@/types/resume.types';
 

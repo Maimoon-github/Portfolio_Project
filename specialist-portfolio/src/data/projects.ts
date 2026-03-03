@@ -1,8 +1,4 @@
-/**
- * projects.ts
- * Typed project data store.
- * All projects match the Project interface from '@/types/project.types'.
- */
+// specialist-portfolio/src/data/projects.ts
 
 import type { Project } from '@/types/project.types';
 
