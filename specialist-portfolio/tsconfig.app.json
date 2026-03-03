@@ -1,34 +1,49 @@
 {
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    /* Base Options */
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
-    "types": ["vite/client"],
-    "skipLibCheck": true,
-
-    /* Bundler mode */
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "moduleDetection": "force",
-    "noEmit": true,
+    "resolveJsonModule": true,
+    "allowJs": false,
+    "checkJs": false,
     "jsx": "react-jsx",
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "removeComments": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": false,
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
 
-    /* Linting */
+    /* Type Checking */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
 
-    /* Path aliases */
+    /* Bundler / Vite specific */
+    "useDefineForClassFields": true,
+    "moduleDetection": "force",
+
+    /* Path Aliases */
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
