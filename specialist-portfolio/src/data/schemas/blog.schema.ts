@@ -1,15 +1,9 @@
-/**
- * blog.schema.ts
- * Zod validation schema for BlogPost data.
- * Provides runtime validation for API responses and data integrity.
- */
+// specialist-portfolio/src/data/schemas/blog.schema.ts
 
 import { z } from 'zod';
 import type { BlogPost, BlogPostMeta } from '@/types/blog.types';
 
-// Helper for slug validation (kebab‑case, lowercase, letters/numbers/hyphens)
 const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-// Read time format: e.g., "5 min", "12 min"
 const readTimeRegex = /^\d+\smin$/;
 
 export const BlogPostMetaSchema = z.object({
@@ -29,7 +23,6 @@ export const BlogPostSchema = z.object({
   imageAlt: z.string().optional(),
 }) satisfies z.ZodType<BlogPost>;
 
-// Helper functions for runtime validation
 export function validateBlogPost(data: unknown): BlogPost {
   return BlogPostSchema.parse(data);
 }

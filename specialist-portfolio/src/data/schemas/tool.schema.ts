@@ -1,13 +1,8 @@
-/**
- * tool.schema.ts
- * Zod validation schema for Tool data.
- * Provides runtime validation for API responses and data integrity.
- */
+// specialist-portfolio/src/data/schemas/tool.schema.ts
 
 import { z } from 'zod';
 import type { Tool } from '@/types/tool.types';
 
-// Helper for slug validation (kebab‑case, lowercase, letters/numbers/hyphens)
 const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 export const ToolSchema = z.object({
@@ -21,7 +16,6 @@ export const ToolSchema = z.object({
   featured: z.boolean().optional(),
 }).refine(
   (data) => {
-    // If ctaType is 'github', githubUrl must be provided
     if (data.ctaType === 'github' && !data.githubUrl) {
       return false;
     }
@@ -33,7 +27,6 @@ export const ToolSchema = z.object({
   }
 ) satisfies z.ZodType<Tool>;
 
-// Helper functions for runtime validation
 export function validateTool(data: unknown): Tool {
   return ToolSchema.parse(data);
 }

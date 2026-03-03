@@ -1,8 +1,4 @@
-/**
- * blog.ts
- * Typed blog posts data store.
- * All posts match the BlogPost interface from '@/types/blog.types'.
- */
+// specialist-portfolio/src/data/blog.ts
 
 import type { BlogPost } from '@/types/blog.types';
 
@@ -22,12 +18,7 @@ export const blogPosts: readonly BlogPost[] = [
         <li><strong>Human-in-the-loop:</strong> Critical decisions still require human approval.</li>
       </ul>
       
-      <pre><code class="language-python">from langchain.agents import create_react_agent
-
-agent = create_react_agent(
-    tools=[search_tool, calculator],
-    llm=ChatOpenAI(model="gpt-4")
-)</code></pre>
+      <pre><code class="language-python">from langchain.agents import create_react_agent\n\nagent = create_react_agent(\n    tools=[search_tool, calculator],\n    llm=ChatOpenAI(model="gpt-4")\n)</code></pre>
       
       <h2>Conclusion</h2>
       <p>The next frontier is multi‑agent collaboration – systems where agents debate, critique, and improve each other's outputs.</p>
