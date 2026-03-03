@@ -1,20 +1,16 @@
-import { lazy, Suspense, Component, ErrorInfo, ReactNode } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import Layout from './components/Layout';
+// specialist-portfolio/src/App.tsx
 
-// Lazy-loaded page components
-const HomePage = lazy(() => import('./pages/HomePage'));
-const AboutPage = lazy(() => import('./pages/AboutPage'));
-const ResumePage = lazy(() => import('./pages/ResumePage'));
-const PortfolioPage = lazy(() => import('./pages/work/PortfolioPage'));
-const ProjectsPage = lazy(() => import('./pages/work/ProjectsPage'));
-const ToolsPage = lazy(() => import('./pages/capabilities/ToolsPage'));
-const BlogPage = lazy(() => import('./pages/mind/BlogPage'));
-const DocumentationPage = lazy(() => import('./pages/mind/DocumentationPage'));
-const ContactPage = lazy(() => import('./pages/ConnectPage'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+import { lazy, Suspense, Component, ErrorInfo, ReactNode, useEffect } from 'react';
+import { RouterProvider, createBrowserRouter, useLocation } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import { routes } from './config/routes';
+import { trackPageView } from './services/analytics.service';
+import { useTheme } from './hooks/useTheme';
+import './styles/globals.css'; // Imports all global styles and design tokens
 
-// Loading fallback with design system colors
+// ----------------------------------------------------------------------
+// Loading fallback with design system styling
+// ----------------------------------------------------------------------
 const LoadingFallback = () => (
   <div
     style={{
@@ -22,10 +18,10 @@ const LoadingFallback = () => (
       justifyContent: 'center',
       alignItems: 'center',
       minHeight: '100vh',
-      backgroundColor: '#141A26', // Midnight Shale
-      color: '#D9AE89', // Gold Fleck
-      fontFamily: 'Inter, system-ui, sans-serif',
-      fontSize: '1.125rem',
+      backgroundColor: 'var(--color-bg, #141A26)',
+      color: 'var(--color-accent, #D9AE89)',
+      fontFamily: 'var(--font-ui, Inter, system-ui, sans-serif)',
+      fontSize: 'var(--text-lg, 1.125rem)',
     }}
   >
     <div
@@ -35,26 +31,24 @@ const LoadingFallback = () => (
     >
       Loading...
     </div>
-    <style>
-      {`
-        @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.5; }
-        }
-      `}
-    </style>
+    <style>{`
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+    `}</style>
   </div>
 );
 
-// Simple error boundary component
+// ----------------------------------------------------------------------
+// Error boundary to catch rendering errors
+// ----------------------------------------------------------------------
 interface ErrorBoundaryProps {
   children: ReactNode;
 }
-
 interface ErrorBoundaryState {
   hasError: boolean;
 }
-
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
@@ -67,6 +61,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     console.error('Error caught by boundary:', error, errorInfo);
+    // Optionally track error in analytics
+    // trackError({ error, context: 'App' });
   }
 
   render() {
@@ -79,53 +75,78 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
             justifyContent: 'center',
             alignItems: 'center',
             minHeight: '100vh',
-            backgroundColor: '#141A26',
-            color: '#D9AE89',
-            fontFamily: 'Inter, system-ui, sans-serif',
+            backgroundColor: 'var(--color-bg, #141A26)',
+            color: 'var(--color-accent, #D9AE89)',
+            fontFamily: 'var(--font-ui, Inter, system-ui, sans-serif)',
             padding: '2rem',
             textAlign: 'center',
           }}
         >
-          <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>
+          <h1 style={{ fontSize: 'var(--text-4xl, 2rem)', marginBottom: '1rem' }}>
             Something went wrong
           </h1>
-          <p style={{ fontSize: '1.125rem', color: '#ffffff' }}>
+          <p style={{ fontSize: 'var(--text-lg, 1.125rem)', color: 'var(--color-text, #FFFFFF)' }}>
             Please try refreshing the page
           </p>
         </div>
       );
     }
-
     return this.props.children;
   }
 }
 
+// ----------------------------------------------------------------------
+// Analytics tracker – listens to route changes and sends page views
+// ----------------------------------------------------------------------
+const AnalyticsTracker = () => {
+  const location = useLocation();
+  useEffect(() => {
+    // Map path to page name (simplified – could be enhanced with route meta)
+    const path = location.pathname;
+    let page: Parameters<typeof trackPageView>[0] = 'home';
+    if (path === '/') page = 'home';
+    else if (path.startsWith('/about')) page = 'about';
+    else if (path.startsWith('/resume')) page = 'resume';
+    else if (path.startsWith('/work/portfolio')) page = 'portfolio';
+    else if (path.startsWith('/work/projects')) page = 'projects';
+    else if (path.startsWith('/capabilities/tools')) page = 'tools';
+    else if (path.startsWith('/mind/blog')) {
+      if (path.split('/').length > 3) page = 'blog_post';
+      else page = 'blog';
+    } else if (path.startsWith('/mind/docs')) {
+      if (path.split('/').length > 3) page = 'tutorial';
+      else page = 'documentation';
+    } else if (path.startsWith('/connect')) page = 'contact';
+    // Send page view
+    trackPageView(page, document.title);
+  }, [location]);
+  return null;
+};
+
+// ----------------------------------------------------------------------
+// Theme initializer – calls useTheme to set up data-theme attribute
+// ----------------------------------------------------------------------
+const ThemeInitializer = () => {
+  useTheme(); // hook already syncs data-theme and localStorage
+  return null;
+};
+
+// ----------------------------------------------------------------------
+// Main App component
+// ----------------------------------------------------------------------
+const router = createBrowserRouter(routes);
+
 function App() {
   return (
-    <ErrorBoundary>
-      <Suspense fallback={<LoadingFallback />}>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<HomePage />} />
-            <Route path="about" element={<AboutPage />} />
-            <Route path="resume" element={<ResumePage />} />
-            <Route path="work">
-              <Route path="portfolio" element={<PortfolioPage />} />
-              <Route path="projects" element={<ProjectsPage />} />
-            </Route>
-            <Route path="capabilities">
-              <Route path="tools" element={<ToolsPage />} />
-            </Route>
-            <Route path="mind">
-              <Route path="blog" element={<BlogPage />} />
-              <Route path="docs" element={<DocumentationPage />} />
-            </Route>
-            <Route path="connect" element={<ContactPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-        </Routes>
-      </Suspense>
-    </ErrorBoundary>
+    <HelmetProvider>
+      <ErrorBoundary>
+        <Suspense fallback={<LoadingFallback />}>
+          <ThemeInitializer />
+          <RouterProvider router={router} />
+          <AnalyticsTracker />
+        </Suspense>
+      </ErrorBoundary>
+    </HelmetProvider>
   );
 }
 
