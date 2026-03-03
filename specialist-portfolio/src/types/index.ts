@@ -1,3 +1,5 @@
+// specialist-portfolio/src/types/index.ts
+
 /**
  * Barrel export for all shared type definitions.
  * Use `import type { ... } from '@/types'` for convenient access.

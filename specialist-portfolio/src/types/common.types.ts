@@ -1,3 +1,5 @@
+// specialist-portfolio/src/types/common.types.ts
+
 /**
  * Common type definitions shared across the application.
  * Aligns with "The Data Specialist" design system and Full Navigation Structure.

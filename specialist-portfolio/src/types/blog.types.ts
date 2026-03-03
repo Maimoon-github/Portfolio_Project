@@ -1,3 +1,5 @@
+// specialist-portfolio/src/types/blog.types.ts
+
 /**
  * Blog post type definitions.
  * Aligns with "The Data Specialist" design system and Full Navigation Structure.

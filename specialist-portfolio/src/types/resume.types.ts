@@ -1,3 +1,5 @@
+// specialist-portfolio/src/types/resume.types.ts
+
 /**
  * Resume/CV type definitions.
  * Aligns with "The Data Specialist" design system and Full Navigation Structure.
