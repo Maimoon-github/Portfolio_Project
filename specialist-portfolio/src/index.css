@@ -1,9 +1,0 @@
-/* specialist-portfolio/src/index.css */
-
-/* Import all global style layers in correct cascade order */
-@import './styles/tokens.css';      /* Design tokens first */
-@import './styles/typography.css';  /* Typography classes and @font‑face */
-@import './styles/globals.css';     /* Base element styles, reset, utilities */
-@import './styles/animations.css';  /* Animation keyframes and utilities */
-
-/* Any additional project‑specific overrides can be added below */
