@@ -223,7 +223,7 @@ function ToolCard({ tool, index }) {
         <div>
           <h3
             className="text-base font-semibold mb-2 transition-colors duration-200"
-            style={{ color: hovered ? "#A4FBCC" : "#F2F2F2", fontFamily: "'DM Serif Display', serif" }}
+            style={{ color: hovered ? "#A4FBCC" : "#F2F2F2", fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.02em" }}
           >
             {tool.title}
           </h3>
@@ -272,7 +272,7 @@ export default function ToolsPage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
         @keyframes cardReveal {
           from { opacity:0; transform:translateY(20px); }
@@ -294,7 +294,7 @@ export default function ToolsPage() {
           0%,100% { transform:translateY(0); }
           50%      { transform:translateY(-8px); }
         }
-        .tools-body { font-family:'Syne',sans-serif; background:#081A04; min-height:100vh; color:#F2F2F2; }
+        .tools-body { font-family:'Space Grotesk',sans-serif; background:#081A04; min-height:100vh; color:#F2F2F2; }
         .shimmer-text {
           background: linear-gradient(90deg, #A4FBCC 0%, #ffffff 40%, #A4FBCC 80%);
           background-size: 200% auto;
@@ -337,14 +337,14 @@ export default function ToolsPage() {
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-8"
               style={{ background:"rgba(164,251,204,0.07)", border:"1px solid rgba(164,251,204,0.15)" }}>
               <span className="w-1.5 h-1.5 rounded-full bg-[#A4FBCC]" style={{ animation:"pulseDot 2s ease infinite" }} />
-              <span className="text-xs font-medium tracking-widest uppercase" style={{ color:"#A4FBCC", fontFamily:"'JetBrains Mono',monospace" }}>
+              <span className="text-xs font-medium tracking-widest uppercase" style={{ color:"#A4FBCC", fontFamily:"'Space Mono',monospace" }}>
                 {TOOLS.length} Tools Available
               </span>
             </div>
 
             <h1
               className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
-              style={{ fontFamily:"'DM Serif Display',serif" }}
+              style={{ fontFamily:"'Space Grotesk',sans-serif", letterSpacing:"-0.04em" }}
             >
               Interactive{" "}
               <span className="shimmer-text italic">Tools</span>
@@ -383,7 +383,7 @@ export default function ToolsPage() {
                   background:"#1B3022",
                   border:"1px solid rgba(164,251,204,0.12)",
                   color:"#F2F2F2",
-                  fontFamily:"'Syne',sans-serif",
+                  fontFamily:"'Space Grotesk',sans-serif",
                 }}
               />
               {query && (
@@ -438,7 +438,7 @@ export default function ToolsPage() {
               >
                 <div
                   className="text-2xl font-bold mb-1"
-                  style={{ color:"#A4FBCC", fontFamily:"'JetBrains Mono',monospace" }}
+                  style={{ color:"#A4FBCC", fontFamily:"'Space Mono',monospace" }}
                 >
                   {s.value}
                 </div>
@@ -487,13 +487,13 @@ export default function ToolsPage() {
             <div className="relative">
               <p
                 className="text-xs font-medium tracking-widest uppercase mb-4"
-                style={{ color:"#A4FBCC", fontFamily:"'JetBrains Mono',monospace" }}
+                style={{ color:"#A4FBCC", fontFamily:"'Space Mono',monospace" }}
               >
                 Missing a tool?
               </p>
               <h2
                 className="text-3xl font-bold mb-4"
-                style={{ fontFamily:"'DM Serif Display',serif", color:"#F2F2F2" }}
+                style={{ fontFamily:"'Space Grotesk',sans-serif", letterSpacing:"-0.03em", color:"#F2F2F2" }}
               >
                 Request a Calculator
               </h2>
@@ -505,7 +505,7 @@ export default function ToolsPage() {
                 style={{
                   background:"#A4FBCC",
                   color:"#081A04",
-                  fontFamily:"'Syne',sans-serif",
+                  fontFamily:"'Space Grotesk',sans-serif",
                 }}
               >
                 Submit Request
