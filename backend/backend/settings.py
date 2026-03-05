@@ -10,14 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os                     # Added for environment variables
+from datetime import timedelta # Added for JWT expiration
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+# ------------------------------------------------------------------------------
+# SECURITY SETTINGS
+# ------------------------------------------------------------------------------
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-t!=7_3=6&qjh+!cj^(8z99kj4-ii6by+2a=1v!t-4gjdftmo2)'
@@ -27,20 +29,34 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-# Application definition
+# ------------------------------------------------------------------------------
+# APPLICATION DEFINITION
+# ------------------------------------------------------------------------------
 
 INSTALLED_APPS = [
+    # Django built-in
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',  # Whitenoise for static files in dev
     'django.contrib.staticfiles',
+
+    # Third-party
+    'corsheaders',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'drf_spectacular',
+
+    # Local Apps
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',          # Immediately after security
+    'corsheaders.middleware.CorsMiddleware',               # Before common middleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -54,10 +70,11 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -68,9 +85,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+# ------------------------------------------------------------------------------
+# DATABASE
+# ------------------------------------------------------------------------------
 
 DATABASES = {
     'default': {
@@ -79,9 +96,9 @@ DATABASES = {
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+# ------------------------------------------------------------------------------
+# PASSWORD VALIDATION
+# ------------------------------------------------------------------------------
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -98,25 +115,74 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
+# ------------------------------------------------------------------------------
+# INTERNATIONALIZATION
+# ------------------------------------------------------------------------------
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
+# ------------------------------------------------------------------------------
+# STATIC FILES (CSS, JavaScript, Images)
+# ------------------------------------------------------------------------------
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'          # Target for collectstatic
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',                        # Where Vite outputs compiled assets
+]
 
-STATIC_URL = 'static/'
+# Whitenoise static file storage with compression and caching
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+# ------------------------------------------------------------------------------
+# CORS HEADERS
+# ------------------------------------------------------------------------------
+
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True
+else:
+    # Expects a comma-separated list of origins in environment variable
+    CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', '').split(',')
+
+# ------------------------------------------------------------------------------
+# DJANGO REST FRAMEWORK + JWT + SPECTACULAR
+# ------------------------------------------------------------------------------
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Monolithic API',
+    'DESCRIPTION': 'REST API endpoints for the SPA',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
+
+# ------------------------------------------------------------------------------
+# DEFAULT PRIMARY KEY FIELD TYPE
+# ------------------------------------------------------------------------------
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
