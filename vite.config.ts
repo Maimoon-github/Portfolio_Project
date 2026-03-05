@@ -1,12 +1,11 @@
-import { defineConfig } from 'vite'
-import path from 'path'
-import tailwindcss from '@tailwindcss/vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import path from 'path';
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   plugins: [
-    // The React and Tailwind plugins are both required for Make, even if
-    // Tailwind is not being actively used – do not remove them
+    // React and Tailwind plugins are both required for Make – do not remove them
     react(),
     tailwindcss(),
   ],
@@ -16,7 +15,29 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-
-  // File types to support raw imports. Never add .css, .tsx, or .ts files to this.
+  server: {
+    port: 5173,
+    proxy: {
+      // Proxy `/api` requests to Django development server
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
+  build: {
+    // Output built files directly into Django's static directory
+    outDir: '../backend/static',
+    emptyOutDir: true, // Clean the directory before each build
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+      },
+    },
+  },
+  // File types to support raw imports (never add .css, .tsx, .ts)
   assetsInclude: ['**/*.svg', '**/*.csv'],
-})
+});
