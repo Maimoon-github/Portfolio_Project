@@ -1,16 +1,16 @@
 // ─── Portfolio Mock Data ─────────────────────────────────────────────────────
 
 export const PROFILE = {
-  name: "Jordan Mercer",
-  initials: "JM",
+  name: "Mr. Maimoon Amin",
+  initials: "Moon",
   title: "AI Agent Architect & MLOps Engineer",
   tagline: "Designing agentic AI workflows, scalable ML pipelines, and production-ready data systems.",
   location: "San Francisco, CA",
-  email: "jordan@aiarchitect.dev",
-  github: "https://github.com",
-  linkedin: "https://linkedin.com",
+  email: "ideal.rhel@gmail.com",
+  github: "https://github.com/Maimoon-github",
+  linkedin: "https://www.linkedin.com/in/maimoon-moon-amin/",
   twitter: "https://twitter.com",
-  resumeUrl: "/jordan-mercer-ai-mlops-resume-2025.pdf",
+  resumeUrl: "",
   bio: `I specialize in architecting production-grade agentic AI systems and end-to-end MLOps pipelines.
   With a background spanning data science, infrastructure, and distributed systems, I bridge the gap between
   research and deployment — shipping models that scale.`,
