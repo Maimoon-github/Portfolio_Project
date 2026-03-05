@@ -4,8 +4,9 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "vite build",
-    "dev": "vite"
+    "dev": "vite",
+    "build": "vite build && npm run postbuild",
+    "postbuild": "mkdir -p ../backend/templates && mv ../backend/static/index.html ../backend/templates/index.html"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",
