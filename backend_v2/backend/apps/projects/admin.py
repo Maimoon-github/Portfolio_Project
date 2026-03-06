@@ -1,27 +1,22 @@
-# apps/projects/admin.py
 from django.contrib import admin
-from .models import ProjectCategory, TechTag, Project, ProjectImage
+from .models import Project, TechTag, ProjectCategory, ProjectImage
 
-@admin.register(ProjectCategory)
-class ProjectCategoryAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name',)}
-    list_display = ['name', 'slug']
-
-@admin.register(TechTag)
-class TechTagAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name',)}
-    list_display = ['name', 'slug']
-
-class ProjectImageInline(admin.TabularInline):
-    model = ProjectImage
-    extra = 1
-
-@admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
+    list_display = ('title', 'year', 'categories')
+    list_filter = ('categories', 'tech_tags')
     prepopulated_fields = {'slug': ('title',)}
-    list_display = ['title', 'completion_date', 'is_featured']
-    list_filter = ['is_featured', 'categories', 'completion_date']
-    filter_horizontal = ['categories', 'tech_tags']
-    search_fields = ['title', 'description', 'content']
-    inlines = [ProjectImageInline]
-    date_hierarchy = 'completion_date'
+    filter_horizontal = ('tech_tags',)
+    actions = ['make_featured']
+
+    def make_featured(self, request, queryset):
+        queryset.update(featured=True)
+        self.message_user(request, f"{queryset.count()} projects marked as featured.")
+    make_featured.short_description = "Mark selected projects as featured"
+
+class ProjectImageAdmin(admin.ModelAdmin):
+    raw_id_fields = ('project',)
+
+admin.site.register(Project, ProjectAdmin)
+admin.site.register(ProjectImage, ProjectImageAdmin)
+admin.site.register(TechTag)
+admin.site.register(ProjectCategory)
