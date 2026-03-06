@@ -1,9 +1,8 @@
-# apps/resume/urls.py
 from django.urls import path
-from .views import BlogView
-
-app_name = 'blog'
+from .views import PostListView, PostDetailView, RelatedPostsView
 
 urlpatterns = [
-    path('', BlogView.as_view(), name='blog-detail'),
+    path('', PostListView.as_view(), name='post-list'),
+    path('<slug:slug>/related/', RelatedPostsView.as_view(), name='post-related'),
+    path('<slug:slug>/', PostDetailView.as_view(), name='post-detail'),
 ]

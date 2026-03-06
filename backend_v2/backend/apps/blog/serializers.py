@@ -1,50 +1,48 @@
-# apps/blog/serializers.py
 from rest_framework import serializers
-from django.contrib.auth.models import User
-from .models import Category, Tag, Post, PostImage
+from .models import Post, Category, Tag, PostImage
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'name', 'slug']
+        fields = ['name', 'slug']
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = ['id', 'name', 'slug']
+        fields = ['name', 'slug']
 
 class PostImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostImage
-        fields = ['id', 'image', 'caption', 'order']
-
-class AuthorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'first_name', 'last_name']
+        fields = ['image']
 
 class PostListSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
     tags = TagSerializer(many=True, read_only=True)
-    author = AuthorSerializer(read_only=True)
+    published_date = serializers.DateTimeField(source='created_at', read_only=True)
 
     class Meta:
         model = Post
         fields = [
-            'id', 'title', 'slug', 'excerpt', 'featured', 'published_date',
-            'category', 'tags', 'author', 'read_time'
+            'id', 'title', 'slug', 'excerpt',
+            'published_date', 'read_time',
+            'category', 'tags'
         ]
 
 class PostDetailSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
     tags = TagSerializer(many=True, read_only=True)
-    author = AuthorSerializer(read_only=True)
     images = PostImageSerializer(many=True, read_only=True)
-    # SEO fields from SEOMixin
-    meta_title = serializers.CharField(read_only=True)
-    meta_description = serializers.CharField(read_only=True)
-    meta_keywords = serializers.CharField(read_only=True)
+    published_date = serializers.DateTimeField(source='created_at', read_only=True)
+    author = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = [
+            'id', 'title', 'slug', 'excerpt', 'body',
+            'published_date', 'read_time',
+            'category', 'tags', 'author', 'images'
+        ]
+
+    def get_author(self, obj):
+        return obj.author.get_full_name() or obj.author.username
