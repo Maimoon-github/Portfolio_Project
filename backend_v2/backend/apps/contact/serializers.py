@@ -7,11 +7,7 @@ class ContactSerializer(serializers.ModelSerializer):
         model = ContactSubmission
         fields = ['name', 'email', 'subject', 'message', 'honeypot']
         extra_kwargs = {
-            'name': {'write_only': True},
-            'email': {'write_only': True},
-            'subject': {'write_only': True},
-            'message': {'write_only': True},
-            'honeypot': {'write_only': True},
+            'honeypot': {'write_only': True, 'required': False, 'allow_blank': True}
         }
 
     def validate_honeypot(self, value):
