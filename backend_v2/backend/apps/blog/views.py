@@ -1,39 +1,50 @@
-# apps/blog/views.py
-from rest_framework import generics, filters
-from django_filters.rest_framework import DjangoFilterBackend
 from django.utils import timezone
+from rest_framework import generics
+from django_filters.rest_framework import DjangoFilterBackend
+
+from core.permissions import IsAdminOrReadOnly
+from core.pagination import StandardPagination
 from .models import Post
 from .serializers import PostListSerializer, PostDetailSerializer
 from .filters import PostFilter
 
 class PostListView(generics.ListAPIView):
+    """
+    List published posts with filtering and pagination.
+    """
     queryset = Post.objects.filter(published_date__lte=timezone.now())
     serializer_class = PostListSerializer
-    filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
+    permission_classes = [IsAdminOrReadOnly]
+    pagination_class = StandardPagination
+    filter_backends = [DjangoFilterBackend]
     filterset_class = PostFilter
-    search_fields = ['title', 'body', 'excerpt']
-    ordering_fields = ['published_date', 'title', 'read_time']
-    ordering = ['-published_date']
 
 class PostDetailView(generics.RetrieveAPIView):
+    """
+    Retrieve a single published post by slug.
+    """
     queryset = Post.objects.filter(published_date__lte=timezone.now())
     serializer_class = PostDetailSerializer
+    permission_classes = [IsAdminOrReadOnly]
     lookup_field = 'slug'
 
-class RelatedPostsView(generics.GenericAPIView):
-    queryset = Post.objects.filter(published_date__lte=timezone.now())
+class RelatedPostsView(generics.ListAPIView):
+    """
+    List up to 3 related posts based on shared categories or tags.
+    """
     serializer_class = PostListSerializer
-    lookup_field = 'slug'
+    permission_classes = [IsAdminOrReadOnly]
 
-    def get(self, request, slug):
-        post = self.get_object()
-        # Posts in same category OR sharing any tag, exclude current post, limit 3
+    def get_queryset(self):
+        post = generics.get_object_or_404(
+            Post.objects.filter(published_date__lte=timezone.now()),
+            slug=self.kwargs['slug']
+        )
+        # Find posts in same categories or tags, excluding current post
         related = Post.objects.filter(
             published_date__lte=timezone.now()
-        ).exclude(
-            id=post.id
-        ).filter(
-            models.Q(category=post.category) | models.Q(tags__in=post.tags.all())
+        ).exclude(pk=post.pk).filter(
+            models.Q(category__in=post.categories.all()) |
+            models.Q(tags__in=post.tags.all())
         ).distinct().order_by('-published_date')[:3]
-        serializer = self.get_serializer(related, many=True)
-        return Response(serializer.data)
+        return related

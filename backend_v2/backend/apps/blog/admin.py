@@ -1,38 +1,20 @@
-# apps/blog/admin.py
 from django.contrib import admin
-from .models import Category, Tag, Post, PostImage
+from django.utils import timezone
+from .models import Post, Category, Tag, PostImage
 
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug')
-    search_fields = ('name',)
-
-@admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug')
-    search_fields = ('name',)
-
-@admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'category', 'published_date', 'featured', 'read_time')
-    list_filter = ('category', 'tags', 'featured', 'published_date')
-    search_fields = ('title', 'body', 'excerpt')
+    list_display = ('title', 'published_date', 'category', 'featured', 'read_time')
+    date_hierarchy = 'published_date'
     prepopulated_fields = {'slug': ('title',)}
-    readonly_fields = ('read_time',)
-    # SEO fields from SEOMixin
-    fieldsets = (
-        ('Content', {
-            'fields': ('title', 'body', 'excerpt', 'featured', 'published_date', 'author', 'category', 'tags')
-        }),
-        ('SEO', {
-            'fields': ('meta_title', 'meta_description', 'meta_keywords', 'meta_robots')
-        }),
-        ('Advanced', {
-            'fields': ('slug',)
-        })
-    )
+    filter_horizontal = ('tags',)
+    actions = ['bulk_publish']
 
-@admin.register(PostImage)
-class PostImageAdmin(admin.ModelAdmin):
-    list_display = ('post', 'order', 'caption')
-    list_filter = ('post',) 
+    def bulk_publish(self, request, queryset):
+        queryset.update(published_date=timezone.now())
+        self.message_user(request, f"{queryset.count()} posts published.")
+    bulk_publish.short_description = "Publish selected posts"
+
+admin.site.register(Post, PostAdmin)
+admin.site.register(Category)
+admin.site.register(Tag)
+admin.site.register(PostImage)
