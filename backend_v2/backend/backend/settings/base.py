@@ -51,6 +51,11 @@ INSTALLED_APPS = [
 
     # Local Apps
     'api.apps.ApiConfig',
+    'apps.accounts',
+    'apps.products',
+    'apps.orders',
+    'apps.payments',
+    'apps.core',
 ]
 
 MIDDLEWARE = [
