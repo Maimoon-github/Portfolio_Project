@@ -8,6 +8,7 @@ import { Blog } from "./pages/Blog";
 import { BlogPost } from "./pages/BlogPost";
 import { Knowledge } from "./pages/Knowledge";
 import { Contact } from "./pages/Contact";
+import { Login } from "./pages/Login";
 import { NotFound } from "./pages/NotFound";
 
 export const router = createBrowserRouter([
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
       { path: "blog/:slug", Component: BlogPost },
       { path: "knowledge", Component: Knowledge },
       { path: "contact", Component: Contact },
+      { path: "login", Component: Login },
       { path: "*", Component: NotFound },
     ],
   },

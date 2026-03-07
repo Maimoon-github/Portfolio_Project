@@ -1,25 +1,21 @@
 import { useState, useEffect } from "react";
 import { ProjectCard } from "../components/ProjectCard";
-// we'll load from backend instead of static data
+import { getProjects } from "../services/api";
+import { Project } from "../types/api";
 
 const CATEGORIES = ["All", "AI/ML", "MLOps", "Frontend"];
 
 export function Projects() {
   const [active, setActive] = useState("All");
-  const [projects, setProjects] = useState<any[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
 
   // fetch projects from API whenever filter changes
   useEffect(() => {
     setLoading(true);
-    const params = new URLSearchParams();
-    if (active !== "All") {
-      params.append("category", active.toLowerCase());
-    }
-    fetch(`/api/v1/projects/?${params.toString()}`)
-      .then((r) => r.json())
+    getProjects(active === "All" ? undefined : active)
       .then((data) => {
-        setProjects(data.results || []);
+        setProjects(data.results);
       })
       .catch(console.error)
       .finally(() => setLoading(false));

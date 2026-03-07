@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router";
-import { Menu, X, Terminal } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router";
+import { Menu, X, Terminal, LogIn, LogOut } from "lucide-react";
 import { PROFILE } from "../data";
+import { getTokens, logout } from "../services/api";
 
 const NAV_LINKS = [
   { label: "Projects", path: "/projects" },
@@ -27,6 +28,14 @@ export function Navbar() {
   }, [location.pathname]);
 
   const isActive = (path: string) => location.pathname === path || location.pathname.startsWith(path + "/");
+
+  const navigate = useNavigate();
+  const authenticated = !!getTokens();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <header
@@ -103,7 +112,26 @@ export function Navbar() {
           >
             Resume PDF
           </a>
+          {authenticated ? (
+            <button
+              onClick={handleLogout}
+              className="text-sm flex items-center gap-1"
+              style={{ color: "#9199A5", background: "transparent", border: "none" }}
+            >
+              <LogOut size={14} /> Log out
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="text-sm flex items-center gap-1"
+              style={{ color: "#9199A5", textDecoration: "none" }}
+            >
+              <LogIn size={14} /> Log in
+            </Link>
+          )}
         </nav>
+
+        {/* Desktop Nav end */}
 
         {/* Mobile Toggle */}
         <button
@@ -151,6 +179,23 @@ export function Navbar() {
             >
               Resume PDF
             </a>
+            {authenticated ? (
+              <button
+                onClick={handleLogout}
+                className="w-full text-left flex items-center gap-1 mt-4"
+                style={{ color: "#9199A5", background: "transparent", border: "none" }}
+              >
+                <LogOut size={14} /> Log out
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                className="w-full text-left flex items-center gap-1 mt-4"
+                style={{ color: "#9199A5", textDecoration: "none" }}
+              >
+                <LogIn size={14} /> Log in
+              </Link>
+            )}
           </nav>
         </div>
       )}

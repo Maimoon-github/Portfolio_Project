@@ -1,11 +1,40 @@
 import { useParams, Link } from "react-router";
+import { useState, useEffect } from "react";
 import { ArrowLeft, ArrowUpRight, Github, Calendar, User, Clock, CheckCircle2 } from "lucide-react";
-import { PROJECTS } from "../data";
 import { ProjectCard } from "../components/ProjectCard";
+import { getProject, getProjects } from "../services/api";
+import { Project } from "../types/api";
 
 export function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>();
-  const project = PROJECTS.find((p) => p.id === slug);
+  const [project, setProject] = useState<Project | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [allProjects, setAllProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    if (slug) {
+      setLoading(true);
+      getProject(slug)
+        .then(setProject)
+        .catch(console.error)
+        .finally(() => setLoading(false));
+    }
+  }, [slug]);
+
+  useEffect(() => {
+    // grab all projects for related suggestions
+    getProjects()
+      .then((data) => setAllProjects(data.results))
+      .catch(console.error);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#081A04" }}>
+        <p style={{ color: "#9199A5" }}>Loading...</p>
+      </div>
+    );
+  }
 
   if (!project) {
     return (
@@ -18,8 +47,8 @@ export function ProjectDetail() {
     );
   }
 
-  const related = PROJECTS
-    .filter((p) => p.id !== project.id && (p.category === project.category || p.tags.some((t) => project.tags.includes(t))))
+  const related = allProjects
+    .filter((p) => project && p.id !== project.id && (p.category === project.category || p.tags.some((t) => project.tags.includes(t))))
     .slice(0, 3);
 
   return (

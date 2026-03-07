@@ -1,20 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BlogCard } from "../components/BlogCard";
-import { BLOG_POSTS } from "../data";
 import { Rss } from "lucide-react";
+import { getBlogPosts } from "../services/api";
+import { BlogPost } from "../types/api";
 
 const CATEGORIES = ["All", "AI/ML", "MLOps", "Tutorials", "Career"];
 
 export function Blog() {
   const [active, setActive] = useState("All");
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const filtered = active === "All"
-    ? BLOG_POSTS
-    : BLOG_POSTS.filter((p) => p.category === active);
+  useEffect(() => {
+    setLoading(true);
+    getBlogPosts(active === "All" ? undefined : active)
+      .then((data) => setPosts(data.results))
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, [active]);
 
-  const featured = BLOG_POSTS[0];
-  const rest = active === "All" ? BLOG_POSTS.slice(1) : filtered;
+  const featured = posts[0];
+  const rest = active === "All" ? posts.slice(1) : posts;
   const showFeatured = active === "All";
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#081A04" }}>
+        <p style={{ color: "#9199A5" }}>Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen pt-24 pb-20" style={{ background: "#081A04" }}>
