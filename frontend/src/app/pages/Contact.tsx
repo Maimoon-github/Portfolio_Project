@@ -233,7 +233,7 @@ export function Contact() {
                     type="text"
                     name="website"
                     value={honeypot}
-                    onChange={(e) => setHoneypot(e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setHoneypot(e.target.value)}
                     className="hidden"
                     tabIndex={-1}
                     autoComplete="off"
@@ -248,7 +248,7 @@ export function Contact() {
                       <input
                         type="text"
                         value={form.name}
-                        onChange={(e) => handleChange("name", e.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange("name", e.target.value)}
                         placeholder="Alex Chen"
                         style={inputStyle(!!errors.name)}
                         onFocus={(e) => {
@@ -269,7 +269,7 @@ export function Contact() {
                       <input
                         type="email"
                         value={form.email}
-                        onChange={(e) => handleChange("email", e.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange("email", e.target.value)}
                         placeholder="you@company.com"
                         style={inputStyle(!!errors.email)}
                         onFocus={(e) => {
@@ -315,7 +315,7 @@ export function Contact() {
                     </label>
                     <textarea
                       value={form.message}
-                      onChange={(e) => handleChange("message", e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleChange("message", e.target.value)}
                       rows={5}
                       placeholder="Tell me about your project, goals, and timeline..."
                       style={{

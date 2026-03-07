@@ -31,12 +31,17 @@ export function clearTokens() {
   localStorage.removeItem("token_pair");
 }
 
+// extend HeadersInit so we can index safely
+export interface ApiHeaders extends HeadersInit {
+  Authorization?: string;
+}
+
 // wrapper around fetch that adds authorization header if we have a token
 async function apiFetch(input: RequestInfo, init: RequestInit = {}) {
   const tokens = getTokens();
-  const headers: HeadersInit = init.headers || {};
+  const headers: ApiHeaders = (init.headers as ApiHeaders) || {};
   if (tokens?.access) {
-    headers["Authorization"] = `Bearer ${tokens.access}`;
+    headers.Authorization = `Bearer ${tokens.access}`;
   }
   const res = await fetch(input, { ...init, headers });
   if (res.status === 401 && tokens?.refresh) {
@@ -49,7 +54,7 @@ async function apiFetch(input: RequestInfo, init: RequestInit = {}) {
     if (refreshRes.ok) {
       const data = await refreshRes.json();
       saveTokens({ access: data.access, refresh: tokens.refresh });
-      headers["Authorization"] = `Bearer ${data.access}`;
+      headers.Authorization = `Bearer ${data.access}`;
       return fetch(input, { ...init, headers });
     } else {
       clearTokens();
