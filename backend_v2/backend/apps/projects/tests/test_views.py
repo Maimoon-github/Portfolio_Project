@@ -10,26 +10,26 @@ pytestmark = pytest.mark.django_db
 class TestProjectListView:
     def test_list_unauthenticated(self, api_client, project_factory):
         project_factory.create_batch(3)
-        response = api_client.get('/api/projects/')
+        response = api_client.get('/api/v1/projects/')
         assert response.status_code == status.HTTP_200_OK
         assert len(response.data['results']) == 3
 
     def test_list_authenticated(self, api_client, project_factory, user):
         api_client.force_authenticate(user=user)
         project_factory.create_batch(3)
-        response = api_client.get('/api/projects/')
+        response = api_client.get('/api/v1/projects/')
         assert response.status_code == status.HTTP_200_OK
         assert len(response.data['results']) == 3
 
     def test_create_project_unauthenticated(self, api_client):
         data = {'title': 'New Project', 'description': 'desc'}
-        response = api_client.post('/api/projects/', data)
+        response = api_client.post('/api/v1/projects/', data)
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
     def test_create_project_authenticated_non_staff(self, api_client, user):
         api_client.force_authenticate(user=user)
         data = {'title': 'New Project', 'description': 'desc'}
-        response = api_client.post('/api/projects/', data)
+        response = api_client.post('/api/v1/projects/', data)
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
     def test_create_project_authenticated_staff(self, api_client, staff_user):
@@ -40,7 +40,7 @@ class TestProjectListView:
             'featured_image': '',
             'completion_date': '2025-01-01'
         }
-        response = api_client.post('/api/projects/', data)
+        response = api_client.post('/api/v1/projects/', data)
         assert response.status_code == status.HTTP_201_CREATED
         assert Project.objects.filter(title='New Project').exists()
 
@@ -51,7 +51,7 @@ class TestProjectListView:
         p1.categories.add(cat1)
         p2 = project_factory(title='Mobile Project')
         p2.categories.add(cat2)
-        response = api_client.get('/api/projects/', {'category': cat1.slug})
+        response = api_client.get('/api/v1/projects/', {'category': cat1.slug})
         assert response.status_code == status.HTTP_200_OK
         assert len(response.data['results']) == 1
         assert response.data['results'][0]['title'] == 'Web Project'
@@ -63,7 +63,7 @@ class TestProjectListView:
         p1.tech_tags.add(tag1)
         p2 = project_factory(title='Frontend Project')
         p2.tech_tags.add(tag2)
-        response = api_client.get('/api/projects/', {'tech': tag1.slug})
+        response = api_client.get('/api/v1/projects/', {'tech': tag1.slug})
         assert response.status_code == status.HTTP_200_OK
         assert len(response.data['results']) == 1
         assert response.data['results'][0]['title'] == 'Backend Project'
@@ -71,7 +71,7 @@ class TestProjectListView:
     def test_filter_by_year(self, api_client, project_factory):
         p1 = project_factory(title='2024 Project', completion_date='2024-06-01')
         p2 = project_factory(title='2025 Project', completion_date='2025-01-01')
-        response = api_client.get('/api/projects/', {'year': 2024})
+        response = api_client.get('/api/v1/projects/', {'year': 2024})
         assert response.status_code == status.HTTP_200_OK
         assert len(response.data['results']) == 1
         assert response.data['results'][0]['title'] == '2024 Project'
@@ -79,45 +79,45 @@ class TestProjectListView:
 class TestProjectDetailView:
     def test_detail_unauthenticated(self, api_client, project_factory):
         project = project_factory()
-        response = api_client.get(f'/api/projects/{project.slug}/')
+        response = api_client.get(f'/api/v1/projects/{project.slug}/')
         assert response.status_code == status.HTTP_200_OK
         assert response.data['slug'] == project.slug
 
     def test_detail_authenticated(self, api_client, project_factory, user):
         api_client.force_authenticate(user=user)
         project = project_factory()
-        response = api_client.get(f'/api/projects/{project.slug}/')
+        response = api_client.get(f'/api/v1/projects/{project.slug}/')
         assert response.status_code == status.HTTP_200_OK
         assert response.data['slug'] == project.slug
 
     def test_update_project_unauthenticated(self, api_client, project_factory):
         project = project_factory(title='Old')
-        response = api_client.patch(f'/api/projects/{project.slug}/', {'title': 'New'})
+        response = api_client.patch(f'/api/v1/projects/{project.slug}/', {'title': 'New'})
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
     def test_update_project_authenticated_non_staff(self, api_client, project_factory, user):
         api_client.force_authenticate(user=user)
         project = project_factory(title='Old')
-        response = api_client.patch(f'/api/projects/{project.slug}/', {'title': 'New'})
+        response = api_client.patch(f'/api/v1/projects/{project.slug}/', {'title': 'New'})
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
     def test_update_project_authenticated_staff(self, api_client, project_factory, staff_user):
         api_client.force_authenticate(user=staff_user)
         project = project_factory(title='Old')
-        response = api_client.patch(f'/api/projects/{project.slug}/', {'title': 'New'})
+        response = api_client.patch(f'/api/v1/projects/{project.slug}/', {'title': 'New'})
         assert response.status_code == status.HTTP_200_OK
         project.refresh_from_db()
         assert project.title == 'New'
 
     def test_delete_project_unauthenticated(self, api_client, project_factory):
         project = project_factory()
-        response = api_client.delete(f'/api/projects/{project.slug}/')
+        response = api_client.delete(f'/api/v1/projects/{project.slug}/')
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
     def test_delete_project_authenticated_staff(self, api_client, project_factory, staff_user):
         api_client.force_authenticate(user=staff_user)
         project = project_factory()
-        response = api_client.delete(f'/api/projects/{project.slug}/')
+        response = api_client.delete(f'/api/v1/projects/{project.slug}/')
         assert response.status_code == status.HTTP_204_NO_CONTENT
         assert not Project.objects.filter(id=project.id).exists()
 

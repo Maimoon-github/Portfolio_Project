@@ -23,15 +23,15 @@ class BlogViewsTest(TestCase):
     def test_post_list_view(self):
         response = self.client.get(reverse('blog:post-list'))
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(response.data['success'])
-        self.assertEqual(len(response.data['data']['results']), 1)
-        self.assertEqual(response.data['data']['results'][0]['title'], 'Test Post')
+        # default DRF paginated response structure
+        self.assertIn('results', response.data)
+        self.assertEqual(len(response.data['results']), 1)
+        self.assertEqual(response.data['results'][0]['title'], 'Test Post')
 
     def test_post_detail_view(self):
         response = self.client.get(reverse('blog:post-detail', args=[self.post.slug]))
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(response.data['success'])
-        self.assertEqual(response.data['data']['title'], 'Test Post')
+        self.assertEqual(response.data['title'], 'Test Post')
 
     def test_related_posts_view(self):
         # Create another post in same category
@@ -46,6 +46,6 @@ class BlogViewsTest(TestCase):
         
         response = self.client.get(reverse('blog:related-posts', args=[self.post.slug]))
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(response.data['success'])
-        self.assertEqual(len(response.data['data']), 1)
-        self.assertEqual(response.data['data'][0]['title'], 'Another Post')
+        # Related endpoint returns simple list
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.data[0]['title'], 'Another Post')

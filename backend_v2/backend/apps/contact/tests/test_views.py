@@ -11,7 +11,7 @@ class ContactViewTest(TestCase):
         url = reverse('contact:contact-create')
         data = {
             'name': 'Test User',
-            'email': [EMAIL_ADDRESS],
+            'email': 'test@example.com',
             'subject': 'Test Subject',
             'message': 'Test Message',
             'honeypot': ''
@@ -26,7 +26,7 @@ class ContactViewTest(TestCase):
         self.assertEqual(ContactSubmission.objects.count(), 1)
         submission = ContactSubmission.objects.first()
         self.assertEqual(submission.name, 'Test User')
-        self.assertEqual(submission.email, [EMAIL_ADDRESS])
+        self.assertEqual(submission.email, 'test@example.com')
         self.assertEqual(submission.subject, 'Test Subject')
         self.assertEqual(submission.message, 'Test Message')
 
@@ -34,7 +34,7 @@ class ContactViewTest(TestCase):
         url = reverse('contact:contact-create')
         data = {
             'name': 'Test User',
-            'email': [EMAIL_ADDRESS],
+            'email': 'test@example.com',
             'subject': 'Test Subject',
             'message': 'Test Message',
             'honeypot': 'spam'

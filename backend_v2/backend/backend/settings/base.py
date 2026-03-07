@@ -48,14 +48,18 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_spectacular',
+    # django-filter used by our ListAPIView filters
+    'django_filters',
 
     # Local Apps
-    'api.apps.ApiConfig',
-    'apps.accounts',
-    'apps.products',
-    'apps.orders',
-    'apps.payments',
-    'apps.core',
+    # core utilities package does not register models but we include it for clarity
+    'core',
+    # domain apps corresponding to SPA sections
+    'apps.blog',
+    'apps.projects',
+    'apps.resume',
+    'apps.contact',
+    'apps.knowledge',
 ]
 
 MIDDLEWARE = [

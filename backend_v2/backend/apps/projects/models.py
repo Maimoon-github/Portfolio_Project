@@ -37,6 +37,20 @@ class Project(TimestampMixin, SEOMixin):
     summary = models.TextField(max_length=500, help_text="Brief overview")
     description = models.TextField()
 
+    # optional fields used by frontend and tests
+    featured = models.BooleanField(default=False)
+    featured_image = models.ImageField(upload_to='projects/', blank=True, null=True)
+    completion_date = models.DateField(blank=True, null=True)
+    year = models.PositiveSmallIntegerField(blank=True, null=True, db_index=True)
+
+    overview = models.TextField(blank=True)
+    challenge = models.TextField(blank=True)
+    solution = models.TextField(blank=True)
+    role = models.CharField(max_length=200, blank=True)
+    timeline = models.CharField(max_length=200, blank=True)
+    live_url = models.URLField(blank=True)
+    github_url = models.URLField(blank=True)
+
     categories = models.ManyToManyField(ProjectCategory, related_name='projects')
     tags = models.ManyToManyField(TechTag, related_name='projects', blank=True)
 
@@ -44,6 +58,12 @@ class Project(TimestampMixin, SEOMixin):
         ordering = ['-created_at']
         verbose_name = "Project"
         verbose_name_plural = "Projects"
+
+    def save(self, *args, **kwargs):
+        # derive year from completion_date for filtering
+        if self.completion_date and not self.year:
+            self.year = self.completion_date.year
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

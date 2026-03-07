@@ -6,6 +6,10 @@ from django.core.exceptions import ImproperlyConfigured
 class TimestampMixin(models.Model):
     """
     Provides automatic timestamp fields: created_at (indexed) and updated_at.
+
+    Convenience properties allow using `published_date`/`updated_date` aliases
+    so models using this mixin can be backward-compatible with legacy tests or
+    serializers that expect those attributes.
     """
 
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
@@ -13,6 +17,16 @@ class TimestampMixin(models.Model):
 
     class Meta:
         abstract = True
+
+    @property
+    def published_date(self):
+        # alias for created_at, used in filters and API contracts
+        return self.created_at
+
+    @property
+    def updated_date(self):
+        # alias for updated_at
+        return self.updated_at
 
 
 class SlugMixin(models.Model):
@@ -41,12 +55,35 @@ class SlugMixin(models.Model):
 
 class SEOMixin(SlugMixin):
     """
-    Extends SlugMixin with basic SEO metadata fields: meta_title and meta_desc.
-    Inherits slug behavior from SlugMixin.
+    Extends SlugMixin with basic SEO metadata fields: meta_title, meta_desc
+    (description), and meta_keywords.  Includes convenience helper methods
+    and alias properties used by tests and frontend consumers.
     """
 
     meta_title = models.CharField(max_length=60, blank=True)
     meta_desc = models.CharField(max_length=160, blank=True)
+    meta_keywords = models.CharField(max_length=255, blank=True)
 
     class Meta:
         abstract = True
+
+    # alias for legacy attribute
+    @property
+    def meta_description(self):
+        return self.meta_desc
+
+    @meta_description.setter
+    def meta_description(self, value):
+        self.meta_desc = value
+
+    def get_meta_title(self):
+        return self.meta_title or ""
+
+    def get_meta_description(self):
+        return self.meta_desc or ""
+
+    def get_meta_keywords(self):
+        return self.meta_keywords or ""
+
+    def get_meta_robots(self):
+        return "index, follow"
