@@ -7,7 +7,7 @@ import { Resume } from "./pages/Resume";
 import { Blog } from "./pages/Blog";
 import { BlogPost } from "./pages/BlogPost";
 import { Knowledge } from "./pages/Knowledge";
-import Courses from "./pages/Courses";
+import { Courses } from "./pages/Courses";
 import ToolsPage from "./pages/Tools/Tools";
 import { Contact } from "./pages/Contact";
 import { Login } from "./pages/Login";

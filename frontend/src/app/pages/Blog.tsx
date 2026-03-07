@@ -96,9 +96,9 @@ export function Blog() {
         )}
 
         {/* Post Grid */}
-        {(showFeatured ? rest : filtered).length > 0 ? (
+        {(showFeatured ? rest : posts).length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {(showFeatured ? rest : filtered).map((post) => (
+            {(showFeatured ? rest : posts).map((post) => (
               <BlogCard key={post.id} post={post} />
             ))}
           </div>

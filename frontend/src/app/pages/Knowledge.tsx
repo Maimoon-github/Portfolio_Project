@@ -116,39 +116,6 @@ export function Knowledge() {
             </Link>
           </div>
         </section>
-                      rel="noopener noreferrer"
-                      className="card-hover flex flex-col gap-3 p-4 rounded-xl"
-                      style={{
-                        background: "#1B3022",
-                        border: "1px solid rgba(164, 251, 204, 0.1)",
-                        textDecoration: "none",
-                      }}
-                    >
-                      <div className="flex items-center justify-between">
-                        <h4 style={{ color: "#F2F2F2", fontSize: "0.95rem", fontWeight: 600 }}>{tool.name}</h4>
-                        <div className="flex gap-0.5">
-                          {Array.from({ length: 5 }).map((_, i) => (
-                            <Star
-                              key={i}
-                              size={11}
-                              style={{
-                                color: i < tool.rating ? "#A4FBCC" : "rgba(164, 251, 204, 0.2)",
-                                fill: i < tool.rating ? "#A4FBCC" : "transparent",
-                              }}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                      <p className="text-xs leading-relaxed" style={{ color: "#9199A5" }}>
-                        {tool.description}
-                      </p>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
       </div>
     </div>
   );
