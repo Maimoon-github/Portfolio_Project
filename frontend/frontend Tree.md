@@ -91,12 +91,18 @@
 │   │   │   ├── 📄 Contact.tsx
 │   │   │   ├── 📄 Home.tsx
 │   │   │   ├── 📄 Knowledge.tsx
+│   │   │   ├── 📄 Login.tsx
 │   │   │   ├── 📄 NotFound.tsx
 │   │   │   ├── 📄 ProjectDetail.tsx
 │   │   │   ├── 📄 Projects.tsx
 │   │   │   └── 📄 Resume.tsx
+│   │   ├── 📁 services
+│   │   │   └── 📄 api.ts
+│   │   ├── 📁 types
+│   │   │   └── 📄 api.ts
 │   │   ├── 📄 App.tsx
 │   │   ├── 📄 Root.tsx
+│   │   ├── 📄 config.ts
 │   │   └── 📄 routes.ts
 │   ├── 📁 imports
 │   │   └── 📝 ai-agent-portfolio-architectur.md
@@ -105,12 +111,16 @@
 │   │   ├── 🎨 index.css
 │   │   ├── 🎨 tailwind.css
 │   │   └── 🎨 theme.css
+│   ├── 📁 types
+│   │   └── 📄 generated.ts
 │   └── 📄 main.tsx
 ├── 📝 ATTRIBUTIONS.md
 ├── 📝 README.md
+├── 📝 frontend Tree.md
 ├── 🌐 index.html
 ├── ⚙️ package-lock.json
 ├── ⚙️ package.json
 ├── 📄 postcss.config.mjs
+├── ⚙️ tsconfig.json
 └── 📄 vite.config.ts
 ```
