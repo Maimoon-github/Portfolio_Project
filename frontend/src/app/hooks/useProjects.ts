@@ -13,6 +13,9 @@ export function useProjects(category?: string) {
 }
 
 export function useProject(id: string) {
-  const { data, error } = useSWR<Project>(["project", id], () => getProject(id));
-  return { project: data, loading: !error && !data, error };
+  const { data, error } = useSWR<Project>(
+    id ? ["project", id] : null,
+    () => getProject(id)
+  );
+  return { project: data, loading: !!id && !error && !data, error };
 }
