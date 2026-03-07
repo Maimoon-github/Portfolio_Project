@@ -1,0 +1,116 @@
+# File Tree: backend_v2
+
+```
+├── 📁 api
+│   ├── 📁 migrations
+│   │   └── 🐍 __init__.py
+│   ├── 🐍 __init__.py
+│   ├── 🐍 admin.py
+│   ├── 🐍 apps.py
+│   ├── 🐍 models.py
+│   ├── 🐍 tests.py
+│   ├── 🐍 urls.py
+│   └── 🐍 views.py
+├── 📁 apps
+│   ├── 📁 blog
+│   │   ├── 📁 migrations
+│   │   │   ├── 🐍 0001_initial.py
+│   │   │   └── 🐍 __init__.py
+│   │   ├── 📁 tests
+│   │   │   ├── 🐍 __init__.py
+│   │   │   ├── 🐍 test_models.py
+│   │   │   └── 🐍 test_views.py
+│   │   ├── 🐍 __init__.py
+│   │   ├── 🐍 admin.py
+│   │   ├── 🐍 apps.py
+│   │   ├── 🐍 filters.py
+│   │   ├── 🐍 models.py
+│   │   ├── 🐍 serializers.py
+│   │   ├── 🐍 urls.py
+│   │   └── 🐍 views.py
+│   ├── 📁 contact
+│   │   ├── 📁 migrations
+│   │   │   ├── 🐍 0001_initial.py
+│   │   │   └── 🐍 __init__.py
+│   │   ├── 📁 tests
+│   │   │   ├── 🐍 __init__.py
+│   │   │   └── 🐍 test_views.py
+│   │   ├── 🐍 __init__.py
+│   │   ├── 🐍 admin.py
+│   │   ├── 🐍 apps.py
+│   │   ├── 🐍 models.py
+│   │   ├── 🐍 serializers.py
+│   │   ├── 🐍 urls.py
+│   │   └── 🐍 views.py
+│   ├── 📁 knowledge
+│   │   ├── 📁 migrations
+│   │   │   ├── 🐍 0001_initial.py
+│   │   │   └── 🐍 __init__.py
+│   │   ├── 📁 tests
+│   │   │   ├── 🐍 __init__.py
+│   │   │   └── 🐍 test_views.py
+│   │   ├── 🐍 __init__.py
+│   │   ├── 🐍 admin.py
+│   │   ├── 🐍 apps.py
+│   │   ├── 🐍 models.py
+│   │   ├── 🐍 serializers.py
+│   │   ├── 🐍 urls.py
+│   │   └── 🐍 views.py
+│   ├── 📁 projects
+│   │   ├── 📁 migrations
+│   │   │   ├── 🐍 0001_initial.py
+│   │   │   └── 🐍 __init__.py
+│   │   ├── 📁 tests
+│   │   │   ├── 🐍 __init__.py
+│   │   │   ├── 🐍 test_models.py
+│   │   │   └── 🐍 test_views.py
+│   │   ├── 🐍 __init__.py
+│   │   ├── 🐍 admin.py
+│   │   ├── 🐍 apps.py
+│   │   ├── 🐍 filters.py
+│   │   ├── 🐍 models.py
+│   │   ├── 🐍 serializers.py
+│   │   ├── 🐍 urls.py
+│   │   └── 🐍 views.py
+│   └── 📁 resume
+│       ├── 📁 migrations
+│       │   ├── 🐍 0001_initial.py
+│       │   └── 🐍 __init__.py
+│       ├── 📁 tests
+│       │   ├── 🐍 __init__.py
+│       │   └── 🐍 test_views.py
+│       ├── 🐍 __init__.py
+│       ├── 🐍 admin.py
+│       ├── 🐍 apps.py
+│       ├── 🐍 models.py
+│       ├── 🐍 serializers.py
+│       ├── 🐍 urls.py
+│       └── 🐍 views.py
+├── 📁 backend
+│   ├── 📁 settings
+│   │   ├── 🐍 __init__.py
+│   │   ├── 🐍 base.py
+│   │   ├── 🐍 development.py
+│   │   └── 🐍 production.py
+│   ├── 🐍 __init__.py
+│   ├── 🐍 asgi.py
+│   ├── 🐍 urls.py
+│   └── 🐍 wsgi.py
+├── 📁 core
+│   ├── 🐍 __init__.py
+│   ├── 🐍 mixins.py
+│   ├── 🐍 pagination.py
+│   ├── 🐍 permissions.py
+│   └── 🐍 utils.py
+├── 📁 requirements
+│   ├── 📄 base.txt
+│   ├── 📄 development.txt
+│   └── 📄 production.txt
+├── 📁 static
+├── 📁 templates
+│   └── 🌐 index.html
+├── ⚙️ .env.example
+├── 📄 db.sqlite3
+├── 🐍 manage.py
+└── ⚙️ pytest.ini
+```

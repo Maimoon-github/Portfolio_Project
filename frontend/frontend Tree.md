@@ -60,11 +60,20 @@
 │   │   │   │   ├── 📄 use-mobile.ts
 │   │   │   │   └── 📄 utils.ts
 │   │   │   ├── 📄 BlogCard.tsx
+│   │   │   ├── 📄 CourseCard.tsx
+│   │   │   ├── 📄 FloatingOrb.tsx
 │   │   │   ├── 📄 Footer.tsx
 │   │   │   ├── 📄 Navbar.tsx
-│   │   │   └── 📄 ProjectCard.tsx
+│   │   │   ├── 📄 PopupModal.tsx
+│   │   │   ├── 📄 ProjectCard.tsx
+│   │   │   └── 📄 ToolCard.tsx
 │   │   ├── 📁 data
 │   │   │   └── 📄 index.ts
+│   │   ├── 📁 hooks
+│   │   │   ├── 📄 useCourses.ts
+│   │   │   ├── 📄 useKnowledge.ts
+│   │   │   ├── 📄 useProjects.ts
+│   │   │   └── 📄 useResume.ts
 │   │   ├── 📁 pages
 │   │   │   ├── 📁 Tools
 │   │   │   │   ├── 📁 ToolsPages
@@ -89,6 +98,7 @@
 │   │   │   ├── 📄 Blog.tsx
 │   │   │   ├── 📄 BlogPost.tsx
 │   │   │   ├── 📄 Contact.tsx
+│   │   │   ├── 📄 Courses.tsx
 │   │   │   ├── 📄 Home.tsx
 │   │   │   ├── 📄 Knowledge.tsx
 │   │   │   ├── 📄 Login.tsx
@@ -120,6 +130,7 @@
 ├── 🌐 index.html
 ├── ⚙️ package-lock.json
 ├── ⚙️ package.json
+├── ⚙️ pnpm-lock.yaml
 ├── 📄 postcss.config.mjs
 ├── ⚙️ tsconfig.json
 └── 📄 vite.config.ts
