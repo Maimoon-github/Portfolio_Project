@@ -5,6 +5,9 @@ import {
   Paginated,
   BlogPost,
   ResumeData,
+  Course,
+  Tool,
+  KnowledgeData,
 } from "../types/api";
 
 // we store tokens in localStorage for simplicity
@@ -116,5 +119,29 @@ export async function getBlogPost(id: string): Promise<BlogPost> {
 export async function getResume(): Promise<ResumeData> {
   const res = await apiFetch(`${API_BASE}/resume/`);
   if (!res.ok) throw new Error(`Failed to load resume`);
+  return res.json();
+}
+
+export async function getCourses(): Promise<Course[]> {
+  const res = await apiFetch(`${API_BASE}/knowledge/courses/`);
+  if (!res.ok) throw new Error(`Failed to load courses`);
+  return res.json();
+}
+
+export async function getCourse(slug: string): Promise<Course> {
+  const res = await apiFetch(`${API_BASE}/knowledge/courses/${slug}/`);
+  if (!res.ok) throw new Error(`Failed to load course ${slug}`);
+  return res.json();
+}
+
+export async function getTools(): Promise<Tool[]> {
+  const res = await apiFetch(`${API_BASE}/knowledge/tools/`);
+  if (!res.ok) throw new Error(`Failed to load tools`);
+  return res.json();
+}
+
+export async function getKnowledge(): Promise<KnowledgeData> {
+  const res = await apiFetch(`${API_BASE}/knowledge/`);
+  if (!res.ok) throw new Error(`Failed to load knowledge overview`);
   return res.json();
 }

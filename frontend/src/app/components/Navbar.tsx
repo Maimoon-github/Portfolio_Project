@@ -7,8 +7,9 @@ import { getTokens, logout } from "../services/api";
 const NAV_LINKS = [
   { label: "Projects", path: "/projects" },
   { label: "Resume", path: "/resume" },
-  { label: "Blog", path: "/blog" },
+  { label: "Courses", path: "/courses" },
   { label: "Knowledge", path: "/knowledge" },
+  { label: "Tools", path: "/tools" },
   { label: "Contact", path: "/contact" },
 ];
 

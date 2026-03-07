@@ -16,6 +16,7 @@ interface Project {
 interface ProjectCardProps {
   project: Project;
   featured?: boolean;
+  onClick?: () => void; // if provided, card becomes clickable and uses this handler rather than routing
 }
 
 export function ProjectCard({ project, featured = false }: ProjectCardProps) {
@@ -64,6 +65,17 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
 
       {/* Content */}
       <div className="flex flex-col gap-3 p-5 flex-1">
+        {onClick ? (
+        <h3
+          className="transition-colors duration-200 cursor-pointer"
+          style={{ color: "#F2F2F2", fontSize: "1rem", fontWeight: 600 }}
+          onClick={onClick}
+          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#A4FBCC")}
+          onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "#F2F2F2")}
+        >
+          {project.title}
+        </h3>
+      ) : (
         <Link
           to={`/projects/${project.id}`}
           style={{ textDecoration: "none" }}
@@ -77,6 +89,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
             {project.title}
           </h3>
         </Link>
+      )}
 
         <p className="text-sm leading-relaxed flex-1" style={{ color: "#9199A5" }}>
           {project.tagline}
@@ -99,6 +112,17 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
           className="flex items-center justify-between pt-3"
           style={{ borderTop: "1px solid rgba(164, 251, 204, 0.08)" }}
         >
+          {onClick ? (
+          <button
+            className="text-sm flex items-center gap-1 transition-colors duration-200"
+            style={{ color: "#A4FBCC", background: "transparent", border: "none", padding: 0 }}
+            onClick={onClick}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = "0.8")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
+          >
+            Case Study <ArrowUpRight size={13} />
+          </button>
+        ) : (
           <Link
             to={`/projects/${project.id}`}
             className="text-sm flex items-center gap-1 transition-colors duration-200"
@@ -108,6 +132,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
           >
             Case Study <ArrowUpRight size={13} />
           </Link>
+        )}
           <div className="flex items-center gap-3">
             {project.github && (
               <a
