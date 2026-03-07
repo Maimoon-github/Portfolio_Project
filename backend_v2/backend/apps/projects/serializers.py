@@ -25,8 +25,10 @@ class ProjectListSerializer(serializers.ModelSerializer):
         model = Project
         fields = [
             'id', 'title', 'slug', 'meta_desc',
-            'tags', 'categories', 'year', 'thumbnail'
+            'tags', 'categories', 'year', 'thumbnail',
+            'featured', 'completion_date', 'featured_image'
         ]
+
 
     def get_thumbnail(self, obj):
         first_image = obj.images.first()
@@ -43,5 +45,7 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
             'id', 'title', 'slug', 'meta_desc',
             'tags', 'categories', 'year', 'thumbnail',
             'overview', 'challenge', 'solution', 'role',
-            'timeline', 'live_url', 'github_url', 'images'
+            'timeline', 'live_url', 'github_url',
+            'featured', 'completion_date', 'featured_image',
+            'images'
         ]

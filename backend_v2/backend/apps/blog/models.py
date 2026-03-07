@@ -24,6 +24,7 @@ class Tag(TimestampMixin, SEOMixin):
         return self.name
 
 class Post(TimestampMixin, SEOMixin):
+    title = models.CharField(max_length=200)
     author = models.ForeignKey(User, on_delete=models.PROTECT, related_name='blog_posts')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='posts')
     tags = models.ManyToManyField(Tag, related_name='posts', blank=True)
@@ -53,6 +54,7 @@ class Post(TimestampMixin, SEOMixin):
 class PostImage(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='blog/')
+    caption = models.CharField(max_length=200, blank=True, help_text="Optional caption text")
     alt_text = models.CharField(max_length=200, blank=True)
     order = models.PositiveSmallIntegerField(default=0)
 

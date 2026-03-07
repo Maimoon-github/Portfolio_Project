@@ -14,7 +14,7 @@ class TagSerializer(serializers.ModelSerializer):
 class PostImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostImage
-        fields = ['image']
+        fields = ['image', 'caption', 'alt_text']
 
 class PostListSerializer(serializers.ModelSerializer):
     category = CategorySerializer(read_only=True)
