@@ -53,17 +53,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView   # ← added
 from django.conf import settings
 from django.conf.urls.static import static
 
-# 1. Define initial urlpatterns
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     path('api/', include('apps.api.urls')),   # Adjust import as needed
-# ]
-
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('admin', RedirectView.as_view(url='/admin/', permanent=True)),  # redirects /admin → /admin/
     path('api/projects/', include('apps.projects.urls')),
     path('api/blog/', include('apps.blog.urls')),
     path('api/resume/', include('apps.resume.urls')),
@@ -71,18 +67,16 @@ urlpatterns = [
     path('api/knowledge/', include('apps.knowledge.urls')),
 ]
 
-# 2. Add debug toolbar URLs (prepend to keep them accessible)
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)),
     ] + urlpatterns
 
-# 3. Serve media files in development (now at /media/...)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# 4. SPA catch‑all – must be the very last pattern
+# SPA catch‑all – must be last
 urlpatterns += [
     re_path(r'^.*$', TemplateView.as_view(template_name='index.html'), name='spa'),
 ]
