@@ -15,7 +15,7 @@ class PostListView(generics.ListAPIView):
     # `published_date` is an alias for created_at provided by TimestampMixin,
     # but it is a Python property and cannot be used in ORM filtering.  Query
     # based on the underlying field instead.
-    queryset = Post.objects.filter(created_at__lte=timezone.now())
+    queryset = Post.objects.filter(published_date__lte=timezone.now())
     serializer_class = PostListSerializer
     permission_classes = [IsAdminOrReadOnly]
     pagination_class = StandardPagination
@@ -26,7 +26,7 @@ class PostDetailView(generics.RetrieveAPIView):
     """
     Retrieve a single published post by slug.
     """
-    queryset = Post.objects.filter(created_at__lte=timezone.now())
+    queryset = Post.objects.filter(published_date__lte=timezone.now())
     serializer_class = PostDetailSerializer
     permission_classes = [IsAdminOrReadOnly]
     lookup_field = 'slug'
@@ -40,12 +40,12 @@ class RelatedPostsView(generics.ListAPIView):
 
     def get_queryset(self):
         post = generics.get_object_or_404(
-            Post.objects.filter(created_at__lte=timezone.now()),
+            Post.objects.filter(published_date__lte=timezone.now()),
             slug=self.kwargs['slug']
         )
         # Find posts in same categories or tags, excluding current post
         related = Post.objects.filter(
-            created_at__lte=timezone.now()
+            published_date__lte=timezone.now()
         ).exclude(pk=post.pk).filter(
             models.Q(category__in=post.categories.all()) |
             models.Q(tags__in=post.tags.all())

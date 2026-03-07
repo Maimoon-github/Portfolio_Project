@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 from core.mixins import TimestampMixin, SEOMixin
 from core.utils import sanitize_html
 
@@ -28,6 +29,7 @@ class Post(TimestampMixin, SEOMixin):
     author = models.ForeignKey(User, on_delete=models.PROTECT, related_name='blog_posts')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, related_name='posts')
     tags = models.ManyToManyField(Tag, related_name='posts', blank=True)
+    published_date = models.DateTimeField(default=timezone.now, db_index=True)
     featured = models.BooleanField(default=False)
     read_time = models.PositiveSmallIntegerField(help_text="Estimated reading time in minutes")
     excerpt = models.CharField(max_length=150, help_text="Short summary for lists")
