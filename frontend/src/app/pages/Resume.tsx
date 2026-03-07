@@ -1,5 +1,8 @@
+import { useState, useEffect } from "react";
 import { Download, MapPin, Mail, Github, Linkedin, ExternalLink } from "lucide-react";
-import { PROFILE, SKILLS, EXPERIENCE, EDUCATION, CERTIFICATIONS } from "../data";
+import { PROFILE, SKILLS as STATIC_SKILLS, EXPERIENCE as STATIC_EXPERIENCE, EDUCATION as STATIC_EDUCATION, CERTIFICATIONS as STATIC_CERTIFICATIONS } from "../data";
+import { getResume } from "../services/api";
+import { ResumeData, SkillCategory, Experience, Education, Certification } from "../types/api";
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
@@ -22,6 +25,58 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 }
 
 export function Resume() {
+  const [skills, setSkills] = useState<typeof STATIC_SKILLS>(STATIC_SKILLS);
+  const [experience, setExperience] = useState<typeof STATIC_EXPERIENCE>(STATIC_EXPERIENCE);
+  const [education, setEducation] = useState<typeof STATIC_EDUCATION>(STATIC_EDUCATION);
+  const [certifications, setCertifications] = useState<typeof STATIC_CERTIFICATIONS>(STATIC_CERTIFICATIONS);
+
+  useEffect(() => {
+    getResume()
+      .then((data: ResumeData) => {
+        // convert API payload into frontend shape
+        const sk: typeof STATIC_SKILLS = {} as any;
+        data.skills.forEach((cat) => {
+          sk[cat.name] = cat.skills.map((s) => s.name);
+        });
+        setSkills(sk);
+
+        const exp = data.experience.map((e) => ({
+          id: e.id,
+          title: e.title,
+          company: e.company,
+          location: e.location,
+          start: new Date(e.start_date).toLocaleDateString("en-US", { month: "short", year: "numeric" }),
+          end: e.current
+            ? "Present"
+            : e.end_date
+            ? new Date(e.end_date).toLocaleDateString("en-US", { month: "short", year: "numeric" })
+            : "",
+          type: e.current ? "Full-time" : "",
+          bullets: e.achievements ? e.achievements.split("\n").map((l) => l.trim()).filter(Boolean) : [],
+        }));
+        setExperience(exp as any);
+
+        const edu = data.education.map((e) => ({
+          id: e.id,
+          degree: e.degree,
+          concentration: "",
+          institution: e.institution,
+          year: e.end_date ? new Date(e.end_date).getFullYear().toString() : "",
+          honors: "",
+        }));
+        setEducation(edu as any);
+
+        const cert = data.certifications.map((c) => ({
+          id: c.id,
+          name: c.name,
+          issuer: c.issuing_organization,
+          year: new Date(c.issue_date).getFullYear().toString(),
+        }));
+        setCertifications(cert as any);
+      })
+      .catch(console.error);
+  }, []);
+
   return (
     <div className="min-h-screen pt-24 pb-20" style={{ background: "#081A04" }}>
       <div className="max-w-4xl mx-auto px-6">
@@ -108,7 +163,7 @@ export function Resume() {
         <section className="mb-12">
           <SectionHeading>Technical Skills</SectionHeading>
           <div className="flex flex-col gap-6">
-            {Object.entries(SKILLS).map(([category, skills]) => (
+            {Object.entries(skills).map(([category, skillsArr]) => (
               <div key={category}>
                 <h3
                   className="mb-3 text-xs uppercase tracking-widest"
@@ -117,7 +172,7 @@ export function Resume() {
                   {category}
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {skills.map((skill) => (
+                  {skillsArr.map((skill) => (
                     <span key={skill} className="tech-tag">{skill}</span>
                   ))}
                 </div>
@@ -130,7 +185,7 @@ export function Resume() {
         <section className="mb-12">
           <SectionHeading>Experience</SectionHeading>
           <div className="flex flex-col gap-8">
-            {EXPERIENCE.map((job) => (
+            {experience.map((job) => (
               <div key={job.id} className="relative pl-5" style={{ borderLeft: "1px solid rgba(164, 251, 204, 0.15)" }}>
                 {/* Timeline dot */}
                 <div
@@ -169,7 +224,7 @@ export function Resume() {
         <section className="mb-12">
           <SectionHeading>Education</SectionHeading>
           <div className="flex flex-col gap-6">
-            {EDUCATION.map((edu) => (
+            {education.map((edu) => (
               <div
                 key={edu.id}
                 className="px-5 py-4 rounded-xl"
@@ -201,7 +256,7 @@ export function Resume() {
         <section className="mb-12">
           <SectionHeading>Certifications</SectionHeading>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {CERTIFICATIONS.map((cert) => (
+            {certifications.map((cert) => (
               <div
                 key={cert.id}
                 className="flex items-center justify-between px-4 py-3 rounded-lg"

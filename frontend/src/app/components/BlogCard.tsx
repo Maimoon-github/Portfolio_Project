@@ -5,8 +5,11 @@ interface BlogPost {
   id: string;
   title: string;
   excerpt: string;
-  date: string;
-  readTime: string;
+  // API returns created_at and read_time; we support both to ease migration
+  date?: string;
+  created_at?: string;
+  readTime?: string;
+  read_time?: string;
   category: string;
   tags: string[];
   featured?: boolean;
@@ -53,11 +56,11 @@ export function BlogCard({ post, large = false }: BlogCardProps) {
         <div className="flex items-center gap-3 text-xs" style={{ color: "#9199A5", fontFamily: "'Space Mono', monospace" }}>
           <span className="flex items-center gap-1">
             <Calendar size={11} />
-            {post.date}
+            {post.date || post.created_at || ""}
           </span>
           <span className="flex items-center gap-1">
             <Clock size={11} />
-            {post.readTime}
+            {post.readTime || post.read_time || ""}
           </span>
         </div>
       </div>

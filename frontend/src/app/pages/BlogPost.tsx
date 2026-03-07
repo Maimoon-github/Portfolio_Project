@@ -1,11 +1,33 @@
 import { useParams, Link } from "react-router";
+import { useState, useEffect } from "react";
 import { ArrowLeft, Calendar, Clock, User, Tag } from "lucide-react";
-import { BLOG_POSTS, PROFILE } from "../data";
+import { PROFILE } from "../data";
 import { BlogCard } from "../components/BlogCard";
+import { getBlogPost } from "../services/api";
+import { BlogPost as BlogPostType } from "../types/api";
 
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
-  const post = BLOG_POSTS.find((p) => p.id === slug);
+  const [post, setPost] = useState<BlogPostType | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (slug) {
+      setLoading(true);
+      getBlogPost(slug)
+        .then(setPost)
+        .catch(console.error)
+        .finally(() => setLoading(false));
+    }
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#081A04" }}>
+        <p style={{ color: "#9199A5" }}>Loading...</p>
+      </div>
+    );
+  }
 
   if (!post) {
     return (
@@ -212,10 +234,10 @@ export function BlogPost() {
               </div>
               <div className="flex items-center gap-4 text-xs ml-auto" style={{ color: "#9199A5", fontFamily: "'Space Mono', monospace" }}>
                 <span className="flex items-center gap-1">
-                  <Calendar size={11} /> {post.date}
+                  <Calendar size={11} /> {post.date || post.created_at || ""}
                 </span>
                 <span className="flex items-center gap-1">
-                  <Clock size={11} /> {post.readTime}
+                  <Clock size={11} /> {post.readTime || post.read_time || ""}
                 </span>
               </div>
             </div>

@@ -469,7 +469,9 @@ import {
 } from "lucide-react";
 import { ProjectCard } from "../components/ProjectCard";
 import { BlogCard } from "../components/BlogCard";
-import { PROFILE, PROJECTS, BLOG_POSTS, SERVICES, TOOLS } from "../data";
+import { PROFILE, SERVICES, TOOLS } from "../data";
+import { getProjects, getBlogPosts } from "../services/api";
+import { Project, BlogPost } from "../types/api";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface Tool {
@@ -793,8 +795,18 @@ const GLOBAL_STYLES = `
 
 // ─── Home Page ────────────────────────────────────────────────────────────────
 export function Home() {
-  const featuredProjects = PROJECTS.filter((p) => p.featured);
-  const recentPosts      = BLOG_POSTS.slice(0, 3);
+  const [featuredProjects, setFeaturedProjects] = useState<Project[]>([]);
+  const [recentPosts, setRecentPosts] = useState<BlogPost[]>([]);
+
+  // fetch home data (projects + blog)
+  useEffect(() => {
+    getProjects()
+      .then((d) => setFeaturedProjects(d.results.filter((p) => p.featured)))
+      .catch(console.error);
+    getBlogPosts()
+      .then((d) => setRecentPosts(d.results.slice(0, 3)))
+      .catch(console.error);
+  }, []);
 
   // Hero mount animation
   const [heroMounted, setHeroMounted] = useState(false);
