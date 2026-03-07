@@ -1,5 +1,6 @@
 # apps/knowledge/views.py
 from rest_framework import generics
+from rest_framework.response import Response
 from django.db.models import Count
 from core.permissions import IsAdminOrReadOnly
 from core.pagination import StandardPagination

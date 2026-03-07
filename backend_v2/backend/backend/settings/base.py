@@ -15,7 +15,7 @@ from datetime import timedelta # Added for JWT expiration
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # ------------------------------------------------------------------------------
 # SECURITY SETTINGS
@@ -25,9 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-t!=7_3=6&qjh+!cj^(8z99kj4-ii6by+2a=1v!t-4gjdftmo2)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',          # for local testing
+    '127.0.0.1',
+    'your-domain.com',    # replace with your real host(s)
+]
 
 # ------------------------------------------------------------------------------
 # APPLICATION DEFINITION
@@ -137,6 +141,7 @@ USE_TZ = True
 # STATIC FILES (CSS, JavaScript, Images)
 # ------------------------------------------------------------------------------
 
+MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'          # Target for collectstatic
 STATICFILES_DIRS = [
@@ -161,7 +166,12 @@ if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
 else:
     # Expects a comma-separated list of origins in environment variable
-    CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', '').split(',')
+    # Fallback to localhost if environment variable is missing or empty
+    env_origins = os.environ.get('CORS_ALLOWED_ORIGINS', '')
+    if env_origins:
+        CORS_ALLOWED_ORIGINS = [s.strip() for s in env_origins.split(',') if s.strip()]
+    else:
+        CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
 
 # ------------------------------------------------------------------------------
 # DJANGO REST FRAMEWORK + JWT + SPECTACULAR

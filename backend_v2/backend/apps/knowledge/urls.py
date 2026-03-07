@@ -1,6 +1,9 @@
 # apps/knowledge/urls.py
 from django.urls import path
-from .views import CourseListView, CourseDetailView, ToolListView, ResourceListView
+from .views import (
+    CourseListView, CourseDetailView, ToolListView, ResourceListView,
+    KnowledgeOverviewView
+)
 
 app_name = 'knowledge'
 
