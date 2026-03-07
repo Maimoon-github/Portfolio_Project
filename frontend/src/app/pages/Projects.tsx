@@ -1,25 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ProjectCard } from "../components/ProjectCard";
-import { getProjects } from "../services/api";
+import { PopupModal } from "../components/PopupModal";
+import { useProjects, useProject } from "../hooks/useProjects";
 import { Project } from "../types/api";
 
 const CATEGORIES = ["All", "AI/ML", "MLOps", "Frontend"];
 
 export function Projects() {
   const [active, setActive] = useState("All");
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  // fetch projects from API whenever filter changes
-  useEffect(() => {
-    setLoading(true);
-    getProjects(active === "All" ? undefined : active)
-      .then((data) => {
-        setProjects(data.results);
-      })
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, [active]);
+  const { projects, loading: projectsLoading } = useProjects(active === "All" ? undefined : active);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const { project: selectedProject, loading: detailLoading } = useProject(selectedId || "");
 
   const filtered = projects;
 
@@ -74,14 +65,31 @@ export function Projects() {
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onClick={() => setSelectedId(project.id)}
+            />
           ))}
         </div>
 
-        {filtered.length === 0 && (
+        {filtered.length === 0 && !projectsLoading && (
           <div className="text-center py-20">
             <p style={{ color: "#9199A5" }}>No projects in this category yet.</p>
           </div>
+        )}
+
+        {/* popup detail */}
+        {selectedProject && (
+          <PopupModal open={!!selectedProject} onClose={() => setSelectedId(null)}>
+            <h2 style={{ color: "#F2F2F2", fontSize: "1.5rem", fontWeight: 700 }}>
+              {selectedProject.title}
+            </h2>
+            <p className="mt-4" style={{ color: "#9199A5" }}>
+              {selectedProject.overview || selectedProject.description}
+            </p>
+            {/* further fields could be displayed as needed */}
+          </PopupModal>
         )}
       </div>
     </div>

@@ -53,3 +53,19 @@ class ResourceSerializer(serializers.ModelSerializer):
         model = Resource
         fields = ['id', 'title', 'url', 'description', 'resource_type', 'tags', 'order']
         read_only_fields = fields
+
+
+class KnowledgeSerializer(serializers.Serializer):
+    """Aggregate endpoint returning both courses and tools for a single payload."""
+
+    courses = CourseListSerializer(many=True, read_only=True)
+    tools = ToolSerializer(many=True, read_only=True)
+
+    # we intentionally do not allow write operations through this serializer
+    # since creation should happen via the individual endpoints.
+    def to_representation(self, instance):
+        # instance will be a dict from the view
+        return {
+            'courses': CourseListSerializer(instance.get('courses', []), many=True).data,
+            'tools': ToolSerializer(instance.get('tools', []), many=True).data,
+        }

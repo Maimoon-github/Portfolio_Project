@@ -99,3 +99,42 @@ export interface ResumeData {
   education: Education[];
   certifications: Certification[];
 }
+
+// knowledge/courses
+export interface Lesson {
+  id: string;
+  title: string;
+  content: string;
+  video_url: string | null;
+  order: number;
+}
+
+export interface Course {
+  id: string;
+  title: string;
+  slug: string;
+  description?: string;
+  difficulty: string;
+  estimated_hours: number;
+  featured: boolean;
+  lesson_count?: number; // returned on list
+  lessons?: Lesson[]; // returned on detail
+}
+
+// tools / knowledge
+export interface Tool {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  website_url: string;
+  logo: string | null;
+  featured: boolean;
+  order: number;
+  category_name: string;
+}
+
+export interface KnowledgeData {
+  courses: Course[];
+  tools: Tool[];
+}

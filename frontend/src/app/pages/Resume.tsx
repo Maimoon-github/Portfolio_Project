@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Download, MapPin, Mail, Github, Linkedin, ExternalLink } from "lucide-react";
-import { PROFILE, SKILLS as STATIC_SKILLS, EXPERIENCE as STATIC_EXPERIENCE, EDUCATION as STATIC_EDUCATION, CERTIFICATIONS as STATIC_CERTIFICATIONS } from "../data";
-import { getResume } from "../services/api";
-import { ResumeData, SkillCategory, Experience, Education, Certification } from "../types/api";
+import { PROFILE } from "../data";
+import { useResume } from "../hooks/useResume";
+import { ResumeData } from "../types/api"; 
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
@@ -25,57 +25,56 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 }
 
 export function Resume() {
-  const [skills, setSkills] = useState<typeof STATIC_SKILLS>(STATIC_SKILLS);
-  const [experience, setExperience] = useState<typeof STATIC_EXPERIENCE>(STATIC_EXPERIENCE);
-  const [education, setEducation] = useState<typeof STATIC_EDUCATION>(STATIC_EDUCATION);
-  const [certifications, setCertifications] = useState<typeof STATIC_CERTIFICATIONS>(STATIC_CERTIFICATIONS);
+  const { resume, loading, error } = useResume();
+
+  const [skills, setSkills] = useState<Record<string, string[]>>({});
+  const [experience, setExperience] = useState<any[]>([]);
+  const [education, setEducation] = useState<any[]>([]);
+  const [certifications, setCertifications] = useState<any[]>([]);
 
   useEffect(() => {
-    getResume()
-      .then((data: ResumeData) => {
-        // convert API payload into frontend shape
-        const sk: typeof STATIC_SKILLS = {} as any;
-        data.skills.forEach((cat) => {
-          sk[cat.name] = cat.skills.map((s) => s.name);
-        });
-        setSkills(sk);
+    if (!resume) return;
+    // transform payload exactly as before
+    const sk: Record<string, string[]> = {};
+    resume.skills.forEach((cat) => {
+      sk[cat.name] = cat.skills.map((s) => s.name);
+    });
+    setSkills(sk);
 
-        const exp = data.experience.map((e) => ({
-          id: e.id,
-          title: e.title,
-          company: e.company,
-          location: e.location,
-          start: new Date(e.start_date).toLocaleDateString("en-US", { month: "short", year: "numeric" }),
-          end: e.current
-            ? "Present"
-            : e.end_date
-            ? new Date(e.end_date).toLocaleDateString("en-US", { month: "short", year: "numeric" })
-            : "",
-          type: e.current ? "Full-time" : "",
-          bullets: e.achievements ? e.achievements.split("\n").map((l) => l.trim()).filter(Boolean) : [],
-        }));
-        setExperience(exp as any);
+    const exp = resume.experience.map((e) => ({
+      id: e.id,
+      title: e.title,
+      company: e.company,
+      location: e.location,
+      start: new Date(e.start_date).toLocaleDateString("en-US", { month: "short", year: "numeric" }),
+      end: e.current
+        ? "Present"
+        : e.end_date
+        ? new Date(e.end_date).toLocaleDateString("en-US", { month: "short", year: "numeric" })
+        : "",
+      type: e.current ? "Full-time" : "",
+      bullets: e.achievements ? e.achievements.split("\n").map((l) => l.trim()).filter(Boolean) : [],
+    }));
+    setExperience(exp);
 
-        const edu = data.education.map((e) => ({
-          id: e.id,
-          degree: e.degree,
-          concentration: "",
-          institution: e.institution,
-          year: e.end_date ? new Date(e.end_date).getFullYear().toString() : "",
-          honors: "",
-        }));
-        setEducation(edu as any);
+    const edu = resume.education.map((e) => ({
+      id: e.id,
+      degree: e.degree,
+      concentration: "",
+      institution: e.institution,
+      year: e.end_date ? new Date(e.end_date).getFullYear().toString() : "",
+      honors: "",
+    }));
+    setEducation(edu);
 
-        const cert = data.certifications.map((c) => ({
-          id: c.id,
-          name: c.name,
-          issuer: c.issuing_organization,
-          year: new Date(c.issue_date).getFullYear().toString(),
-        }));
-        setCertifications(cert as any);
-      })
-      .catch(console.error);
-  }, []);
+    const cert = resume.certifications.map((c) => ({
+      id: c.id,
+      name: c.name,
+      issuer: c.issuing_organization,
+      year: new Date(c.issue_date).getFullYear().toString(),
+    }));
+    setCertifications(cert);
+  }, [resume]);
 
   return (
     <div className="min-h-screen pt-24 pb-20" style={{ background: "#081A04" }}>
