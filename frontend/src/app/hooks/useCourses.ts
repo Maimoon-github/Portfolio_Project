@@ -1,10 +1,10 @@
 import useSWR from "swr";
 import { getCourses, getCourse } from "../services/api";
-import { Course } from "../types/api";
+import { Course, Paginated } from "../types/api";
 
 export function useCourses() {
-  const { data, error } = useSWR<Course[]>("courses", getCourses);
-  return { courses: data || [], loading: !error && !data, error };
+  const { data, error } = useSWR<Paginated<Course>>("courses", getCourses);
+  return { courses: data?.results || [], loading: !error && !data, error };
 }
 
 export function useCourse(slug: string) {

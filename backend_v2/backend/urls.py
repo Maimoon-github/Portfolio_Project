@@ -64,11 +64,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('admin', RedirectView.as_view(url='/admin/', permanent=True)), # Optional: uncomment if you want /admin to redirect to /admin/
-    path('api/projects/', include('apps.projects.urls')),
-    path('api/blog/', include('apps.blog.urls')),
-    path('api/resume/', include('apps.resume.urls')),
-    path('api/contact/', include('apps.contact.urls')),
-    path('api/knowledge/', include('apps.knowledge.urls')),
+    path('api/', include('api.urls')),
 ]
 
 # 2. Debug Toolbar (only in DEBUG mode)
