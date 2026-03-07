@@ -17,9 +17,9 @@ class PostImageSerializer(serializers.ModelSerializer):
         fields = ['image', 'caption', 'alt_text']
 
 class PostListSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(read_only=True)
-    tags = TagSerializer(many=True, read_only=True)
-    published_date = serializers.DateTimeField(source='created_at', read_only=True)
+    category = serializers.CharField(source='category.name', read_only=True)
+    tags = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')
+    published_date = serializers.DateTimeField(source='created_at', format='%B %d, %Y', read_only=True)
 
     class Meta:
         model = Post
@@ -30,10 +30,10 @@ class PostListSerializer(serializers.ModelSerializer):
         ]
 
 class PostDetailSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(read_only=True)
-    tags = TagSerializer(many=True, read_only=True)
+    category = serializers.CharField(source='category.name', read_only=True)
+    tags = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')
     images = PostImageSerializer(many=True, read_only=True)
-    published_date = serializers.DateTimeField(source='created_at', read_only=True)
+    published_date = serializers.DateTimeField(source='created_at', format='%B %d, %Y', read_only=True)
     author = serializers.SerializerMethodField()
 
     class Meta:

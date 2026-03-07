@@ -34,15 +34,12 @@ export function clearTokens() {
   localStorage.removeItem("token_pair");
 }
 
-// extend HeadersInit so we can index safely
-export interface ApiHeaders extends HeadersInit {
-  Authorization?: string;
-}
+export type ApiHeaders = Record<string, string>;
 
 // wrapper around fetch that adds authorization header if we have a token
 async function apiFetch(input: RequestInfo, init: RequestInit = {}) {
   const tokens = getTokens();
-  const headers: ApiHeaders = (init.headers as ApiHeaders) || {};
+  const headers = (init.headers as ApiHeaders) || {};
   if (tokens?.access) {
     headers.Authorization = `Bearer ${tokens.access}`;
   }
@@ -122,7 +119,7 @@ export async function getResume(): Promise<ResumeData> {
   return res.json();
 }
 
-export async function getCourses(): Promise<Course[]> {
+export async function getCourses(): Promise<Paginated<Course>> {
   const res = await apiFetch(`${API_BASE}/knowledge/courses/`);
   if (!res.ok) throw new Error(`Failed to load courses`);
   return res.json();

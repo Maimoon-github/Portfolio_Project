@@ -28,7 +28,7 @@ export default defineConfig({
   },
   build: {
     // Output built files directly into Django's static directory
-    outDir: '../backend/static',
+    outDir: '../backend_v2/static',
     emptyOutDir: true, // Clean the directory before each build
     rollupOptions: {
       output: {
