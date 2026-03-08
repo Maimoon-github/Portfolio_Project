@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ post.seo_title }} — Blog Platform{% endblock %}
+
+{% block canonical_url %}
+<link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ post.get_absolute_url }}">
+{% endblock %}
+
+{% block content %}
+<article class="post-detail">
+    {# Hero / Featured image #}
+    {% if post.featured_image %}
+        <div class="post-hero">
+            <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+        </div>
+    {% endif %}
+
+    <header class="post-header">
+        <h1>{{ post.title }}</h1>
+        <p class="post-meta">
+            By <a href="{% url 'accounts:profile' username=post.author.username %}">{{ post.author.username }}</a>
+            &middot; {{ post.publish_date|date:"F d, Y" }}
+            {% if post.category %}
+                &middot; <a href="{{ post.category.get_absolute_url }}">{{ post.category.name }}</a>
+            {% endif %}
+            &middot; {{ post.view_count }} view{{ post.view_count|pluralize }}
+        </p>
+
+        {% if post.tags.all %}
+        <div class="tags">
+            {% for tag in post.tags.all %}
+                <a href="{{ tag.get_absolute_url }}" class="tag">{{ tag.name }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </header>
+
+    {# Draft banner for staff preview #}
+    {% if post.status == "draft" %}
+        <div class="alert alert-warning">This post is a <strong>draft</strong> and is not publicly visible.</div>
+    {% elif post.status == "scheduled" %}
+        <div class="alert alert-info">This post is <strong>scheduled</strong> for {{ post.publish_date|date:"F d, Y H:i" }}.</div>
+    {% endif %}
+
+    <div class="post-content">
+        {{ post.content|linebreaks }}
+    </div>
+
+    {# Author box #}
+    <div class="author-box">
+        {% if post.author.profile.avatar %}
+            <img src="{{ post.author.profile.avatar.url }}" alt="{{ post.author.username }}" class="avatar-sm">
+        {% endif %}
+        <div>
+            <strong><a href="{% url 'accounts:profile' username=post.author.username %}">{{ post.author.username }}</a></strong>
+            {% if post.author.profile.bio %}
+                <p>{{ post.author.profile.bio|truncatewords:30 }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    {# Related posts #}
+    {% if related_posts %}
+    <section class="related-posts">
+        <h2>Related Posts</h2>
+        <div class="post-grid">
+            {% for rp in related_posts %}
+            <div class="post-card-sm">
+                <h3><a href="{{ rp.get_absolute_url }}">{{ rp.title }}</a></h3>
+                <span class="post-meta">{{ rp.publish_date|date:"M d, Y" }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    {# ── Comments section ── #}
+    <section class="comments-section" id="comments">
+        <h2>Comments ({{ comments|length }})</h2>
+
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'comments:add_comment' post_id=post.pk %}" class="comment-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <textarea name="content" rows="4" class="form-control"
+                              placeholder="Write your comment…" required maxlength="2000"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Post Comment</button>
+            </form>
+        {% else %}
+            <p><a href="{% url 'accounts:login' %}">Login</a> to leave a comment.</p>
+        {% endif %}
+
+        {% if comments %}
+            <div class="comments-list">
+                {% for comment in comments %}
+                <div class="comment" id="comment-{{ comment.pk }}">
+                    <div class="comment-header">
+                        <strong>
+                            <a href="{% url 'accounts:profile' username=comment.user.username %}">{{ comment.user.username }}</a>
+                        </strong>
+                        <time>{{ comment.created_at|date:"M d, Y H:i" }}</time>
+                    </div>
+                    <div class="comment-body">
+                        {{ comment.content|linebreaks }}
+                    </div>
+                    {% if user == comment.user or user.is_staff %}
+                        <a href="{% url 'comments:delete' comment_id=comment.pk %}" class="btn-delete"
+                           onclick="return confirm('Delete this comment?');">Delete</a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No comments yet. Be the first to comment!</p>
+        {% endif %}
+    </section>
+</article>
+{% endblock %}
