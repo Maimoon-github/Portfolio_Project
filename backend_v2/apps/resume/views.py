@@ -3,7 +3,9 @@ from rest_framework.response import Response
 from core.permissions import IsAdminOrReadOnly
 from .models import SkillCategory, Experience, Education, Certification
 from .serializers import ResumeSerializer
+from drf_spectacular.utils import extend_schema
 
+@extend_schema(responses=ResumeSerializer)
 class ResumeView(APIView):
     """
     Read-only endpoint that aggregates all resume sections into a single payload.

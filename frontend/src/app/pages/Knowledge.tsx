@@ -6,7 +6,7 @@ import { CourseCard } from "../components/CourseCard";
 export function Knowledge() {
   const knowledge = useKnowledge();
   return (
-    <div className="min-h-screen pt-24 pb-20" style={{ background: "#081A04" }}>
+    <div className="min-h-screen" style={{ background: "#081A04" }}>
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="mb-12">

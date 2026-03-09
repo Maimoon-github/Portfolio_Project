@@ -1,16 +1,186 @@
-// centralized API helper functions and types
+// // centralized API helper functions and types
+// import { API_BASE } from "../config";
+// import {
+//   Project,
+//   Paginated,
+//   BlogPost,
+//   ResumeData,
+//   Course,
+//   Tool,
+//   KnowledgeData,
+// } from "../types/api";
+
+// // we store tokens in localStorage for simplicity
+// export interface TokenPair {
+//   access: string;
+//   refresh: string;
+// }
+
+// export function saveTokens(tokens: TokenPair) {
+//   localStorage.setItem("token_pair", JSON.stringify(tokens));
+// }
+
+// export function getTokens(): TokenPair | null {
+//   const s = localStorage.getItem("token_pair");
+//   if (!s) return null;
+//   try {
+//     return JSON.parse(s);
+//   } catch {
+//     return null;
+//   }
+// }
+
+// export function clearTokens() {
+//   localStorage.removeItem("token_pair");
+// }
+
+// export type ApiHeaders = Record<string, string>;
+
+// // wrapper around fetch that adds authorization header if we have a token
+// async function apiFetch(input: RequestInfo, init: RequestInit = {}) {
+//   const tokens = getTokens();
+//   const headers = (init.headers as ApiHeaders) || {};
+//   if (tokens?.access) {
+//     headers.Authorization = `Bearer ${tokens.access}`;
+//   }
+//   const res = await fetch(input, { ...init, headers });
+//   if (res.status === 401 && tokens?.refresh) {
+//     // try refresh token
+//     const refreshRes = await fetch(`${API_BASE}/auth/token/refresh/`, {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ refresh: tokens.refresh }),
+//     });
+//     if (refreshRes.ok) {
+//       const data = await refreshRes.json();
+//       saveTokens({ access: data.access, refresh: tokens.refresh });
+//       headers.Authorization = `Bearer ${data.access}`;
+//       return fetch(input, { ...init, headers });
+//     } else {
+//       clearTokens();
+//     }
+//   }
+//   return res;
+// }
+
+// // helper to build query strings
+// function qs(params: Record<string, string | undefined>) {
+//   const s = new URLSearchParams();
+//   Object.entries(params).forEach(([k, v]) => {
+//     if (v !== undefined && v !== "") s.append(k, v);
+//   });
+//   return s.toString();
+// }
+
+// export async function login(username: string, password: string): Promise<void> {
+//   const res = await fetch(`${API_BASE}/auth/token/`, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({ username, password }),
+//   });
+//   if (!res.ok) throw new Error("Login failed");
+//   const data = await res.json();
+//   saveTokens({ access: data.access, refresh: data.refresh });
+// }
+
+// export function logout() {
+//   clearTokens();
+// }
+
+// export async function getProjects(category?: string): Promise<Paginated<Project>> {
+//   const query = qs({ category });
+//   const res = await apiFetch(`${API_BASE}/projects/${query ? `?${query}` : ""}`);
+//   if (!res.ok) throw new Error(`Failed to load projects (${res.status})`);
+//   return res.json();
+// }
+
+// export async function getProject(id: string): Promise<Project> {
+//   const res = await apiFetch(`${API_BASE}/projects/${id}/`);
+//   if (!res.ok) throw new Error(`Failed to load project ${id}`);
+//   return res.json();
+// }
+
+// export async function getBlogPosts(category?: string): Promise<Paginated<BlogPost>> {
+//   const query = qs({ category });
+//   const res = await apiFetch(`${API_BASE}/blog/${query ? `?${query}` : ""}`);
+//   if (!res.ok) throw new Error(`Failed to load blog posts (${res.status})`);
+//   return res.json();
+// }
+
+// export async function getBlogPost(id: string): Promise<BlogPost> {
+//   const res = await apiFetch(`${API_BASE}/blog/${id}/`);
+//   if (!res.ok) throw new Error(`Failed to load blog post ${id}`);
+//   return res.json();
+// }
+
+// export async function getResume(): Promise<ResumeData> {
+//   const res = await apiFetch(`${API_BASE}/resume/`);
+//   if (!res.ok) throw new Error(`Failed to load resume`);
+//   return res.json();
+// }
+
+// export async function getCourses(): Promise<Paginated<Course>> {
+//   const res = await apiFetch(`${API_BASE}/knowledge/courses/`);
+//   if (!res.ok) throw new Error(`Failed to load courses`);
+//   return res.json();
+// }
+
+// export async function getCourse(slug: string): Promise<Course> {
+//   const res = await apiFetch(`${API_BASE}/knowledge/courses/${slug}/`);
+//   if (!res.ok) throw new Error(`Failed to load course ${slug}`);
+//   return res.json();
+// }
+
+// export async function getTools(): Promise<Tool[]> {
+//   const res = await apiFetch(`${API_BASE}/knowledge/tools/`);
+//   if (!res.ok) throw new Error(`Failed to load tools`);
+//   return res.json();
+// }
+
+// export async function getKnowledge(): Promise<KnowledgeData> {
+//   const res = await apiFetch(`${API_BASE}/knowledge/`);
+//   if (!res.ok) throw new Error(`Failed to load knowledge overview`);
+//   return res.json();
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import { API_BASE } from "../config";
 import {
-  Project,
+  ProjectList,
+  ProjectDetail,
   Paginated,
-  BlogPost,
+  PostList,
+  PostDetail,
   ResumeData,
-  Course,
+  CourseList,
+  CourseDetail,
   Tool,
   KnowledgeData,
+  Contact,
 } from "../types/api";
 
-// we store tokens in localStorage for simplicity
+// Token handling remains unchanged
 export interface TokenPair {
   access: string;
   refresh: string;
@@ -36,7 +206,6 @@ export function clearTokens() {
 
 export type ApiHeaders = Record<string, string>;
 
-// wrapper around fetch that adds authorization header if we have a token
 async function apiFetch(input: RequestInfo, init: RequestInit = {}) {
   const tokens = getTokens();
   const headers = (init.headers as ApiHeaders) || {};
@@ -45,7 +214,6 @@ async function apiFetch(input: RequestInfo, init: RequestInit = {}) {
   }
   const res = await fetch(input, { ...init, headers });
   if (res.status === 401 && tokens?.refresh) {
-    // try refresh token
     const refreshRes = await fetch(`${API_BASE}/auth/token/refresh/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -63,7 +231,6 @@ async function apiFetch(input: RequestInfo, init: RequestInit = {}) {
   return res;
 }
 
-// helper to build query strings
 function qs(params: Record<string, string | undefined>) {
   const s = new URLSearchParams();
   Object.entries(params).forEach(([k, v]) => {
@@ -72,6 +239,7 @@ function qs(params: Record<string, string | undefined>) {
   return s.toString();
 }
 
+// Authentication
 export async function login(username: string, password: string): Promise<void> {
   const res = await fetch(`${API_BASE}/auth/token/`, {
     method: "POST",
@@ -87,45 +255,49 @@ export function logout() {
   clearTokens();
 }
 
-export async function getProjects(category?: string): Promise<Paginated<Project>> {
+// Projects
+export async function getProjects(category?: string): Promise<Paginated<ProjectList>> {
   const query = qs({ category });
   const res = await apiFetch(`${API_BASE}/projects/${query ? `?${query}` : ""}`);
   if (!res.ok) throw new Error(`Failed to load projects (${res.status})`);
   return res.json();
 }
 
-export async function getProject(id: string): Promise<Project> {
-  const res = await apiFetch(`${API_BASE}/projects/${id}/`);
-  if (!res.ok) throw new Error(`Failed to load project ${id}`);
+export async function getProject(slug: string): Promise<ProjectDetail> {
+  const res = await apiFetch(`${API_BASE}/projects/${slug}/`);
+  if (!res.ok) throw new Error(`Failed to load project ${slug}`);
   return res.json();
 }
 
-export async function getBlogPosts(category?: string): Promise<Paginated<BlogPost>> {
+// Blog
+export async function getBlogPosts(category?: string): Promise<Paginated<PostList>> {
   const query = qs({ category });
   const res = await apiFetch(`${API_BASE}/blog/${query ? `?${query}` : ""}`);
   if (!res.ok) throw new Error(`Failed to load blog posts (${res.status})`);
   return res.json();
 }
 
-export async function getBlogPost(id: string): Promise<BlogPost> {
-  const res = await apiFetch(`${API_BASE}/blog/${id}/`);
-  if (!res.ok) throw new Error(`Failed to load blog post ${id}`);
+export async function getBlogPost(slug: string): Promise<PostDetail> {
+  const res = await apiFetch(`${API_BASE}/blog/${slug}/`);
+  if (!res.ok) throw new Error(`Failed to load blog post ${slug}`);
   return res.json();
 }
 
+// Resume
 export async function getResume(): Promise<ResumeData> {
   const res = await apiFetch(`${API_BASE}/resume/`);
   if (!res.ok) throw new Error(`Failed to load resume`);
   return res.json();
 }
 
-export async function getCourses(): Promise<Paginated<Course>> {
+// Knowledge
+export async function getCourses(): Promise<Paginated<CourseList>> {
   const res = await apiFetch(`${API_BASE}/knowledge/courses/`);
   if (!res.ok) throw new Error(`Failed to load courses`);
   return res.json();
 }
 
-export async function getCourse(slug: string): Promise<Course> {
+export async function getCourse(slug: string): Promise<CourseDetail> {
   const res = await apiFetch(`${API_BASE}/knowledge/courses/${slug}/`);
   if (!res.ok) throw new Error(`Failed to load course ${slug}`);
   return res.json();
@@ -140,5 +312,16 @@ export async function getTools(): Promise<Tool[]> {
 export async function getKnowledge(): Promise<KnowledgeData> {
   const res = await apiFetch(`${API_BASE}/knowledge/`);
   if (!res.ok) throw new Error(`Failed to load knowledge overview`);
+  return res.json();
+}
+
+// Contact – NEW
+export async function submitContact(data: Contact): Promise<Contact> {
+  const res = await apiFetch(`${API_BASE}/contact/`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) throw new Error('Failed to send message');
   return res.json();
 }

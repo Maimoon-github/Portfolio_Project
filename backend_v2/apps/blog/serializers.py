@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from .models import Category, Tag, Post, PostImage
-from drf_spectacular.utils import extend_schema_serializer
+from drf_spectacular.utils import extend_schema_serializer, extend_schema_field
 
 
 User = get_user_model()

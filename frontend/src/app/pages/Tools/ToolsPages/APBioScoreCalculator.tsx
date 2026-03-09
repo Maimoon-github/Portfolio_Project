@@ -344,8 +344,8 @@ const APBioScoreCalculator: FC = () => {
 
       <div className="apb-grid-bg" />
 
-      <div className="apb-root" style={{ position: "relative", zIndex: 1, opacity: mounted ? 1 : 0, transition: "opacity 0.3s ease" }}>
-        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+      <div className="apb-root" style={{ background: "#081A04", minHeight: 0 }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto", padding: "0 1rem 2rem" }}>
 
           {/* ── Header ── */}
           <div className="apb-fadein" style={{ textAlign: "center", marginBottom: "2.5rem" }}>

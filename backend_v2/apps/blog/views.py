@@ -17,15 +17,19 @@ from .filters import PostFilter
 # ----------------------------------------------------------------------
 
 class APIPostListView(generics.ListAPIView):
-    """
-    List published posts with filtering and pagination (API endpoint).
-    """
-    queryset = Post.published.all()  # uses the published manager
+    queryset = Post.published.all()
     serializer_class = PostListSerializer
     permission_classes = [IsAdminOrReadOnly]
     pagination_class = StandardPagination
     filter_backends = [DjangoFilterBackend]
     filterset_class = PostFilter
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        print(f"API queryset count: {qs.count()}")
+        for p in qs[:3]:
+            print(f"  - {p.title} (id={p.id}, slug={p.slug}, published={p.publish_date})")
+        return qs
 
 
 class APIPostDetailView(generics.RetrieveAPIView):
