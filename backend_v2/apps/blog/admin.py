@@ -18,23 +18,20 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    # Combined list display from both versions
     list_display = (
         "title", "author", "category", "status",
-        "publish_date", "published_date", "featured",
-        "read_time", "view_count"
+        "publish_date", "featured", "read_time", "view_count"
     )
     list_filter = ("status", "publish_date", "category", "author")
     search_fields = ("title", "content")
     prepopulated_fields = {"slug": ("title",)}
     raw_id_fields = ("author",)
-    date_hierarchy = "publish_date"          # from second version
-    ordering = ("-publish_date",)             # from second version
-    filter_horizontal = ("tags",)             # common
+    date_hierarchy = "publish_date"
+    ordering = ("-publish_date",)
+    filter_horizontal = ("tags",)
     readonly_fields = ("view_count", "created_at", "updated_at")
-    actions = ["bulk_publish"]                # from first version
+    actions = ["bulk_publish"]
 
-    # Enhanced field layout from second version, extended with first version's fields
     fieldsets = (
         (None, {
             "fields": ("title", "slug", "author", "content", "excerpt", "featured_image"),
@@ -43,7 +40,7 @@ class PostAdmin(admin.ModelAdmin):
             "fields": ("category", "tags"),
         }),
         ("Publishing", {
-            "fields": ("status", "publish_date", "published_date", "featured"),
+            "fields": ("status", "publish_date", "featured"),
         }),
         ("SEO", {
             "classes": ("collapse",),
@@ -56,17 +53,15 @@ class PostAdmin(admin.ModelAdmin):
     )
 
     def bulk_publish(self, request, queryset):
-        """Publish selected posts by setting their published_date to now."""
-        queryset.update(published_date=timezone.now())
-        self.message_user(request, f"{queryset.count()} posts published.")
+        """Publish selected posts by setting status and publish_date to now."""
+        updated = queryset.update(status='published', publish_date=timezone.now())
+        self.message_user(request, f"{updated} posts published.")
     bulk_publish.short_description = "Publish selected posts"
 
     def save_model(self, request, obj, form, change):
-        """Automatically set the author for new posts."""
         if not change:  # New post
             obj.author = request.user
         super().save_model(request, obj, form, change)
 
 
-# Simple registration for PostImage (from first version)
 admin.site.register(PostImage)
