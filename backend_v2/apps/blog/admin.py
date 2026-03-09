@@ -29,7 +29,7 @@ class PostAdmin(admin.ModelAdmin):
     date_hierarchy = "publish_date"
     ordering = ("-publish_date",)
     filter_horizontal = ("tags",)
-    readonly_fields = ("view_count", "created_at", "updated_at")
+    readonly_fields = ("view_count", "created_at", "updated_at", "read_time")
     actions = ["bulk_publish"]
 
     fieldsets = (
@@ -42,10 +42,10 @@ class PostAdmin(admin.ModelAdmin):
         ("Publishing", {
             "fields": ("status", "publish_date", "featured"),
         }),
-        ("SEO", {
-            "classes": ("collapse",),
-            "fields": ("meta_title", "meta_description"),
-        }),
+        # ("SEO", {
+        #     "classes": ("collapse",),
+        #     "fields": ("meta_title", "meta_description"),
+        # }),
         ("Stats", {
             "classes": ("collapse",),
             "fields": ("view_count", "created_at", "updated_at", "read_time"),

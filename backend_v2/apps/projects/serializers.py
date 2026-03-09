@@ -13,8 +13,8 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class ProjectImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ProjectImageProjectListSerializer
-        fields = ['image']  # image URL automatically serialized
+        model = ProjectImage  # was ProjectImageProjectListSerializer
+        fields = ['image']
 
 class ProjectListSerializer(serializers.ModelSerializer):
     tags = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')

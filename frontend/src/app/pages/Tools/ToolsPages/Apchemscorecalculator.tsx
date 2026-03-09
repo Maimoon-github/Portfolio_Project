@@ -234,10 +234,7 @@ export default function APChemScoreCalculator() {
         .card-entrance { animation: fadeUp 0.5s ease both; }
       `}</style>
 
-      <div style={{
-        minHeight: "100vh", background: "#081A04", fontFamily: "'Space Grotesk', sans-serif",
-        padding: "40px 16px 80px", position: "relative", overflow: "hidden"
-      }}>
+      <div style={{ maxWidth: 860, margin: "0 auto", position: "relative", zIndex: 1 }}>
         {/* Grid background */}
         <div style={{
           position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0,

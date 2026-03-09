@@ -297,7 +297,7 @@ export default function APCalcBCCalculator() {
         }} />
       </div>
 
-      <div style={{ position: "relative", zIndex: 1, maxWidth: 900, margin: "0 auto", padding: "48px 24px 80px" }}>
+            <div style={{ position: "relative", zIndex: 1, maxWidth: 900, margin: "0 auto", padding: "0 24px 80px" }}>
 
         {/* Header */}
         <div style={{ marginBottom: 48, animation: "fadeDown 0.6s ease both" }}>

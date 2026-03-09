@@ -51,7 +51,6 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description List published posts with filtering and pagination. */
         get: operations["api_v1_blog_list"];
         put?: never;
         post?: never;
@@ -68,7 +67,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description Retrieve a single published post by slug. */
+        /** @description Retrieve a single published post by slug (API endpoint). */
         get: operations["api_v1_blog_retrieve"];
         put?: never;
         post?: never;
@@ -85,7 +84,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** @description List up to 3 related posts based on shared categories or tags. */
+        /** @description List up to 3 related posts based on shared category or tags (API endpoint). */
         get: operations["api_v1_blog_related_list"];
         put?: never;
         post?: never;
@@ -276,9 +275,28 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** @description Serializer for the Category model (read‑only). */
         Category: {
+            readonly id: number;
             name: string;
             slug?: string;
+            description?: string;
+        };
+        Certification: {
+            readonly id: number;
+            readonly name: string;
+            readonly issuing_organization: string;
+            /** Format: date */
+            readonly issue_date: string;
+            /** Format: date */
+            readonly expiration_date: string | null;
+            readonly credential_id: string;
+            /**
+             * Verification URL
+             * Format: uri
+             */
+            readonly credential_url: string;
+            readonly order: number;
         };
         Contact: {
             name: string;
@@ -319,6 +337,36 @@ export interface components {
          * @enum {string}
          */
         DifficultyEnum: "beginner" | "intermediate" | "advanced";
+        Education: {
+            readonly id: number;
+            readonly degree: string;
+            readonly institution: string;
+            readonly location: string;
+            /** Format: date */
+            readonly start_date: string;
+            /** Format: date */
+            readonly end_date: string | null;
+            /** @description Additional details (honors, thesis, etc.) */
+            readonly description: string;
+            readonly order: number;
+        };
+        Experience: {
+            readonly id: number;
+            readonly title: string;
+            readonly company: string;
+            readonly location: string;
+            /** Format: date */
+            readonly start_date: string;
+            /** Format: date */
+            readonly end_date: string | null;
+            /** @description Currently working here */
+            readonly current: boolean;
+            readonly description: string;
+            /** @description Key accomplishments (bullet points) */
+            readonly achievements: string;
+            /** @description Display order (newest first) */
+            readonly order: number;
+        };
         /** @description Aggregate endpoint returning both courses and tools for a single payload. */
         Knowledge: {
             readonly courses: components["schemas"]["CourseList"][];
@@ -428,42 +476,85 @@ export interface components {
             featured_image?: string | null;
             readonly images?: components["schemas"]["ProjectImage"][];
         };
+        /**
+         * @description Detailed serializer for single post view (APIPostDetailView).
+         *     Includes full content, all images, and SEO fields.
+         */
         PostDetail: {
             readonly id: number;
             title: string;
             slug?: string;
-            /** @description Short summary for lists */
-            excerpt: string;
-            body: string;
+            readonly author: components["schemas"]["User"];
+            readonly category: components["schemas"]["Category"];
+            readonly tags: components["schemas"]["Tag"][];
+            /** @description Main post content (HTML sanitized on save) */
+            content: string;
+            /** @description Short summary for listings and SEO (auto-generated if blank). */
+            excerpt?: string;
+            /** Format: uri */
+            featured_image?: string;
             /** Format: date-time */
-            readonly published_date: string;
-            /** @description Estimated reading time in minutes */
-            read_time: number;
-            readonly category: string;
-            readonly tags: string[];
-            readonly author: string;
+            publish_date?: string;
+            /** @description Mark as featured post */
+            featured?: boolean;
+            /** @description Estimated reading time in minutes (auto-calculated) */
+            readonly read_time: number;
+            readonly view_count: number;
+            /** Format: date-time */
+            readonly created_at: string;
+            /** Format: date-time */
+            readonly updated_at: string;
+            meta_title?: string;
+            readonly meta_description: string;
+            /** @description List of gallery images ordered by the 'order' field. */
             readonly images: components["schemas"]["PostImage"][];
         };
+        /** @description Serializer for the PostImage model (gallery images). */
         PostImage: {
+            readonly id: number;
             /** Format: uri */
             image: string;
             /** @description Optional caption text */
             caption?: string;
+            /** @description Alternative text for accessibility */
             alt_text?: string;
+            /** @description Display order (ascending) */
+            order?: number;
         };
+        /**
+         * @description Lightweight serializer for list views (APIPostListView, APIRelatedPostsView).
+         *     Includes nested author, category, tags, and a computed image count.
+         */
         PostList: {
             readonly id: number;
             title: string;
             slug?: string;
-            /** @description Short summary for lists */
-            excerpt: string;
+            readonly author: components["schemas"]["User"];
+            readonly category: components["schemas"]["Category"];
+            readonly tags: components["schemas"]["Tag"][];
+            /** @description Short summary for listings and SEO (auto-generated if blank). */
+            excerpt?: string;
+            /** Format: uri */
+            featured_image?: string;
             /** Format: date-time */
-            readonly published_date: string;
-            /** @description Estimated reading time in minutes */
-            read_time: number;
-            readonly category: string;
-            readonly tags: string[];
+            publish_date?: string;
+            /** @description Mark as featured post */
+            featured?: boolean;
+            /** @description Estimated reading time in minutes (auto-calculated) */
+            readonly read_time: number;
+            readonly view_count: number;
+            /** @description Number of additional images in the gallery. */
+            readonly image_count: number;
         };
+        /**
+         * @description * `1` - Beginner
+         *     * `2` - Elementary
+         *     * `3` - Intermediate
+         *     * `4` - Advanced
+         *     * `5` - Expert
+         * @enum {integer}
+         */
+        ProficiencyEnum: 1 | 2 | 3 | 4 | 5;
         ProjectDetail: {
             readonly id: number;
             title: string;
@@ -542,6 +633,43 @@ export interface components {
          * @enum {string}
          */
         ResourceTypeEnum: "article" | "video" | "book" | "course" | "tool";
+        Resume: {
+            readonly skills: components["schemas"]["SkillCategory"][];
+            readonly experience: components["schemas"]["Experience"][];
+            readonly education: components["schemas"]["Education"][];
+            readonly certifications: components["schemas"]["Certification"][];
+        };
+        Skill: {
+            readonly id: number;
+            readonly name: string;
+            /**
+             * @description Self-rated proficiency level
+             *
+             *     * `1` - Beginner
+             *     * `2` - Elementary
+             *     * `3` - Intermediate
+             *     * `4` - Advanced
+             *     * `5` - Expert
+             */
+            readonly proficiency: components["schemas"]["ProficiencyEnum"];
+            /** @description Icon class name (e.g., Font Awesome) */
+            readonly icon: string;
+            readonly order: number;
+        };
+        SkillCategory: {
+            readonly id: number;
+            readonly name: string;
+            readonly description: string;
+            /** @description Display order */
+            readonly order: number;
+            readonly skills: components["schemas"]["Skill"][];
+        };
+        /** @description Serializer for the Tag model (read‑only). */
+        Tag: {
+            readonly id: number;
+            name: string;
+            slug?: string;
+        };
         TokenObtainPair: {
             username: string;
             password: string;
@@ -564,6 +692,14 @@ export interface components {
             readonly featured: boolean;
             readonly order: number;
             readonly category_name: string;
+        };
+        /** @description Minimal serializer for the User model (author). */
+        User: {
+            readonly id: number;
+            /** @description Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only. */
+            username: string;
+            first_name?: string;
+            last_name?: string;
         };
     };
     responses: never;
@@ -627,13 +763,19 @@ export interface operations {
     api_v1_blog_list: {
         parameters: {
             query?: {
+                /** @description Filter by author ID. */
+                author?: number;
+                /** @description Filter by category slug (exact match). */
                 category?: string;
-                date_after?: string;
-                date_before?: string;
+                /** @description Filter by featured status (true/false). */
+                featured?: boolean;
                 /** @description A page number within the paginated result set. */
                 page?: number;
-                /** @description Search */
-                q?: string;
+                /** @description Filter posts published on or after this date (ISO format). */
+                published_after?: string;
+                /** @description Filter posts published on or before this date (ISO format). */
+                published_before?: string;
+                /** @description Filter by tag slug (exact match). */
                 tag?: string;
             };
             header?: never;
@@ -976,12 +1118,13 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description No response body */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["Resume"];
+                };
             };
         };
     };
