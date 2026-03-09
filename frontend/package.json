@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npm run postbuild",
-    "postbuild": "mkdir -p ../backend/templates && mv ../backend/static/index.html ../backend/templates/index.html",
+    "build": "vite build",
+    "postbuild": "if exist ..\\backend_v2\\static\\index.html ( copy ..\\backend_v2\\static\\index.html ..\\backend_v2\\templates\\index.html /Y && del ..\\backend_v2\\static\\index.html )",
+    "preview": "vite preview",
     "gen:types": "openapi-typescript http://localhost:8000/api/schema/ -o src/types/generated.ts"
   },
   "dependencies": {

@@ -1,15 +1,16 @@
-# backend/settings/development.py
+"""
+Django development settings.
+"""
 from .base import *
-from decouple import config
 
 DEBUG = True
-
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
-# SQLite (already configured in base, keep as is)
-# Use SQLite in development as per spec
+# Debug Toolbar
+INSTALLED_APPS += ['debug_toolbar']
+MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
+INTERNAL_IPS = ['127.0.0.1']
 
-# Debug Toolbar Configuration
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }
@@ -30,13 +31,8 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.redirects.RedirectsPanel',
 ]
 
-# Add Toolbar to Apps and Middleware
-INSTALLED_APPS += ['debug_toolbar']
-MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
-INTERNAL_IPS = ['127.0.0.1']
-
-# CORS permissive for React development
+# Permissive CORS for React development
 CORS_ALLOW_ALL_ORIGINS = True
 
-# Optional: disable password validators in dev for simplicity
+# Disable password validators in development
 AUTH_PASSWORD_VALIDATORS = []
