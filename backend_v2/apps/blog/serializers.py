@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from .models import Category, Tag, Post, PostImage
+from drf_spectacular.utils import extend_schema_serializer
+
 
 User = get_user_model()
 
@@ -37,13 +39,21 @@ class PostImageSerializer(serializers.ModelSerializer):
         fields = ['id', 'image', 'caption', 'alt_text', 'order']
 
 
+# class PostListSerializer(serializers.ModelSerializer):
+@extend_schema_serializer(component_name='PostList')
 class PostListSerializer(serializers.ModelSerializer):
     """
     Lightweight serializer for list views (APIPostListView, APIRelatedPostsView).
     Includes nested author, category, tags, and a computed image count.
     """
     author = UserSerializer(read_only=True)
-    category = CategorySerializer(read_only=True)
+    # category = CategorySerializer(read_only=True)
+    category = serializers.SerializerMethodField()
+
+    @extend_schema_field(CategorySerializer)
+    def get_category(self, obj):
+        return CategorySerializer(obj.category).data
+        
     tags = TagSerializer(many=True, read_only=True)
     image_count = serializers.IntegerField(
         source='images.count',
