@@ -13,7 +13,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class ProjectImageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ProjectImage
+        model = ProjectImageProjectListSerializer
         fields = ['image']  # image URL automatically serialized
 
 class ProjectListSerializer(serializers.ModelSerializer):
