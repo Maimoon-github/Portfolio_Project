@@ -235,3 +235,37 @@ db.sqlite3
 Thumbs.db
 
 .venv/
+
+# Render
+.render/
+
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Django
+db.sqlite3
+*.log
+
+# Node
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Large files
+*.zip
+*.rar
+*.7z
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
