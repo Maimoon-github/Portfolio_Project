@@ -211,6 +211,27 @@ test-results/
 # ─────────────────────────────────────────────────────────────
 # End of file
 
+# Large files
+*.zip
+WebSite.zip
+*.7z
+*.rar
 
+# Build folders (never commit these)
+frontend/dist/
+frontend/node_modules/
+staticfiles/
+__pycache__/
+*.pyc
+
+# Database & env
+db.sqlite3
+.env
+*.log
+
+# OS/IDE
+.vscode/
+.DS_Store
+Thumbs.db
 
 .venv/
