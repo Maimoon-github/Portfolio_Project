@@ -1,143 +1,88 @@
-# """
-# Django production settings – using SQLite.
-# """
-# from .base import *
-# from decouple import config
-# import sentry_sdk
-# from sentry_sdk.integrations.django import DjangoIntegration
-
-# DEBUG = False
-# ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
-
-# # SQLite Database (still using SQLite – not recommended for high‑traffic production)
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# # WhiteNoise for static files
-# MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# # Security settings for HTTPS
-# SECURE_SSL_REDIRECT = True
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-# SECURE_HSTS_SECONDS = 31536000
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_HSTS_PRELOAD = True
-# SECURE_CONTENT_TYPE_NOSNIFF = True
-# SECURE_BROWSER_XSS_FILTER = True
-# X_FRAME_OPTIONS = 'DENY'
-
-# # Sentry error tracking (optional)
-# sentry_sdk.init(
-#     dsn=config('SENTRY_DSN', default=''),
-#     integrations=[DjangoIntegration()],
-#     traces_sample_rate=config('SENTRY_TRACES_SAMPLE_RATE', default=0.1, cast=float),
-#     send_default_pii=True,
-#     environment='production',
-# )
-
-# # CORS for production
-# CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', cast=lambda v: [s.strip() for s in v.split(',')])
-
-# # React build output
-# FRONTEND_DIR = BASE_DIR.parent / 'frontend'
-# REACT_BUILD_DIR = FRONTEND_DIR / 'dist'
-
-# STATICFILES_DIRS = [
-#     BASE_DIR / 'static',
-#     REACT_BUILD_DIR / 'assets',
-# ]
-# TEMPLATES[0]['DIRS'] = [BASE_DIR / 'templates', REACT_BUILD_DIR]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# File: Portfolio_Project/backend_v2/backend/settings/production.py
 """
-Django production settings.
+Django production settings for Docker deployment on local machine.
 """
 from .base import *
 import os
 
 DEBUG = False
 
-# ALLOWED_HOSTS - Render will add its hostname automatically
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-ALLOWED_HOSTS = ['.onrender.com']
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-# Add your real domain later:
-# ALLOWED_HOSTS += ['yourdomain.com', 'www.yourdomain.com']
+# Host configuration - CRITICAL for your setup
+ALLOWED_HOSTS = [
+    'maimoonamin.com',
+    'www.maimoonamin.com',
+    'localhost',
+    '127.0.0.1',
+    '*',  # Cloudflare tunnel will handle this
+]
 
-# WhiteNoise (already in base.py middleware, but ensure order)
-# No need to insert again if it's already in base.py after SecurityMiddleware
+# Get additional hosts from environment
+env_hosts = os.environ.get('ALLOWED_HOSTS', '')
+if env_hosts:
+    ALLOWED_HOSTS.extend([h.strip() for h in env_hosts.split(',') if h.strip()])
 
-# Database - keep SQLite for now (Render free tier supports it, but consider Postgres later)
-# DATABASES is already set in base.py
+# Database - SQLite (suitable for portfolio traffic)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
-# Static files - match your actual build output
+# Static files configuration
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Collected static destination
 
-# Your Vite build puts files here:
+# Source directories (your Vite build outputs here)
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',                    # your existing static folder
-    # No need for REACT_BUILD_DIR if postbuild already copies to backend_v2/static
+    BASE_DIR / 'static',  # Contains assets/ from Vite build
 ]
 
-# Templates - your postbuild puts index.html here
+# Templates (postbuild copies index.html here)
 TEMPLATES[0]['DIRS'] = [
-    BASE_DIR / 'templates',                 # this should be backend_v2/templates
+    BASE_DIR / 'templates',
 ]
 
-# Security (good to keep)
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_HSTS_SECONDS = 31536000
+# Media uploads
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# CORS - Allow Cloudflare origins
+CORS_ALLOWED_ORIGINS = [
+    "https://maimoonamin.com",
+    "https://www.maimoonamin.com",
+    "http://localhost:5173",  # Dev fallback
+]
+
+env_cors = os.environ.get('CORS_ALLOWED_ORIGINS', '')
+if env_cors:
+    CORS_ALLOWED_ORIGINS.extend([o.strip() for o in env_cors.split(',') if o.strip()])
+
+# Security settings - MODIFIED for Cloudflare tunnel (handles SSL at edge)
+# Set these via environment if running direct exposure, disable for Cloudflare
+SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT', 'False') == 'True'
+SESSION_COOKIE_SECURE = os.environ.get('SESSION_COOKIE_SECURE', 'False') == 'True'
+CSRF_COOKIE_SECURE = os.environ.get('CSRF_COOKIE_SECURE', 'False') == 'True'
+
+# Keep these security headers
+SECURE_HSTS_SECONDS = 31536000 if (SESSION_COOKIE_SECURE and CSRF_COOKIE_SECURE) else 0
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 
-# Remove or comment out the FRONTEND_DIR / REACT_BUILD_DIR lines if they cause errors
-# (your postbuild already handles copying)
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}
