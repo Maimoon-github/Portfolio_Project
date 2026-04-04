@@ -27,16 +27,12 @@ from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 
-# 1. Django Admin and API routes (MUST come first)
+# 1. Django Admin and API routes
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    # This serves the React app for the home page
-    path('', TemplateView.as_view(template_name='index.html')), 
-    
-    # ADD THIS: Catch-all route for React Router
-    # It must be at the very bottom
-    re_path(r'^.*$', TemplateView.as_view(template_name='index.html')),
+    # Serve React SPA at root
+    path('', TemplateView.as_view(template_name='index.html')),
 ]
 
 # 2. Debug Toolbar (only in DEBUG mode)
@@ -46,13 +42,19 @@ if settings.DEBUG:
         path('__debug__/', include(debug_toolbar.urls)),
     ] + urlpatterns
 
-# 3. Media files serving (in development)
+# 3. Media files serving (development only)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# 4. SPA catch-all – MUST BE THE VERY LAST PATTERN
+# 4. SPA catch-all — excludes /admin/ so Django admin sub-pages are never swallowed.
+# FIX: Removed the earlier re_path(r'^.*$') that had no admin exclusion and sat
+# inside the main urlpatterns list. That pattern conflicted with this one and
+# could intercept admin sub-page requests before they resolved correctly.
+# MUST BE THE VERY LAST PATTERN.
 urlpatterns += [
-    re_path(r'^(?!(admin/|admin$)).*$',
-            TemplateView.as_view(template_name='index.html'),
-            name='spa'),
+    re_path(
+        r'^(?!admin/|admin$).*$',
+        TemplateView.as_view(template_name='index.html'),
+        name='spa',
+    ),
 ]

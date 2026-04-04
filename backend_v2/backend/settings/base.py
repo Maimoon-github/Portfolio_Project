@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'drf_spectacular',
     'django_filters',
+    # Local apps
+    'api',           # FIX: was missing despite having models/admin/migrations
     'core',
     'apps.blog',
     'apps.projects',
@@ -94,6 +96,9 @@ STORAGES = {
 }
 
 MEDIA_URL = '/media/'
+# FIX: MEDIA_ROOT was completely absent. Django admin renders ImageField widgets
+# (Post.featured_image, Tool.logo) on change pages and needs MEDIA_ROOT defined.
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # CORS Configuration
 CORS_ALLOW_ALL_ORIGINS = DEBUG
