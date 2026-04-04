@@ -31,7 +31,12 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    path('', TemplateView.as_view(template_name='index.html')),  # ← Serves React SPA
+    # This serves the React app for the home page
+    path('', TemplateView.as_view(template_name='index.html')), 
+    
+    # ADD THIS: Catch-all route for React Router
+    # It must be at the very bottom
+    re_path(r'^.*$', TemplateView.as_view(template_name='index.html')),
 ]
 
 # 2. Debug Toolbar (only in DEBUG mode)

@@ -16,11 +16,13 @@ render_hostname = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if render_hostname:
     ALLOWED_HOSTS.append(render_hostname)
 
-ALLOWED_HOSTS.extend([
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'portfolio-project-l49w.onrender.com', # Add this explicitly
     'maimoonamin.com',
     'www.maimoonamin.com',
-    '.onrender.com',
-])
+]
 
 # ====================== DATABASE ======================
 DATABASES = {
