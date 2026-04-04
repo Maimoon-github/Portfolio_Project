@@ -1,5 +1,7 @@
 # File Tree: Portfolio_Project
 
+**Root Path:** `c:\Users\Test_pc\VS-Code\Portfolio_Project`
+
 ```
 ├── 📁 backend_v2
 │   ├── 📁 api
@@ -9,7 +11,7 @@
 │   │   │   ├── 📁 migrations
 │   │   │   └── 📁 tests
 │   │   ├── 📁 comments
-│   │   │   ├── 📁 migrations
+│   │   │   └── 📁 migrations
 │   │   ├── 📁 contact
 │   │   │   ├── 📁 migrations
 │   │   │   └── 📁 tests
@@ -25,9 +27,15 @@
 │   ├── 📁 backend
 │   │   └── 📁 settings
 │   ├── 📁 core
+│   ├── 📁 posts
+│   │   └── 📁 2026
+│   │       └── 📁 03
 │   ├── 📁 requirements
 │   ├── 📁 static
-│   └── 📁 templates
+│   │   └── 📁 assets
+│   ├── 📁 templates
+│   ├── 📁 tools
+│   └── 🐳 Dockerfile
 ├── 📁 frontend
 │   ├── 📁 guidelines
 │   └── 📁 src
@@ -46,5 +54,6 @@
 │       ├── 📁 imports
 │       ├── 📁 styles
 │       └── 📁 types
-└── 📁 guidelines
+└── 📁 nginx
+    └── 🐳 Dockerfile
 ```

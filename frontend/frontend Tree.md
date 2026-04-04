@@ -1,6 +1,6 @@
 # File Tree: frontend
 
-**Root Path:** `c:\Users\Aurum\vscode\Portfolio_Project\frontend`
+**Root Path:** `c:\Users\Test_pc\VS-Code\Portfolio_Project\frontend`
 
 ```
 ├── 📁 guidelines
@@ -130,7 +130,6 @@
 ├── 🌐 index.html
 ├── ⚙️ package-lock.json
 ├── ⚙️ package.json
-├── ⚙️ pnpm-lock.yaml
 ├── 📄 postcss.config.mjs
 ├── ⚙️ tsconfig.json
 └── 📄 vite.config.ts
