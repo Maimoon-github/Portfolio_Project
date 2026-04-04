@@ -1,27 +1,30 @@
-# File: Portfolio_Project/backend_v2/backend/settings/production.py
 """
-Django production settings for Docker deployment on local machine.
+Django production settings for Render.com
 """
 from .base import *
 import os
 
 DEBUG = False
 
-# Host configuration - CRITICAL for your setup
+# ====================== ALLOWED_HOSTS (This was the main issue) ======================
 ALLOWED_HOSTS = [
-    'maimoonamin.com',
-    'www.maimoonamin.com',
     'localhost',
     '127.0.0.1',
-    '*',  # Cloudflare tunnel will handle this
 ]
 
-# Get additional hosts from environment
-env_hosts = os.environ.get('ALLOWED_HOSTS', '')
-if env_hosts:
-    ALLOWED_HOSTS.extend([h.strip() for h in env_hosts.split(',') if h.strip()])
+# Render automatically sets this environment variable
+render_hostname = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if render_hostname:
+    ALLOWED_HOSTS.append(render_hostname)
 
-# Database - SQLite (suitable for portfolio traffic)
+# Support your custom domain and wildcard for safety
+ALLOWED_HOSTS.extend([
+    'maimoonamin.com',
+    'www.maimoonamin.com',
+    '.onrender.com',           # Allows all Render subdomains
+])
+
+# ====================== DATABASE ======================
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -29,50 +32,59 @@ DATABASES = {
     }
 }
 
-# Static files configuration
+# ====================== STATIC FILES (Whitenoise) ======================
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Collected static destination
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Source directories (your Vite build outputs here)
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # Contains assets/ from Vite build
+    BASE_DIR / 'static',
 ]
 
-# Templates (postbuild copies index.html here)
+# Important: Use Whitenoise for production
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# ====================== TEMPLATES ======================
 TEMPLATES[0]['DIRS'] = [
     BASE_DIR / 'templates',
 ]
 
-# Media uploads
+# ====================== MEDIA ======================
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# CORS - Allow Cloudflare origins
+# ====================== CORS ======================
 CORS_ALLOWED_ORIGINS = [
     "https://maimoonamin.com",
     "https://www.maimoonamin.com",
-    "http://localhost:5173",  # Dev fallback
+    "http://localhost:5173",   # for local React development
 ]
 
-env_cors = os.environ.get('CORS_ALLOWED_ORIGINS', '')
-if env_cors:
-    CORS_ALLOWED_ORIGINS.extend([o.strip() for o in env_cors.split(',') if o.strip()])
+# Add Render URL dynamically
+if render_hostname:
+    CORS_ALLOWED_ORIGINS.append(f"https://{render_hostname}")
 
-# Security settings - MODIFIED for Cloudflare tunnel (handles SSL at edge)
-# Set these via environment if running direct exposure, disable for Cloudflare
-SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT', 'False') == 'True'
-SESSION_COOKIE_SECURE = os.environ.get('SESSION_COOKIE_SECURE', 'False') == 'True'
-CSRF_COOKIE_SECURE = os.environ.get('CSRF_COOKIE_SECURE', 'False') == 'True'
+# ====================== SECURITY ======================
+SECURE_SSL_REDIRECT = False                    # Render handles HTTPS
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
-# Keep these security headers
-SECURE_HSTS_SECONDS = 31536000 if (SESSION_COOKIE_SECURE and CSRF_COOKIE_SECURE) else 0
+SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
+
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 
-# Logging
+# ====================== CSRF Trusted Origins ======================
+CSRF_TRUSTED_ORIGINS = [
+    "https://maimoonamin.com",
+    "https://www.maimoonamin.com",
+]
+if render_hostname:
+    CSRF_TRUSTED_ORIGINS.append(f"https://{render_hostname}")
+
+# ====================== LOGGING ======================
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
