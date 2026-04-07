@@ -1,0 +1,77 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'admin/seo/sidebar.css' %}">
+{% endblock %}
+
+{% block after_field_sets %}
+{{ block.super }}
+<div id="seo-sidebar" class="seo-sidebar">
+    <div class="seo-sidebar-header">
+        <h3>📈 Live SEO Analysis</h3>
+        <div class="seo-sidebar-status">
+            <span class="seo-score-badge">—</span>
+            <span class="seo-status-icon">⏳</span>
+        </div>
+    </div>
+    <div class="seo-sidebar-content">
+        <div class="seo-metrics">
+            <div class="metric">
+                <label>SEO Score</label>
+                <div class="score-value" id="seo-score">—</div>
+                <div class="score-bar"><div class="score-fill" style="width:0%"></div></div>
+            </div>
+            <div class="metric">
+                <label>Readability</label>
+                <div class="score-value" id="readability-score">—</div>
+            </div>
+            <div class="metric">
+                <label>Word Count</label>
+                <div id="word-count">—</div>
+            </div>
+            <div class="metric">
+                <label>Title Length</label>
+                <div id="title-length">—</div>
+            </div>
+            <div class="metric">
+                <label>Keyphrase in Title</label>
+                <div id="keyphrase-title">—</div>
+            </div>
+            <div class="metric">
+                <label>Keyphrase in First Paragraph</label>
+                <div id="keyphrase-first-para">—</div>
+            </div>
+        </div>
+        <div class="seo-suggestions">
+            <h4>Suggestions</h4>
+            <ul id="seo-suggestions-list"></ul>
+        </div>
+        <div class="seo-readability-details">
+            <h4>Readability</h4>
+            <div id="readability-details"></div>
+        </div>
+    </div>
+    <div class="seo-sidebar-footer">
+        <small>Auto‑updates as you type</small>
+    </div>
+</div>
+{% endblock %}
+
+{% block admin_change_form_document_ready %}
+{{ block.super }}
+<script src="{% static 'admin/seo/sidebar.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize SEO sidebar with field IDs
+        window.initSeoSidebar({
+            titleFieldId: 'id_title',
+            contentFieldId: 'id_content',
+            focusKeyphraseFieldId: 'id_seo-0-focus_keyphrase',  // adjust if inline prefix differs
+            apiUrl: '/api/seo/analyze/',
+            csrfToken: '{{ csrf_token }}'
+        });
+    });
+</script>
+{% endblock %}
