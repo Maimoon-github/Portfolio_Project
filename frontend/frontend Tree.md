@@ -1,6 +1,6 @@
 # File Tree: frontend
 
-**Root Path:** `c:\Users\Test_pc\VS-Code\Portfolio_Project\frontend`
+**Root Path:** `c:\Users\Aurum\vscode\Portfolio_Project\frontend`
 
 ```
 ├── 📁 guidelines

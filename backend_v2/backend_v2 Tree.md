@@ -1,6 +1,6 @@
 # File Tree: backend_v2
 
-**Root Path:** `c:\Users\Test_pc\VS-Code\Portfolio_Project\backend_v2`
+**Root Path:** `c:\Users\Aurum\vscode\Portfolio_Project\backend_v2`
 
 ```
 ├── 📁 api
@@ -87,18 +87,52 @@
 │   │   ├── 🐍 serializers.py
 │   │   ├── 🐍 urls.py
 │   │   └── 🐍 views.py
-│   └── 📁 resume
-│       ├── 📁 migrations
-│       │   ├── 🐍 0001_initial.py
-│       │   └── 🐍 __init__.py
-│       ├── 📁 tests
+│   ├── 📁 resume
+│   │   ├── 📁 migrations
+│   │   │   ├── 🐍 0001_initial.py
+│   │   │   └── 🐍 __init__.py
+│   │   ├── 📁 tests
+│   │   │   ├── 🐍 __init__.py
+│   │   │   └── 🐍 test_views.py
+│   │   ├── 🐍 __init__.py
+│   │   ├── 🐍 admin.py
+│   │   ├── 🐍 apps.py
+│   │   ├── 🐍 models.py
+│   │   ├── 🐍 serializers.py
+│   │   ├── 🐍 urls.py
+│   │   └── 🐍 views.py
+│   └── 📁 seo
+│       ├── 📁 analysis
 │       │   ├── 🐍 __init__.py
-│       │   └── 🐍 test_views.py
+│       │   ├── 🐍 checks_registry.py
+│       │   ├── 🐍 engine.py
+│       │   ├── 🐍 readability.py
+│       │   └── 🐍 utils.py
+│       ├── 📁 api
+│       │   ├── 🐍 __init__.py
+│       │   ├── 🐍 serializers.py
+│       │   ├── 🐍 urls.py
+│       │   └── 🐍 views.py
+│       ├── 📁 management
+│       │   ├── 📁 commands
+│       │   │   ├── 🐍 __init__.py
+│       │   │   ├── 🐍 find_orphan_posts.py
+│       │   │   ├── 🐍 reanalyze_all_posts.py
+│       │   │   └── 🐍 validate_post_schema.py
+│       │   └── 🐍 __init__.py
 │       ├── 🐍 __init__.py
 │       ├── 🐍 admin.py
 │       ├── 🐍 apps.py
+│       ├── 🐍 cache.py
+│       ├── 🐍 checks.py
+│       ├── 🐍 constants.py
+│       ├── 🐍 forms.py
 │       ├── 🐍 models.py
-│       ├── 🐍 serializers.py
+│       ├── 🐍 schema.py
+│       ├── 🐍 services.py
+│       ├── 🐍 signals.py
+│       ├── 🐍 sitemaps.py
+│       ├── 🐍 tasks.py
 │       ├── 🐍 urls.py
 │       └── 🐍 views.py
 ├── 📁 backend
@@ -643,22 +677,16 @@
 │   ├── 📁 assets
 │   │   ├── 📄 index-BJtHbVKZ.197b0b24445c.js
 │   │   ├── 📦 index-BJtHbVKZ.197b0b24445c.js.gz
-│   │   ├── 📄 index-BJtHbVKZ.9a27491003ec.js
-│   │   ├── 📦 index-BJtHbVKZ.9a27491003ec.js.gz
 │   │   ├── 📄 index-BJtHbVKZ.js
 │   │   ├── 📦 index-BJtHbVKZ.js.gz
 │   │   ├── 🎨 index-DDfjWax8.3f9fd85e88b3.css
 │   │   ├── 📦 index-DDfjWax8.3f9fd85e88b3.css.gz
-│   │   ├── 🎨 index-DDfjWax8.6e9f7b40015f.css
-│   │   ├── 📦 index-DDfjWax8.6e9f7b40015f.css.gz
 │   │   ├── 🎨 index-DDfjWax8.css
 │   │   └── 📦 index-DDfjWax8.css.gz
 │   ├── 📁 debug_toolbar
 │   │   ├── 📁 css
 │   │   │   ├── 🎨 print.css
 │   │   │   ├── 🎨 print.fe959e423a6a.css
-│   │   │   ├── 🎨 toolbar.75839e761b96.css
-│   │   │   ├── 📦 toolbar.75839e761b96.css.gz
 │   │   │   ├── 🎨 toolbar.css
 │   │   │   ├── 📦 toolbar.css.gz
 │   │   │   ├── 🎨 toolbar.d1b9b93e0e7a.css
@@ -666,28 +694,20 @@
 │   │   └── 📁 js
 │   │       ├── 📄 history.174de637fb55.js
 │   │       ├── 📦 history.174de637fb55.js.gz
-│   │       ├── 📄 history.e65591a92b59.js
-│   │       ├── 📦 history.e65591a92b59.js.gz
 │   │       ├── 📄 history.js
 │   │       ├── 📦 history.js.gz
 │   │       ├── 📄 redirect.d643ba40b49f.js
 │   │       ├── 📄 redirect.js
 │   │       ├── 📄 timer.1c46156d9973.js
 │   │       ├── 📦 timer.1c46156d9973.js.gz
-│   │       ├── 📄 timer.928069f58d39.js
-│   │       ├── 📦 timer.928069f58d39.js.gz
 │   │       ├── 📄 timer.js
 │   │       ├── 📦 timer.js.gz
-│   │       ├── 📄 toolbar.3e473713cbe8.js
-│   │       ├── 📦 toolbar.3e473713cbe8.js.gz
 │   │       ├── 📄 toolbar.f7a2eeaa7a70.js
 │   │       ├── 📦 toolbar.f7a2eeaa7a70.js.gz
 │   │       ├── 📄 toolbar.js
 │   │       ├── 📦 toolbar.js.gz
 │   │       ├── 📄 utils.67d1dd5de37b.js
 │   │       ├── 📦 utils.67d1dd5de37b.js.gz
-│   │       ├── 📄 utils.eca387b0e53d.js
-│   │       ├── 📦 utils.eca387b0e53d.js.gz
 │   │       ├── 📄 utils.js
 │   │       └── 📦 utils.js.gz
 │   ├── 📁 rest_framework

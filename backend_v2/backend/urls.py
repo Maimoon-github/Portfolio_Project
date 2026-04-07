@@ -26,34 +26,40 @@ from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from apps.seo.sitemaps import PostSitemap  # Import the sitemap
 
-# 1. Django Admin and API routes
+# Sitemap configuration
+sitemaps = {
+    'posts': PostSitemap,
+}
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
+    path('api/seo/', include('apps.seo.urls')),  # SEO API endpoints
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    path('robots.txt', include('robots.urls')),  # django-robots
     # Serve React SPA at root
     path('', TemplateView.as_view(template_name='index.html')),
 ]
 
-# 2. Debug Toolbar (only in DEBUG mode)
+# Debug Toolbar (only in DEBUG mode)
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
         path('__debug__/', include(debug_toolbar.urls)),
     ] + urlpatterns
 
-# 3. Media files serving (development only)
+# Media files serving (development only)
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-# 4. SPA catch-all — excludes /admin/ so Django admin sub-pages are never swallowed.
-# FIX: Removed the earlier re_path(r'^.*$') that had no admin exclusion and sat
-# inside the main urlpatterns list. That pattern conflicted with this one and
-# could intercept admin sub-page requests before they resolved correctly.
-# MUST BE THE VERY LAST PATTERN.
+# SPA catch-all — excludes /admin/, /api/, /static/, /media/
+# MUST BE THE VERY LAST PATTERN
 urlpatterns += [
     re_path(
-        r'^(?!admin/|admin$).*$',
+        r'^(?!admin/|api/|static/|media/|sitemap\.xml|robots\.txt).*$',
         TemplateView.as_view(template_name='index.html'),
         name='spa',
     ),

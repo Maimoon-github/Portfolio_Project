@@ -4,6 +4,7 @@ from django.db.models import F
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
+from meta.models import ModelMeta  # Add django-meta
 
 from core.mixins import TimestampMixin, SEOMixin
 from core.utils import sanitize_html
@@ -67,7 +68,7 @@ class Tag(TimestampMixin, SEOMixin):
         return reverse("blog:tag_posts", kwargs={"tag_slug": self.slug})
 
 
-class Post(TimestampMixin, SEOMixin):
+class Post(TimestampMixin, SEOMixin, ModelMeta):  # Add ModelMeta mixin
     """Blog post with draft/published/scheduled workflow, multiple images, and SEO."""
 
     class Status(models.TextChoices):
@@ -117,6 +118,19 @@ class Post(TimestampMixin, SEOMixin):
     # Managers
     objects = models.Manager()  # default manager
     published = PublishedManager()  # Post.published.all()
+
+    # django-meta configuration
+    _metadata = {
+        'title': 'get_meta_title',
+        'description': 'get_meta_description',
+        'og_description': 'get_meta_description',
+        'image': 'get_meta_image',
+        'url': 'get_absolute_url',
+        'object_type': 'Article',
+        'keywords': 'get_meta_keywords',
+        'twitter_site': '@yourhandle',  # Update with your Twitter handle
+        'twitter_creator': 'get_author_twitter',
+    }
 
     class Meta:
         ordering = ["-publish_date"]
@@ -168,18 +182,36 @@ class Post(TimestampMixin, SEOMixin):
     def is_published(self):
         return self.status == self.Status.PUBLISHED and self.publish_date <= timezone.now()
 
-    @property
-    def seo_title(self):
+    # django-meta methods
+    def get_meta_title(self):
+        """Return SEO title from PostSEO or fallback."""
+        if hasattr(self, 'seo') and self.seo.seo_title:
+            return self.seo.seo_title
         return self.meta_title or self.title
 
-    @property
-    def seo_description(self):
+    def get_meta_description(self):
+        """Return meta description from PostSEO or fallback."""
+        if hasattr(self, 'seo') and self.seo.meta_description:
+            return self.seo.meta_description
         return self.meta_description or self.excerpt[:160]
 
-    @property
-    def approved_comments_count(self):
-        """Return count of approved comments (assumes Comment model with related_name='comments')."""
-        return self.comments.filter(approved=True).count()
+    def get_meta_image(self):
+        """Return featured image URL for OG tags."""
+        if self.featured_image:
+            return self.featured_image.url
+        return None
+
+    def get_meta_keywords(self):
+        """Return focus keyphrase as keywords."""
+        if hasattr(self, 'seo') and self.seo.focus_keyphrase:
+            return self.seo.focus_keyphrase
+        return ''
+
+    def get_author_twitter(self):
+        """Return author's Twitter handle if available."""
+        if hasattr(self.author, 'profile') and hasattr(self.author.profile, 'twitter_handle'):
+            return self.author.profile.twitter_handle
+        return '@yourhandle'  # Default fallback
 
 
 class PostImage(models.Model):
