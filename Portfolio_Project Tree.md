@@ -1,6 +1,6 @@
 # File Tree: Portfolio_Project
 
-**Root Path:** `c:\Users\Test_pc\VS-Code\Portfolio_Project`
+**Root Path:** `c:\Users\Aurum\vscode\Portfolio_Project`
 
 ```
 ├── 📁 backend_v2
@@ -21,9 +21,15 @@
 │   │   ├── 📁 projects
 │   │   │   ├── 📁 migrations
 │   │   │   └── 📁 tests
-│   │   └── 📁 resume
-│   │       ├── 📁 migrations
-│   │       └── 📁 tests
+│   │   ├── 📁 resume
+│   │   │   ├── 📁 migrations
+│   │   │   └── 📁 tests
+│   │   └── 📁 seo
+│   │       ├── 📁 analysis
+│   │       ├── 📁 api
+│   │       ├── 📁 management
+│   │       │   └── 📁 commands
+│   │       └── 📁 migrations
 │   ├── 📁 backend
 │   │   └── 📁 settings
 │   ├── 📁 core
@@ -32,7 +38,6 @@
 │   │       └── 📁 03
 │   ├── 📁 requirements
 │   ├── 📁 static
-│   │   └── 📁 assets
 │   ├── 📁 templates
 │   ├── 📁 tools
 │   └── 🐳 Dockerfile
