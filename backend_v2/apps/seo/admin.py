@@ -42,31 +42,38 @@ logger = logging.getLogger(__name__)
 # CUSTOM LIST FILTERS
 # =============================================================================
 
-class SeoScoreListFilter(SimpleListFilter):
-    """
-    Filter posts by SEO score ranges (traffic light system).
-    """
+class SEOScoreRangeFilter(SimpleListFilter):
     title = 'SEO Score'
-    parameter_name = 'seo_score_range'
+    parameter_name = 'seo_score'
 
-    def lookups(self, request: HttpRequest, model_admin: Any) -> List[tuple]:
-        return [
-            ('excellent', 'Excellent (70-100)'),
-            ('good', 'Good (50-69)'),
-            ('poor', 'Poor (0-49)'),
-            ('unscored', 'Not Scored'),
-        ]
+    def lookups(self, request, model_admin):
+        return (
+            ('0-49', 'Poor (0-49)'),
+            ('50-69', 'Needs Improvement (50-69)'),
+            ('70-100', 'Good (70-100)'),
+        )
 
-    def queryset(self, request: HttpRequest, queryset: QuerySet) -> QuerySet:
-        if self.value() == 'excellent':
-            return queryset.filter(seo__seo_score__gte=70)
-        elif self.value() == 'good':
-            return queryset.filter(seo__seo_score__range=(50, 69))
-        elif self.value() == 'poor':
-            return queryset.filter(seo__seo_score__range=(0, 49))
+    def queryset(self, request, queryset):
+        if self.value() == '0-49':
+            return queryset.filter(seo_score__gte=0, seo_score__lte=49)
+        if self.value() == '50-69':
+            return queryset.filter(seo_score__gte=50, seo_score__lte=69)
+        if self.value() == '70-100':
+            return queryset.filter(seo_score__gte=70, seo_score__lte=100)
         elif self.value() == 'unscored':
             return queryset.filter(seo__seo_score__isnull=True)
         return queryset
+
+    # def queryset(self, request: HttpRequest, queryset: QuerySet) -> QuerySet:
+    #     if self.value() == 'excellent':
+    #         return queryset.filter(seo__seo_score__gte=70)
+    #     elif self.value() == 'good':
+    #         return queryset.filter(seo__seo_score__range=(50, 69))
+    #     elif self.value() == 'poor':
+    #         return queryset.filter(seo__seo_score__range=(0, 49))
+    #     elif self.value() == 'unscored':
+    #         return queryset.filter(seo__seo_score__isnull=True)
+    #     return queryset
 
 
 class ReadabilityScoreListFilter(SimpleListFilter):
@@ -300,7 +307,7 @@ def extend_post_admin() -> None:
                 post_admin_class.list_filter = []
             
             post_admin_class.list_filter = list(post_admin_class.list_filter) + [
-                SeoScoreListFilter,
+                SEOScoreRangeFilter,
                 ReadabilityScoreListFilter,
                 CornerstoneListFilter,
                 SchemaTypeListFilter,
@@ -471,7 +478,7 @@ class PostSEOAuditLogAdmin(admin.ModelAdmin):
     list_filter = [
         'triggering_event',
         'created_at',
-        ('seo_score', RangeNumericFilter),
+        SEOScoreRangeFilter,
     ]
     readonly_fields = [
         'post_seo',
