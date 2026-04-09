@@ -42,5 +42,9 @@ django-admin-numeric-filter>=0.1,<0.2
 
 
 
-wagtail>=7.3,<8.0
-wagtailfontawesome>=0.1,<0.2
+# === NEW: Wagtail CMS ===
+wagtail>=6.3
+wagtail-seo>=2.4
+django-modelcluster>=6.0
+django-taggit>=5.0
+Pillow>=10.0

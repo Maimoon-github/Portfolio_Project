@@ -4,6 +4,24 @@ Django production settings for Render.com
 from .base import *
 import os
 
+
+# backend/settings/production.py  — add/override
+
+WAGTAILADMIN_BASE_URL = 'https://yourdomain.com'
+
+# Production media → cloud storage (S3 recommended)
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# Upgrade search to Elasticsearch for high volume (optional)
+# WAGTAILSEARCH_BACKENDS = {
+#     'default': {
+#         'BACKEND': 'wagtail.search.backends.elasticsearch8',
+#         'URLS': ['http://localhost:9200'],
+#         'INDEX': 'wagtail',
+#     }
+# }
+
+
 DEBUG = False
 
 # ====================== ALLOWED_HOSTS ======================

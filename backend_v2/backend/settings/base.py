@@ -16,39 +16,75 @@ DEBUG = False
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
+    # ── Your existing apps (keep as-is) ──────────────────────────
+    'apps.blog',
+    'apps.comments',
+    'apps.contact',
+    'apps.knowledge',
+    'apps.projects',
+    'apps.resume',
+    'api',
+    'core',
+
+    # ── NEW: Wagtail CMS app ──────────────────────────────────────
+    'cms',                                    # your blog page models
+
+    # ── NEW: Wagtail core ─────────────────────────────────────────
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.contrib.routable_page',
+    'wagtail.contrib.sitemaps',
+    'wagtail.contrib.search_promotions',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail',
+    'wagtail.api.v2',                         # headless REST API
+
+    # ── NEW: wagtail-seo ──────────────────────────────────────────
+    'wagtailseo',
+
+    # ── NEW: dependencies ─────────────────────────────────────────
+    'modelcluster',
+    'taggit',
+
+    # ── Django built-ins (keep yours) ─────────────────────────────
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.sites',           # ← MUST BE ADDED (required by django-robots)
-    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    'corsheaders',
-    'rest_framework',
-    'rest_framework_simplejwt',
-    'drf_spectacular',
-    'django_filters',
-    # Local apps
-    'api',
-    'core',
-    'apps.blog',
-    'apps.projects',
-    'apps.resume',
-    'apps.contact',
-    'apps.knowledge',
+    'django.contrib.sitemaps',
 ]
 
-# django-meta configuration
-META_SITE_PROTOCOL = 'https'
-META_USE_OG_PROPERTIES = True
-META_USE_TWITTER_PROPERTIES = True
-META_TWITTER_TYPE = 'summary_large_image'
-META_USE_SCHEMAORG_PROPERTIES = True
-META_DEFAULT_IMAGE = '/static/images/default_og.png'
+# ── NEW: Wagtail config ───────────────────────────────────────────
+WAGTAIL_SITE_NAME = 'Portfolio Blog'
+WAGTAILADMIN_BASE_URL = 'http://localhost:8000'   # override in production.py
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
 
-# Add to base.py
-SITE_ID = 1  # Required for django-robots and django.contrib.sites
+# ── NEW: Wagtail search ───────────────────────────────────────────
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.database',
+    }
+}
+
+# ── NEW: wagtail-seo ──────────────────────────────────────────────
+WAGTAILSEO = {
+    'TWITTER_SITE': '@yourhandle',
+    'STRUCT_ORG_TYPE': 'Person',
+    'STRUCT_ORG_NAME': 'Maimoon Amin',
+    'STRUCT_ORG_URL': 'https://maimoonamin.com',
+}
+
+# ── NEW: Wagtail images ───────────────────────────────────────────
+WAGTAILIMAGES_IMAGE_MODEL = 'wagtailimages.Image'
 
 # django-check-seo settings
 DJANGO_CHECK_SEO_SETTINGS = {
@@ -63,21 +99,22 @@ DJANGO_CHECK_SEO_SETTINGS = {
     "image_alt_tags": True,
 }
 
-# Celery configuration (if not already set)
+# Celery configuration
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-CELERY_TASK_ALWAYS_EAGER = False  # Set True for local testing without worker
+CELERY_TASK_ALWAYS_EAGER = False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',   # keep if you have it
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # ── NEW: Wagtail redirect engine ──────────────────────────────
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -128,9 +165,8 @@ STORAGES = {
     "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
 }
 
+# Media files (for Wagtail image/doc uploads)
 MEDIA_URL = '/media/'
-# FIX: MEDIA_ROOT was completely absent. Django admin renders ImageField widgets
-# (Post.featured_image, Tool.logo) on change pages and needs MEDIA_ROOT defined.
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # CORS Configuration
