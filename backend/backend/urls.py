@@ -48,6 +48,9 @@ urlpatterns = [
     # ── NEW: Wagtail admin UI (moved to /cms/ to avoid conflict) ──
     path('cms/', include(wagtailadmin_urls)),
 
+        # 🔥 This is required for the Wagtail settings menu item (already added)
+    path('cms/settings/', include('wagtail.contrib.settings.urls', namespace='wagtailsettings')),
+
     # ── NEW: Wagtail document serving ─────────────────────────────
     path('documents/', include(wagtaildocs_urls)),
 
