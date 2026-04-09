@@ -37,12 +37,6 @@ INSTALLED_APPS = [
     'apps.resume',
     'apps.contact',
     'apps.knowledge',
-    'apps.seo',
-    'django_check_seo',
-    'meta',           # django-meta
-    'robots',         # django-robots
-    'django.contrib.sitemaps',
-    'django_celery_beat',
 ]
 
 # django-meta configuration

@@ -37,7 +37,6 @@ sitemaps = {
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    path('api/seo/', include('apps.seo.urls')),  # SEO API endpoints
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt', include('robots.urls')),  # django-robots
     # Serve React SPA at root
