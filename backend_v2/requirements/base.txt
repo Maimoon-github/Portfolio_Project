@@ -39,3 +39,8 @@ redis>=5.0,<6.0                    # Broker (you already reference Redis in sett
 # Optional: Postgres driver if you switch from SQLite later
 # psycopg2-binary>=2.9,<3.0
 django-admin-numeric-filter>=0.1,<0.2
+
+
+
+wagtail>=7.3,<8.0
+wagtailfontawesome>=0.1,<0.2

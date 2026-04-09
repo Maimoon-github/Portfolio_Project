@@ -164,7 +164,16 @@
 │   ├── 📄 development.txt
 │   └── 📄 production.txt
 ├── 📁 static
+│   └── 📁 admin
+│       └── 📁 seo
+│           ├── 🎨 sidebar.css
+│           └── 📄 sidebar.js
+├── 📁 staticfiles
 ├── 📁 templates
+│   ├── 📁 admin
+│   │   └── 📁 blog
+│   │       └── 📁 post
+│   │           └── 🌐 change_form.html
 │   └── 🌐 index.html
 ├── 📁 tools
 │   └── 🖼️ Media_Dunes_Logo.png
