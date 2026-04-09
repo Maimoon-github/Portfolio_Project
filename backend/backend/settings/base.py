@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'core',
 
     # ── NEW: Wagtail CMS app ──────────────────────────────────────
-    # 'cms',                                    # your blog page models
+    'cms',                                    # your blog page models
 
     # ── NEW: Wagtail core ─────────────────────────────────────────
     'wagtail.contrib.forms',
@@ -61,7 +61,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
+    'django.contrib.sites',  # <-- ADD THIS LINE
+    'robots',
 ]
+
+# Set the site ID
+SITE_ID = 1 # <-- ADD THIS LINE
 
 # ── NEW: Wagtail config ───────────────────────────────────────────
 WAGTAIL_SITE_NAME = 'Portfolio Blog'

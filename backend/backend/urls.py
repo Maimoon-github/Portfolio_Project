@@ -26,17 +26,17 @@ from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.sitemaps.views import sitemap
-from apps.seo.sitemaps import PostSitemap  # your custom sitemap
+# from django.contrib.sitemaps.views import sitemap
+# from apps.seo.sitemaps import PostSitemap  # your custom sitemap
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from cms.api import api_router  # Wagtail V2 API router
 
 # Sitemap configuration (keep yours)
-sitemaps = {
-    'posts': PostSitemap,
-}
+# sitemaps = {
+#     'posts': PostSitemap,
+# }
 
 urlpatterns = [
     # ── Django admin ──────────────────────────────────────────────
@@ -56,8 +56,8 @@ urlpatterns = [
     path('api/cms/v2/', api_router.urls),
 
     # ── Your existing sitemap ─────────────────────────────────────
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-
+    # path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),  # disabled
+        
     # ── Your existing robots.txt ──────────────────────────────────
     path('robots.txt', include('robots.urls')),
 
