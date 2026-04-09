@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'core',
 
     # ── NEW: Wagtail CMS app ──────────────────────────────────────
-    'cms',                                    # your blog page models
+    # 'cms',                                    # your blog page models
 
     # ── NEW: Wagtail core ─────────────────────────────────────────
     'wagtail.contrib.forms',

@@ -2,8 +2,8 @@ from django.utils.html import format_html
 from django.contrib import admin
 from django.utils import timezone
 from .models import Post, Category, Tag, PostImage
-from apps.seo.admin import PostSEOInline  # Import SEO inline
-from apps.seo.services import get_or_create_post_seo, analyze_post_seo
+# from apps.seo.admin import PostSEOInline  # Import SEO inline
+# from apps.seo.services import get_or_create_post_seo, analyze_post_seo
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -35,7 +35,8 @@ class PostAdmin(admin.ModelAdmin):
     filter_horizontal = ("tags",)
     readonly_fields = ("view_count", "created_at", "updated_at", "read_time")
     actions = ["bulk_publish", "reanalyze_seo"]  # Add SEO action
-    inlines = [PostSEOInline]  # Add SEO inline
+    # inlines = [PostSEOInline]  # Add SEO inline
+    pass
 
     fieldsets = (
         (None, {
