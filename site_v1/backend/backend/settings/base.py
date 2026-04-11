@@ -68,6 +68,8 @@ INSTALLED_APPS = [
 # Set the site ID
 SITE_ID = 1 # <-- ADD THIS LINE
 
+APPEND_SLASH = True
+
 # ── NEW: Wagtail config ───────────────────────────────────────────
 WAGTAIL_SITE_NAME = 'Portfolio Blog'
 WAGTAILADMIN_BASE_URL = 'http://localhost:8000'   # override in production.py

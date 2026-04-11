@@ -1,6 +1,6 @@
-# File Tree: backend_v2
+# File Tree: backend
 
-**Root Path:** `c:\Users\Aurum\vscode\Portfolio_Project\backend_v2`
+**Root Path:** `c:\Users\Aurum\vscode\Portfolio_Project\backend`
 
 ```
 ├── 📁 api
@@ -87,55 +87,18 @@
 │   │   ├── 🐍 serializers.py
 │   │   ├── 🐍 urls.py
 │   │   └── 🐍 views.py
-│   ├── 📁 resume
-│   │   ├── 📁 migrations
-│   │   │   ├── 🐍 0001_initial.py
-│   │   │   └── 🐍 __init__.py
-│   │   ├── 📁 tests
-│   │   │   ├── 🐍 __init__.py
-│   │   │   └── 🐍 test_views.py
-│   │   ├── 🐍 __init__.py
-│   │   ├── 🐍 admin.py
-│   │   ├── 🐍 apps.py
-│   │   ├── 🐍 models.py
-│   │   ├── 🐍 serializers.py
-│   │   ├── 🐍 urls.py
-│   │   └── 🐍 views.py
-│   └── 📁 seo
-│       ├── 📁 analysis
-│       │   ├── 🐍 __init__.py
-│       │   ├── 🐍 checks_registry.py
-│       │   ├── 🐍 engine.py
-│       │   ├── 🐍 readability.py
-│       │   └── 🐍 utils.py
-│       ├── 📁 api
-│       │   ├── 🐍 __init__.py
-│       │   ├── 🐍 serializers.py
-│       │   ├── 🐍 urls.py
-│       │   └── 🐍 views.py
-│       ├── 📁 management
-│       │   ├── 📁 commands
-│       │   │   ├── 🐍 __init__.py
-│       │   │   ├── 🐍 find_orphan_posts.py
-│       │   │   ├── 🐍 reanalyze_all_posts.py
-│       │   │   └── 🐍 validate_post_schema.py
-│       │   └── 🐍 __init__.py
+│   └── 📁 resume
 │       ├── 📁 migrations
 │       │   ├── 🐍 0001_initial.py
 │       │   └── 🐍 __init__.py
+│       ├── 📁 tests
+│       │   ├── 🐍 __init__.py
+│       │   └── 🐍 test_views.py
 │       ├── 🐍 __init__.py
 │       ├── 🐍 admin.py
 │       ├── 🐍 apps.py
-│       ├── 🐍 cache.py
-│       ├── 🐍 checks.py
-│       ├── 🐍 constants.py
-│       ├── 🐍 forms.py
 │       ├── 🐍 models.py
-│       ├── 🐍 schema.py
-│       ├── 🐍 services.py
-│       ├── 🐍 signals.py
-│       ├── 🐍 sitemaps.py
-│       ├── 🐍 tasks.py
+│       ├── 🐍 serializers.py
 │       ├── 🐍 urls.py
 │       └── 🐍 views.py
 ├── 📁 backend
@@ -148,6 +111,23 @@
 │   ├── 🐍 asgi.py
 │   ├── 🐍 urls.py
 │   └── 🐍 wsgi.py
+├── 📁 cms
+│   ├── 📁 migrations
+│   │   ├── 🐍 0001_initial.py
+│   │   └── 🐍 __init__.py
+│   ├── 📁 templates
+│   │   └── 📁 cms
+│   │       ├── 🌐 blog_index_page.html
+│   │       └── 🌐 blog_page.html
+│   ├── 🐍 __init__.py
+│   ├── 🐍 admin.py
+│   ├── 🐍 api.py
+│   ├── 🐍 apps.py
+│   ├── 🐍 models.py
+│   ├── 🐍 serializers.py
+│   ├── 🐍 tests.py
+│   ├── 🐍 views.py
+│   └── 🐍 wagtail_hooks.py
 ├── 📁 core
 │   ├── 🐍 __init__.py
 │   ├── 🐍 mixins.py
@@ -164,19 +144,8 @@
 │   ├── 📄 development.txt
 │   └── 📄 production.txt
 ├── 📁 static
-│   └── 📁 admin
-│       └── 📁 seo
-│           ├── 🎨 sidebar.css
-│           └── 📄 sidebar.js
-├── 📁 staticfiles
 ├── 📁 templates
-│   ├── 📁 admin
-│   │   └── 📁 blog
-│   │       └── 📁 post
-│   │           └── 🌐 change_form.html
 │   └── 🌐 index.html
-├── 📁 tools
-│   └── 🖼️ Media_Dunes_Logo.png
 ├── ⚙️ .gitignore
 ├── 🐳 Dockerfile
 ├── 📝 backend_v2 Tree.md

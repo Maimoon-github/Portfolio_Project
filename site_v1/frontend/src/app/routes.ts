@@ -4,8 +4,8 @@ import { Home } from "./pages/Home";
 import { Projects } from "./pages/Projects";
 import { ProjectDetail } from "./pages/ProjectDetail";
 import { Resume } from "./pages/Resume";
-import { Blog } from "./pages/Blog";
-import { BlogPost } from "./pages/BlogPost";
+import Blog from "./pages/Blog";               // ← default import
+import BlogPost from "./pages/BlogPost";       // ← default import
 import { Knowledge } from "./pages/Knowledge";
 import { Courses } from "./pages/Courses";
 import ToolsPage from "./pages/Tools/Tools";
@@ -46,8 +46,8 @@ export const router = createBrowserRouter([
           { path: "pokemon-catch-rate-calculator", Component: Pokemoncatchratecalculator },
         ]
       },
-      { path: "blog", Component: Blog },
-      { path: "blog/:slug", Component: BlogPost },
+      { path: "blog", Component: Blog },           // ← uses default import
+      { path: "blog/:slug", Component: BlogPost }, // ← uses default import
       { path: "contact", Component: Contact },
       { path: "login", Component: Login },
       { path: "*", Component: NotFound },
