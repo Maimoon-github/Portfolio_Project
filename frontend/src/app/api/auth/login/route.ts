@@ -1,5 +1,4 @@
-// @@CONTENT_PLACEHOLDER@@
-@@/**
+/**
  * Next.js proxy for the Django login endpoint.
  * Receives credentials from the login form, forwards to Django,
  * and passes the httpOnly cookie back to the browser.
@@ -33,7 +32,4 @@ export async function POST(request: NextRequest) {
   });
 
   return response;
-}@@
-
-write_file "frontend/src/app/api/auth/logout/route.ts" <<'@@CONTENT_PLACEHOLDER@@'
-// @@CONTENT_PLACEHOLDER@@
+}

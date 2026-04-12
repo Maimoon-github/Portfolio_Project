@@ -1,0 +1,19 @@
+{
+  "name": "portfolio-monorepo",
+  "private": true,
+  "workspaces": ["frontend"],
+  "scripts": {
+    "dev": "docker compose up --build",
+    "dev:backend": "docker compose up --build backend",
+    "dev:frontend": "docker compose up --build frontend",
+    "stop": "docker compose down",
+    "migrate": "docker compose exec backend python manage.py migrate",
+    "makemigrations": "docker compose exec backend python manage.py makemigrations",
+    "superuser": "docker compose exec backend python manage.py createsuperuser",
+    "schema": "docker compose exec backend python manage.py spectacular --color --file schema.yml",
+    "gen:types": "cd frontend && pnpm gen:types",
+    "lint": "cd frontend && pnpm lint",
+    "test": "docker compose exec backend python manage.py test && cd frontend && pnpm test",
+    "logs": "docker compose logs -f"
+  }
+}

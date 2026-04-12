@@ -1,5 +1,4 @@
-// @@CONTENT_PLACEHOLDER@@
-@@/**
+/**
  * On-demand ISR revalidation endpoint.
  * Called by Wagtail's publish webhook → revalidates only the affected cache tags.
  *
@@ -35,8 +34,4 @@ export async function POST(request: NextRequest) {
     tags,
     timestamp: new Date().toISOString(),
   });
-}@@
-
-# root app files
-write_file "frontend/src/app/error.tsx" <<'@@CONTENT_PLACEHOLDER@@'
-// @@CONTENT_PLACEHOLDER@@
+}

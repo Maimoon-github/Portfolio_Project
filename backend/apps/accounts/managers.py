@@ -1,5 +1,4 @@
-# @@CONTENT_PLACEHOLDER@@
-@@from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.auth.base_user import BaseUserManager
 
 
 class UserManager(BaseUserManager):
@@ -16,7 +15,4 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
         extra_fields.setdefault("is_active", True)
-        return self.create_user(email, password, **extra_fields)@@
-
-write_file "backend/apps/accounts/serializers.py" <<'@@CONTENT_PLACEHOLDER@@'
-# @@CONTENT_PLACEHOLDER@@
+        return self.create_user(email, password, **extra_fields)
