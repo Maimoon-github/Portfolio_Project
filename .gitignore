@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+env/
+venv/
+.venv/
+.env
+*.log
+*.sqlite3
+staticfiles/
+media/
+
+# Node
+node_modules/
+.next/
+out/
+.env.local

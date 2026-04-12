@@ -38,7 +38,8 @@ export async function getTool(slug: string): Promise<Tool | null> {
   }
 }
 
-export async function getAllToolSlugs(): Promise
+// ✅ Fixed return type syntax
+export async function getAllToolSlugs(): Promise<
   { category: string; slug: string }[]
 > {
   const data = await wagtailFetch<PaginatedResponse<Tool>>(
@@ -53,17 +54,13 @@ export async function getAllToolSlugs(): Promise
 
 /**
  * Call the Django compute endpoint.
- * Called client-side via SWR mutation or server-side in RSC.
  */
 export async function computeCalculator<T = Record<string, number>>(
   calculatorSlug: string,
   inputs: Record<string, number | string>
 ): Promise<CalculatorResponse<T>> {
-  return apiFetch<CalculatorResponse<T>>(
-    `/tools/compute/${calculatorSlug}/`,
-    {
-      method: "POST",
-      body: JSON.stringify({ inputs }),
-    }
-  );
+  return apiFetch<CalculatorResponse<T>>(`/tools/compute/${calculatorSlug}/`, {
+    method: "POST",
+    body: JSON.stringify({ inputs }),
+  });
 }
