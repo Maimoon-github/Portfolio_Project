@@ -53,6 +53,7 @@ WAGTAIL_APPS = [
     "wagtail.contrib.redirects",
     "wagtail.contrib.settings",
     "wagtail.contrib.sitemaps",
+    "wagtail_modeladmin",
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",

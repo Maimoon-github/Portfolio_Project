@@ -8,6 +8,7 @@ python-decouple==3.8
 # ─── Wagtail CMS ───────────────────────────────────────────────────────
 wagtail==6.3.1
 wagtail-headless-preview==0.8.0
+wagtail-modeladmin==2.2.0
 
 # ─── Auth ──────────────────────────────────────────────────────────────
 djangorestframework-simplejwt==5.3.1
