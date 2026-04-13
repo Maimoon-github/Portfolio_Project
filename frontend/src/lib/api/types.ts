@@ -73,7 +73,7 @@ export type ToolCategory =
 export interface Tool extends WagtailPage {
   id: number;
   title: string;
-  meta: { slug: string };
+  // meta: { slug: string };
   category: ToolCategory;
   calculator_slug: string;
   icon: string;

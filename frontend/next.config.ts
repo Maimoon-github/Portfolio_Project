@@ -23,6 +23,9 @@ const nextConfig: NextConfig = {
     ],
     formats: ["image/avif", "image/webp"],
   },
+  turbopack: {
+    root: __dirname,
+  },
 
   // Proxy /api/backend/* to Django to avoid CORS in browser during dev
   async rewrites() {

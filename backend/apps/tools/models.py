@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from wagtail.models import Page
 from wagtail.fields import StreamField, RichTextField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
@@ -6,51 +7,19 @@ from wagtail.api import APIField
 from wagtail.images.api.fields import ImageRenditionField
 from wagtail import blocks as wagtail_blocks
 from wagtail.images.blocks import ImageChooserBlock
-
-
-class ToolCategory(models.TextChoices):
-    FINANCIAL = "financial", "Financial"
-    HEALTH = "health", "Health & Fitness"
-    SCIENTIFIC = "scientific", "Scientific"
-    PRODUCTIVITY = "productivity", "Productivity"
-    OTHER = "other", "Other"
+from wagtail.embeds.blocks import EmbedBlock
+from modelcluster.fields import ParentalManyToManyField
+from taggit.models import TaggedItemBase
+from modelcluster.contrib.taggit import ClusterTaggableManager
+import json
 
 
 class ToolIndexPage(Page):
     """
-    The /tools/ directory page.
-    Children: ToolDetailPage.
+    The /tools/ landing page. Lists all ToolDetailPage children.
+    Parent: RootPage. Children: ToolDetailPage.
     """
     intro = RichTextField(blank=True)
-
-    content_panels = Page.content_panels + [FieldPanel("intro")]
-
-    api_fields = [APIField("intro")]
-    subpage_types = ["tools.ToolDetailPage"]
-
-    class Meta:
-        verbose_name = "Tools directory"
-
-
-class ToolDetailPage(Page):
-    """
-    One page per calculator. Contains:
-    - Wagtail-managed content (description, formula guide, use cases)
-    - calculator_slug → maps to a React component on the frontend
-    - category → for navigation/filtering
-    """
-    # ─── Tool identity ─────────────────────────────────────────────
-    category = models.CharField(
-        max_length=30,
-        choices=ToolCategory.choices,
-        default=ToolCategory.OTHER,
-        db_index=True,
-    )
-    calculator_slug = models.SlugField(
-        unique=True,
-        help_text="Identifies the React calculator component (e.g. compound-interest)",
-    )
-    icon = models.CharField(max_length=50, blank=True, help_text="Lucide icon name")
     hero_image = models.ForeignKey(
         "wagtailimages.Image",
         null=True,
@@ -58,33 +27,70 @@ class ToolDetailPage(Page):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    is_featured = models.BooleanField(default=False, db_index=True)
 
-    # ─── Rich content (Wagtail StreamField) ────────────────────────
+    content_panels = Page.content_panels + [
+        FieldPanel("intro"),
+        FieldPanel("hero_image"),
+    ]
+
+    # Wagtail API fields — these are the fields exposed to Next.js
+    api_fields = [
+        APIField("intro"),
+        APIField("hero_image_url", serializer=ImageRenditionField("fill-1200x600")),
+    ]
+
+    subpage_types = ["blog.BlogDetailPage"]
+
+    class Meta:
+        verbose_name = "Blog index"
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context["posts"] = (
+            ToolDetailPage.objects.live()
+            .descendant_of(self)
+            .order_by("-first_published_at")
+        )
+        return context
+
+
+class ToolDetailPage(Page):
+    """
+    Individual tool page. Rendered by Next.js via ISR + Wagtail headless API.
+    """
+    # ─── Metadata ──────────────────────────────────────────────────
+    subtitle = models.CharField(max_length=250, blank=True)
+    reading_time = models.PositiveSmallIntegerField(default=5, help_text="Minutes")
+    hero_image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    tags = ClusterTaggableManager(through="blog.BlogPageTag", blank=True)
+    category = models.CharField(max_length=100, blank=True, db_index=True)
+
+    # ─── Body (StreamField) ────────────────────────────────────────
     body = StreamField(
         [
-            ("intro", wagtail_blocks.RichTextBlock(label="Introduction")),
-            ("formula_block", wagtail_blocks.StructBlock([
-                ("title", wagtail_blocks.CharBlock()),
-                ("formula", wagtail_blocks.TextBlock(help_text="LaTeX or plain text")),
-                ("explanation", wagtail_blocks.RichTextBlock()),
-            ], label="Formula explanation")),
-            ("use_cases", wagtail_blocks.ListBlock(
-                wagtail_blocks.StructBlock([
-                    ("title", wagtail_blocks.CharBlock()),
-                    ("description", wagtail_blocks.TextBlock()),
-                ]),
-                label="Use cases",
-            )),
-            ("faq", wagtail_blocks.ListBlock(
-                wagtail_blocks.StructBlock([
-                    ("question", wagtail_blocks.CharBlock()),
-                    ("answer", wagtail_blocks.RichTextBlock()),
-                ]),
-                label="FAQ",
-            )),
+            ("heading", wagtail_blocks.CharBlock(form_classname="title", icon="title")),
+            ("paragraph", wagtail_blocks.RichTextBlock(features=[
+                "h2", "h3", "bold", "italic", "link", "ol", "ul", "blockquote", "code",
+            ])),
             ("image", ImageChooserBlock()),
-            ("paragraph", wagtail_blocks.RichTextBlock()),
+            ("code", wagtail_blocks.StructBlock([
+                ("language", wagtail_blocks.CharBlock(default="python")),
+                ("code", wagtail_blocks.TextBlock()),
+            ], icon="code")),
+            ("callout", wagtail_blocks.StructBlock([
+                ("type", wagtail_blocks.ChoiceBlock(choices=[
+                    ("info", "Info"), ("warning", "Warning"), ("tip", "Tip"),
+                ])),
+                ("text", wagtail_blocks.RichTextBlock()),
+            ], icon="info-circle")),
+            ("embed", EmbedBlock(icon="media")),
+            ("raw_html", wagtail_blocks.RawHTMLBlock(icon="code", label="Raw HTML (use sparingly)")),
         ],
         use_json_field=True,
         blank=True,
@@ -92,27 +98,34 @@ class ToolDetailPage(Page):
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
+            FieldPanel("subtitle"),
+            FieldPanel("reading_time"),
             FieldPanel("category"),
-            FieldPanel("calculator_slug"),
-            FieldPanel("icon"),
-            FieldPanel("is_featured"),
-        ], heading="Tool settings"),
+            FieldPanel("tags"),
+        ], heading="Post metadata"),
         FieldPanel("hero_image"),
         FieldPanel("body"),
     ]
 
+    promote_panels = Page.promote_panels  # includes seo_title, search_description
+
     api_fields = [
+        APIField("subtitle"),
+        APIField("reading_time"),
         APIField("category"),
-        APIField("calculator_slug"),
-        APIField("icon"),
-        APIField("is_featured"),
-        APIField("body"),
         APIField("hero_image_thumbnail", serializer=ImageRenditionField("fill-800x400")),
+        APIField("hero_image_og", serializer=ImageRenditionField("fill-1200x630")),
+        APIField("body"),
+        APIField("tags"),
     ]
 
-    parent_page_types = ["tools.ToolIndexPage"]
+    parent_page_types = ["blog.BlogIndexPage"]
     subpage_types = []
 
     class Meta:
-        verbose_name = "Calculator tool"
-        ordering = ["title"]
+        verbose_name = "Blog post"
+        ordering = ["-first_published_at"]
+
+
+class ToolPageTag(TaggedItemBase):
+    content_object = models.ForeignKey(ToolDetailPage, on_delete=models.CASCADE, related_name="tagged_items")

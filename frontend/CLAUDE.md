@@ -38,18 +38,10 @@ Portfolio_Project/                        ← monorepo root
 │   │   │   └── wagtail_hooks.py
 │   │   ├── tools/                        ← calculator tool pages
 │   │   │   ├── migrations/
-│   │   │   ├── calculators/              ← pure Python calculator logic
-│   │   │   │   ├── __init__.py
-│   │   │   │   ├── financial.py
-│   │   │   │   ├── health.py
-│   │   │   │   ├── scientific.py
-│   │   │   │   └── productivity.py
 │   │   │   ├── __init__.py
 │   │   │   ├── apps.py
 │   │   │   ├── models.py                 ← ToolIndexPage, ToolDetailPage
 │   │   │   ├── serializers.py
-│   │   │   ├── urls.py
-│   │   │   ├── views.py                  ← DRF ViewSets for calculator compute
 │   │   │   └── wagtail_hooks.py
 │   │   ├── pages/                        ← static Wagtail pages
 │   │   │   ├── migrations/
@@ -104,11 +96,12 @@ Portfolio_Project/                        ← monorepo root
 │   │   │   │           └── [category]/page.tsx
 │   │   │   ├── (tools)/
 │   │   │   │   ├── layout.tsx
-│   │   │   │   └── tools/
-│   │   │   │       ├── page.tsx          ← tool directory (SSG)
-│   │   │   │       └── [category]/
-│   │   │   │           └── [slug]/
-│   │   │   │               └── page.tsx  ← tool detail + calculator embed
+│   │   │   │   └── tool/
+│   │   │   │       ├── page.tsx          ← listing (ISR 60s)
+│   │   │   │       ├── [slug]/
+│   │   │   │       │   └── page.tsx      ← post (ISR 60s + generateStaticParams)
+│   │   │   │       └── category/
+│   │   │   │           └── [category]/page.tsx
 │   │   │   ├── (auth)/
 │   │   │   │   ├── layout.tsx
 │   │   │   │   ├── login/page.tsx
@@ -149,17 +142,6 @@ Portfolio_Project/                        ← monorepo root
 │   │   │   │   ├── ToolCard.tsx
 │   │   │   │   ├── ToolGrid.tsx
 │   │   │   │   ├── CalculatorShell.tsx   ← shared wrapper (input + result)
-│   │   │   │   ├── financial/
-│   │   │   │   │   ├── CompoundInterest.tsx
-│   │   │   │   │   ├── MortgageCalc.tsx
-│   │   │   │   │   └── ROICalc.tsx
-│   │   │   │   ├── health/
-│   │   │   │   │   ├── BMICalc.tsx
-│   │   │   │   │   └── CalorieCalc.tsx
-│   │   │   │   ├── scientific/
-│   │   │   │   │   └── UnitConverter.tsx
-│   │   │   │   └── productivity/
-│   │   │   │       └── PomodoroCalc.tsx
 │   │   │   ├── marketing/
 │   │   │   │   ├── Hero.tsx
 │   │   │   │   ├── FeatureGrid.tsx
