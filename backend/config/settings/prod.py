@@ -3,6 +3,9 @@ from decouple import config
 
 DEBUG = False
 
+SECRET_KEY = config("SECRET_KEY")
+
+
 # ─── Security ──────────────────────────────────────────────────────────
 SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True

@@ -65,6 +65,7 @@ WAGTAIL_APPS = [
     "wagtail",
     "modelcluster",
     "taggit",
+    "wagtailseo",
 ]
 
 THIRD_PARTY_APPS = [
@@ -123,24 +124,25 @@ ASGI_APPLICATION = 'config.asgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 # ─── Database ──────────────────────────────────────────────────────────
 
+# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+
 DATABASES = {
-    "default": dj_database_url.config(
-        default=config("DATABASE_URL", default=f"sqlite:///{BASE_DIR}/db.sqlite3"),
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+
+# DATABASES = {
+#     "default": dj_database_url.config(
+#         default=config("DATABASE_URL", default=f"sqlite:///{BASE_DIR}/db.sqlite3"),
+#         conn_max_age=600,
+#         conn_health_checks=True,
+#     )
+# }
 
 # ─── Cache ─────────────────────────────────────────────────────────────
 REDIS_URL = config("REDIS_URL", default="redis://localhost:6379/0")
@@ -155,8 +157,35 @@ CACHES = {
     }
 }
 
-SESSION_ENGINE = "django.contrib.sessions.backends.cache"
-SESSION_CACHE_ALIAS = "default"
+# ─── Cache & Sessions (Environment Aware) ─────────────────────────────
+if DEBUG:
+    # DEVELOPMENT: No Redis needed on Windows/local machine
+    # Uses Django’s built-in database sessions + fast in-memory cache
+    SESSION_ENGINE = "django.contrib.sessions.backends.db"
+
+    CACHES = {
+        "default": {
+            "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        }
+    }
+else:
+    # PRODUCTION: Keep Redis (Docker / deployed environments)
+    REDIS_URL = config("REDIS_URL", default="redis://redis:6379/0")
+
+    CACHES = {
+        "default": {
+            "BACKEND": "django_redis.cache.RedisCache",
+            "LOCATION": REDIS_URL,
+            "OPTIONS": {
+                "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            },
+        }
+    }
+    SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+    SESSION_CACHE_ALIAS = "default"
+
+# SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+# SESSION_CACHE_ALIAS = "default"
 
 
 # Password validation

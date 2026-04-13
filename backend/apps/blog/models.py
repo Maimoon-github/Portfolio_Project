@@ -46,7 +46,8 @@ from wagtail.search import index
 # Third-Party: modelcluster + taggit
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
-from taggit.models import ItemBase, TagBase
+# from taggit.models import ItemBase, TagBase
+from taggit.models import TaggedItemBase
 
 
 # ─── Reusable block definitions ───────────────────────────────────────────────
@@ -294,7 +295,10 @@ class BlogDetailPage(Page):
 
     # promote_panels includes seo_title, search_description, slug, and
     # show_in_menus — all provided by Wagtail's Page base class.
-    promote_panels = Page.promote_panels
+    # promote_panels = Page.promote_panels
+    promote_panels = Page.promote_panels + [
+        FieldPanel("tags"),
+    ]
 
     # ── Wagtail headless API fields ───────────────────────────────
     # Two hero image renditions are generated server-side:
@@ -336,7 +340,7 @@ class BlogDetailPage(Page):
         return self.title
 
 
-class BlogPageTag(ItemBase):
+class BlogPageTag(TaggedItemBase):
     """
     Through model connecting BlogDetailPage to taggit Tag.
 
@@ -345,13 +349,13 @@ class BlogPageTag(ItemBase):
     Without ParentalKey, tags would not be included in page history.
     """
 
-    tag = models.ForeignKey(
-        TagBase,
-        related_name="%(app_label)s_%(class)s_items",
-        on_delete=models.CASCADE,
+    tags = ClusterTaggableManager(
+        through="blog.BlogPageTag",
+        blank=True,
+        help_text="Comma-separated tags for discovery and related posts.",
     )
     content_object = ParentalKey(
-        BlogDetailPage,
+        "blog.BlogDetailPage",
         on_delete=models.CASCADE,
-        related_name="tagged_items",
+        related_name="tagged_items"
     )
