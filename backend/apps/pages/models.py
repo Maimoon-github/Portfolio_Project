@@ -42,6 +42,21 @@ from wagtailseo.models import SeoMixin    # ← correct
 
 
 class BasePage(SeoMixin, Page):           # ← inherit from SeoMixin
+    focus_keyword = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text="Primary SEO focus keyword for the page.",
+    )
+    seo_excerpt = models.TextField(
+        max_length=300,
+        blank=True,
+        help_text="Short SEO excerpt for search snippets and editorial guidance.",
+    )
+    image_prompt_suggestion = models.TextField(
+        blank=True,
+        help_text="Suggested prompt for featured image generation or caption guidance.",
+    )
+
     class Meta:
         abstract = True
 

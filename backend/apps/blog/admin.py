@@ -18,9 +18,21 @@ class BlogDetailPageAdmin(ModelAdmin):
     model = BlogDetailPage
     menu_label = "Blog Posts"
     menu_icon = "doc-full"
-    list_display = ("title", "category", "first_published_at", "reading_time")
+    list_display = (
+        "title",
+        "category",
+        "focus_keyword",
+        "total_word_count",
+        "reading_time",
+        "first_published_at",
+    )
     list_filter = ("category", "live")
-    search_fields = ("title", "subtitle", "category")
+    search_fields = ("title", "subtitle", "category", "focus_keyword")
+
+    def total_word_count(self, obj: BlogDetailPage) -> int:
+        return obj.total_word_count
+
+    total_word_count.short_description = "Word count"
 
 
 # Register with Wagtail admin

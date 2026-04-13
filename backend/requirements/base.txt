@@ -31,3 +31,4 @@ willow==1.8.0
 # ─── Utilities ─────────────────────────────────────────────────────────
 django-extensions==3.2.3
 django-filter==24.3
+textstat==0.7.13

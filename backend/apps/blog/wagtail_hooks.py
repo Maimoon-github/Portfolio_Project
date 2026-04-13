@@ -152,6 +152,25 @@ def on_blog_post_publish(request: HttpRequest, page: Page) -> None:
     )
 
 
+@hooks.register("before_publish_page")
+def before_blog_post_publish(request: HttpRequest, page: Page) -> None:
+    """Prevent publishing when a blog post fails strict SEO validation."""
+    from apps.blog.models import BlogDetailPage  # noqa: PLC0415
+
+    if not isinstance(page, BlogDetailPage):
+        return
+
+    try:
+        page.full_clean()
+    except Exception as exc:  # noqa: BLE001 — intentional broad catch
+        logger.warning(
+            "Blocked publish for blog post '%s' due to SEO validation failure: %s",
+            page.slug,
+            exc,
+        )
+        raise
+
+
 @hooks.register("after_unpublish_page")
 def on_blog_post_unpublish(request: HttpRequest, page: Page) -> None:
     """
