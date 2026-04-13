@@ -41,6 +41,7 @@ from wagtail.images.api.fields import ImageRenditionField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page
 from wagtail.search import index
+from apps.pages.models import BasePage
 
 
 # ─── Category choices ─────────────────────────────────────────────────────────
@@ -115,7 +116,7 @@ class FAQBlock(StructBlock):
 
 # ─── Page models ──────────────────────────────────────────────────────────────
 
-class ToolIndexPage(Page):
+class ToolIndexPage(BasePage):
     """
     The /tools/ directory page — lists all ToolDetailPage children.
 
@@ -168,7 +169,7 @@ class ToolIndexPage(Page):
         return context
 
 
-class ToolDetailPage(Page):
+class ToolDetailPage(BasePage):
     """
     Individual calculator tool page.
 

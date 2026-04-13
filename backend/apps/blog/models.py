@@ -48,6 +48,7 @@ from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 # from taggit.models import ItemBase, TagBase
 from taggit.models import TaggedItemBase
+from apps.pages.models import BasePage
 
 
 # ─── Reusable block definitions ───────────────────────────────────────────────
@@ -108,7 +109,7 @@ class CalloutBlock(StructBlock):
 
 # ─── Page models ──────────────────────────────────────────────────────────────
 
-class BlogIndexPage(Page):
+class BlogIndexPage(BasePage):
     """
     The /blog/ listing page — the single parent of all BlogDetailPage instances.
 
@@ -184,7 +185,7 @@ class BlogIndexPage(Page):
         return context
 
 
-class BlogDetailPage(Page):
+class BlogDetailPage(BasePage):
     """
     Individual blog post page.
 

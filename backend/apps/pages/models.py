@@ -37,7 +37,13 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.images.api.fields import ImageRenditionField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page
+# from wagtail_seo.models import SeoMixin
+from wagtailseo.models import SeoMixin    # ← correct
 
+
+class BasePage(SeoMixin, Page):           # ← inherit from SeoMixin
+    class Meta:
+        abstract = True
 
 # ─── Reusable StreamField blocks ──────────────────────────────────────────────
 
@@ -60,7 +66,7 @@ class TeamMemberBlock(StructBlock):
 
 # ─── Page models ──────────────────────────────────────────────────────────────
 
-class HomePage(Page):
+class HomePage(BasePage):
     """
     The single homepage of the marketing site.
 
@@ -163,7 +169,7 @@ class HomePage(Page):
         return context
 
 
-class AboutPage(Page):
+class AboutPage(BasePage):
     """
     About / team page.
 
@@ -218,7 +224,7 @@ class AboutPage(Page):
         verbose_name = "About page"
 
 
-class ContactPage(Page):
+class ContactPage(BasePage):
     """
     Contact page with basic contact details and optional form toggle.
 
