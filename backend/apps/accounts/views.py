@@ -1,3 +1,7 @@
+# backend/apps/accounts/views.py
+"""
+JWT authentication views using httpOnly cookies + DRF.
+"""
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -5,7 +9,9 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.exceptions import TokenError
 from django.conf import settings
-from .serializers import RegisterSerializer, UserSerializer
+from django.contrib.auth import authenticate
+
+from .serializers import RegisterSerializer, UserSerializer, UserUpdateSerializer
 
 
 def _set_auth_cookies(response: Response, access: str, refresh: str) -> Response:
@@ -46,7 +52,6 @@ def register(request):
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def login(request):
-    from django.contrib.auth import authenticate
     email = request.data.get("email", "")
     password = request.data.get("password", "")
     user = authenticate(request, username=email, password=password)
@@ -89,4 +94,14 @@ def logout(request):
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def me(request):
+    return Response(UserSerializer(request.user).data)
+
+
+@api_view(["PATCH"])
+@permission_classes([IsAuthenticated])
+def update_profile(request):
+    """Update own profile (first_name, last_name, bio, avatar)."""
+    serializer = UserUpdateSerializer(request.user, data=request.data, partial=True)
+    serializer.is_valid(raise_exception=True)
+    serializer.save()
     return Response(UserSerializer(request.user).data)

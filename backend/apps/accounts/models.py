@@ -1,13 +1,20 @@
+# backend/apps/accounts/models.py
+"""
+Custom User model (AUTH_USER_MODEL = 'accounts.User').
+
+Uses email as the unique identifier instead of username.
+"""
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.utils import timezone
+
 from .managers import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
     """
-    Custom user model using email as the primary identifier.
-    No username field — email is the login credential.
+    Custom user model with email as primary login credential.
+    No username field is present.
     """
     email = models.EmailField(unique=True, db_index=True)
     first_name = models.CharField(max_length=150, blank=True)

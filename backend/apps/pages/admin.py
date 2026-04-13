@@ -5,7 +5,7 @@ Admin configuration for the pages app.
 Registers static marketing pages in Wagtail admin with custom icons and labels.
 """
 from django.contrib import admin
-from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
+from wagtail_modeladmin.options import ModelAdmin, modeladmin_register
 from .models import HomePage, AboutPage, ContactPage
 
 
