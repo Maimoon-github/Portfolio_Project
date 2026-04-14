@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portfolio | Architect Aura</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#1b1c17",
+                    "tertiary-container": "#04dcff",
+                    "tertiary-fixed-dim": "#00d9fc",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#eae8e0",
+                    "on-tertiary-fixed": "#001f26",
+                    "on-tertiary-container": "#005d6d",
+                    "on-surface-variant": "#504532",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#004786",
+                    "primary-fixed": "#ffdfa0",
+                    "secondary": "#005faf",
+                    "on-primary-fixed-variant": "#5c4300",
+                    "on-surface": "#1b1c17",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#e4e3db",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#d4c5ab",
+                    "on-primary-fixed": "#261a00",
+                    "inverse-surface": "#30312c",
+                    "outline": "#827660",
+                    "surface-bright": "#fbf9f1",
+                    "surface-container-highest": "#e4e3db",
+                    "secondary-container": "#54a0fe",
+                    "surface-container-low": "#f5f4ec",
+                    "on-tertiary-fixed-variant": "#004e5c",
+                    "surface-tint": "#795900",
+                    "inverse-primary": "#fbbc00",
+                    "surface": "#fbf9f1",
+                    "secondary-fixed-dim": "#a5c8ff",
+                    "on-secondary-fixed": "#001c3a",
+                    "primary-fixed-dim": "#fbbc00",
+                    "inverse-on-surface": "#f3f1e9",
+                    "secondary-fixed": "#d4e3ff",
+                    "background": "#fbf9f1",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#003567",
+                    "on-primary-container": "#6d5000",
+                    "primary-container": "#ffbf00",
+                    "surface-dim": "#dcdad2",
+                    "tertiary": "#006879",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#aaedff",
+                    "primary": "#795900",
+                    "surface-container": "#f0eee6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .ghost-border {
+            outline: 1px solid rgba(0, 95, 175, 0.1);
+        }
+        .liquid-gold-btn {
+            background: linear-gradient(135deg, #ffbf00 0%, #fbbc00 100%);
+        }
+        .project-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .project-card.filtered-out {
+            opacity: 0;
+            transform: scale(0.95);
+            display: none;
+        }
+        .filter-btn.active {
+            background-color: #795900;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(121, 89, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/70 dark:bg-stone-900/70 backdrop-blur-xl border-b border-stone-200/20 dark:border-stone-700/20 shadow-[0_8px_32px_rgba(0,95,175,0.05)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-xl font-bold tracking-tighter text-stone-900 dark:text-stone-50 font-headline cursor-pointer" onclick="window.location.reload()">
+            Architect Aura
+        </div>
+<div class="hidden md:flex items-center gap-8 font-headline font-medium tracking-tight">
+<a class="text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors" href="#">Home</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors" href="#">About</a>
+<a class="text-amber-700 dark:text-amber-500 border-b-2 border-amber-500 pb-1" href="#">Portfolio</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors" href="#">Blog</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors" href="#">Tools</a>
+<a class="text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors" href="#">Contact</a>
+</div>
+<button class="liquid-gold-btn text-on-primary-container px-6 py-2 rounded-full font-headline font-bold text-sm scale-95 active:scale-90 transition-transform shadow-lg shadow-secondary/10">
+            Hire Me
+        </button>
+</div>
+</nav>
+<main class="pt-32 pb-24 px-8 max-w-7xl mx-auto">
+<!-- Header Section -->
+<header class="mb-16">
+<div class="inline-block bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full text-xs font-headline font-bold tracking-widest uppercase mb-6">
+            Project Gallery
+        </div>
+<h1 class="text-5xl md:text-7xl font-headline font-bold text-on-surface-variant tracking-tight mb-6 leading-none">
+            Curation of <span class="text-primary italic">Digital Artifacts.</span>
+</h1>
+<p class="max-w-2xl text-lg text-on-surface-variant/80 font-light leading-relaxed">
+            A showcase of technical precision and aesthetic harmony. Each project represents a unique solution to complex architectural challenges, adhering to the Maimoon color theory and the No-Line Rule.
+        </p>
+</header>
+<!-- Filters Section -->
+<section class="mb-12 flex flex-wrap items-center gap-4 border-b border-outline-variant/20 pb-8">
+<span class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface/50 mr-4">Filter by stack:</span>
+<button class="filter-btn active bg-surface-container-low text-on-surface-variant px-6 py-2 rounded-full font-headline text-sm font-medium transition-all" id="filter-all" onclick="filterProjects('all')">All Projects</button>
+<button class="filter-btn bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high px-6 py-2 rounded-full font-headline text-sm font-medium transition-all" id="filter-react" onclick="filterProjects('react')">React</button>
+<button class="filter-btn bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high px-6 py-2 rounded-full font-headline text-sm font-medium transition-all" id="filter-typescript" onclick="filterProjects('typescript')">TypeScript</button>
+<button class="filter-btn bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high px-6 py-2 rounded-full font-headline text-sm font-medium transition-all" id="filter-nextjs" onclick="filterProjects('nextjs')">Next.js</button>
+<button class="filter-btn bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high px-6 py-2 rounded-full font-headline text-sm font-medium transition-all" id="filter-tailwind" onclick="filterProjects('tailwind')">Tailwind CSS</button>
+</section>
+<!-- Bento Grid Projects -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6" id="project-grid">
+<!-- Project 1 (Large) - Linked to SCREEN_2 -->
+<div class="project-card md:col-span-8 group cursor-pointer" data-tags="nextjs typescript" onclick="window.location.href='{{DATA:SCREEN:SCREEN_2}}'">
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden ghost-border transition-all duration-500 hover:shadow-2xl hover:shadow-secondary/5 group-hover:-translate-y-1">
+<div class="relative aspect-video overflow-hidden">
+<img alt="Luminal Design System Dashboard" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOB4zhER6ikNYAFPRJxdq30zUnNob0Zb9jZRQQIF_jeYCd87X7oks5V0cVO9Zo1-McjTq9aG_6BubT5mb7LoTBGa4zVhMr8ChJdrNB_QybJ3rKmhxTpBEm0k8Btutl-aGyuz1zasOdJT4HHDpaGYEKqDptSOKeKhlK_Uu7NeTMImKTwnuA8h27QuapBvs88pmiulK2R1THggqc2jLCkGdSqBJMURWilGNaiLI1opzYlZburdQtjxDWvi7tW_7Sx8ZvjkMFMziEHhE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-3xl font-headline font-bold text-on-surface tracking-tight">Luminal Design System</h3>
+<span class="material-symbols-outlined text-secondary transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">north_east</span>
+</div>
+<p class="text-on-surface-variant/80 mb-6 leading-relaxed max-w-xl">
+                        A comprehensive token-driven UI framework built for high-performance enterprise applications focusing on micro-interactions and accessibility.
+                    </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full border border-secondary/30 text-secondary text-[10px] font-headline font-bold uppercase tracking-wider">Next.js</span>
+<span class="px-3 py-1 rounded-full border border-secondary/30 text-secondary text-[10px] font-headline font-bold uppercase tracking-wider">TypeScript</span>
+<span class="px-3 py-1 rounded-full border border-secondary/30 text-secondary text-[10px] font-headline font-bold uppercase tracking-wider">Stitches</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Project 2 (Square) -->
+<div class="project-card md:col-span-4 group cursor-pointer" data-tags="rust react" onclick="window.location.href='{{DATA:SCREEN:SCREEN_2}}'">
+<div class="bg-surface-container-lowest h-full rounded-xl overflow-hidden ghost-border transition-all duration-500 hover:shadow-2xl hover:shadow-secondary/5 group-hover:-translate-y-1">
+<div class="relative aspect-square overflow-hidden bg-surface-container">
+<img alt="Chronos Engine Detail" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQwunEKX3hCzxkFxxKI-w5wa1mC-ZnqRYj09q6rsWBjKeWYjVHR1yrMP9jFenfsQLryLVQpZIvxj8PwK97YL_jwtplYM-2yP0KOkoAuRtnUIc5uMFCj7jFWtlEHWKA7kBQ12LMFQmhD1jNoHZVHgGHyH7Jq9ZATl6ugCYKSH-s_PuBBivO5YSDd3Nagfo2lOKsN5GkrVIL2W_pl2zJHJdBEM6pVPKBlftzbjw5a0020VJ0YYNIoMPwGMsOWNz0QdUZU6wCW6qx7_4"/>
+</div>
+<div class="p-8">
+<h3 class="text-2xl font-headline font-bold text-on-surface tracking-tight mb-3">Chronos Engine</h3>
+<p class="text-on-surface-variant/80 text-sm mb-6 leading-relaxed">
+                        Real-time performance monitoring engine for distributed microservices architecture.
+                    </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full border border-secondary/30 text-secondary text-[10px] font-headline font-bold uppercase tracking-wider">Rust</span>
+<span class="px-3 py-1 rounded-full border border-secondary/30 text-secondary text-[10px] font-headline font-bold uppercase tracking-wider">React</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Project 3 (Standard) -->
+<div class="project-card md:col-span-4 group cursor-pointer" data-tags="nextjs d3js" onclick="window.location.href='{{DATA:SCREEN:SCREEN_2}}'">
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden ghost-border transition-all duration-500 hover:shadow-2xl hover:shadow-secondary/5 group-hover:-translate-y-1">
+<div class="relative aspect-[4/3] overflow-hidden bg-surface-container-low">
+<img alt="Aura Health Portal" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiNXycxe63dpimbzOAcuVm2dkds1F4L5TZv4DpBhUB1cY-5TjdIqnFwxnY4Yc-zAciqT_wK6_oabFjxysWXm4V4FjRW0zOcCzYnLNMOowWzMF_cyKXWC4fP9yqhqXE9xWutGq1hT8b4-HyrQDcp3yZWxKtn-_UaDa4Kw1RqjMb00vFBFqr-rYKTpHOgrO3vgLNIfb_HXtvVAtYClmiz_BBCNMpYEkXIn7bYkPfJVNduQKvFQhlxmZSrfBohuqYxq8tdV6HW-12Dpw"/>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-headline font-bold text-on-surface tracking-tight mb-2">Aura Health Portal</h3>
+<p class="text-on-surface-variant/80 text-sm mb-4 leading-relaxed">
+                        Patient-centric medical data visualization platform with HIPAA compliance.
+                    </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full border border-secondary/30 text-secondary text-[10px] font-headline font-bold uppercase tracking-wider">Next.js</span>
+<span class="px-3 py-1 rounded-full border border-secondary/30 text-secondary text-[10px] font-headline font-bold uppercase tracking-wider">D3.js</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Project 4 (Standard) -->
+<div class="project-card md:col-span-4 group cursor-pointer" data-tags="typescript postgres" onclick="window.location.href='{{DATA:SCREEN:SCREEN_2}}'">
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden ghost-border transition-all duration-500 hover:shadow-2xl hover:shadow-secondary/5 group-hover:-translate-y-1">
+<div class="relative aspect-[4/3] overflow-hidden bg-surface-container-low">
+<img alt="Structure CRM" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYQH8JfkplFZp70GG-wbbwPZu-3aSY2FLPf1e72XlbP5kDwJNa_rUinRPbz0pv5HxZim8qhc_au6-itN0IouyKsxikh9chf4L3ccQz9uaYMUYb_E_4Y7SAknZcNwRoNLIyQA5R_UvgcYyPOzQ87GrJW0Y64EtK4aI99UKa84iWO6D7bqNFYnpFjrHnWQAel3F30kO0gOdcuNSZucCDDgUWD4RUfccRgXCqwahoZyE-LnRwEci6Msyy3DbskOfTsbV33LFPRA_kJsk"/>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-headline font-bold text-on-surface tracking-tight mb-2">Structure CRM</h3>
+<p class="text-on-surface-variant/80 text-sm mb-4 leading-relaxed">
+                        Custom relationship management tool tailored for architectural firms and designers.
+                    </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full border border-secondary/30 text-secondary text-[10px] font-headline font-bold uppercase tracking-wider">TypeScript</span>
+<span class="px-3 py-1 rounded-full border border-secondary/30 text-secondary text-[10px] font-headline font-bold uppercase tracking-wider">Postgres</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Project 5 (Standard) -->
+<div class="project-card md:col-span-4 group cursor-pointer" data-tags="react reactnative redux" onclick="window.location.href='{{DATA:SCREEN:SCREEN_2}}'">
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden ghost-border transition-all duration-500 hover:shadow-2xl hover:shadow-secondary/5 group-hover:-translate-y-1">
+<div class="relative aspect-[4/3] overflow-hidden bg-surface-container-low">
+<img alt="Focus Flow Workspace" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC32I32IjsWAydOOBg2a7Y_dlrFq77T0KBYt61L-374zli4vgu8Lf9IJG8V6BzUnNyrTL_w3z5_GTVx_lT1ICG6mmrGoYXl-BGExvjLYFLHNSV423lgr9rQd36JRMywy-m3aeXnOxOI3XGvUk6W6cuaDkjdqR3oNBVaRHg4n6198zPqNMjiy4-F5BiNZiuAveTTvoOe5RLNXCHYkcqoM24iDxZSjED8A9OotPmMrrClva-BbCUJaAwSwr6DW-X3miDPByG-TZTvr6w"/>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-headline font-bold text-on-surface tracking-tight mb-2">Focus Flow</h3>
+<p class="text-on-surface-variant/80 text-sm mb-4 leading-relaxed">
+                        Personal productivity application emphasizing deep work and temporal awareness.
+                    </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full border border-secondary/30 text-secondary text-[10px] font-headline font-bold uppercase tracking-wider">React Native</span>
+<span class="px-3 py-1 rounded-full border border-secondary/30 text-secondary text-[10px] font-headline font-bold uppercase tracking-wider">Redux</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination/Call to Action -->
+<section class="mt-24 text-center">
+<p class="font-headline text-on-surface-variant/60 text-sm tracking-widest uppercase mb-8">Want to see more technical details?</p>
+<div class="flex justify-center gap-6">
+<button class="border border-outline px-8 py-3 rounded-full font-headline font-bold text-sm text-on-surface hover:bg-surface-container transition-colors">
+                View Archive
+            </button>
+<button class="liquid-gold-btn text-on-primary-container px-8 py-3 rounded-full font-headline font-bold text-sm shadow-lg shadow-primary/20">
+                Discuss a Project
+            </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-24 bg-stone-50 dark:bg-stone-950 border-t border-stone-200 dark:border-stone-800">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-12">
+<div>
+<div class="font-headline font-bold text-stone-900 dark:text-stone-50 text-xl mb-4 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Architect Aura</div>
+<p class="text-stone-500 font-body text-sm leading-relaxed max-w-xs">
+                Engineering refined digital experiences through intentional asymmetry and technical excellence, following Maimoon design tokens.
+            </p>
+</div>
+<div class="flex flex-col gap-3">
+<div class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface/40 mb-2">Navigation</div>
+<a class="text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 font-body text-sm transition-colors" href="#">Privacy</a>
+<a class="text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 font-body text-sm transition-colors" href="#">Terms</a>
+<a class="text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 font-body text-sm transition-colors" href="#">Source Code</a>
+<a class="text-stone-500 hover:text-stone-900 dark:hover:text-stone-100 font-body text-sm transition-colors" href="#">Status</a>
+</div>
+<div class="flex flex-col justify-between">
+<div class="text-amber-700 dark:text-amber-500 font-body text-sm font-medium mb-8">
+                Available for senior architectural consulting starting Q3 2024.
+            </div>
+<p class="text-stone-500 font-body text-sm">
+                © 2024 Senior Frontend Architect. Built with Intentional Asymmetry.
+            </p>
+</div>
+</div>
+</footer>
+<script>
+    function filterProjects(tag) {
+        const cards = document.querySelectorAll('.project-card');
+        const buttons = document.querySelectorAll('.filter-btn');
+        
+        // Update active button state
+        buttons.forEach(btn => {
+            btn.classList.remove('active', 'bg-primary', 'text-on-primary', 'shadow-md', 'shadow-primary/20');
+            btn.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+        });
+        
+        const activeBtn = document.getElementById('filter-' + tag);
+        if(activeBtn) {
+            activeBtn.classList.add('active', 'bg-primary', 'text-on-primary', 'shadow-md', 'shadow-primary/20');
+            activeBtn.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+        }
+
+        cards.forEach(card => {
+            const tags = card.getAttribute('data-tags').split(' ');
+            if (tag === 'all' || tags.includes(tag)) {
+                card.style.display = 'block';
+                setTimeout(() => {
+                    card.classList.remove('filtered-out');
+                }, 10);
+            } else {
+                card.classList.add('filtered-out');
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 500);
+            }
+        });
+    }
+</script>
+</body></html>

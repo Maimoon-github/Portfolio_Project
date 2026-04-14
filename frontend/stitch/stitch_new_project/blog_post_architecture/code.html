@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#eae8e0",
+                    "on-secondary-fixed-variant": "#004786",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#261a00",
+                    "on-tertiary": "#ffffff",
+                    "background": "#fbf9f1",
+                    "secondary-fixed": "#d4e3ff",
+                    "primary-fixed": "#ffdfa0",
+                    "primary": "#795900",
+                    "inverse-on-surface": "#f3f1e9",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#04dcff",
+                    "secondary-fixed-dim": "#a5c8ff",
+                    "outline-variant": "#d4c5ab",
+                    "secondary": "#005faf",
+                    "tertiary": "#006879",
+                    "surface-container": "#f0eee6",
+                    "surface-bright": "#fbf9f1",
+                    "on-tertiary-container": "#005d6d",
+                    "surface-variant": "#e4e3db",
+                    "inverse-primary": "#fbbc00",
+                    "on-secondary-fixed": "#001c3a",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#aaedff",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#30312c",
+                    "surface": "#fbf9f1",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#54a0fe",
+                    "on-surface-variant": "#504532",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#00d9fc",
+                    "on-secondary-container": "#003567",
+                    "outline": "#827660",
+                    "on-primary-fixed-variant": "#5c4300",
+                    "primary-fixed-dim": "#fbbc00",
+                    "surface-tint": "#795900",
+                    "on-background": "#1b1c17",
+                    "surface-dim": "#dcdad2",
+                    "on-surface": "#1b1c17",
+                    "primary-container": "#ffbf00",
+                    "on-primary-container": "#6d5000",
+                    "surface-container-low": "#f5f4ec",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e4e3db",
+                    "on-tertiary-fixed-variant": "#004e5c",
+                    "on-tertiary-fixed": "#001f26"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            background: rgba(251, 249, 241, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<nav class="fixed top-0 w-full z-50 bg-[#fbf9f1]/70 dark:bg-[#1b1c17]/70 backdrop-blur-xl border-b border-[#005faf]/10 dark:border-[#54a0fe]/10 shadow-[0_10px_30px_rgba(0,95,175,0.05)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-[1920px] mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#1b1c17] dark:text-[#fbf9f1] font-['Space_Grotesk']">
+                Architectural Aura
+            </div>
+<div class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] tracking-tight">
+<a class="text-[#504532] dark:text-[#f5f4ec] opacity-70 hover:opacity-100 hover:text-[#005faf] transition-all duration-300" href="#">Directory</a>
+<a class="text-[#504532] dark:text-[#f5f4ec] opacity-70 hover:opacity-100 hover:text-[#005faf] transition-all duration-300" href="#">Resume</a>
+<a class="text-[#795900] dark:text-[#ffbf00] border-b-2 border-[#795900] dark:border-[#ffbf00] pb-1" href="#">Blog</a>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-bold active:scale-95 transition-transform">
+                    Connect
+                </button>
+</div>
+<div class="md:hidden">
+<span class="material-symbols-outlined text-on-surface">menu</span>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-24 px-6 md:px-0">
+<article class="max-w-4xl mx-auto">
+<header class="mb-16">
+<div class="flex items-center gap-3 mb-8">
+<span class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full text-xs font-label uppercase tracking-widest">Engineering</span>
+<span class="text-on-surface-variant text-sm font-label">12 Min Read</span>
+</div>
+<h1 class="text-5xl md:text-7xl font-headline font-bold text-on-surface mb-8 leading-[1.1] tracking-tighter">
+                    The Future of Frontend Architecture
+                </h1>
+<div class="flex items-center gap-6 py-8 border-y border-outline-variant/20">
+<img class="w-14 h-14 rounded-full object-cover grayscale" data-alt="Portrait of a professional software architect in a minimalist studio with soft natural lighting and warm tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmv-yxvefTvXryWoCrXqfLwEy2juVH6sm4Ezex5vpsZikoCJno9-ZyxdmX2HE5ulybA9ytD3d-5DBzLG6k3cICfGsuy4f5PDPr1vkU2WGFu92aJIoeW7haX_8ckQFbI7hyUuZmQOzEzUqk9HMtw7VmdUBDyS5NJKbrp-AAiz2fJIQMk5tCfV7RkZOU-_oyYQ2R2RtTQc5jc96S0a7nP3qDpVXeK7GSIKCZN3Ne18JsBef3m0eTE_UEc3qkgdw_VEmdAbsfTmh0g2c"/>
+<div>
+<p class="font-headline font-bold text-lg text-on-surface">Alex Rivera</p>
+<p class="text-on-surface-variant text-sm">Senior Frontend Architect • May 24, 2024</p>
+</div>
+<div class="ml-auto flex gap-4">
+<button class="w-10 h-10 rounded-full flex items-center justify-center border border-outline-variant/30 text-secondary hover:bg-secondary-fixed transition-colors">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center border border-outline-variant/30 text-secondary hover:bg-secondary-fixed transition-colors">
+<span class="material-symbols-outlined text-[20px]">bookmark</span>
+</button>
+</div>
+</div>
+</header>
+<figure class="mb-16 -mx-6 md:-mx-20 overflow-hidden rounded-3xl">
+<img class="w-full aspect-[21/9] object-cover" data-alt="Abstract architectural visualization with clean white geometric lines and soft amber light glowing from within crevices" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIAweH-R4aNwk8QVe34KM5yZPVvEBzeFjOYb4C-3_pHknOfKqRLT7Zw2V81HkxuBsMApEnVY_QVrOiNaWvQG94kfhFdA-kXPBfcfPTB8dOWdPxydYLOHXEs2H019uCTwmo4kwNIh0hZuaWuKzIcommkZiDpqnXRKhZFgMRggh7xsG15eG-W83VrzgyvsgjpyBS1MTVQG_qww94V0CoN5IDS_FB8JAQrnysD86UWUJA8NECJqzY98KsBoQe1LBcwwmoQJYahe-SOLM"/>
+<figcaption class="mt-4 px-6 md:px-20 text-center italic text-on-surface-variant text-sm">
+                    Structural integrity in digital systems mirrors physical architecture.
+                </figcaption>
+</figure>
+<div class="prose prose-lg max-w-none font-body text-on-surface-variant leading-relaxed space-y-8">
+<p class="text-xl text-on-surface leading-loose first-letter:text-7xl first-letter:font-headline first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-primary">
+                    In the rapidly evolving landscape of web development, we are witnessing a paradigm shift from monolithic frameworks to decentralized, component-driven ecosystems. The future of frontend architecture isn't just about speed—it's about intentionality, scalability, and the seamless curation of user experiences.
+                </p>
+<h2 class="text-3xl font-headline font-bold text-on-surface mt-16 tracking-tight">The Shift to Server-Side Orchestration</h2>
+<p>
+                    For years, we pushed logic to the client, bloating our bundles and increasing Time to Interactive. Today, we are seeing a "Great Rebalancing." Frameworks like Next.js and Remix are bringing orchestration back to the server, allowing us to build rich, interactive UIs without the heavy tax of client-side hydration.
+                </p>
+<div class="my-12 p-8 bg-inverse-surface text-surface rounded-xl font-mono text-sm overflow-x-auto border-l-4 border-primary shadow-xl">
+<div class="flex gap-2 mb-4">
+<div class="w-3 h-3 rounded-full bg-error"></div>
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<div class="w-3 h-3 rounded-full bg-tertiary-container"></div>
+</div>
+<code class="block">
+<span class="text-primary-fixed">async function</span> <span class="text-tertiary-fixed-dim">ArchitectComponent</span>({ data }) {<br/>
+  <span class="text-outline-variant">// Server-side logic for high-fidelity data processing</span><br/>
+  <span class="text-primary-fixed">const</span> result = <span class="text-primary-fixed">await</span> orchestrate(data);<br/>
+<br/>
+  <span class="text-primary-fixed">return</span> (<br/>
+    &lt;<span class="text-tertiary-fixed-dim">Layout</span>&gt;<br/>
+      &lt;<span class="text-tertiary-fixed-dim">Canvas</span> content={result} /&gt;<br/>
+    &lt;/<span class="text-tertiary-fixed-dim">Layout</span>&gt;<br/>
+  );<br/>
+}
+                    </code>
+</div>
+<h2 class="text-3xl font-headline font-bold text-on-surface mt-16 tracking-tight">Atomic Systems &amp; Micro-frontends</h2>
+<p>
+                    As organizations scale, the "one-size-fits-all" repository becomes a liability. The future lies in federated modules—discrete, version-controlled units of UI that can be deployed independently yet feel cohesive through a centralized Design System.
+                </p>
+<div class="bg-surface-container-low p-10 rounded-3xl my-16 border border-outline-variant/10 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+<blockquote class="relative z-10 text-2xl font-headline font-medium text-on-surface leading-snug italic">
+                        "True architecture is not about the bricks you use, but how you manage the space between them."
+                    </blockquote>
+<p class="mt-6 text-primary font-label font-bold tracking-widest uppercase text-xs">— System Design Manifesto</p>
+</div>
+<p>
+                    In this new era, the role of the Frontend Architect evolves from being a "builder" to a "curator." We must define the guardrails that allow teams to move fast without compromising the holistic integrity of the product.
+                </p>
+</div>
+<footer class="mt-20 pt-12 border-t border-outline-variant/20">
+<div class="flex flex-wrap gap-4 mb-12">
+<span class="bg-surface-container-high px-4 py-2 rounded-lg text-on-surface-variant text-sm font-label">#ARCHITECTURE</span>
+<span class="bg-surface-container-high px-4 py-2 rounded-lg text-on-surface-variant text-sm font-label">#NEXTJS</span>
+<span class="bg-surface-container-high px-4 py-2 rounded-lg text-on-surface-variant text-sm font-label">#SYSTEMS</span>
+<span class="bg-surface-container-high px-4 py-2 rounded-lg text-on-surface-variant text-sm font-label">#WEBDEV</span>
+</div>
+<div class="bg-surface-container-lowest p-12 rounded-[2rem] shadow-[0_20px_40px_rgba(0,95,175,0.06)] flex flex-col md:flex-row items-center gap-10">
+<img class="w-32 h-32 rounded-3xl object-cover ring-4 ring-surface-container" data-alt="Portrait of a software architect in a modern office environment with blurred computer screens in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARy3y6Mkk42RWJLicVRYw8DMIcOrZlGWuAkuB7M0SCsTqT6OkRVZW82KNW9KBnjB8-8lBsSu2n6P0JTgy5-121s2Fuvj7Dx6oxVdRnIewkfEwirmNJTIPeJ6NCyiISvopNW76RaGXiy5JFdbQgmaNY_5XAyJwHI9vq4lujxpcY5kAmg8DGsFR43CyDGbtpDxdl1p11TPhyi7bUtELAhYIaAaTrsyFJauxyiiUu_fNbGP2DaZrbR3fcFNbk2LxLCzp6uKQlEPzSwuE"/>
+<div class="flex-1 text-center md:text-left">
+<h3 class="text-2xl font-headline font-bold text-on-surface mb-3">About Alex Rivera</h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed">
+                            Alex is a Senior Frontend Architect specialized in building resilient design systems and high-performance React applications. Currently exploring the intersection of AI and visual development.
+                        </p>
+<div class="flex justify-center md:justify-start gap-6">
+<a class="text-secondary font-label font-bold hover:text-primary transition-colors" href="#">TWITTER</a>
+<a class="text-secondary font-label font-bold hover:text-primary transition-colors" href="#">GITHUB</a>
+<a class="text-secondary font-label font-bold hover:text-primary transition-colors" href="#">LINKEDIN</a>
+</div>
+</div>
+</div>
+</footer>
+</article>
+</main>
+<section class="bg-surface-container-low py-24">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex justify-between items-end mb-16">
+<div>
+<p class="text-primary font-label font-bold tracking-widest uppercase text-xs mb-4">Keep Reading</p>
+<h2 class="text-4xl font-headline font-bold text-on-surface">Related Insights</h2>
+</div>
+<a class="hidden md:flex items-center gap-2 text-secondary font-label font-bold group" href="#">
+                    VIEW DIRECTORY 
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
+<div class="aspect-video overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Close up of mechanical keyboard with amber backlight and soft focus of code on a monitor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxjzzr4vO7gGQD8HUDd3cVA8WwnsQy60eTz55yg1lxHgqTqRnm8BcxH7zmgAuq3EAzrsxfeT3eLoImVbbergdRmU3GctlCZznJ1hKVpHqZrnQSum1QQbRMdiSLbGKNVmnnnVK781gCnuci55Cx1OQOh0gc4lRMChBwxXYQt0A_UwmrFK5JXv_xUlyKnlODAE-tF7qnyFerBIdEzY9miQ_07JKraLpLcIFJ4ShDjyG65U6nhGm7rtdFGEQtfQbzZ2Z_B4Gy1T9enXM"/>
+</div>
+<div class="p-8">
+<p class="text-on-tertiary-fixed-variant font-label text-[10px] tracking-widest uppercase mb-4">Performance</p>
+<h3 class="text-xl font-headline font-bold text-on-surface mb-4 leading-tight">Optimizing Hydration in Large Scale Apps</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">How we reduced TTI by 40% using selective islands architecture.</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
+<div class="aspect-video overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Minimalist desk setup with a single plant and a tablet showing a wireframe design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaf9QRaDY9LwSvTq5N5ogIpxv5O2acd1Jzl43uPmusRw-Xh2w-HsuEoTL95Ey_1-VS-0TdDjPOWIjkiZctda_16NYVdNL3Vxf3ZPRzMb6R3OLfDWUqLtdCnVKu8SAYsUoQGkCBZdO2V7NF9c8qSEdwy3q1Fnce0G14YZOZhDHVvRRfisdZN_uwcy5NSTmSZ6TxPoFQVJWpnJ5nhMjyYGeb9g6Dt-UpCPRkMbYogoQgYYx8qV3uyXlE23n20n6HOCV7yHNxIFOQIok"/>
+</div>
+<div class="p-8">
+<p class="text-on-tertiary-fixed-variant font-label text-[10px] tracking-widest uppercase mb-4">Design Systems</p>
+<h3 class="text-xl font-headline font-bold text-on-surface mb-4 leading-tight">The Anatomy of a Global Component</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Building components that bridge the gap between Figma and Production.</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
+<div class="aspect-video overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="High-tech server room with blue and orange LED lights reflecting on polished floors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHgCbIjWDI675Ck3onYJjPadkF-oi7U0h5YN3-r5Em1TJjJ_GTHZMYHS50KRQh65aVGzCHDh_bRuSAtgybjjaTpADlIVS3zEAbDAkxQuoEa2rR6du2kpnmMlVLgj495byCzng915Z7Bj2AH1gp1AxF3tkW0Puh8FacerqFGW150p5vBTybnftnoK0fOuG8YcfeKvx7HyUc7F-6Bqc4aJUgPkVmZ6rfdWa81cXggHaGXXLzF7NzXqLVz2WO-D65petqabjboAUekc4"/>
+</div>
+<div class="p-8">
+<p class="text-on-tertiary-fixed-variant font-label text-[10px] tracking-widest uppercase mb-4">Infrastructure</p>
+<h3 class="text-xl font-headline font-bold text-on-surface mb-4 leading-tight">Serverless Functions for Frontend Logic</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Moving your computation to the edge for lightning fast response times.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="w-full mt-auto py-12 bg-[#fbf9f1] dark:bg-[#1b1c17] border-t border-[#005faf]/5 font-['Inter'] text-sm tracking-normal">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 max-w-7xl mx-auto gap-4">
+<p class="text-[#504532] dark:text-[#f5f4ec] opacity-60">© 2024 Architectural Aura. Engineered for Precision.</p>
+<div class="flex gap-8">
+<a class="text-[#504532] dark:text-[#f5f4ec] opacity-60 hover:opacity-100 hover:underline transition-opacity" href="#">Privacy Policy</a>
+<a class="text-[#504532] dark:text-[#f5f4ec] opacity-60 hover:opacity-100 hover:underline transition-opacity" href="#">Terms of Service</a>
+<a class="text-[#504532] dark:text-[#f5f4ec] opacity-60 hover:opacity-100 hover:underline transition-opacity" href="#">Sitemap</a>
+</div>
+</div>
+</footer>
+<div class="fixed right-8 bottom-8 z-40 hidden md:block">
+<button class="flex items-center gap-3 bg-secondary-container text-on-secondary-container px-6 py-4 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all group">
+<span class="material-symbols-outlined">mark_as_unread</span>
+<span class="font-label font-bold tracking-wide">SUBSCRIBE TO LOGS</span>
+</button>
+</div>
+</body></html>

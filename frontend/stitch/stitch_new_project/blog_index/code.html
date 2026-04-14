@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Architect Aura | Engineering the Web</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e4e3db",
+                    "on-primary-container": "#6d5000",
+                    "outline-variant": "#d4c5ab",
+                    "secondary-fixed": "#d4e3ff",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#795900",
+                    "primary-fixed": "#ffdfa0",
+                    "on-secondary-fixed": "#001c3a",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e4e3db",
+                    "surface-container-high": "#eae8e0",
+                    "inverse-primary": "#fbbc00",
+                    "tertiary-fixed": "#aaedff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#003567",
+                    "on-primary-fixed": "#261a00",
+                    "outline": "#827660",
+                    "background": "#fbf9f1",
+                    "secondary-fixed-dim": "#a5c8ff",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#f0eee6",
+                    "on-surface-variant": "#504532",
+                    "inverse-on-surface": "#f3f1e9",
+                    "on-surface": "#1b1c17",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f5f4ec",
+                    "primary-fixed-dim": "#fbbc00",
+                    "primary": "#795900",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#5c4300",
+                    "tertiary-fixed-dim": "#00d9fc",
+                    "inverse-surface": "#30312c",
+                    "surface": "#fbf9f1",
+                    "primary-container": "#ffbf00",
+                    "surface-bright": "#fbf9f1",
+                    "tertiary": "#006879",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#004e5c",
+                    "on-tertiary-fixed": "#001f26",
+                    "tertiary-container": "#04dcff",
+                    "on-tertiary-container": "#005d6d",
+                    "on-background": "#1b1c17",
+                    "on-secondary-fixed-variant": "#004786",
+                    "error-container": "#ffdad6",
+                    "secondary": "#005faf",
+                    "surface-dim": "#dcdad2",
+                    "secondary-container": "#54a0fe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift {
+            transition: background-color 0.3s ease;
+        }
+        .ghost-border {
+            border: 1px solid rgba(0, 95, 175, 0.1);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-stone-200/20 shadow-[0_8px_32px_rgba(0,95,175,0.05)] transition-all duration-300">
+<div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-4">
+<span class="text-xl font-headline font-bold tracking-tighter text-stone-900">Architect Aura</span>
+<div class="hidden md:flex gap-8 items-center font-headline font-medium tracking-tight">
+<a class="text-stone-600 hover:text-stone-900 transition-colors" href="#">Home</a>
+<a class="text-stone-600 hover:text-stone-900 transition-colors" href="#">About</a>
+<a class="text-stone-600 hover:text-stone-900 transition-colors" href="#">Portfolio</a>
+<a class="text-amber-700 border-b-2 border-amber-500 pb-1" href="#">Blog</a>
+<a class="text-stone-600 hover:text-stone-900 transition-colors" href="#">Tools</a>
+<a class="text-stone-600 hover:text-stone-900 transition-colors" href="#">Contact</a>
+</div>
+<button class="bg-gradient-to-r from-primary-container to-inverse-primary px-6 py-2 rounded-full font-headline font-bold text-sm uppercase tracking-wider text-on-primary-container shadow-[0_10px_20px_rgba(121,89,0,0.15)] hover:shadow-[0_15px_30px_rgba(0,95,175,0.2)] transition-all active:scale-95">
+                Hire Me
+            </button>
+</div>
+</nav>
+<main class="pt-32 pb-20 px-8 max-w-7xl mx-auto">
+<!-- Hero & Search -->
+<header class="mb-16">
+<h1 class="font-headline text-5xl md:text-7xl font-bold tracking-tight text-on-surface mb-6 max-w-3xl">
+                Technical <span class="text-primary italic">Journal</span> of a Frontend Architect
+            </h1>
+<p class="text-on-surface-variant text-lg md:text-xl max-w-2xl font-light mb-10 leading-relaxed">
+                Exploring the intersection of performance engineering, aesthetic precision, and the future of human-centric interfaces.
+            </p>
+<!-- Search Bar -->
+<div class="relative max-w-2xl group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-secondary">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-14 pr-6 focus:ring-2 focus:ring-secondary transition-all outline-none font-body placeholder:text-stone-400" placeholder="Search the archives..." type="text"/>
+</div>
+</header>
+<!-- Filter Bar -->
+<section class="flex flex-wrap gap-4 mb-12 items-center">
+<span class="font-headline text-xs font-bold uppercase tracking-widest text-secondary mr-2">Categories:</span>
+<button class="px-6 py-2 rounded-full bg-primary text-on-primary font-headline text-sm font-medium transition-all shadow-lg shadow-primary/20">All Posts</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant font-headline text-sm font-medium transition-all">Frontend</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant font-headline text-sm font-medium transition-all">UI/UX</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant font-headline text-sm font-medium transition-all">Tools</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant font-headline text-sm font-medium transition-all">Tutorials</button>
+</section>
+<!-- Blog Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Featured Card (Asymmetric Layout) -->
+<article class="md:col-span-8 group relative overflow-hidden rounded-2xl bg-surface-container-low transition-all hover:translate-y-[-4px]">
+<div class="flex flex-col md:flex-row h-full">
+<div class="md:w-1/2 overflow-hidden h-64 md:h-full">
+<img alt="Modern architecture" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Modern architectural interior with sweeping white curves, minimal lighting, and large glass windows overlooking a city at twilight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIkQ15oSYiELILkxOSKxQ0LqSEwQi_ln07PNDJCEBn1Qo3z1XOel9Uq06I6cI3d2WqcI9mPwQ-nsbbieerHLma-YHWccNGaAUr5KMHrDJwXQVZELCeKaAsbT8J1dLY8ThYgQwsKT7J1Zph-OqFRnLvN-9VmjVXc16qMoFyFfRjF_vwj49oW0mr2TXleDFmO2ATY16co3faxo-L7aW-IZQC7xCB0TYj_Fg_XKSdG6GOylhsYLqHtIxo-su1NfYR2eMU2hpDJFSTUDc"/>
+</div>
+<div class="md:w-1/2 p-10 flex flex-col justify-center">
+<div class="flex items-center gap-3 mb-4">
+<span class="text-[10px] font-headline font-bold uppercase tracking-[0.2em] text-secondary bg-secondary-fixed px-2 py-1 rounded">Architecture</span>
+<span class="text-xs text-stone-400">March 24, 2024</span>
+</div>
+<h2 class="font-headline text-3xl font-bold text-on-surface mb-4 leading-tight group-hover:text-primary transition-colors">The Aura of Atomic Design Systems</h2>
+<p class="text-on-surface-variant font-light line-clamp-3 mb-6">How small components create massive impact. Diving deep into the philosophy of scalable UI foundations and why tokens are the new atoms.</p>
+<div class="mt-auto flex items-center gap-2 font-headline font-bold text-sm group-hover:gap-4 transition-all">
+<span>Read Deep Dive</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Standard Card 1 -->
+<article class="md:col-span-4 group bg-surface-container-lowest ghost-border rounded-2xl p-8 flex flex-col hover:shadow-[0_20px_40px_rgba(0,95,175,0.08)] transition-all">
+<div class="mb-6 h-48 rounded-xl overflow-hidden">
+<img alt="Code editor" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Cinematic close-up of high-contrast code on a sleek dark monitor, with golden ambient light reflecting off the glass surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6ziwzpmyMQCQqpJyT_c03ih8HjL8_2E9AAnndo1di1LUSxffew_4YZjvuPhzfYsTkFckJCtbyT5_CdYLLB-TbwHqipDhFhhtfa-JQIXOzytTMD60i3f60vY6-c0k8GUFV5LZTKGLAoLy08YyQ2Ee65-xL2YbbC9a4exzLmssrJ4UWU7Uri_CsccHglqKiPKceUJ3_8sm0VvTFBz4G7rpa25pMXUzG60vbWDekllvAnbvdVVgAerBseisrttlxx2K2nW3JZXljAR8"/>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<span class="text-[10px] font-headline font-bold uppercase tracking-[0.2em] text-amber-700 bg-primary-fixed px-2 py-1 rounded">Frontend</span>
+<span class="text-xs text-stone-400">March 21, 2024</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">State Management Beyond Redux</h3>
+<p class="text-on-surface-variant text-sm font-light mb-6">Exploring the shift toward signals, atom-based state, and why reactivity is winning the framework wars.</p>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-xs font-medium text-secondary">12 min read</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">bookmark</span>
+</div>
+</article>
+<!-- Standard Card 2 -->
+<article class="md:col-span-4 group bg-surface-container-lowest ghost-border rounded-2xl p-8 flex flex-col hover:shadow-[0_20px_40px_rgba(0,95,175,0.08)] transition-all">
+<div class="mb-6 h-48 rounded-xl overflow-hidden">
+<img alt="UX Design process" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A clean wooden desk with a tablet displaying a wireframe layout, a coffee cup, and soft morning sunlight casting long shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRVjLokaQIK-Z6X5gcJa92e13g-dBVHni2O1c93sYSh1Zu9u_B1ATJRrsmiICyFeY7lAYNN7j5S3mhRmR7u7c0qgRSS2RGA2zehnwNkunQizrz8ASZvIWZUtK0Mi8WFtFa9uvR7i1v0Clyq6lX3ChXRVeh56ZnP9hftnz8qEaqYVAvKwlcZzA0NTJVCHdpMkWxaF5VFHCyBnpTO6Yf4lmzrB3tUVDRassDBKw_Aqnmi7aSWLc58pQJEgyhFzEfOczX0YFjWxsu3XA"/>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<span class="text-[10px] font-headline font-bold uppercase tracking-[0.2em] text-secondary bg-secondary-fixed px-2 py-1 rounded">UI/UX</span>
+<span class="text-xs text-stone-400">March 18, 2024</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">The Psychology of White Space</h3>
+<p class="text-on-surface-variant text-sm font-light mb-6">Why the gaps between your elements are just as important as the elements themselves for user retention.</p>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-xs font-medium text-secondary">8 min read</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">bookmark</span>
+</div>
+</article>
+<!-- Standard Card 3 -->
+<article class="md:col-span-4 group bg-surface-container-lowest ghost-border rounded-2xl p-8 flex flex-col hover:shadow-[0_20px_40px_rgba(0,95,175,0.08)] transition-all">
+<div class="mb-6 h-48 rounded-xl overflow-hidden">
+<img alt="Developer workspace" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Ultra-minimalist developer desk setup with a mechanical keyboard and a small plant, illuminated by cool blue neon accent lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmdt9iCSssyKRZ0uZa_D42N9TarUNSTWIpUhNdnvU8aWCOS97Kx4DE2cC0JYADSWJYFQV6I9yeOcSy-3HtV55DcyfHN4R8HR3sl5d5Dzao-OSrtoLYCjpQK4sbtcdzUHV2Ir3-LPgoilz-wqGLx8clpkhZToUf6jXBzPVZvBeHZWt6ZQRmxVg4-vY95HKAP5jba1GzLVKTyATf4LHoHqKonujxCGHLAqsOshPIelKZZWEeugnveq3jpRe8FhF9PaY_TGPa_x4qUdQ"/>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<span class="text-[10px] font-headline font-bold uppercase tracking-[0.2em] text-stone-500 bg-stone-100 px-2 py-1 rounded">Tools</span>
+<span class="text-xs text-stone-400">March 15, 2024</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">Vite vs. Webpack: The Verdict</h3>
+<p class="text-on-surface-variant text-sm font-light mb-6">Benchmarking build times and HMR speed in 2024. Is it finally time to migrate your legacy monorepo?</p>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-xs font-medium text-secondary">15 min read</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">bookmark</span>
+</div>
+</article>
+<!-- Standard Card 4 -->
+<article class="md:col-span-4 group bg-surface-container-lowest ghost-border rounded-2xl p-8 flex flex-col hover:shadow-[0_20px_40px_rgba(0,95,175,0.08)] transition-all">
+<div class="mb-6 h-48 rounded-xl overflow-hidden">
+<img alt="Abstract tech" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Abstract 3D render of floating amber spheres and blue crystalline structures, symbolizing complex data architecture and connectivity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwQ4-oZDQspy1CPHasIQjH5ruODYISw71l7UGNRMnhU6ivangDgsny4nl4bYON4BwSxgUjZMTMxZonerIE8Hr9tGJzOYSOuQIINjRRk1VYdq1b1MbXoqSo8ZKbvENXa4FBmoH2mvkKAWgy5ZYsswVeGHbChpiu26bPKOG7zqKvpPb7ZqHk869o04R3jlWUQnFd2Yk5pmr89ZhGSMm3L4dwwj_H24g9BhN0BtYZZ75JmxpvICfULa1kWvjMc1fBzb6EhIWM4IYFF9w"/>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<span class="text-[10px] font-headline font-bold uppercase tracking-[0.2em] text-primary-fixed-variant bg-primary-fixed px-2 py-1 rounded">Tutorials</span>
+<span class="text-xs text-stone-400">March 12, 2024</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">Building Custom Design Tokens</h3>
+<p class="text-on-surface-variant text-sm font-light mb-6">A step-by-step guide to generating a multi-mode theme using Tailwind CSS and Style Dictionary.</p>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-xs font-medium text-secondary">20 min read</span>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">bookmark</span>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="mt-16 flex items-center justify-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-low text-stone-400">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-on-primary font-headline font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-low text-on-surface-variant font-headline hover:bg-surface-container-high transition-colors">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-low text-on-surface-variant font-headline hover:bg-surface-container-high transition-colors">3</button>
+<span class="px-2 text-stone-400">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-low text-stone-400 hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 mt-24 bg-stone-50 border-t border-stone-200">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="flex flex-col gap-4">
+<span class="font-headline font-bold text-stone-900 text-xl">Architect Aura</span>
+<p class="text-stone-500 font-body text-sm leading-relaxed max-w-xs">
+                    Curated insights on frontend engineering, interface design, and the digital craft. Building better webs, one pixel at a time.
+                </p>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="flex flex-col gap-4">
+<span class="font-headline text-xs font-bold uppercase tracking-widest text-stone-900">Explore</span>
+<a class="text-stone-500 hover:text-stone-900 text-sm transition-colors" href="#">Portfolio</a>
+<a class="text-stone-500 hover:text-stone-900 text-sm transition-colors" href="#">Blog</a>
+<a class="text-stone-500 hover:text-stone-900 text-sm transition-colors" href="#">Tools</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-headline text-xs font-bold uppercase tracking-widest text-stone-900">Legal</span>
+<a class="text-stone-500 hover:text-stone-900 text-sm transition-colors" href="#">Privacy</a>
+<a class="text-stone-500 hover:text-stone-900 text-sm transition-colors" href="#">Terms</a>
+<a class="text-stone-500 hover:text-stone-900 text-sm transition-colors" href="#">Status</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-headline text-xs font-bold uppercase tracking-widest text-stone-900">Newsletter</span>
+<p class="text-stone-500 text-sm mb-2">Subscribe for a monthly digest of the best architecture patterns.</p>
+<div class="flex gap-2">
+<input class="bg-white border border-stone-200 px-4 py-2 rounded-lg text-sm focus:ring-1 focus:ring-primary outline-none flex-grow" placeholder="email@example.com" type="email"/>
+<button class="bg-stone-900 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-stone-800 transition-colors">Join</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-12 pt-8 border-t border-stone-200/50 flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="text-stone-500 text-xs font-body">© 2024 Senior Frontend Architect. Built with Intentional Asymmetry.</span>
+<div class="flex gap-6">
+<a class="text-stone-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-lg">public</span></a>
+<a class="text-stone-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-lg">code</span></a>
+<a class="text-stone-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined text-lg">terminal</span></a>
+</div>
+</div>
+</footer>
+</body></html>

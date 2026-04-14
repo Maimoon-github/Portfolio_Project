@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Architect Tools Library | Architectural Aura</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#eae8e0",
+                    "on-secondary-fixed-variant": "#004786",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#261a00",
+                    "on-tertiary": "#ffffff",
+                    "background": "#fbf9f1",
+                    "secondary-fixed": "#d4e3ff",
+                    "primary-fixed": "#ffdfa0",
+                    "primary": "#795900",
+                    "inverse-on-surface": "#f3f1e9",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#04dcff",
+                    "secondary-fixed-dim": "#a5c8ff",
+                    "outline-variant": "#d4c5ab",
+                    "secondary": "#005faf",
+                    "tertiary": "#006879",
+                    "surface-container": "#f0eee6",
+                    "surface-bright": "#fbf9f1",
+                    "on-tertiary-container": "#005d6d",
+                    "surface-variant": "#e4e3db",
+                    "inverse-primary": "#fbbc00",
+                    "on-secondary-fixed": "#001c3a",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#aaedff",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#30312c",
+                    "surface": "#fbf9f1",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#54a0fe",
+                    "on-surface-variant": "#504532",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#00d9fc",
+                    "on-secondary-container": "#003567",
+                    "outline": "#827660",
+                    "on-primary-fixed-variant": "#5c4300",
+                    "primary-fixed-dim": "#fbbc00",
+                    "surface-tint": "#795900",
+                    "on-background": "#1b1c17",
+                    "surface-dim": "#dcdad2",
+                    "on-surface": "#1b1c17",
+                    "primary-container": "#ffbf00",
+                    "on-primary-container": "#6d5000",
+                    "surface-container-low": "#f5f4ec",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e4e3db",
+                    "on-tertiary-fixed-variant": "#004e5c",
+                    "on-tertiary-fixed": "#001f26"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        .liquid-gold-btn {
+            background: linear-gradient(135deg, #ffbf00 0%, #fbbc00 100%);
+        }
+    </style>
+</head>
+<body class="bg-background font-body text-on-background selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fbf9f1]/70 dark:bg-[#1b1c17]/70 backdrop-blur-xl border-b border-[#005faf]/10 dark:border-[#54a0fe]/10 shadow-[0_10px_30px_rgba(0,95,175,0.05)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-[1920px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-[#1b1c17] dark:text-[#fbf9f1] font-headline">Architectural Aura</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-[#795900] dark:text-[#ffbf00] border-b-2 border-[#795900] dark:border-[#ffbf00] pb-1 font-headline tracking-tight transition-all duration-300" href="#">Directory</a>
+<a class="text-[#504532] dark:text-[#f5f4ec] opacity-70 font-headline tracking-tight hover:opacity-100 hover:text-[#005faf] transition-all duration-300" href="#">Resume</a>
+<a class="text-[#504532] dark:text-[#f5f4ec] opacity-70 font-headline tracking-tight hover:opacity-100 hover:text-[#005faf] transition-all duration-300" href="#">Blog</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-surface-container-low rounded-full px-4 py-1.5 border border-outline-variant/20">
+<span class="material-symbols-outlined text-on-surface-variant text-sm mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 placeholder:text-on-surface-variant/50" placeholder="Find a tool..." type="text"/>
+</div>
+<button class="liquid-gold-btn text-on-primary-container px-6 py-2 rounded-full font-headline font-bold text-sm active:scale-95 transition-transform">Connect</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="Architect Portrait" data-alt="Close-up professional portrait of a male architect with a modern, intelligent expression in soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1qXBsQyKiBzajkPTAnYVL1OR6Ucdl-zzY2tR0y7HEjJ8NSAcPnhkDXqpC75YB7Gz_5OyT43FvuiGmG2mhBUH7sJtP4hEDIaOnBNJ7qoe89xCeWoN4PafWG1CGYPzTn_ZuydEXm7C-rdock0N0uiWWII2t3In4r05SSxOg6IXt1Vel8CGrs43s51tBHP2cqYiHvjPlPpj1O-q0xAh_NHneE9ma1iZAw493zhu2aagj2OSLAhrUdMyjfli1A33jwL6WpIfJI6CmB4A"/>
+</div>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Suppressed on Content Canvas as per Rule, but here we render for Context) -->
+<aside class="hidden xl:flex fixed left-0 top-20 h-[calc(100vh-5rem)] w-64 bg-[#f5f4ec]/80 dark:bg-[#30312c]/80 backdrop-blur-lg flex-col gap-6 p-6 overflow-y-auto rounded-r-3xl shadow-[20px_0_40px_rgba(0,95,175,0.08)]">
+<div class="mb-4">
+<h3 class="text-lg font-black text-[#795900] font-headline uppercase tracking-widest">Architect Tools</h3>
+<p class="font-headline uppercase text-[10px] tracking-widest text-on-surface-variant opacity-60">v2.4.0-stable</p>
+</div>
+<div class="space-y-2">
+<a class="flex items-center gap-4 text-[#504532] dark:text-[#f5f4ec] p-3 opacity-60 hover:bg-[#fbf9f1] dark:hover:bg-[#1b1c17] hover:translate-x-1 transition-all rounded-xl font-headline uppercase text-[10px] tracking-widest" href="#">
+<span class="material-symbols-outlined">bug_report</span>
+<span>Debug</span>
+</a>
+<a class="flex items-center gap-4 text-[#504532] dark:text-[#f5f4ec] p-3 opacity-60 hover:bg-[#fbf9f1] dark:hover:bg-[#1b1c17] hover:translate-x-1 transition-all rounded-xl font-headline uppercase text-[10px] tracking-widest" href="#">
+<span class="material-symbols-outlined">speed</span>
+<span>Performance</span>
+</a>
+<a class="flex items-center gap-4 bg-white dark:bg-[#1b1c17] text-[#795900] dark:text-[#ffbf00] rounded-xl p-3 border-l-4 border-[#795900] font-headline uppercase text-[10px] tracking-widest" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Asset Lab</span>
+</a>
+<a class="flex items-center gap-4 text-[#504532] dark:text-[#f5f4ec] p-3 opacity-60 hover:bg-[#fbf9f1] dark:hover:bg-[#1b1c17] hover:translate-x-1 transition-all rounded-xl font-headline uppercase text-[10px] tracking-widest" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<span>Security</span>
+</a>
+</div>
+<div class="mt-auto pt-6">
+<button class="w-full bg-secondary text-white py-3 rounded-xl font-headline font-bold text-xs tracking-widest uppercase active:scale-[0.98] transition-all">Launch Workspace</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-32 pb-24 px-8 md:px-16 xl:ml-64 max-w-[1600px] mx-auto">
+<!-- Hero Header -->
+<header class="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="max-w-2xl">
+<span class="font-headline uppercase text-[10px] tracking-[0.2em] text-secondary font-bold mb-4 block">Precision Infrastructure</span>
+<h1 class="text-6xl font-headline font-bold tracking-tighter text-on-background mb-6 leading-[0.9]">Architect Tools Library</h1>
+<p class="text-xl text-on-surface-variant/80 font-body max-w-lg leading-relaxed">
+                    A curated ecosystem of high-performance modules designed for the modern frontend architect. Each tool is built with <span class="text-secondary font-medium italic">atmospheric depth</span> and technical rigor.
+                </p>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex -space-x-3">
+<img alt="Team Member" class="w-10 h-10 rounded-full border-2 border-background" data-alt="Portrait of a female developer in a neutral studio setting with warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWy7nxULNWTWtjPhe1NZSSWYhbmYTiiYo8XkIQkoWwg3W_gKv4V1_MGI4mQ-WUrmuomdurh3_dSxjw58fC7uPWA05Wk93xIbPp9xKn-Q-p5hqO3ndsC5Kt-wLMjIV1yKr7mMtsre1la8fm7djPC3P33hBAZtrV2uReAzZgdQfRSCxBrtD0pe-IlNKEz1nDWpPjepvFvdAbZk6cLEvf11jiqS8c75BomN8jNDdXuLsOu7sDzUkI1UemDv37c1jd1IPJeeTbScahnZk"/>
+<img alt="Team Member" class="w-10 h-10 rounded-full border-2 border-background" data-alt="Portrait of a male engineer wearing professional attire in an architectural office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIQU40NCjGYxJMnsRSffM6HLlsPqlRzusZwKxf2vymZHtdVmkCyjq5Y7El-Cly_TrMFobiSUByIYsM_BU0nSjB-D5wFMjxlaSEBogjy_3qzdNHXFZzDWMFEP40ruBI1pB28ISJCMx8giVJ1eFmlgJqtp3NrcEXAq6-dWxi-aEeOP8JkaA8ZQeZRfTnTb3N2bARbbhChRLs9A2aOn_DmUoHj0xbMl3bm3H95JcDFqQnbjVgvLVJ29cqx8aOfcS-mNjIA25krpvNgT0"/>
+<div class="w-10 h-10 rounded-full border-2 border-background bg-secondary text-white flex items-center justify-center text-xs font-bold font-headline">+12</div>
+</div>
+<span class="text-xs font-headline uppercase tracking-widest text-on-surface-variant font-medium">Top Curators</span>
+</div>
+</header>
+<!-- Bento Grid Tools -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Tool 1: Featured (Wide) -->
+<div class="md:col-span-8 group relative overflow-hidden bg-surface-container-low rounded-[2rem] p-8 transition-all hover:shadow-[0_30px_60px_rgba(0,95,175,0.1)]">
+<div class="flex justify-between items-start relative z-10">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-[10px] font-headline font-bold uppercase tracking-wider">New</span>
+<span class="text-secondary font-headline font-bold uppercase text-[10px] tracking-widest">Asset Management</span>
+</div>
+<h2 class="text-3xl font-headline font-bold text-on-background mb-4">Global Asset Lab</h2>
+<p class="text-on-surface-variant max-w-md mb-8">Synchronize design tokens and high-fidelity assets across multi-region edge networks with sub-millisecond latency.</p>
+<button class="flex items-center gap-2 group-hover:gap-4 transition-all text-secondary font-headline font-bold uppercase text-xs tracking-[0.2em]">
+                            Open Dashboard <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="hidden lg:block w-48 h-48 bg-gradient-to-br from-primary-container/20 to-secondary-container/20 rounded-full blur-3xl absolute -right-10 -top-10 animate-pulse"></div>
+<span class="material-symbols-outlined text-8xl text-secondary/10 absolute -right-4 -bottom-4 select-none group-hover:text-secondary/20 transition-all">inventory_2</span>
+</div>
+</div>
+<!-- Tool 2: Performance (Square) -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-[2rem] p-8 border border-outline-variant/10 shadow-[0_10px_30px_rgba(0,95,175,0.04)] group">
+<div class="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center mb-6 text-secondary">
+<span class="material-symbols-outlined">speed</span>
+</div>
+<h3 class="text-xl font-headline font-bold mb-2">Metrics Engine</h3>
+<p class="text-sm text-on-surface-variant mb-6">Real-time Web Vitals tracking with predictive performance modeling.</p>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden mb-2">
+<div class="h-full bg-secondary w-[92%]"></div>
+</div>
+<div class="flex justify-between text-[10px] font-headline font-bold uppercase text-on-surface-variant/60">
+<span>LCP Stable</span>
+<span>92/100</span>
+</div>
+</div>
+<!-- Tool 3: Security (Tall) -->
+<div class="md:col-span-4 md:row-span-2 bg-inverse-surface rounded-[2rem] p-8 text-white relative overflow-hidden flex flex-col justify-between">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-tertiary-fixed text-4xl mb-6">verified_user</span>
+<h3 class="text-2xl font-headline font-bold mb-4">Aura Security Shield</h3>
+<p class="text-white/60 text-sm leading-relaxed mb-6">Automated dependency auditing and zero-trust authentication orchestration for architected environments.</p>
+<ul class="space-y-3">
+<li class="flex items-center gap-2 text-xs font-headline uppercase tracking-widest text-tertiary-fixed-dim">
+<span class="material-symbols-outlined text-sm">check_circle</span> End-to-End Encryption
+                        </li>
+<li class="flex items-center gap-2 text-xs font-headline uppercase tracking-widest text-tertiary-fixed-dim">
+<span class="material-symbols-outlined text-sm">check_circle</span> Auth0 Integration
+                        </li>
+</ul>
+</div>
+<div class="mt-12">
+<img alt="Security Grid" class="w-full h-40 object-cover rounded-2xl opacity-40 mix-blend-luminosity" data-alt="Abstract glowing blue circuit board and digital server room nodes at night with neon lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwwSDfFZGC6sr1rUMGKRaI3tup9dm8Mc4EsV0-riLbsEqf5qvRA5auO4_d86JV6c_87iRpW5IIq5pyMj0T49RLe2vrJQUX3YBt3TqsFpJY3EKYsCzKqegIlyYUKHt5XoGSYa84qyCIUXg9Bcgv9dyVBOnfQbX9PZBi_SNcbwkx8miPlWoPGEOC9KAxRTlziLqHxAEyBw2e3ez4rVK-RwbphyWTovdOmwdOB3_TMUutvB8TT7u6iVshl_xKxYCobFEl9dMBZmPOyPk"/>
+</div>
+</div>
+<!-- Tool 4: Debugger -->
+<div class="md:col-span-4 bg-surface-container-low rounded-[2rem] p-8 group hover:bg-surface-container transition-colors">
+<div class="flex items-center justify-between mb-8">
+<span class="material-symbols-outlined text-primary text-3xl">bug_report</span>
+<span class="text-[10px] font-headline font-bold uppercase text-on-surface-variant/40 tracking-widest">Active</span>
+</div>
+<h3 class="text-xl font-headline font-bold mb-2">Live Trace</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Advanced stack trace visualization with state-replay capabilities.</p>
+</div>
+<!-- Tool 5: Cloud Status -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-[2rem] p-8 border border-outline-variant/10 shadow-[0_10px_30px_rgba(0,95,175,0.04)]">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-xs font-headline font-bold uppercase tracking-widest text-on-surface-variant">Systems Operational</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container p-4 rounded-xl">
+<div class="text-[10px] font-headline text-on-surface-variant/60 uppercase mb-1">Region</div>
+<div class="text-sm font-bold font-headline">US-East-1</div>
+</div>
+<div class="bg-surface-container p-4 rounded-xl">
+<div class="text-[10px] font-headline text-on-surface-variant/60 uppercase mb-1">Status</div>
+<div class="text-sm font-bold font-headline">Nominal</div>
+</div>
+</div>
+</div>
+<!-- Tool 6: Code Snippets (Wide) -->
+<div class="md:col-span-8 bg-surface-container-low rounded-[2rem] p-8 flex flex-col md:flex-row gap-8 items-center">
+<div class="flex-1">
+<h3 class="text-2xl font-headline font-bold mb-4">Pattern Library</h3>
+<p class="text-sm text-on-surface-variant mb-6 leading-relaxed">Access a repository of production-ready architecture patterns, from Micro-frontends to Edge-side rendering.</p>
+<button class="bg-primary text-white px-6 py-3 rounded-full font-headline font-bold text-xs uppercase tracking-widest shadow-xl shadow-primary/20 active:scale-95 transition-all">Explore Snippets</button>
+</div>
+<div class="flex-1 w-full overflow-hidden">
+<div class="bg-inverse-surface rounded-lg p-4 font-mono text-[10px] leading-relaxed text-white/80">
+<div class="text-primary-fixed-dim">function <span class="text-tertiary-fixed-dim">initAuraCore</span>() {</div>
+<div class="pl-4">const <span class="text-tertiary-fixed-dim">config</span> = {</div>
+<div class="pl-8">precision: <span class="text-primary-fixed">0.999</span>,</div>
+<div class="pl-8">atmosphere: <span class="text-primary-fixed">'radiant'</span></div>
+<div class="pl-4">};</div>
+<div class="pl-4 text-primary-fixed-dim">return createEngine(config);</div>
+<div class="text-primary-fixed-dim">}</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto py-12 bg-[#fbf9f1] dark:bg-[#1b1c17] border-t border-[#005faf]/5">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 max-w-7xl mx-auto gap-4">
+<p class="text-[#504532] dark:text-[#f5f4ec] opacity-60 font-body text-sm tracking-normal">© 2024 Architectural Aura. Engineered for Precision.</p>
+<div class="flex gap-8">
+<a class="text-[#504532] dark:text-[#f5f4ec] opacity-60 font-body text-sm tracking-normal hover:opacity-100 hover:underline transition-opacity" href="#">Privacy Policy</a>
+<a class="text-[#504532] dark:text-[#f5f4ec] opacity-60 font-body text-sm tracking-normal hover:opacity-100 hover:underline transition-opacity" href="#">Terms of Service</a>
+<a class="text-[#504532] dark:text-[#f5f4ec] opacity-60 font-body text-sm tracking-normal hover:opacity-100 hover:underline transition-opacity" href="#">Sitemap</a>
+</div>
+</div>
+</footer>
+</body></html>
