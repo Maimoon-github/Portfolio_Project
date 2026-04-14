@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#827660",
+                    "on-error-container": "#93000a",
+                    "primary": "#795900",
+                    "on-secondary-fixed": "#001c39",
+                    "background": "#f1fcf7",
+                    "on-primary-fixed-variant": "#5c4300",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#fbbc00",
+                    "on-surface": "#141e1b",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#00621c",
+                    "surface": "#f1fcf7",
+                    "on-tertiary-fixed": "#002105",
+                    "tertiary-fixed-dim": "#77dc7a",
+                    "surface-tint": "#795900",
+                    "inverse-primary": "#fbbc00",
+                    "inverse-surface": "#28332f",
+                    "surface-container-highest": "#dae5e0",
+                    "surface-container-high": "#dfebe6",
+                    "secondary-fixed": "#d4e3ff",
+                    "tertiary-container": "#7adf7c",
+                    "tertiary-fixed": "#93f993",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "primary-container": "#ffbf00",
+                    "on-surface-variant": "#504532",
+                    "primary-fixed": "#ffdfa0",
+                    "surface-container": "#e5f0eb",
+                    "surface-variant": "#dae5e0",
+                    "surface-bright": "#f1fcf7",
+                    "outline-variant": "#d4c5ab",
+                    "on-tertiary-fixed-variant": "#005316",
+                    "on-primary-fixed": "#261a00",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#004883",
+                    "on-secondary-container": "#003e73",
+                    "secondary": "#0060ac",
+                    "secondary-fixed-dim": "#a4c9ff",
+                    "secondary-container": "#68abff",
+                    "tertiary": "#006e20",
+                    "on-primary-container": "#6d5000",
+                    "inverse-on-surface": "#e8f3ee",
+                    "on-background": "#141e1b",
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#d1ddd8",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#ebf6f1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Space Grotesk"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .blueprint-bg {
+            background-image: radial-gradient(#d4c5ab 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#FFFDF0]/80 dark:bg-emerald-950/80 backdrop-blur-xl">
+<div class="flex justify-between items-center px-8 py-6 max-w-full mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#141e1b] dark:text-[#f1fcf7]">
+                Maimoon Architect
+            </div>
+<!-- Desktop Navigation -->
+<div class="hidden md:flex items-center gap-8">
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] dark:text-[#f1fcf7] hover:text-[#ffbf00] transition-colors duration-300" href="#">Portfolio</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] dark:text-[#f1fcf7] hover:text-[#ffbf00] transition-colors duration-300" href="#">Blueprint</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] dark:text-[#f1fcf7] hover:text-[#ffbf00] transition-colors duration-300" href="#">Insights</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] dark:text-[#f1fcf7] hover:text-[#ffbf00] transition-colors duration-300" href="#">Tools</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#ffbf00] border-b-2 border-[#ffbf00] pb-1" href="#">Resources</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] dark:text-[#f1fcf7] hover:text-[#ffbf00] transition-colors duration-300" href="#">Contact</a>
+</div>
+<button class="bg-tertiary-container text-on-tertiary-container px-6 py-2 rounded-lg font-bold text-sm uppercase tracking-wider hover:brightness-105 active:scale-95 transition-all">
+                Hire Us
+            </button>
+</div>
+</nav>
+<!-- Hero Section: Legal & Ethics -->
+<header class="relative pt-48 pb-24 px-8 overflow-hidden">
+<div class="absolute inset-0 blueprint-bg opacity-20 -z-10"></div>
+<div class="max-w-7xl mx-auto">
+<span class="inline-block px-4 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label text-[0.75rem] uppercase tracking-[0.05em] mb-6">
+                Governance &amp; Integrity
+            </span>
+<h1 class="text-[3.5rem] leading-tight font-bold tracking-[-0.02em] text-on-surface mb-8">
+                Legal &amp; <span class="text-primary italic">Ethics</span>
+</h1>
+<p class="max-w-2xl text-[1rem] font-light leading-relaxed text-on-surface-variant">
+                Transparency is the foundation of every structure we build. Our legal framework ensures that your data remains secure and our ethical standards guide every architectural decision.
+            </p>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Sticky Sidebar Navigation -->
+<aside class="lg:col-span-3 hidden lg:block">
+<div class="sticky top-32 space-y-12">
+<nav class="flex flex-col gap-4">
+<h3 class="text-[0.75rem] font-bold uppercase tracking-widest text-outline mb-2">Documents</h3>
+<a class="group flex items-center gap-3 text-[1.125rem] font-medium text-primary border-l-2 border-primary pl-4 transition-all" href="#privacy-policy">
+                        Privacy Policy
+                    </a>
+<a class="group flex items-center gap-3 text-[1.125rem] font-light text-on-surface-variant hover:text-primary border-l-2 border-transparent hover:border-outline-variant pl-4 transition-all" href="#terms-of-service">
+                        Terms of Service
+                    </a>
+</nav>
+<div class="p-6 bg-surface-container-low rounded-xl">
+<h4 class="text-title-lg mb-4 font-semibold">Compliance Note</h4>
+<p class="text-[0.875rem] text-on-surface-variant font-light leading-relaxed">
+                        Maimoon Architect operates under strict adherence to global architectural and data privacy standards including GDPR and local zoning ethics.
+                    </p>
+</div>
+</div>
+</aside>
+<!-- Content Area -->
+<div class="lg:col-span-9 space-y-32 pb-32">
+<!-- Privacy Policy Section -->
+<section class="scroll-mt-32" id="privacy-policy">
+<div class="mb-12">
+<h2 class="text-[1.75rem] font-medium tracking-[-0.01em] text-on-surface mb-4">Privacy Policy</h2>
+<p class="text-on-surface-variant font-light">Last updated: October 24, 2024</p>
+</div>
+<div class="space-y-16">
+<!-- Data Collection -->
+<div class="group">
+<div class="flex items-center gap-4 mb-6">
+<span class="material-symbols-outlined text-primary p-2 bg-primary-fixed rounded-lg" data-icon="database">database</span>
+<h3 class="text-title-lg font-semibold">Data Collection</h3>
+</div>
+<div class="prose prose-slate max-w-none text-on-surface-variant font-light leading-loose space-y-6">
+<p>We collect information to provide better services to all our clients. This includes technical data related to architectural projects, communication history, and usage patterns of our digital tools. We do not sell your personal data to third parties.</p>
+<ul class="list-disc pl-6 space-y-2">
+<li>Identity Data: Name, company, and professional credentials.</li>
+<li>Technical Metadata: IP addresses and browser configurations used to access our Blueprint portal.</li>
+<li>Project Specifics: CAD files, site coordinates, and environmental surveys uploaded for consultation.</li>
+</ul>
+</div>
+</div>
+<!-- Intellectual Property -->
+<div class="group">
+<div class="flex items-center gap-4 mb-6">
+<span class="material-symbols-outlined text-secondary p-2 bg-secondary-fixed rounded-lg" data-icon="copyright">copyright</span>
+<h3 class="text-title-lg font-semibold">Intellectual Property</h3>
+</div>
+<div class="bg-surface-container-low p-8 rounded-xl border-l-4 border-secondary">
+<p class="text-on-surface-variant font-light leading-relaxed">
+                                All blueprints, conceptual renders, and proprietary algorithms hosted on this platform are the exclusive intellectual property of Maimoon Architect. Clients are granted a limited, non-exclusive license to use project-specific deliverables as outlined in their individual service agreements. Unauthorized redistribution or reverse-engineering of our digital assets is strictly prohibited.
+                            </p>
+</div>
+</div>
+<!-- Compliance -->
+<div class="group">
+<div class="flex items-center gap-4 mb-6">
+<span class="material-symbols-outlined text-tertiary p-2 bg-tertiary-fixed rounded-lg" data-icon="gavel">gavel</span>
+<h3 class="text-title-lg font-semibold">Compliance &amp; Ethics</h3>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<div class="p-6 bg-surface-container rounded-lg">
+<h4 class="font-bold text-sm uppercase tracking-wider mb-3">Regulatory Standards</h4>
+<p class="text-sm font-light leading-relaxed">We comply with the American Institute of Architects (AIA) Code of Ethics and local building codes in all jurisdictions where our designs are implemented.</p>
+</div>
+<div class="p-6 bg-surface-container rounded-lg">
+<h4 class="font-bold text-sm uppercase tracking-wider mb-3">Dispute Resolution</h4>
+<p class="text-sm font-light leading-relaxed">Any conflicts arising from these terms shall be governed by the laws of the jurisdiction where our primary studio is registered, favoring mediation before arbitration.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Terms of Service Section -->
+<section class="scroll-mt-32 pt-16 border-t border-outline-variant/20" id="terms-of-service">
+<div class="mb-12">
+<h2 class="text-[1.75rem] font-medium tracking-[-0.01em] text-on-surface mb-4">Terms of Service</h2>
+<p class="text-on-surface-variant font-light">By accessing Maimoon Architect's digital resources, you agree to the following conditions.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+<div class="space-y-4">
+<h4 class="font-bold text-primary">1. Acceptable Use</h4>
+<p class="text-body-lg font-light leading-relaxed text-on-surface-variant">Our tools and insights are provided for professional architectural research and project planning. Users must not use our platform for any unlawful activities or to transmit malicious code.</p>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-primary">2. User Accounts</h4>
+<p class="text-body-lg font-light leading-relaxed text-on-surface-variant">Maintaining the confidentiality of your account credentials for "The Blueprint" phase indicator is your responsibility. Maimoon Architect is not liable for unauthorized access resulting from user negligence.</p>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-primary">3. Service Limitations</h4>
+<p class="text-body-lg font-light leading-relaxed text-on-surface-variant">Architectural consultations provided through digital interfaces are conceptual. Final structural validation must be performed by a licensed engineer on-site.</p>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-primary">4. Amendments</h4>
+<p class="text-body-lg font-light leading-relaxed text-on-surface-variant">We reserve the right to update these terms at any time. Continued use of our site following changes constitutes your acceptance of the revised terms.</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Image Accent -->
+<section class="max-w-7xl mx-auto px-8 my-24">
+<div class="relative h-[400px] rounded-full overflow-hidden">
+<img alt="Architectural Blueprint" class="w-full h-full object-cover" data-alt="Close-up of a minimalist architectural blueprint on high-quality vellum with precise lines and soft ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCJ57dap-Ay37kjOZSJnsCX3RDYTCwx2uTZG4nsMrvjrkTyzPppW6cnS8aFViZpmyyArqGlSvj9Qtmt406ZkguFcOVLtvHqKbqwH70sdJ3L4AEI9kt24JoYc8lVP48Z7Qh_15YERrYF1LRjuiGd9m3Apa21nzkq3l-IcHjf3OFlGDQVo003V-0uLVxVqLNZjZqWx_p0JYou0BkxbbUYXLPmqQzynbO5qqapcQ-TnjDGvQ4pTudAB96UHeoMFYB1BPgtNLL03BcRPee"/>
+<div class="absolute inset-0 bg-on-background/40 flex items-center justify-center text-center p-12 backdrop-blur-[2px]">
+<h2 class="text-white text-[2.5rem] font-bold max-w-3xl leading-tight">
+                    "Architecture should speak of its time and place, but yearn for timelessness."
+                </h2>
+</div>
+</div>
+</section>
+<!-- SideNavBar (Phase Indicator) -->
+<aside class="fixed left-0 top-1/2 -translate-y-1/2 h-auto rounded-r-xl py-8 bg-[#f1fcf7] dark:bg-[#141e1b] shadow-xl shadow-[#141e1b]/5 flex flex-col gap-6 items-center w-16 z-40 hidden md:flex">
+<div class="flex flex-col gap-6 items-center">
+<div class="p-3 text-[#0060ac] hover:bg-[#ebf6f1] dark:hover:bg-emerald-900 transition-all cursor-pointer group relative">
+<span class="material-symbols-outlined">architecture</span>
+<span class="absolute left-full ml-2 px-2 py-1 bg-on-background text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Concept</span>
+</div>
+<div class="p-3 text-[#0060ac] hover:bg-[#ebf6f1] dark:hover:bg-emerald-900 transition-all cursor-pointer group relative">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="absolute left-full ml-2 px-2 py-1 bg-on-background text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Structural</span>
+</div>
+<div class="p-3 text-[#0060ac] hover:bg-[#ebf6f1] dark:hover:bg-emerald-900 transition-all cursor-pointer group relative">
+<span class="material-symbols-outlined">light_mode</span>
+<span class="absolute left-full ml-2 px-2 py-1 bg-on-background text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Atmospheric</span>
+</div>
+<div class="bg-[#ffbf00] text-[#141e1b] rounded-full p-3 hover:translate-x-1 duration-200 cursor-pointer group relative">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="absolute left-full ml-2 px-2 py-1 bg-on-background text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Final</span>
+</div>
+</div>
+</aside>
+<!-- Footer -->
+<footer class="bg-[#141e1b] dark:bg-[#0a0f0e] w-full py-16 px-8 mt-24">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-end max-w-7xl mx-auto">
+<div class="space-y-6">
+<div class="text-lg font-bold text-[#FFFDF0]">Maimoon Architect</div>
+<p class="font-['Space_Grotesk'] font-light text-sm text-[#f1fcf7]/60 leading-relaxed">
+                    Elevating the human experience through structural integrity and ethereal design. We build the future, one blueprint at a time.
+                </p>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4">
+<a class="font-['Space_Grotesk'] font-light text-sm text-[#7adf7c] hover:text-[#ffbf00] transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Space_Grotesk'] font-light text-sm text-[#f1fcf7]/60 hover:text-[#ffbf00] transition-colors" href="#">Terms of Service</a>
+<a class="font-['Space_Grotesk'] font-light text-sm text-[#f1fcf7]/60 hover:text-[#ffbf00] transition-colors" href="#">Sitemap</a>
+</div>
+<div class="flex flex-col items-end gap-4">
+<div class="flex gap-6">
+<a class="text-[#f1fcf7]/60 hover:text-[#ffbf00] transition-colors" href="#">Twitter</a>
+<a class="text-[#f1fcf7]/60 hover:text-[#ffbf00] transition-colors" href="#">LinkedIn</a>
+<a class="text-[#f1fcf7]/60 hover:text-[#ffbf00] transition-colors" href="#">Instagram</a>
+</div>
+<div class="font-['Space_Grotesk'] font-light text-sm text-[#f1fcf7]/60 text-right">
+                    © 2024 Maimoon Architect. Crafted with Architectural Aura.
+                </div>
+</div>
+</div>
+</footer>
+</body></html>

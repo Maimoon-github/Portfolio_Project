@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#827660",
+                    "on-error-container": "#93000a",
+                    "primary": "#795900",
+                    "on-secondary-fixed": "#001c39",
+                    "background": "#f1fcf7",
+                    "on-primary-fixed-variant": "#5c4300",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#fbbc00",
+                    "on-surface": "#141e1b",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#00621c",
+                    "surface": "#f1fcf7",
+                    "on-tertiary-fixed": "#002105",
+                    "tertiary-fixed-dim": "#77dc7a",
+                    "surface-tint": "#795900",
+                    "inverse-primary": "#fbbc00",
+                    "inverse-surface": "#28332f",
+                    "surface-container-highest": "#dae5e0",
+                    "surface-container-high": "#dfebe6",
+                    "secondary-fixed": "#d4e3ff",
+                    "tertiary-container": "#7adf7c",
+                    "tertiary-fixed": "#93f993",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "primary-container": "#ffbf00",
+                    "on-surface-variant": "#504532",
+                    "primary-fixed": "#ffdfa0",
+                    "surface-container": "#e5f0eb",
+                    "surface-variant": "#dae5e0",
+                    "surface-bright": "#f1fcf7",
+                    "outline-variant": "#d4c5ab",
+                    "on-tertiary-fixed-variant": "#005316",
+                    "on-primary-fixed": "#261a00",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#004883",
+                    "on-secondary-container": "#003e73",
+                    "secondary": "#0060ac",
+                    "secondary-fixed-dim": "#a4c9ff",
+                    "secondary-container": "#68abff",
+                    "tertiary": "#006e20",
+                    "on-primary-container": "#6d5000",
+                    "inverse-on-surface": "#e8f3ee",
+                    "on-background": "#141e1b",
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#d1ddd8",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#ebf6f1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Space Grotesk"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Space Grotesk', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#FFFDF0]/80 backdrop-blur-xl flex justify-between items-center px-8 py-6 max-w-full mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#141e1b]">Maimoon Architect</div>
+<div class="hidden md:flex gap-8">
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] hover:text-[#ffbf00] transition-colors duration-300" href="#">Portfolio</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] hover:text-[#ffbf00] transition-colors duration-300" href="#">Blueprint</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#ffbf00] border-b-2 border-[#ffbf00] pb-1" href="#">Insights</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] hover:text-[#ffbf00] transition-colors duration-300" href="#">Tools</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] hover:text-[#ffbf00] transition-colors duration-300" href="#">Resources</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] hover:text-[#ffbf00] transition-colors duration-300" href="#">Contact</a>
+</div>
+<button class="bg-tertiary-container text-on-tertiary-container px-6 py-2 rounded-md font-bold text-sm uppercase tracking-widest active:scale-95 transition-transform">Hire Us</button>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-1/2 -translate-y-1/2 h-auto rounded-r-xl py-8 bg-[#f1fcf7] shadow-xl shadow-[#141e1b]/5 flex flex-col gap-6 items-center w-16 z-40">
+<div class="group flex flex-col items-center">
+<div class="bg-[#ffbf00] text-[#141e1b] rounded-full p-3 hover:translate-x-1 duration-200 cursor-pointer">
+<span class="material-symbols-outlined">architecture</span>
+</div>
+<span class="font-['Space_Grotesk'] font-light text-[10px] mt-1">Concept</span>
+</div>
+<div class="group flex flex-col items-center">
+<div class="text-[#0060ac] p-3 hover:bg-[#ebf6f1] hover:translate-x-1 duration-200 cursor-pointer rounded-full">
+<span class="material-symbols-outlined">grid_view</span>
+</div>
+<span class="font-['Space_Grotesk'] font-light text-[10px] mt-1">Structural</span>
+</div>
+<div class="group flex flex-col items-center">
+<div class="text-[#0060ac] p-3 hover:bg-[#ebf6f1] hover:translate-x-1 duration-200 cursor-pointer rounded-full">
+<span class="material-symbols-outlined">light_mode</span>
+</div>
+<span class="font-['Space_Grotesk'] font-light text-[10px] mt-1">Atmospheric</span>
+</div>
+<div class="group flex flex-col items-center">
+<div class="text-[#0060ac] p-3 hover:bg-[#ebf6f1] hover:translate-x-1 duration-200 cursor-pointer rounded-full">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<span class="font-['Space_Grotesk'] font-light text-[10px] mt-1">Final</span>
+</div>
+</aside>
+<main class="pt-32 px-8 max-w-7xl mx-auto">
+<!-- Hero Header -->
+<header class="mb-24 max-w-4xl">
+<div class="inline-block px-3 py-1 bg-secondary-fixed text-on-secondary-fixed rounded-full text-[0.75rem] font-bold uppercase tracking-[0.05em] mb-6">Architectural Aura</div>
+<h1 class="text-[3.5rem] font-bold leading-tight tracking-[-0.02em] mb-8">Insights &amp; The Ethereal Blueprint</h1>
+<p class="text-[1.25rem] font-light text-on-surface-variant leading-relaxed">
+                Exploring the convergence of generative intelligence, structural integrity, and the emotional resonance of space.
+            </p>
+</header>
+<!-- Featured Post Section -->
+<section class="mb-32">
+<div class="relative group cursor-pointer overflow-hidden rounded-xl bg-surface-container-low transition-all duration-500 hover:translate-y-[-0.5rem] hover:bg-surface-container-highest">
+<div class="grid grid-cols-1 md:grid-cols-12 items-center">
+<div class="md:col-span-7 aspect-[16/10] overflow-hidden">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" data-alt="Minimalist abstract architectural photography of concrete building angles with sharp shadows and a clear blue sky background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXSKtpt7W0m-IKPk7CK5S9IC_QO4aDRMxD2UeR8coJ8NiHF1V-ZtRJYczoZmyf9DZoYv95Z0WMvT6SVDetIf-axUb0JZX_eBec8vt4YMJmKPMWhj2Z14E4KJC2y995LGZxMg9AddqUJtt0ytWdPzn71O3L8s6zFKC4il21LwbsK2yZK9RoDZwkRt9-T54IhWxWZEf41bsiqrTjQIEp_i6fs1MmyV4vTHJH8tuhA9gSE-e_Uhf0JoLyBE0bxdW_0KL6281VauezNid5"/>
+</div>
+<div class="md:col-span-5 p-12">
+<span class="label-md text-primary font-bold uppercase tracking-widest text-xs">Featured Research</span>
+<h2 class="text-[2rem] font-medium leading-tight mt-4 mb-6">The Ghost in the Machine: AI as a Silent Co-Architect</h2>
+<p class="text-on-surface-variant font-light leading-relaxed mb-8">
+                            A deep dive into how large language models and diffusion networks are rewriting the foundations of spatial planning without losing the human soul.
+                        </p>
+<div class="flex items-center gap-4">
+<button class="bg-primary-container text-on-primary-container px-8 py-3 rounded-md font-bold text-sm tracking-wide transition-all hover:brightness-105">Read Investigation</button>
+<span class="text-xs font-bold text-outline uppercase tracking-tighter">12 Min Read</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Feed & Categories -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+<!-- Feed -->
+<div class="lg:col-span-3 space-y-16">
+<!-- Post 1 -->
+<article class="grid grid-cols-1 md:grid-cols-5 gap-8 group">
+<div class="md:col-span-2 overflow-hidden rounded-lg bg-surface-container-low">
+<img class="w-full aspect-[4/3] object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Interior of a modern gallery with soft lighting filtering through wooden slats and smooth polished concrete floors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALojHRodXZy8w-R-O9v0XwkLuw0Fj9uKLuzKTUvrKjwECncN3-kzXrR-fhsuYTSwXIxaU-xia3wr8TZ62Df5-NnhAipU9XcKyJhnQcMXHE2zpGwFak5QQAayzYzGFOQDSOTxA24HKj2krP_zZ0D8EM5xzY-GbPbpscEigfZrz6-hU6VbGga4cjhXWBxt5724CNt8G9i-6Dm9lIPAUUr7eo9DA684ZqJlZ1ZSd32XjiUtZDwjs1_otAF_zFzCXdpntxw3_XRkip7GJM"/>
+</div>
+<div class="md:col-span-3 flex flex-col justify-center">
+<span class="text-[0.75rem] font-bold text-secondary uppercase tracking-widest mb-2">Atmospheric Design</span>
+<h3 class="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">Radiant Golden-White: The Science of Clarity</h3>
+<p class="text-on-surface-variant font-light text-sm leading-relaxed mb-6">
+                            How specific luminosity levels in minimalist environments impact the cognitive load of residents and workers.
+                        </p>
+<a class="flex items-center text-sm font-bold gap-2 group-hover:translate-x-2 transition-transform" href="#">
+                            Full Article <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Post 2 -->
+<article class="grid grid-cols-1 md:grid-cols-5 gap-8 group">
+<div class="md:col-span-2 overflow-hidden rounded-lg bg-surface-container-low">
+<img class="w-full aspect-[4/3] object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Close up of futuristic building materials showing intricate hexagonal patterns with metallic and organic textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZLFgatnYq3m_D_syVKwoJtyAs1UcICw6TuyHoxcRNaTo9LwxJJVG6qNCll_yFTkKG9GboRxe6M2lAmEcanIIwFLy1hKVfjWxYv1SRKzVXnCZEdvEx67poHgGcJo1nzaNlZj0IG-VqjpY05N8Y3lUV4Bq0HcD4ReJPxc_C2utoI7hYPtdkMWpb1kJNMBWdRmoPQZGep2j1gXCVWJmDdKoMx4GL1VmDA9Wv-F7o_4dbmkWPE-MA5b5jFmedzarV5kKy6CxBGxniIrwJ"/>
+</div>
+<div class="md:col-span-3 flex flex-col justify-center">
+<span class="text-[0.75rem] font-bold text-secondary uppercase tracking-widest mb-2">Structural Engineering</span>
+<h3 class="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">Organic Brutalism in the Digital Age</h3>
+<p class="text-on-surface-variant font-light text-sm leading-relaxed mb-6">
+                            Revisiting raw concrete through the lens of additive manufacturing and bio-mimetic structural patterns.
+                        </p>
+<a class="flex items-center text-sm font-bold gap-2 group-hover:translate-x-2 transition-transform" href="#">
+                            Full Article <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Post 3 -->
+<article class="grid grid-cols-1 md:grid-cols-5 gap-8 group">
+<div class="md:col-span-2 overflow-hidden rounded-lg bg-surface-container-low">
+<img class="w-full aspect-[4/3] object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A brightly lit open office space with high ceilings and floating staircase architectural details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoGzYEpU74b8HM2rdXyXta_En2dkrfdt2pesTwiJdMT1Gf-8ApGOEIIO-D2GwmaL3bU7tnE_67hD9ghjpljusgMexdZWrC-cmonkROH4Lia5qW2g2bt51oUBomicQTj-OqDroyOt3DUpo-3uQJB43ub5wwneUbdSyqK8A12XpHPKznZxZWH27nuCGw1y4TBiwQiZo7j2YmZp4VAeJHNzdN0XAoHnT8ScqgvoI680RWBd9M3ZR9btqaRAUjXvksYxxIDq6adpXx8KMy"/>
+</div>
+<div class="md:col-span-3 flex flex-col justify-center">
+<span class="text-[0.75rem] font-bold text-secondary uppercase tracking-widest mb-2">Conceptual Phase</span>
+<h3 class="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">Deep Moss: Grounding Modern Workspaces</h3>
+<p class="text-on-surface-variant font-light text-sm leading-relaxed mb-6">
+                            Integrating botanical theory and dark earth tones to foster stability in fast-paced corporate environments.
+                        </p>
+<a class="flex items-center text-sm font-bold gap-2 group-hover:translate-x-2 transition-transform" href="#">
+                            Full Article <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</article>
+</div>
+<!-- Sidebar -->
+<aside class="space-y-12">
+<!-- Categories -->
+<div>
+<h4 class="text-sm font-bold uppercase tracking-widest mb-6 pb-2 border-b border-outline-variant/20">Taxonomy</h4>
+<ul class="space-y-4">
+<li class="flex justify-between items-center group cursor-pointer">
+<span class="text-on-surface-variant group-hover:text-on-surface transition-colors">Generative Systems</span>
+<span class="text-xs px-2 py-1 rounded bg-surface-container text-on-surface-variant font-medium">12</span>
+</li>
+<li class="flex justify-between items-center group cursor-pointer">
+<span class="text-on-surface-variant group-hover:text-on-surface transition-colors">Material Science</span>
+<span class="text-xs px-2 py-1 rounded bg-surface-container text-on-surface-variant font-medium">08</span>
+</li>
+<li class="flex justify-between items-center group cursor-pointer">
+<span class="text-on-surface-variant group-hover:text-on-surface transition-colors">Urban Ecology</span>
+<span class="text-xs px-2 py-1 rounded bg-surface-container text-on-surface-variant font-medium">15</span>
+</li>
+<li class="flex justify-between items-center group cursor-pointer">
+<span class="text-on-surface-variant group-hover:text-on-surface transition-colors">Human Factors</span>
+<span class="text-xs px-2 py-1 rounded bg-surface-container text-on-surface-variant font-medium">21</span>
+</li>
+</ul>
+</div>
+<!-- Newsletter CTA -->
+<div class="bg-surface-container-low p-8 rounded-xl border-l-4 border-primary">
+<h4 class="text-lg font-bold mb-4">Sync Your Aura</h4>
+<p class="text-sm text-on-surface-variant font-light leading-relaxed mb-6">
+                        Bi-weekly architectural dispatches delivered directly to your creative sanctuary.
+                    </p>
+<div class="space-y-3">
+<input class="w-full bg-surface-container-lowest border-none focus:ring-1 focus:ring-primary rounded px-4 py-3 text-sm font-light italic" placeholder="Email address" type="email"/>
+<button class="w-full bg-on-background text-surface-bright py-3 rounded text-sm font-bold uppercase tracking-widest hover:bg-primary transition-colors">Subscribe</button>
+</div>
+</div>
+<!-- Top Tools -->
+<div>
+<h4 class="text-sm font-bold uppercase tracking-widest mb-6 pb-2 border-b border-outline-variant/20">The Toolkit</h4>
+<div class="flex flex-wrap gap-2">
+<span class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full text-[10px] font-bold uppercase">Rhino AI</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full text-[10px] font-bold uppercase">Midjourney V6</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full text-[10px] font-bold uppercase">Stable Spatial</span>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-[#141e1b] py-16 px-8 mt-24">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-end max-w-7xl mx-auto">
+<div>
+<div class="text-lg font-bold text-[#FFFDF0] mb-4">Maimoon Architect</div>
+<p class="font-['Space_Grotesk'] font-light text-sm text-[#f1fcf7]/60 leading-relaxed">
+                    © 2024 Maimoon Architect. Crafted with Architectural Aura.<br/>
+                    Logic meets creativity in the ethereal blueprint.
+                </p>
+</div>
+<div class="flex flex-wrap gap-6 text-[#f1fcf7]/60 text-sm font-light">
+<a class="hover:text-[#ffbf00] transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-[#ffbf00] transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-[#ffbf00] transition-colors" href="#">Sitemap</a>
+</div>
+<div class="flex justify-end gap-8 text-[#f1fcf7]/60 text-sm">
+<a class="hover:text-[#7adf7c] transition-colors" href="#">Twitter</a>
+<a class="hover:text-[#7adf7c] transition-colors" href="#">LinkedIn</a>
+<a class="hover:text-[#7adf7c] transition-colors" href="#">Instagram</a>
+</div>
+</div>
+</footer>
+</body></html>

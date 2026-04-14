@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Initiate Your Architectural Inquiry | Maimoon Architect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#827660",
+                        "on-error-container": "#93000a",
+                        "primary": "#795900",
+                        "on-secondary-fixed": "#001c39",
+                        "background": "#f1fcf7",
+                        "on-primary-fixed-variant": "#5c4300",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#fbbc00",
+                        "on-surface": "#141e1b",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#00621c",
+                        "surface": "#f1fcf7",
+                        "on-tertiary-fixed": "#002105",
+                        "tertiary-fixed-dim": "#77dc7a",
+                        "surface-tint": "#795900",
+                        "inverse-primary": "#fbbc00",
+                        "inverse-surface": "#28332f",
+                        "surface-container-highest": "#dae5e0",
+                        "surface-container-high": "#dfebe6",
+                        "secondary-fixed": "#d4e3ff",
+                        "tertiary-container": "#7adf7c",
+                        "tertiary-fixed": "#93f993",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary-container": "#ffbf00",
+                        "on-surface-variant": "#504532",
+                        "primary-fixed": "#ffdfa0",
+                        "surface-container": "#e5f0eb",
+                        "surface-variant": "#dae5e0",
+                        "surface-bright": "#f1fcf7",
+                        "outline-variant": "#d4c5ab",
+                        "on-tertiary-fixed-variant": "#005316",
+                        "on-primary-fixed": "#261a00",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#004883",
+                        "on-secondary-container": "#003e73",
+                        "secondary": "#0060ac",
+                        "secondary-fixed-dim": "#a4c9ff",
+                        "secondary-container": "#68abff",
+                        "tertiary": "#006e20",
+                        "on-primary-container": "#6d5000",
+                        "inverse-on-surface": "#e8f3ee",
+                        "on-background": "#141e1b",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#d1ddd8",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#ebf6f1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Space Grotesk"],
+                        "label": ["Space Grotesk"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .aura-gradient {
+            background: radial-gradient(circle at 10% 20%, rgba(255, 191, 0, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(122, 223, 124, 0.05) 0%, transparent 40%);
+        }
+        .architect-input:focus ~ label,
+        .architect-input:not(:placeholder-shown) ~ label {
+            transform: translateY(-1.5rem) scale(0.85);
+            color: #795900;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body aura-gradient min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#FFFDF0]/80 backdrop-blur-xl flex justify-between items-center px-8 py-6 max-w-full mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#141e1b]">Maimoon Architect</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] hover:text-[#ffbf00] transition-colors duration-300" href="#">Portfolio</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] hover:text-[#ffbf00] transition-colors duration-300" href="#">Blueprint</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] hover:text-[#ffbf00] transition-colors duration-300" href="#">Insights</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] hover:text-[#ffbf00] transition-colors duration-300" href="#">Tools</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] hover:text-[#ffbf00] transition-colors duration-300" href="#">Resources</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#ffbf00] border-b-2 border-[#ffbf00] pb-1" href="#">Contact</a>
+</div>
+<button class="bg-tertiary-container text-on-tertiary-container px-6 py-2 rounded-md font-bold text-sm tracking-widest uppercase hover:brightness-105 transition-all active:scale-95">Hire Us</button>
+</nav>
+<main class="pt-32 pb-16 px-8 max-w-7xl mx-auto">
+<header class="mb-24">
+<h1 class="font-headline font-bold text-6xl md:text-8xl tracking-tighter text-on-background mb-6 leading-none">
+                Initiate Your <br/> <span class="text-primary-container">Architectural Inquiry</span>
+</h1>
+<p class="font-body font-light text-2xl text-on-surface-variant max-w-2xl">
+                Bridging the ethereal void between conceptual spark and structural reality. Let us build your sanctuary together.
+            </p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Form Section -->
+<section class="lg:col-span-8 bg-surface-container-low p-12 rounded-xl relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="font-headline font-medium text-3xl mb-12 text-on-background">Inquiry Details</h2>
+<form class="space-y-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="relative group">
+<input class="architect-input w-full bg-transparent border-b border-outline/30 py-3 focus:outline-none focus:border-primary transition-colors peer text-lg" id="name" placeholder=" " type="text"/>
+<label class="absolute left-0 top-3 text-on-surface-variant/60 transition-all duration-300 pointer-events-none" for="name">Name</label>
+</div>
+<div class="relative group">
+<input class="architect-input w-full bg-transparent border-b border-outline/30 py-3 focus:outline-none focus:border-primary transition-colors peer text-lg" id="email" placeholder=" " type="email"/>
+<label class="absolute left-0 top-3 text-on-surface-variant/60 transition-all duration-300 pointer-events-none" for="email">Email Address</label>
+</div>
+</div>
+<div class="relative group">
+<select class="w-full bg-transparent border-b border-outline/30 py-3 focus:outline-none focus:border-primary transition-colors text-lg appearance-none cursor-pointer" id="nature">
+<option disabled="" selected="" value="">Nature of Project</option>
+<option value="residential">Residential Sanctuary</option>
+<option value="commercial">Commercial Ecosystem</option>
+<option value="cultural">Cultural Landmark</option>
+<option value="digital">Digital Architecture</option>
+</select>
+<span class="material-symbols-outlined absolute right-0 bottom-3 text-on-surface-variant/40">expand_more</span>
+</div>
+<div class="relative group">
+<textarea class="architect-input w-full bg-transparent border-b border-outline/30 py-3 focus:outline-none focus:border-primary transition-colors peer text-lg resize-none" id="vision" placeholder=" " rows="4"></textarea>
+<label class="absolute left-0 top-3 text-on-surface-variant/60 transition-all duration-300 pointer-events-none" for="vision">The Vision (Tell us about your dream)</label>
+</div>
+<div class="pt-8">
+<button class="bg-primary-container text-on-primary-container px-10 py-5 rounded-md font-bold text-lg tracking-wider flex items-center gap-4 hover:brightness-105 transition-all group" type="submit">
+                                SUBMIT INQUIRY
+                                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Atmospheric background element -->
+<div class="absolute -bottom-24 -right-24 w-96 h-96 bg-primary-fixed/10 rounded-full blur-3xl"></div>
+</section>
+<!-- Sidebar CTAs -->
+<aside class="lg:col-span-4 space-y-8">
+<div class="bg-surface-container-high p-8 rounded-xl hover:translate-y-[-4px] transition-transform duration-300 cursor-pointer group">
+<div class="w-12 h-12 bg-secondary-container/20 rounded-lg flex items-center justify-center mb-6 text-secondary">
+<span class="material-symbols-outlined">handshake</span>
+</div>
+<h3 class="font-headline font-semibold text-xl mb-2 group-hover:text-secondary transition-colors">Collaborations</h3>
+<p class="font-body font-light text-on-surface-variant mb-4">Seeking architectural synergy for larger urban ecosystems.</p>
+<span class="text-sm font-bold tracking-widest uppercase text-secondary flex items-center gap-2">Connect <span class="material-symbols-outlined text-sm">open_in_new</span></span>
+</div>
+<div class="bg-surface-container-high p-8 rounded-xl hover:translate-y-[-4px] transition-transform duration-300 cursor-pointer group">
+<div class="w-12 h-12 bg-tertiary-container/20 rounded-lg flex items-center justify-center mb-6 text-tertiary">
+<span class="material-symbols-outlined">campaign</span>
+</div>
+<h3 class="font-headline font-semibold text-xl mb-2 group-hover:text-tertiary transition-colors">Speaking</h3>
+<p class="font-body font-light text-on-surface-variant mb-4">Keynotes on the intersection of humanism and AI logic.</p>
+<span class="text-sm font-bold tracking-widest uppercase text-tertiary flex items-center gap-2">Inquire <span class="material-symbols-outlined text-sm">open_in_new</span></span>
+</div>
+<div class="bg-surface-container-high p-8 rounded-xl hover:translate-y-[-4px] transition-transform duration-300 cursor-pointer group">
+<div class="w-12 h-12 bg-primary-container/20 rounded-lg flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined">science</span>
+</div>
+<h3 class="font-headline font-semibold text-xl mb-2 group-hover:text-primary transition-colors">Research</h3>
+<p class="font-body font-light text-on-surface-variant mb-4">Access our white papers on future atmospheric building.</p>
+<span class="text-sm font-bold tracking-widest uppercase text-primary flex items-center gap-2">Explore <span class="material-symbols-outlined text-sm">open_in_new</span></span>
+</div>
+</aside>
+</div>
+<!-- Physical Anchor / Map -->
+<section class="mt-32">
+<div class="flex items-end justify-between mb-8">
+<div>
+<span class="label-md uppercase tracking-widest text-primary-container font-bold text-xs">Headquarters</span>
+<h2 class="font-headline font-medium text-4xl mt-2">Physical Anchor</h2>
+</div>
+<div class="text-right">
+<p class="font-body font-light text-on-surface-variant">The Glass Pavilion, Studio 01</p>
+<p class="font-body font-light text-on-surface-variant">Dubai Design District, UAE</p>
+</div>
+</div>
+<div class="h-[400px] w-full rounded-xl overflow-hidden grayscale contrast-125 opacity-90 hover:grayscale-0 transition-all duration-700">
+<img class="w-full h-full object-cover" data-alt="Modern architectural office interior with large glass windows overlooking a sun-drenched desert skyline, minimalist clean lines and soft shadows" data-location="Dubai" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi16eiXvs8tT1pRxHB_woKdvZH1fXmrnjrX5Z2tjjsFp-hWWVa4jQsYpgsXDjF9jpQtO4CjBoxRbrdarsmN9-Q8RuPgL94ptiL_cZ0BZM3iEbH9fuONapeMfkg8eJRp7Wro2Yfnr_obqBOz1jimKrPwaL5wb3przyQk4KrqW4m0nQrkAWk0QQDXe2uizRExXq2HHjokkr6mtUErze1e_5AYYspCsPbV9ChQZzqKsVQTVnkIi4eXcHM91kafKd_8zAee9pfRWTxFBvW"/>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#141e1b] py-16 px-8 mt-24">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-end max-w-7xl mx-auto">
+<div>
+<div class="text-lg font-bold text-[#FFFDF0] mb-4">Maimoon Architect</div>
+<p class="font-['Space_Grotesk'] font-light text-sm text-[#f1fcf7]/60 leading-relaxed">
+                    © 2024 Maimoon Architect. Crafted with Architectural Aura. <br/>
+                    Ethereal designs for the future-human experience.
+                </p>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-4">
+<a class="font-['Space_Grotesk'] font-light text-sm text-[#f1fcf7]/60 hover:text-[#ffbf00] transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Space_Grotesk'] font-light text-sm text-[#f1fcf7]/60 hover:text-[#ffbf00] transition-colors" href="#">Terms of Service</a>
+<a class="font-['Space_Grotesk'] font-light text-sm text-[#f1fcf7]/60 hover:text-[#ffbf00] transition-colors" href="#">Sitemap</a>
+</div>
+<div class="flex gap-6 justify-end">
+<a class="text-[#f1fcf7]/60 hover:text-[#7adf7c] transition-colors" href="#">Twitter</a>
+<a class="text-[#f1fcf7]/60 hover:text-[#7adf7c] transition-colors" href="#">LinkedIn</a>
+<a class="text-[#f1fcf7]/60 hover:text-[#7adf7c] transition-colors" href="#">Instagram</a>
+</div>
+</div>
+</footer>
+<!-- Floating Navigation Anchor (SideNavBar concept) -->
+<div class="fixed left-0 top-1/2 -translate-y-1/2 h-auto bg-[#f1fcf7] rounded-r-xl py-8 flex flex-col gap-6 items-center w-16 shadow-xl shadow-[#141e1b]/5 z-40 hidden xl:flex">
+<div class="p-3 text-[#0060ac] hover:bg-[#ebf6f1] transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined">architecture</span>
+</div>
+<div class="p-3 text-[#0060ac] hover:bg-[#ebf6f1] transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined">grid_view</span>
+</div>
+<div class="p-3 text-[#0060ac] hover:bg-[#ebf6f1] transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined">light_mode</span>
+</div>
+<div class="bg-[#ffbf00] text-[#141e1b] rounded-full p-3 shadow-lg">
+<span class="material-symbols-outlined">contact_support</span>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#827660",
+                    "on-error-container": "#93000a",
+                    "primary": "#795900",
+                    "on-secondary-fixed": "#001c39",
+                    "background": "#f1fcf7",
+                    "on-primary-fixed-variant": "#5c4300",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#fbbc00",
+                    "on-surface": "#141e1b",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#00621c",
+                    "surface": "#f1fcf7",
+                    "on-tertiary-fixed": "#002105",
+                    "tertiary-fixed-dim": "#77dc7a",
+                    "surface-tint": "#795900",
+                    "inverse-primary": "#fbbc00",
+                    "inverse-surface": "#28332f",
+                    "surface-container-highest": "#dae5e0",
+                    "surface-container-high": "#dfebe6",
+                    "secondary-fixed": "#d4e3ff",
+                    "tertiary-container": "#7adf7c",
+                    "tertiary-fixed": "#93f993",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "primary-container": "#ffbf00",
+                    "on-surface-variant": "#504532",
+                    "primary-fixed": "#ffdfa0",
+                    "surface-container": "#e5f0eb",
+                    "surface-variant": "#dae5e0",
+                    "surface-bright": "#f1fcf7",
+                    "outline-variant": "#d4c5ab",
+                    "on-tertiary-fixed-variant": "#005316",
+                    "on-primary-fixed": "#261a00",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#004883",
+                    "on-secondary-container": "#003e73",
+                    "secondary": "#0060ac",
+                    "secondary-fixed-dim": "#a4c9ff",
+                    "secondary-container": "#68abff",
+                    "tertiary": "#006e20",
+                    "on-primary-container": "#6d5000",
+                    "inverse-on-surface": "#e8f3ee",
+                    "on-background": "#141e1b",
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#d1ddd8",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#ebf6f1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Space Grotesk"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .aura-blur {
+            backdrop-filter: blur(24px);
+        }
+        .text-vertical {
+            writing-mode: vertical-rl;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#FFFDF0]/80 dark:bg-emerald-950/80 backdrop-blur-xl flex justify-between items-center px-8 py-6 max-w-full mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#141e1b] dark:text-[#f1fcf7]">
+            Maimoon Architect
+        </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] dark:text-[#f1fcf7] hover:text-[#ffbf00] transition-colors duration-300" href="#">Portfolio</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#ffbf00] border-b-2 border-[#ffbf00] pb-1" href="#">Blueprint</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] dark:text-[#f1fcf7] hover:text-[#ffbf00] transition-colors duration-300" href="#">Insights</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] dark:text-[#f1fcf7] hover:text-[#ffbf00] transition-colors duration-300" href="#">Tools</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] dark:text-[#f1fcf7] hover:text-[#ffbf00] transition-colors duration-300" href="#">Resources</a>
+<a class="font-['Space_Grotesk'] text-sm tracking-widest font-bold uppercase text-[#141e1b] dark:text-[#f1fcf7] hover:text-[#ffbf00] transition-colors duration-300" href="#">Contact</a>
+</div>
+<button class="bg-tertiary-container text-on-tertiary-container px-6 py-2 rounded-md font-bold text-sm uppercase tracking-widest hover:brightness-105 transition-all active:scale-95">
+            Hire Us
+        </button>
+</nav>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-1/2 -translate-y-1/2 h-auto rounded-r-xl py-8 bg-[#f1fcf7] dark:bg-[#141e1b] shadow-xl shadow-[#141e1b]/5 flex flex-col gap-6 items-center w-16 z-40">
+<div class="mb-4">
+<span class="material-symbols-outlined text-[#141e1b] font-bold">architecture</span>
+</div>
+<div class="flex flex-col gap-4">
+<button class="bg-[#ffbf00] text-[#141e1b] rounded-full p-3 hover:translate-x-1 duration-200">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+</button>
+<button class="text-[#0060ac] p-3 hover:bg-[#ebf6f1] dark:hover:bg-emerald-900 hover:translate-x-1 duration-200">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+</button>
+<button class="text-[#0060ac] p-3 hover:bg-[#ebf6f1] dark:hover:bg-emerald-900 hover:translate-x-1 duration-200">
+<span class="material-symbols-outlined" data-icon="light_mode">light_mode</span>
+</button>
+<button class="text-[#0060ac] p-3 hover:bg-[#ebf6f1] dark:hover:bg-emerald-900 hover:translate-x-1 duration-200">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</button>
+</div>
+</aside>
+<main class="pt-32 pb-24 px-8 md:px-24 max-w-[1600px] mx-auto">
+<!-- Hero Section: The Visionary -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-32">
+<div class="lg:col-span-7">
+<span class="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Practice Philosophy</span>
+<h1 class="text-[clamp(3rem,8vw,5.5rem)] font-bold leading-[0.9] tracking-tighter text-on-background mb-8">
+                    The Visionary <br/><span class="text-primary">Architect.</span>
+</h1>
+<p class="text-2xl font-light leading-relaxed text-on-surface-variant max-w-2xl mb-10">
+                    Maimoon Architect merges the precision of structural logic with the ethereal warmth of human prosperity, crafting sanctuaries where every line serves a purpose.
+                </p>
+<div class="flex gap-4">
+<button class="bg-tertiary-container text-on-tertiary-container px-8 py-4 rounded-lg font-bold text-sm uppercase tracking-widest hover:brightness-105 transition-all">
+                        Our Manifesto
+                    </button>
+<button class="bg-primary-container text-on-primary-container px-8 py-4 rounded-lg font-bold text-sm uppercase tracking-widest hover:brightness-105 transition-all">
+                        The 72 Steps
+                    </button>
+</div>
+</div>
+<div class="lg:col-span-5 relative">
+<div class="absolute -top-10 -left-10 w-40 h-40 bg-primary-fixed-dim/20 rounded-full blur-3xl"></div>
+<div class="aspect-[4/5] overflow-hidden rounded-xl bg-surface-container-high relative z-10 group">
+<img alt="Lead Designer" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100" data-alt="Close-up portrait of a visionary lead architect in a minimalist workspace with soft natural light and modern architectural models in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX7CQtnsa8m-1qlg-udbBn_XIO43hLJUPxC_0BzTVYPuVgBSAwaSnu21x6SDj4Jit-CHyo0rcTltWOBRaQGSmbEdaYOzcscq88PTCW_fTT2qgTCpDHoqrotmTqXdGOZiFQb2i24VtW-JxyaLEo0ICG6E_epbrUHh1OQscApFEypUHnXJbYxkQDh2Qts-t7oVpMtShb8pxVdvEnMzhncV_1Jq9NOspbjtrWMJmx_13QPQ-l-szrlQZtaIuraXj2IzoJMCuZy8V0BIkm"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+</div>
+</div>
+</section>
+<!-- Principles Bento Grid -->
+<section class="mb-32">
+<div class="flex justify-between items-end mb-16">
+<div>
+<h2 class="text-3xl md:text-5xl font-medium tracking-tight text-on-background">Core Principles</h2>
+</div>
+<div class="hidden md:block h-[1px] flex-grow mx-12 bg-outline-variant/30"></div>
+<div class="text-right">
+<span class="text-label-md uppercase tracking-widest text-secondary font-bold">The Blueprint of Mind</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Large Feature Card -->
+<div class="md:col-span-2 bg-surface-container-low p-10 rounded-xl relative overflow-hidden group hover:bg-surface-container-high transition-colors">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-4xl text-primary mb-6" data-icon="widgets">widgets</span>
+<h3 class="text-3xl font-semibold mb-4">Scalable Modularity</h3>
+<p class="text-lg font-light text-on-surface-variant max-w-md">
+                            Buildings should breathe and evolve. Our modular systems allow structures to grow alongside their inhabitants, ensuring longevity through adaptable geometry.
+                        </p>
+</div>
+<div class="absolute bottom-0 right-0 w-1/2 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[15rem]" data-icon="architecture">architecture</span>
+</div>
+</div>
+<!-- Tall Card -->
+<div class="bg-secondary-container p-10 rounded-xl flex flex-col justify-between text-on-secondary-container">
+<div>
+<h3 class="text-2xl font-bold mb-4">Atmospheric Resilience</h3>
+<p class="font-light">Designing for the environment, not against it. We leverage natural currents and radiant heat to minimize energy footprints.</p>
+</div>
+<div class="mt-8">
+<span class="material-symbols-outlined text-6xl" data-icon="air">air</span>
+</div>
+</div>
+<!-- Grid Item -->
+<div class="bg-surface-container-low p-10 rounded-xl hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-3xl text-secondary mb-4" data-icon="auto_awesome">auto_awesome</span>
+<h4 class="text-xl font-bold mb-2">Intentional Beauty</h4>
+<p class="text-sm font-light text-on-surface-variant">Beauty is a functional requirement. Aesthetic joy facilitates cognitive recovery and well-being.</p>
+</div>
+<!-- Grid Item -->
+<div class="bg-surface-container-low p-10 rounded-xl hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-3xl text-primary mb-4" data-icon="hub">hub</span>
+<h4 class="text-xl font-bold mb-2">Technological Soul</h4>
+<p class="text-sm font-light text-on-surface-variant">Integrating smart systems that disappear into the fabric of the building, serving without intruding.</p>
+</div>
+<!-- Grid Item -->
+<div class="bg-surface-container-low p-10 rounded-xl hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-3xl text-tertiary mb-4" data-icon="eco">eco</span>
+<h4 class="text-xl font-bold mb-2">Ancestral Future</h4>
+<p class="text-sm font-light text-on-surface-variant">Using timeless materials like stone and timber, reimagined through advanced carbon-capture processes.</p>
+</div>
+</div>
+</section>
+<!-- The 72 Steps Process -->
+<section class="bg-on-background text-surface py-24 px-12 md:px-20 rounded-3xl relative overflow-hidden">
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary-container/10 blur-[120px]"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10">
+<div class="lg:col-span-4">
+<span class="text-tertiary-fixed-dim font-bold tracking-[0.3em] uppercase text-xs mb-6 block">The Methodology</span>
+<h2 class="text-5xl font-bold tracking-tight mb-8">The 72 Steps <br/>to Perfection.</h2>
+<p class="text-xl font-light text-surface-dim/80 mb-12">
+                        Our proprietary process leaves nothing to chance. From the first geological survey to the final atmospheric scenting of the foyer.
+                    </p>
+<div class="space-y-6">
+<div class="flex items-center gap-4 group">
+<span class="w-10 h-10 rounded-full border border-surface/20 flex items-center justify-center text-xs group-hover:bg-primary-container group-hover:text-on-primary-container transition-all">01</span>
+<span class="text-lg font-medium">Cosmic Orientation Survey</span>
+</div>
+<div class="flex items-center gap-4 group">
+<span class="w-10 h-10 rounded-full border border-surface/20 flex items-center justify-center text-xs group-hover:bg-primary-container group-hover:text-on-primary-container transition-all">14</span>
+<span class="text-lg font-medium">Psychological Flow Mapping</span>
+</div>
+<div class="flex items-center gap-4 group">
+<span class="w-10 h-10 rounded-full border border-surface/20 flex items-center justify-center text-xs group-hover:bg-primary-container group-hover:text-on-primary-container transition-all">42</span>
+<span class="text-lg font-medium">Sonic Signature Tuning</span>
+</div>
+<div class="flex items-center gap-4 group">
+<span class="w-10 h-10 rounded-full border border-surface/20 flex items-center justify-center text-xs group-hover:bg-primary-container group-hover:text-on-primary-container transition-all">72</span>
+<span class="text-lg font-medium">The Aura Certification</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Progress Grid -->
+<div class="aspect-square bg-surface/5 rounded-xl border border-surface/10 flex flex-col items-center justify-center p-4 hover:bg-surface/10 transition-colors">
+<span class="text-4xl font-bold text-primary-container mb-2">12</span>
+<span class="text-[10px] uppercase tracking-widest text-center opacity-60">Months of Research</span>
+</div>
+<div class="aspect-square bg-surface/5 rounded-xl border border-surface/10 flex flex-col items-center justify-center p-4 hover:bg-surface/10 transition-colors">
+<span class="text-4xl font-bold text-tertiary-fixed-dim mb-2">48k</span>
+<span class="text-[10px] uppercase tracking-widest text-center opacity-60">Design Iterations</span>
+</div>
+<div class="aspect-square bg-surface/5 rounded-xl border border-surface/10 flex flex-col items-center justify-center p-4 hover:bg-surface/10 transition-colors">
+<span class="text-4xl font-bold text-secondary-fixed-dim mb-2">0</span>
+<span class="text-[10px] uppercase tracking-widest text-center opacity-60">Linear Compositions</span>
+</div>
+<div class="aspect-square bg-surface/5 rounded-xl border border-surface/10 flex flex-col items-center justify-center p-4 hover:bg-surface/10 transition-colors">
+<span class="text-4xl font-bold text-primary-fixed-dim mb-2">∞</span>
+<span class="text-[10px] uppercase tracking-widest text-center opacity-60">Structural Life</span>
+</div>
+<!-- Big Process Visual -->
+<div class="col-span-full aspect-video md:aspect-auto md:h-64 rounded-xl overflow-hidden mt-8 relative group">
+<img alt="Process Blueprint" class="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-1000" data-alt="Sophisticated architectural blueprint with golden ink on dark paper, featuring complex geometric patterns and technical annotations" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf89RePH3xgYuOMT1J5IuaoBvnaM1kyCCt_sTRm3qcrnc9kaiZnCDzQh6za8JX5l9lW1tyy6aSio9hzHRXdtuoRtoCgQe682AWApgqrf_W96EHmwigVa69aJRwMcAsobJuBOQ14jSyBIQOehzMUZAQO3aVz0Tjyr2Of81PS4HJI93vj-loJ5FPcjUoiDoc-dtQLjtGUEYPiPBUX7kjUB0ter7IhxRlokcj5kfk2H1oaIdc-yv1OcgoF1a-xr-hctDoF1A7F_CrPmka"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-xl font-headline tracking-[0.5em] font-light">SYSTEMATIC RADIANCE</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 px-8 mt-24 bg-[#141e1b] dark:bg-[#0a0f0e]">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-end max-w-7xl mx-auto">
+<div class="space-y-6">
+<div class="text-lg font-bold text-[#FFFDF0]">Maimoon Architect</div>
+<p class="font-['Space_Grotesk'] font-light text-sm text-[#f1fcf7]/60 max-w-xs">
+                    Building the future with geometric soul and ethereal precision. A sanctuary for modern living.
+                </p>
+<div class="flex gap-4">
+<a class="text-[#7adf7c] hover:text-[#ffbf00] transition-colors" href="#"><span class="material-symbols-outlined" data-icon="public">public</span></a>
+<a class="text-[#f1fcf7]/60 hover:text-[#ffbf00] transition-colors" href="#"><span class="material-symbols-outlined" data-icon="mail">mail</span></a>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8 font-['Space_Grotesk'] font-light text-sm">
+<div class="flex flex-col gap-4">
+<a class="text-[#f1fcf7]/60 hover:text-[#ffbf00] transition-colors" href="#">Privacy Policy</a>
+<a class="text-[#f1fcf7]/60 hover:text-[#ffbf00] transition-colors" href="#">Terms of Service</a>
+<a class="text-[#f1fcf7]/60 hover:text-[#ffbf00] transition-colors" href="#">Sitemap</a>
+</div>
+<div class="flex flex-col gap-4">
+<a class="text-[#f1fcf7]/60 hover:text-[#ffbf00] transition-colors" href="#">Twitter</a>
+<a class="text-[#f1fcf7]/60 hover:text-[#ffbf00] transition-colors" href="#">LinkedIn</a>
+<a class="text-[#f1fcf7]/60 hover:text-[#ffbf00] transition-colors" href="#">Instagram</a>
+</div>
+</div>
+<div class="text-right">
+<p class="font-['Space_Grotesk'] font-light text-sm text-[#f1fcf7]/60 mb-2">© 2024 Maimoon Architect.</p>
+<p class="font-['Space_Grotesk'] font-light text-sm text-[#f1fcf7]/60">Crafted with Architectural Aura.</p>
+</div>
+</div>
+</footer>
+<!-- FAB (Suppressed based on context: Details Page) -->
+</body></html>
