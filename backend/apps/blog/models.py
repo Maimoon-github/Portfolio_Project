@@ -245,20 +245,17 @@ class ImageWithSeoBlock(StructBlock):
 class SEOMetricsPanel(Panel):
     """Admin panel that surfaces live SEO metrics and warnings."""
 
-    def clone(self):
-        return self
+    class BoundPanel(Panel.BoundPanel):
+        def render_html(self, parent_context=None):
+            page = self.instance
+            if page is None:
+                return ""
 
-    def render_html(self, parent_context=None):
-        context = self.get_context(parent_context)
-        page = context.get("page")
-        if page is None:
-            return ""
-
-        warnings = getattr(page, "get_seo_warnings", lambda: [])()
-        warning_items = "".join(
-            f"<li>{escape(message)}</li>" for message in warnings
-        )
-        metrics_html = f"""
+            warnings = getattr(page, "get_seo_warnings", lambda: [])()
+            warning_items = "".join(
+                f"<li>{escape(message)}</li>" for message in warnings
+            )
+            metrics_html = f"""
 <div class='c-seo-metrics-panel'>
   <div class='c-seo-metrics-panel__row'>
     <strong>Total word count:</strong> {page.total_word_count}
@@ -278,7 +275,10 @@ class SEOMetricsPanel(Panel):
   </div>
 </div>
 """
-        return mark_safe(metrics_html)
+            return mark_safe(metrics_html)
+
+    def clone(self):
+        return self
 
 
 # ─── Page models ──────────────────────────────────────────────────────────────
