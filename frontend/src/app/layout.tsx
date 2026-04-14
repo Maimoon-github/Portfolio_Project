@@ -1,15 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils/cn";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Toaster } from "sonner";
 
-const fontSans = Inter({
+const fontSans = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 const fontMono = JetBrains_Mono({
@@ -85,7 +86,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn(fontSans.variable, fontMono.variable)}
     >
-      <body className="min-h-screen flex flex-col antialiased">
+      <body className="min-h-screen flex flex-col bg-background text-foreground antialiased">
         <a href="#main-content" className="skip-nav">
           Skip to main content
         </a>
@@ -98,7 +99,6 @@ export default function RootLayout({
 
         <Footer />
 
-        {/* Toast notifications */}
         <Toaster richColors position="bottom-right" />
       </body>
     </html>
