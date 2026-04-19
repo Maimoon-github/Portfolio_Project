@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { GlowOrb } from "@/components/ui/GlowOrb";

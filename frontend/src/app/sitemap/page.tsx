@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getAllBlogSlugs } from "@/lib/api/blog";
 import { getAllToolSlugs } from "@/lib/api/tools";
 import { getAllProjectSlugs } from "@/lib/portfolio";
+import { GlowOrb } from "@/components/ui/GlowOrb";
+import { Card } from "@/components/ui/card";
 
 export default async function SitemapPage() {
   const blogSlugs = await getAllBlogSlugs();
@@ -9,86 +11,89 @@ export default async function SitemapPage() {
   const projectSlugs = getAllProjectSlugs();
 
   return (
-    <main className="bg-background px-5 pb-20 pt-24 text-slate-950 dark:bg-slate-950 dark:text-slate-100 sm:px-8 lg:px-10">
-      <div className="mx-auto max-w-6xl space-y-10">
-        <section className="rounded-[2rem] border border-slate-200/70 bg-white/90 p-10 shadow-sm dark:border-slate-800/60 dark:bg-slate-900/85">
-          <p className="text-xs uppercase tracking-[0.32em] text-amber-700 dark:text-amber-300">Sitemap</p>
-          <h1 className="mt-4 text-5xl font-semibold tracking-tight text-slate-950 dark:text-white sm:text-6xl">
-            HTML Sitemap
+    <main className="relative bg-[color:var(--surface)] min-h-screen py-24 sm:py-32 overflow-hidden">
+      <GlowOrb color="secondary" size={600} opacity={5} className="top-0 -left-60" parallax />
+      <GlowOrb color="primary" size={500} opacity={8} className="bottom-0 -right-40" />
+
+      <div className="container relative z-10 px-4 md:px-8 mx-auto max-w-6xl space-y-16">
+        <section className="space-y-6">
+          <p className="text-[0.75rem] uppercase tracking-[0.1em] text-[color:var(--secondary)] font-semibold">Sitemap</p>
+          <h1 className="text-[2.5rem] leading-[1.1] md:text-[4rem] font-medium tracking-tight text-[color:var(--on_surface)]">
+            Platform Protocol Index
           </h1>
-          <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-300">
-            A quick navigation map to the site’s major content sections and deep links.
+          <p className="max-w-2xl text-lg leading-relaxed text-[color:var(--on_surface)]/80">
+            A comprehensive mapping matrix to our core ecosystems, structural templates, and integrated hybrid functions.
           </p>
         </section>
 
         <section className="grid gap-8 lg:grid-cols-3">
-          <div className="rounded-[2rem] border border-slate-200/70 bg-white/90 p-8 shadow-sm dark:border-slate-800/60 dark:bg-slate-900/85">
-            <h2 className="text-xl font-semibold text-slate-950 dark:text-white">Core pages</h2>
-            <ul className="mt-6 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+          <Card surface="low" className="p-8">
+            <h2 className="text-xl font-medium tracking-tight text-[color:var(--on_surface)]">Core Logic</h2>
+            <ul className="mt-8 space-y-4 text-sm text-[color:var(--on_surface)]/70">
               {[
-                { label: "Home", href: "/" },
-                { label: "About", href: "/about" },
-                { label: "Portfolio", href: "/portfolio" },
-                { label: "Blog", href: "/blog" },
-                { label: "Tools", href: "/tools" },
-                { label: "Contact", href: "/contact" },
-                { label: "Resume", href: "/resume" },
-                { label: "Privacy Policy", href: "/privacy" },
-                { label: "Terms of Service", href: "/terms" },
+                { label: "Home Base", href: "/" },
+                { label: "Architectural Blueprint", href: "/about" },
+                { label: "System Deployments", href: "/portfolio" },
+                { label: "Signal Feed", href: "/blog" },
+                { label: "Interactive Computing", href: "/tools" },
+                { label: "Connect", href: "/contact" },
+                { label: "Operational Resume", href: "/resume" },
+                { label: "Privacy Schema", href: "/privacy" },
+                { label: "Terms Logic", href: "/terms" },
               ].map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="text-amber-600 hover:text-amber-500">
-                    {item.label}
+                  <Link href={item.href} className="hover:text-[color:var(--primary)] transition-colors flex items-center gap-2 group">
+                    <span className="text-[color:var(--primary)] opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all">&rarr;</span> {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </Card>
 
-          <div className="rounded-[2rem] border border-slate-200/70 bg-white/90 p-8 shadow-sm dark:border-slate-800/60 dark:bg-slate-900/85">
-            <h2 className="text-xl font-semibold text-slate-950 dark:text-white">Portfolio</h2>
-            <ul className="mt-6 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+          <Card surface="low" className="p-8">
+            <h2 className="text-xl font-medium tracking-tight text-[color:var(--on_surface)]">Deployed Models</h2>
+            <ul className="mt-8 space-y-4 text-sm text-[color:var(--on_surface)]/70">
               {projectSlugs.map((slug) => (
                 <li key={slug}>
-                  <Link href={`/portfolio/${slug}`} className="text-amber-600 hover:text-amber-500">
-                    {slug.replace(/-/g, " ")}
+                  <Link href={`/portfolio/${slug}`} className="hover:text-[color:var(--primary)] transition-colors flex items-center gap-2 group capitalize">
+                    <span className="text-[color:var(--primary)] opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all">&rarr;</span> {slug.replace(/-/g, " ")}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </Card>
 
-          <div className="rounded-[2rem] border border-slate-200/70 bg-white/90 p-8 shadow-sm dark:border-slate-800/60 dark:bg-slate-900/85">
-            <h2 className="text-xl font-semibold text-slate-950 dark:text-white">Blogs & tools</h2>
-            <div className="mt-6 space-y-6 text-sm text-slate-600 dark:text-slate-300">
+          <Card surface="low" className="p-8">
+            <h2 className="text-xl font-medium tracking-tight text-[color:var(--on_surface)]">Integrated Feeds</h2>
+            <div className="mt-8 space-y-10 text-sm">
               <div>
-                <p className="font-semibold text-slate-950 dark:text-white">Blog posts</p>
-                <ul className="mt-3 space-y-2">
+                <p className="font-medium text-[color:var(--on_surface)] mb-4">Signal Logs (Blog)</p>
+                <ul className="space-y-4 text-[color:var(--on_surface)]/70">
                   {blogSlugs.slice(0, 8).map((slug) => (
                     <li key={slug}>
-                      <Link href={`/blog/${slug}`} className="text-amber-600 hover:text-amber-500">
-                        {slug.replace(/-/g, " ")}
+                      <Link href={`/blog/${slug}`} className="hover:text-[color:var(--primary)] transition-colors flex items-center gap-2 group capitalize">
+                        <span className="text-[color:var(--primary)] opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all">&rarr;</span> {slug.replace(/-/g, " ")}
                       </Link>
                     </li>
                   ))}
-                  {blogSlugs.length > 8 ? <li className="text-slate-500">+{blogSlugs.length - 8} more</li> : null}
+                  {blogSlugs.length > 8 && <li className="text-[color:var(--secondary)] pl-2">+{blogSlugs.length - 8} additional records</li>}
                 </ul>
               </div>
-              <div>
-                <p className="font-semibold text-slate-950 dark:text-white">Tools</p>
-                <ul className="mt-3 space-y-2">
+              <div className="pt-8 border-t border-[color:var(--outline)]/10">
+                <p className="font-medium text-[color:var(--on_surface)] mb-4">Modules (Tools)</p>
+                <ul className="space-y-4 text-[color:var(--on_surface)]/70">
                   {toolSlugs.slice(0, 8).map((tool) => (
                     <li key={tool.slug}>
-                      <Link href={`/tools/${tool.slug}`} className="text-amber-600 hover:text-amber-500">
-                        {tool.slug.replace(/-/g, " ")}
+                      <Link href={`/tools/${tool.slug}`} className="hover:text-[color:var(--primary)] transition-colors flex items-center gap-2 group capitalize">
+                        <span className="text-[color:var(--primary)] opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all">&rarr;</span> {tool.slug.replace(/-/g, " ")}
                       </Link>
                     </li>
                   ))}
-                  {toolSlugs.length > 8 ? <li className="text-slate-500">+{toolSlugs.length - 8} more</li> : null}
+                  {toolSlugs.length > 8 && <li className="text-[color:var(--secondary)] pl-2">+{toolSlugs.length - 8} additional models</li>}
                 </ul>
               </div>
             </div>
-          </div>
+          </Card>
         </section>
       </div>
     </main>

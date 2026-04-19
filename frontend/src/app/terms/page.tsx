@@ -1,4 +1,6 @@
 import { generatePageMetadata } from "@/lib/utils/seo";
+import { GlowOrb } from "@/components/ui/GlowOrb";
+import { Card } from "@/components/ui/card";
 
 export const metadata = generatePageMetadata({
   title: "Terms of Service",
@@ -8,38 +10,43 @@ export const metadata = generatePageMetadata({
 
 export default function TermsPage() {
   return (
-    <main className="bg-background px-5 pb-20 pt-24 text-slate-950 dark:bg-slate-950 dark:text-slate-100 sm:px-8 lg:px-10">
-      <div className="mx-auto max-w-5xl space-y-10">
-        <section className="rounded-[2rem] border border-slate-200/70 bg-white/90 p-10 shadow-sm dark:border-slate-800/60 dark:bg-slate-900/85">
-          <p className="text-xs uppercase tracking-[0.32em] text-amber-700 dark:text-amber-300">Legal</p>
-          <h1 className="mt-4 text-5xl font-semibold tracking-tight text-slate-950 dark:text-white sm:text-6xl">
+    <main className="relative bg-[color:var(--surface)] min-h-screen py-24 sm:py-32 overflow-hidden">
+      <GlowOrb color="secondary" size={600} opacity={5} className="top-0 -left-60" parallax />
+      <GlowOrb color="primary" size={500} opacity={8} className="bottom-0 -right-40" />
+
+      <div className="container relative z-10 px-4 md:px-8 mx-auto max-w-4xl space-y-12">
+        <section className="space-y-6">
+          <p className="text-[0.75rem] uppercase tracking-[0.1em] text-[color:var(--secondary)] font-semibold">Legal Documentation</p>
+          <h1 className="text-[2.5rem] leading-[1.1] md:text-[4rem] font-medium tracking-tight text-[color:var(--on_surface)]">
             Terms of Service
           </h1>
-          <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-300">
-            These terms govern your use of our site, tools, and content. By using this site, you agree to the policies described here.
+          <p className="max-w-2xl text-lg leading-relaxed text-[color:var(--on_surface)]/80">
+            These terms define the operational agreement for utilizing our digital surface, models, and content architecture. By engaging with this platform, you commit to these protocols.
           </p>
         </section>
 
-        <section className="space-y-6 rounded-[2rem] border border-slate-200/70 bg-white/90 p-10 shadow-sm dark:border-slate-800/60 dark:bg-slate-900/85">
+        <Card surface="low" className="p-8 md:p-12 space-y-12">
           <div>
-            <h2 className="text-2xl font-semibold text-slate-950 dark:text-white">Acceptable use</h2>
-            <p className="mt-4 text-slate-600 dark:text-slate-300">
-              You agree not to misuse the site or the tools, and to use the site in a lawful manner only.
+            <h2 className="text-2xl font-medium tracking-tight text-[color:var(--on_surface)]">Acceptable Interaction</h2>
+            <p className="mt-4 leading-relaxed text-[color:var(--on_surface)]/80">
+              You agree to utilize all interconnected applications responsibly without introducing disruptive payload cycles, attempting reverse-engineering of live components, or compromising backend topologies.
             </p>
           </div>
-          <div>
-            <h2 className="text-2xl font-semibold text-slate-950 dark:text-white">Intellectual property</h2>
-            <p className="mt-4 text-slate-600 dark:text-slate-300">
-              All content, design, and custom tools on this site are protected by copyright and may not be reused without permission.
+
+          <div className="border-t border-[color:var(--outline)]/10 pt-8">
+            <h2 className="text-2xl font-medium tracking-tight text-[color:var(--on_surface)]">Architectural Property</h2>
+            <p className="mt-4 leading-relaxed text-[color:var(--on_surface)]/80">
+              The overarching visual dialect, hybrid tooling engines, syntax arrangements, and component architectures engineered onsite belong strictly within our network. Unauthorized redistribution, cloning, or external deployment without direct synchronization implies a critical licensing breach.
             </p>
           </div>
-          <div>
-            <h2 className="text-2xl font-semibold text-slate-950 dark:text-white">Service availability</h2>
-            <p className="mt-4 text-slate-600 dark:text-slate-300">
-              We aim to keep the site available, but do not guarantee uninterrupted access. Features may be updated, paused, or removed at any time.
+
+          <div className="border-t border-[color:var(--outline)]/10 pt-8">
+            <h2 className="text-2xl font-medium tracking-tight text-[color:var(--on_surface)]">System Reliability</h2>
+            <p className="mt-4 leading-relaxed text-[color:var(--on_surface)]/80">
+              System uptimes are continually optimized, but environmental or logical disruptions can occur. Live models, algorithms, and content repositories may be seamlessly transitioned, refactored, or deprecated iteratively without synchronized warning sequences.
             </p>
           </div>
-        </section>
+        </Card>
       </div>
     </main>
   );

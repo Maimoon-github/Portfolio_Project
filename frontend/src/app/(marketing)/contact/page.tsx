@@ -1,95 +1,113 @@
 import { Github, Linkedin, Mail, CalendarDays } from "lucide-react";
+import { GlowOrb } from "@/components/ui/GlowOrb";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function ContactPage() {
   return (
-    <main className="bg-background px-5 pb-20 pt-24 text-slate-950 dark:bg-slate-950 dark:text-slate-100 sm:px-8 lg:px-10">
-      <div className="mx-auto max-w-7xl space-y-10">
-        <section className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+    <main className="relative bg-[color:var(--surface)] min-h-screen py-24 sm:py-32 overflow-hidden">
+      <GlowOrb color="primary" size={500} opacity={6} className="-top-20 -left-20" />
+      <GlowOrb color="secondary" size={600} opacity={5} className="bottom-0 -right-40" />
+
+      <div className="container relative z-10 px-4 md:px-8 mx-auto max-w-7xl space-y-20">
+        <section className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div>
-            <p className="text-xs uppercase tracking-[0.32em] text-amber-700 dark:text-amber-300">Connect</p>
-            <h1 className="mt-4 text-5xl font-semibold tracking-tight text-slate-950 dark:text-white sm:text-6xl">
+            <p className="text-[0.75rem] uppercase tracking-[0.1em] text-[color:var(--secondary)] font-semibold mb-4">Connect</p>
+            <h1 className="text-[2.5rem] leading-[1.1] md:text-[3.5rem] font-medium tracking-tight text-[color:var(--on_surface)]">
               Let’s turn your vision into a crafted digital experience.
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--on_surface)]/80">
               Reach out for project inquiries, collaboration opportunities, or strategic consultations.
             </p>
           </div>
 
-          <div className="rounded-[2rem] border border-slate-200/70 bg-white/90 p-10 shadow-sm dark:border-slate-800/60 dark:bg-slate-900/85">
-            <p className="text-sm uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400">Fast contact</p>
-            <div className="mt-6 space-y-5 text-sm leading-7 text-slate-700 dark:text-slate-300">
-              <div className="flex items-center gap-3 rounded-3xl bg-slate-50 px-4 py-4 dark:bg-slate-950">
-                <Mail className="h-5 w-5 text-amber-500" />
-                <div>
-                  <p className="font-semibold text-slate-950 dark:text-white">hello@maimoonarchitect.com</p>
-                  <p className="text-slate-500 dark:text-slate-400">General inquiries</p>
+          <Card surface="low" className="p-8">
+            <p className="text-[0.75rem] uppercase tracking-[0.1em] text-[color:var(--secondary)] mb-6">Fast Contact</p>
+            <div className="space-y-6">
+              <a href="mailto:hello@maimoonarchitect.com" className="group flex items-center gap-4 rounded-[1.25rem] bg-[color:var(--surface_container)] p-4 transition-colors hover:bg-[color:var(--surface_container_high)]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[color:var(--primary)]/10 text-[color:var(--primary)]">
+                  <Mail className="h-5 w-5" />
                 </div>
-              </div>
-              <div className="flex items-center gap-3 rounded-3xl bg-slate-50 px-4 py-4 dark:bg-slate-950">
-                <Linkedin className="h-5 w-5 text-slate-800 dark:text-slate-200" />
                 <div>
-                  <p className="font-semibold text-slate-950 dark:text-white">LinkedIn</p>
-                  <p className="text-slate-500 dark:text-slate-400">View professional profile</p>
+                  <p className="text-sm font-medium text-[color:var(--on_surface)] group-hover:text-[color:var(--primary)] transition-colors">hello@maimoonarchitect.com</p>
+                  <p className="text-xs text-[color:var(--secondary)]">General inquiries</p>
                 </div>
-              </div>
-              <div className="flex items-center gap-3 rounded-3xl bg-slate-50 px-4 py-4 dark:bg-slate-950">
-                <Github className="h-5 w-5 text-slate-800 dark:text-slate-200" />
+              </a>
+              
+              <a href="#" className="group flex items-center gap-4 rounded-[1.25rem] bg-[color:var(--surface_container)] p-4 transition-colors hover:bg-[color:var(--surface_container_high)]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[color:var(--secondary)]/10 text-[color:var(--secondary)]">
+                  <Linkedin className="h-5 w-5" />
+                </div>
                 <div>
-                  <p className="font-semibold text-slate-950 dark:text-white">GitHub</p>
-                  <p className="text-slate-500 dark:text-slate-400">Inspect projects and tools</p>
+                  <p className="text-sm font-medium text-[color:var(--on_surface)] group-hover:text-[color:var(--primary)] transition-colors">LinkedIn</p>
+                  <p className="text-xs text-[color:var(--secondary)]">View professional profile</p>
                 </div>
-              </div>
+              </a>
+
+              <a href="#" className="group flex items-center gap-4 rounded-[1.25rem] bg-[color:var(--surface_container)] p-4 transition-colors hover:bg-[color:var(--surface_container_high)]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[color:var(--on_surface)]/10 text-[color:var(--on_surface)]">
+                  <Github className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-[color:var(--on_surface)] group-hover:text-[color:var(--primary)] transition-colors">GitHub</p>
+                  <p className="text-xs text-[color:var(--secondary)]">Inspect projects and tools</p>
+                </div>
+              </a>
             </div>
-          </div>
+          </Card>
         </section>
 
-        <section className="grid gap-10 lg:grid-cols-[0.95fr_0.9fr]">
-          <form className="space-y-6 rounded-[2rem] border border-slate-200/70 bg-white/90 p-10 shadow-sm dark:border-slate-800/60 dark:bg-slate-900/85">
-            <div className="grid gap-4 sm:grid-cols-2">
+        <section className="grid gap-10 lg:grid-cols-[1fr_0.8fr]">
+          <Card surface="low" className="p-8 md:p-12">
+            <form className="space-y-6">
+              <div className="grid gap-6 sm:grid-cols-2">
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="w-full rounded-[1.25rem] border border-[color:var(--outline)]/20 bg-[color:var(--surface)] px-5 py-4 text-sm text-[color:var(--on_surface)] placeholder-[color:var(--on_surface)]/30 outline-none transition-all focus:border-[color:var(--primary)] focus:ring-1 focus:ring-[color:var(--primary)]"
+                />
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  className="w-full rounded-[1.25rem] border border-[color:var(--outline)]/20 bg-[color:var(--surface)] px-5 py-4 text-sm text-[color:var(--on_surface)] placeholder-[color:var(--on_surface)]/30 outline-none transition-all focus:border-[color:var(--primary)] focus:ring-1 focus:ring-[color:var(--primary)]"
+                />
+              </div>
               <input
                 type="text"
-                placeholder="Name"
-                className="rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-900 outline-none transition focus:border-amber-300 focus:ring-2 focus:ring-amber-200 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                placeholder="Project name"
+                className="w-full rounded-[1.25rem] border border-[color:var(--outline)]/20 bg-[color:var(--surface)] px-5 py-4 text-sm text-[color:var(--on_surface)] placeholder-[color:var(--on_surface)]/30 outline-none transition-all focus:border-[color:var(--primary)] focus:ring-1 focus:ring-[color:var(--primary)]"
               />
-              <input
-                type="email"
-                placeholder="Email Address"
-                className="rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-900 outline-none transition focus:border-amber-300 focus:ring-2 focus:ring-amber-200 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+              <textarea
+                rows={6}
+                placeholder="Tell us about your project goals"
+                className="w-full rounded-[1.25rem] border border-[color:var(--outline)]/20 bg-[color:var(--surface)] px-5 py-4 text-sm text-[color:var(--on_surface)] placeholder-[color:var(--on_surface)]/30 outline-none transition-all focus:border-[color:var(--primary)] focus:ring-1 focus:ring-[color:var(--primary)] resize-none"
               />
-            </div>
-            <input
-              type="text"
-              placeholder="Project name"
-              className="w-full rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-900 outline-none transition focus:border-amber-300 focus:ring-2 focus:ring-amber-200 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
-            />
-            <textarea
-              rows={6}
-              placeholder="Tell us about your project goals"
-              className="w-full rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-900 outline-none transition focus:border-amber-300 focus:ring-2 focus:ring-amber-200 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
-            />
-            <button className="inline-flex w-full items-center justify-center rounded-full bg-amber-400 px-6 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-slate-950 shadow-lg shadow-amber-200/40 transition hover:bg-amber-300">
-              Send inquiry
-            </button>
-          </form>
+              <Button size="lg" className="w-full group">
+                <span className="relative z-10 transition-transform group-hover:-translate-y-0.5">Send Inquiry</span>
+              </Button>
+            </form>
+          </Card>
 
-          <aside className="space-y-6">
-            <div className="rounded-[2rem] border border-slate-200/70 bg-white/90 p-8 shadow-sm dark:border-slate-800/60 dark:bg-slate-900/85">
-              <p className="text-xs uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400">What's next</p>
-              <h2 className="mt-4 text-2xl font-semibold tracking-tight text-slate-950 dark:text-white">Meeting coordination</h2>
-              <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
+          <aside className="space-y-8">
+            <Card surface="variant" className="p-8 md:p-10 border border-[color:var(--outline)]/10">
+              <p className="text-[0.75rem] uppercase tracking-[0.1em] text-[color:var(--secondary)] mb-6">What's Next</p>
+              <h2 className="text-2xl font-medium tracking-tight text-[color:var(--on_surface)]">Meeting Coordination</h2>
+              <p className="mt-4 text-sm leading-relaxed text-[color:var(--on_surface)]/70">
                 Use the contact form to share project details. We will reply with availability for an introductory call and next steps.
               </p>
-              <div className="mt-6 inline-flex items-center gap-3 rounded-full bg-slate-50 px-4 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-                <CalendarDays className="h-5 w-5 text-amber-500" />
+              <button className="mt-8 flex w-full items-center justify-center gap-3 rounded-[1.25rem] bg-[color:var(--surface_container_high)] px-5 py-4 text-sm font-semibold uppercase tracking-[0.1em] text-[color:var(--on_surface)] transition-all hover:bg-[color:var(--surface_highest)] hover:text-[color:var(--primary)]">
+                <CalendarDays className="h-5 w-5 text-[color:var(--primary)]" />
                 Request a scheduling link
-              </div>
-            </div>
+              </button>
+            </Card>
 
-            <div className="rounded-[2rem] border border-slate-200/70 bg-slate-950 p-8 text-slate-100 shadow-2xl shadow-slate-950/10 dark:border-slate-800/60 dark:bg-slate-900">
-              <p className="text-xs uppercase tracking-[0.28em] text-amber-300">Studio</p>
-              <p className="mt-4 text-xl font-semibold tracking-tight">Dubai Design District</p>
-              <p className="mt-4 text-sm leading-7 text-slate-300">A hybrid studio for digital work, product strategy, and immersive publishing.</p>
-            </div>
+            <Card surface="variant" className="p-8 md:p-10 border border-[color:var(--outline)]/10">
+              <p className="text-[0.75rem] uppercase tracking-[0.1em] text-[color:var(--secondary)] mb-6">Studio</p>
+              <p className="mb-2 text-xl font-medium tracking-tight text-[color:var(--on_surface)]">Dubai Design District</p>
+              <p className="text-sm leading-relaxed text-[color:var(--on_surface)]/70">
+                A hybrid studio for digital work, product strategy, and immersive publishing.
+              </p>
+            </Card>
           </aside>
         </section>
       </div>

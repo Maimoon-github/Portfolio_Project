@@ -1,28 +1,36 @@
+import { GlowOrb } from "@/components/ui/GlowOrb";
+import { Card } from "@/components/ui/card";
+import { Chip } from "@/components/ui/Chip";
+import { cn } from "@/lib/utils/cn";
+
 export default function AboutPage() {
   return (
-    <main className="bg-background px-5 pb-20 pt-24 text-slate-950 dark:bg-slate-950 dark:text-slate-100 sm:px-8 lg:px-10">
-      <div className="mx-auto max-w-6xl space-y-10">
-        <section className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+    <main className="relative bg-[color:var(--surface)] min-h-screen py-24 sm:py-32 overflow-hidden">
+      <GlowOrb color="secondary" size={600} opacity={5} className="top-0 -left-60" parallax />
+      <GlowOrb color="primary" size={500} opacity={8} className="bottom-40 -right-40" />
+
+      <div className="container relative z-10 px-4 md:px-8 mx-auto max-w-6xl space-y-20">
+        <section className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div>
-            <p className="text-xs uppercase tracking-[0.32em] text-amber-700 dark:text-amber-300">About</p>
-            <h1 className="mt-4 text-5xl font-semibold tracking-tight text-slate-950 dark:text-white sm:text-6xl">
+            <p className="text-[0.75rem] uppercase tracking-[0.1em] text-[color:var(--secondary)] font-semibold mb-4">About</p>
+            <h1 className="text-[2.5rem] leading-[1.1] md:text-[3.5rem] font-medium tracking-tight text-[color:var(--on_surface)]">
               Bringing calm clarity to complex product experiences.
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[color:var(--on_surface)]/80">
               I craft polished digital systems and thoughtful storytelling for teams who value performance, elegance, and user-centered clarity.
             </p>
           </div>
-          <div className="rounded-[2rem] border border-slate-200/70 bg-white/90 p-8 shadow-sm dark:border-slate-800/60 dark:bg-slate-900/85">
-            <p className="text-sm uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400">Philosophy</p>
-            <p className="mt-4 text-base leading-7 text-slate-700 dark:text-slate-300">
+          <Card surface="low" className="p-8">
+            <p className="text-[0.75rem] uppercase tracking-[0.1em] text-[color:var(--secondary)] mb-4">Philosophy</p>
+            <p className="text-base leading-relaxed text-[color:var(--on_surface)]/80">
               Every interface should feel intuitive, confident, and warm. My work blends structure, motion, and accessibility so ideas become easy to use.
             </p>
-          </div>
+          </Card>
         </section>
 
-        <section className="rounded-[2rem] border border-slate-200/70 bg-white/90 p-10 shadow-sm dark:border-slate-800/60 dark:bg-slate-900/85">
-          <p className="text-xs uppercase tracking-[0.32em] text-amber-700 dark:text-amber-300">Experience & timeline</p>
-          <div className="mt-8 space-y-6">
+        <Card surface="low" className="p-10 md:p-14">
+          <p className="text-[0.75rem] uppercase tracking-[0.1em] text-[color:var(--secondary)] mb-10">Experience & Timeline</p>
+          <div className="space-y-8">
             {[
               {
                 date: "2023 — Present",
@@ -42,21 +50,21 @@ export default function AboutPage() {
                 subtitle: "Aurora Labs",
                 description: "Scaled reusable UI libraries and launched streamlined product workflows for complex enterprise applications.",
               },
-            ].map((item) => (
-              <div key={item.date} className="rounded-[1.75rem] border border-slate-200/70 bg-slate-50 p-6 dark:border-slate-800/60 dark:bg-slate-950">
-                <p className="text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">{item.date}</p>
-                <h2 className="mt-3 text-2xl font-semibold text-slate-950 dark:text-white">{item.title}</h2>
-                <p className="mt-2 text-sm font-semibold text-amber-700 dark:text-amber-300">{item.subtitle}</p>
-                <p className="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">{item.description}</p>
+            ].map((item, index) => (
+              <div key={item.date} className={cn("p-8 rounded-[1.75rem] border border-[color:var(--outline)]/5 bg-[color:var(--surface_container)] transition-colors hover:bg-[color:var(--surface_container_high)]", index !== 0 && "opacity-90")}>
+                <p className="text-[0.65rem] uppercase tracking-[0.15em] text-[color:var(--secondary)] mb-4">{item.date}</p>
+                <h2 className="text-2xl font-medium tracking-tight text-[color:var(--on_surface)]">{item.title}</h2>
+                <p className="mt-2 text-sm font-medium text-[color:var(--primary)]">{item.subtitle}</p>
+                <p className="mt-4 text-sm leading-relaxed text-[color:var(--on_surface)]/70">{item.description}</p>
               </div>
             ))}
           </div>
-        </section>
+        </Card>
 
-        <section className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-[2rem] border border-slate-200/70 bg-slate-50 p-10 dark:border-slate-800/60 dark:bg-slate-950">
-            <p className="text-xs uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400">Skills & expertise</p>
-            <div className="mt-6 grid gap-3 text-sm text-slate-700 dark:text-slate-300">
+        <section className="grid gap-8 lg:grid-cols-2">
+          <Card surface="low" className="p-10 md:p-14">
+            <p className="text-[0.75rem] uppercase tracking-[0.1em] text-[color:var(--secondary)] mb-8">Skills & Expertise</p>
+            <div className="flex flex-wrap gap-3">
               {[
                 "React / Next.js",
                 "TypeScript",
@@ -65,26 +73,24 @@ export default function AboutPage() {
                 "SEO & Performance",
                 "Accessibility",
               ].map((skill) => (
-                <span key={skill} className="inline-flex items-center rounded-full bg-white px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-700 dark:bg-slate-900 dark:text-slate-200">
-                  {skill}
-                </span>
+                <Chip key={skill}>{skill}</Chip>
               ))}
             </div>
-          </div>
+          </Card>
 
-          <div className="rounded-[2rem] border border-slate-200/70 bg-slate-50 p-10 dark:border-slate-800/60 dark:bg-slate-950">
-            <p className="text-xs uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400">Education</p>
-            <div className="mt-6 space-y-6 text-sm leading-7 text-slate-700 dark:text-slate-300">
+          <Card surface="low" className="p-10 md:p-14">
+            <p className="text-[0.75rem] uppercase tracking-[0.1em] text-[color:var(--secondary)] mb-8">Education</p>
+            <div className="space-y-8">
               <div>
-                <p className="font-semibold text-slate-950 dark:text-white">M.S. Interaction Design</p>
-                <p className="mt-2">University of Applied Sciences — 2018</p>
+                <p className="text-lg font-medium text-[color:var(--on_surface)]">M.S. Interaction Design</p>
+                <p className="mt-2 text-sm text-[color:var(--on_surface)]/60">University of Applied Sciences — 2018</p>
               </div>
-              <div>
-                <p className="font-semibold text-slate-950 dark:text-white">B.A. Visual Communication</p>
-                <p className="mt-2">Creative Media Institute — 2016</p>
+              <div className="pt-8 border-t border-[color:var(--outline)]/10">
+                <p className="text-lg font-medium text-[color:var(--on_surface)]">B.A. Visual Communication</p>
+                <p className="mt-2 text-sm text-[color:var(--on_surface)]/60">Creative Media Institute — 2016</p>
               </div>
             </div>
-          </div>
+          </Card>
         </section>
       </div>
     </main>
