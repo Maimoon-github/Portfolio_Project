@@ -37,10 +37,10 @@
                   Enter The Blueprint
                 </a>
                 <a
-                  href="/tool"
+                  href="/tools"
                   className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-950 transition hover:border-amber-300 hover:bg-amber-50"
                 >
-                  View Portfolio
+                  View Tools
                 </a>
               </div>
             </div>

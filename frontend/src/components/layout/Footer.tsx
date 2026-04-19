@@ -30,13 +30,19 @@
           <p className="mb-4 text-xs uppercase tracking-[0.32em] text-slate-500">Resource</p>
           <ul className="space-y-3 text-sm">
             <li>
-              <a href="/tool" className="transition hover:text-amber-300">Tools</a>
+              <a href="/tools" className="transition hover:text-amber-300">Tools</a>
+            </li>
+            <li>
+              <a href="/resume" className="transition hover:text-amber-300">Resume</a>
             </li>
             <li>
               <a href="/contact" className="transition hover:text-amber-300">Contact</a>
             </li>
             <li>
               <a href="/privacy" className="transition hover:text-amber-300">Privacy Policy</a>
+            </li>
+            <li>
+              <a href="/terms" className="transition hover:text-amber-300">Terms</a>
             </li>
           </ul>
         </div>
