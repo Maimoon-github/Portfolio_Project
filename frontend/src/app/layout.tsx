@@ -3,6 +3,8 @@ import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils/cn";
 import { Toaster } from "sonner";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 const fontSans = Space_Grotesk({
   subsets: ["latin"],
@@ -78,14 +80,18 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn(fontSans.variable, fontMono.variable)}
     >
-      <body className="min-h-screen flex flex-col font-sans antialiased selection:bg-primary/30 selection:text-primary">
-        <a href="#main-content" className="skip-nav">
+      <body className="min-h-screen flex flex-col font-sans antialiased selection:bg-[color:var(--primary)]/30 selection:text-[color:var(--primary)] bg-[color:var(--surface)]">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-white focus:text-black">
           Skip to main content
         </a>
 
-        <main id="main-content" className="flex-1 overflow-hidden relative">
+        <Header />
+
+        <main id="main-content" className="flex-1 overflow-x-hidden relative mt-[74px]">
           {children}
         </main>
+
+        <Footer />
 
         <Toaster richColors position="bottom-right" />
       </body>
