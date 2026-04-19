@@ -15,50 +15,22 @@ const config: Config = {
         mono: ["var(--font-mono)", ...defaultTheme.fontFamily.mono],
       },
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        surface: "var(--surface)",
+        surface_container_low: "var(--surface_container_low)",
+        surface_container: "var(--surface_container)",
+        surface_container_high: "var(--surface_container_high)",
+        surface_container_highest: "var(--surface_container_highest)",
+        surface_variant: "var(--surface_variant)",
+        on_surface: "var(--on_surface)",
+        outline: "var(--outline)",
+        outline_variant: "var(--outline_variant)",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "var(--primary)",
+          container: "var(--primary_container)",
+          foreground: "var(--on_primary_fixed)",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      typography: {
-        DEFAULT: {
-          css: {
-            "--tw-prose-body": "hsl(var(--foreground))",
-            "--tw-prose-headings": "hsl(var(--foreground))",
-            "--tw-prose-links": "hsl(var(--primary))",
-            "--tw-prose-code": "hsl(var(--foreground))",
-            maxWidth: "none",
-          },
+          DEFAULT: "var(--secondary)",
         },
       },
       keyframes: {
@@ -79,4 +51,4 @@ const config: Config = {
   ],
 };
 
-export default config;
+export default config;

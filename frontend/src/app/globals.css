@@ -1,106 +1,22 @@
-﻿@import "tailwindcss";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: 44 100% 98%;
-  --foreground: 217 16% 12%;
-  --card: 45 100% 96%;
-  --surface: 44 100% 97%;
-  --surface-muted: 42 100% 92%;
-  --border: 40 100% 90%;
-  --input: 40 100% 94%;
-  --ring: 42 100% 70%;
-  --primary: 42 100% 65%;
-  --primary-foreground: 210 16% 10%;
-  --secondary: 204 90% 52%;
-  --secondary-foreground: 210 98% 98%;
-  --accent: 41 100% 60%;
-  --accent-foreground: 210 16% 8%;
-  --muted: 44 100% 84%;
-  --muted-foreground: 215 18% 24%;
-  --radius: 1.75rem;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 212 18% 8%;
-    --foreground: 210 16% 96%;
-    --card: 210 18% 12%;
-    --surface: 214 14% 18%;
-    --surface-muted: 214 14% 14%;
-    --border: 210 16% 24%;
-    --input: 210 16% 18%;
-    --ring: 204 90% 55%;
-    --primary: 42 100% 65%;
-    --primary-foreground: 210 16% 10%;
-    --secondary: 204 90% 52%;
-    --secondary-foreground: 210 98% 98%;
-    --accent: 41 100% 60%;
-    --accent-foreground: 210 16% 8%;
-    --muted: 214 14% 12%;
-    --muted-foreground: 210 18% 94%;
-  }
-}
-
 @layer base {
   :root {
-    --background: 44 100% 98%;
-    --foreground: 217 16% 12%;
-    --card: 45 100% 96%;
-    --card-foreground: 217 18% 12%;
-    --popover: 45 100% 96%;
-    --popover-foreground: 217 18% 12%;
-    --primary: 42 100% 65%;
-    --primary-foreground: 210 16% 10%;
-    --secondary: 204 90% 52%;
-    --secondary-foreground: 210 98% 98%;
-    --accent: 41 100% 60%;
-    --accent-foreground: 210 16% 8%;
-    --muted: 44 100% 84%;
-    --muted-foreground: 215 18% 24%;
-    --destructive: 4 96% 51%;
-    --destructive-foreground: 210 16% 10%;
-    --border: 40 100% 90%;
-    --input: 40 100% 94%;
-    --ring: 42 100% 70%;
-    --radius: 1.75rem;
-  }
-
-  .dark {
-    --background: 212 18% 8%;
-    --foreground: 210 16% 96%;
-    --card: 210 18% 12%;
-    --card-foreground: 210 20% 98%;
-    --popover: 210 18% 12%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 42 100% 65%;
-    --primary-foreground: 210 16% 10%;
-    --secondary: 204 90% 52%;
-    --secondary-foreground: 210 98% 98%;
-    --accent: 41 100% 60%;
-    --accent-foreground: 210 16% 8%;
-    --muted: 214 14% 12%;
-    --muted-foreground: 210 18% 94%;
-    --destructive: 4 96% 51%;
-    --destructive-foreground: 210 16% 10%;
-    --border: 210 16% 24%;
-    --input: 210 16% 18%;
-    --ring: 204 90% 55%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
+    --surface: #131313;
+    --surface_container_low: #1c1b1b;
+    --surface_container: #201f1f;
+    --surface_container_high: #2a2929;
+    --surface_container_highest: #353534;
+    --surface_variant: #494746;
+    --on_surface: #e6e2dc;
+    --outline: #a28d7a;
+    --outline_variant: #544434;
+    --primary: #ffc68b;
+    --primary_container: #ff9f1c;
+    --on_primary_fixed: #2b1c0b;
+    --secondary: #a4c2ff;
   }
 
   html {
@@ -111,37 +27,28 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--surface);
+    color: var(--on_surface);
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+    outline: none;
+    box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--primary);
   }
 }
 
 @layer utilities {
-  .prose-content {
-    @apply prose prose-neutral dark:prose-invert max-w-none;
-  }
-
-  .rich-text img {
-    @apply mx-auto rounded-3xl;
-  }
-
-  .calc-result {
-    @apply animate-fade-in;
-  }
-
   .hero-glow {
-    background: radial-gradient(circle at top left, rgba(255, 191, 0, 0.18), transparent 36%);
+    background: radial-gradient(circle at top right, rgba(255, 198, 139, 0.08) 0%, transparent 60%);
   }
-
+  
   .glass-panel {
-    @apply rounded-[2rem] border border-slate-200/70 bg-white/85 backdrop-blur-xl;
+    background-color: color-mix(in srgb, var(--surface_variant) 40%, transparent);
+    backdrop-filter: blur(20px);
   }
 
   .skip-nav {
-    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground;
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-[color:var(--on_primary_fixed)];
   }
 }
