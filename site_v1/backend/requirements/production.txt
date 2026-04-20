@@ -1,8 +1,0 @@
-gunicorn
-whitenoise
-python-decouple   # since you use decouple in production.py
-# psycopg2-binary   # uncomment if you switch to Postgres later
-# your other packages from base.txt
-
--r base.txt
--r development.txt
