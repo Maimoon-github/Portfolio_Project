@@ -1,0 +1,74 @@
+File Tree: portfolio-frontend
+Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
+
+────────────────────────────────────────────────────────────────────────────────
+
+├── 📁 public/
+│   ├── 🖼️ file.svg
+│   ├── 🖼️ globe.svg
+│   ├── 🖼️ next.svg
+│   ├── 🖼️ vercel.svg
+│   └── 🖼️ window.svg
+├── 📁 src/
+│   ├── 📁 app/
+│   │   ├── 📁 (marketing)/
+│   │   │   └── 📁 about/
+│   │   │       └── 📄 page.tsx
+│   │   ├── 📁 api/
+│   │   │   └── 📁 revalidate/
+│   │   │       └── 📄 route.ts
+│   │   ├── 📁 blog/
+│   │   │   ├── 📁 [slug]/
+│   │   │   │   └── 📄 page.tsx
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📁 calculators/
+│   │   ├── 📁 projects/
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📄 favicon.ico
+│   │   ├── 🎨 globals.css  
+│   │   ├── 📄 layout.tsx
+│   │   ├── 📄 page.tsx
+│   │   ├── 📄 robots.ts
+│   │   └── 📄 sitemap.ts
+│   ├── 📁 components/
+│   │   ├── 📁 blog/
+│   │   │   ├── 📄 PostCard.tsx
+│   │   │   ├── 📄 PostHeader.tsx
+│   │   │   ├── 📄 RichTextRenderer.tsx
+│   │   │   └── 📄 TableOfContents.tsx
+│   │   ├── 📁 calculators/
+│   │   ├── 📁 layout/
+│   │   ├── 📁 portfolio/
+│   │   │   ├── 📄 ExperienceTimeline.tsx
+│   │   │   ├── 📄 ProjectCard.tsx
+│   │   │   ├── 📄 SkillBadge.tsx
+│   │   │   └── 📄 SkillSection.tsx
+│   │   ├── 📁 seo/
+│   │   └── 📁 ui/
+│   │       ├── 📄 badge.tsx
+│   │       ├── 📄 button.tsx
+│   │       └── 📄 card.tsx
+│   ├── 📁 hooks/
+│   ├── 📁 lib/
+│   │   ├── 📁 api/
+│   │   │   ├── 📄 blog.ts
+│   │   │   ├── 📄 client.ts
+│   │   │   └── 📄 portfolio.ts
+│   │   └── 📄 utils.ts
+│   ├── 📁 styles/
+│   │   └── 🎨 globals.css
+│   └── 📁 types/
+│       └── 📄 api.ts
+├── ⚙️ .gitignore
+├── 📝 AGENTS.md
+├── 📝 CLAUDE.md
+├── 📝 README.md
+├── ⚙️ components.json
+├── 📄 eslint.config.mjs
+├── 📄 next.config.ts
+├── ⚙️ package-lock.json
+├── ⚙️ package.json
+├── 📄 postcss.config.mjs
+└── ⚙️ tsconfig.json
+
+────────────────────────────────────────────────────────────────────────────────
