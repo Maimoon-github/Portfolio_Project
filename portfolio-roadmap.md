@@ -1035,12 +1035,12 @@ Use factory_boy for fixtures. Use pytest-django. Include conftest.py setup if ne
 ### Phase 0 — Foundation (Week 1–2)
 **Estimated time: 14 hours**
 
-- [ ] Set up both repos with git, GitHub Actions skeleton
-- [ ] Frontend: `npx create-next-app@latest --typescript --tailwind --app`
-- [ ] Install and configure shadcn/ui: `npx shadcn@latest init`
-- [ ] Backend: Django project, Wagtail installed, local PostgreSQL running
-- [ ] Configure CORS, environment variables (python-decouple)
-- [ ] Write and run first migration
+- [X] Set up both repos with git, GitHub Actions skeleton
+- [X] Frontend: `npx create-next-app@latest --typescript --tailwind --app`
+- [X] Install and configure shadcn/ui: `npx shadcn@latest init`
+- [X] Backend: Django project, Wagtail installed, local PostgreSQL running
+- [X] Configure CORS, environment variables (python-decouple)
+- [X] Write and run first migration
 - [ ] Deploy empty apps to Vercel + Render to validate CI/CD pipeline
 - [ ] Configure custom domain + SSL
 - [ ] Set up Redis locally and on Render
