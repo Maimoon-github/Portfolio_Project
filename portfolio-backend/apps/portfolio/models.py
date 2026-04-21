@@ -88,3 +88,13 @@ class Experience(TimeStampedModel):
 
     def __str__(self):
         return f"{self.position} at {self.company}"
+
+    @property
+    def thumbnail_url(self) -> str | None:
+        """Returns an optimized WebP thumbnail URL for Next.js `next/image` component.
+        Uses Wagtail's rendition system (cached, responsive, modern format)."""
+        if self.thumbnail:
+            # fill-800x600 gives perfect card proportions; format-webp + quality for performance
+            rendition = self.thumbnail.get_rendition("fill-800x600|format-webp|webpquality-90")
+            return rendition.url
+        return None

@@ -1050,13 +1050,13 @@ Use factory_boy for fixtures. Use pytest-django. Include conftest.py setup if ne
 ### Phase 1 — Portfolio Core (Week 3–4)
 **Estimated time: 16 hours**
 
-- [ ] Backend: `Project`, `Skill`, `Experience` models + admin
-- [ ] Backend: Portfolio API endpoints (list projects, get project by slug)
-- [ ] Frontend: Home page (SSG): hero, featured projects, skills summary
-- [ ] Frontend: Projects page (ISR): grid of project cards
-- [ ] Frontend: About page (SSG): timeline, skills, bio
-- [ ] Frontend: All SEO metadata + structured data (Person schema)
-- [ ] Frontend: `next/image` for all project thumbnails
+- [x] Backend: `Project`, `Skill`, `Experience` models + admin
+- [x] Backend: Portfolio API endpoints (list projects, get project by slug)
+- [x] Frontend: Home page (SSG): hero, featured projects, skills summary
+- [x] Frontend: Projects page (ISR): grid of project cards
+- [x] Frontend: About page (SSG): timeline, skills, bio
+- [x] Frontend: All SEO metadata + structured data (Person schema)
+- [x] Frontend: `next/image` for all project thumbnails
 
 **Definition of done:** Lighthouse score > 90 on all pages.
 
