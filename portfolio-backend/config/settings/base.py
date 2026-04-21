@@ -22,6 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-)b^g2$b3l4!&2i-*y$omfm$o-fz)&x5omet+7qt-^9oy7yt1qk'
 
+# Add to bottom of file
+FRONTEND_URL = "http://localhost:3000"  # overridden in production.py
+REVALIDATE_SECRET = ""  # set in env
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
