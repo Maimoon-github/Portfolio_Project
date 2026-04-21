@@ -31,15 +31,46 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    # Wagtail core and admin (must be before other wagtail apps)
+    "wagtail",
+    "wagtail.admin",
+    
+    # Wagtail optional apps
+    "wagtail.documents",
+    "wagtail.images",
+    "wagtail.snippets",
+    "wagtail.users",
+    "wagtail.sites",
+    "wagtail.search",
+    "wagtail.embeds",
+    "wagtail.contrib.redirects",
+    "wagtail.contrib.forms",
+    
+    # Third-party
+    "modelcluster",
+    "taggit",
+    "ninja",
+    "corsheaders",
+    "rest_framework",
+
+    # Django core
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+
+    # Your custom apps
+    "apps.core",
+    "apps.portfolio",
+    "apps.blog",
+    "apps.calculators",
+    "api",
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # MUST be as high as possible
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -69,6 +100,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+WAGTAILADMIN_BASE_URL = "http://localhost:8000"
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
