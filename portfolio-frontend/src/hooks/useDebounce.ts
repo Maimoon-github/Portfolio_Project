@@ -1,0 +1,1 @@
+// Delays value emission — used in SearchBar to avoid per-keystroke API calls

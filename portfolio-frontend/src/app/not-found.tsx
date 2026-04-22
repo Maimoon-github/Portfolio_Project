@@ -1,0 +1,1 @@
+// Global branded 404 — catches all unmatched routes, linked "back home"

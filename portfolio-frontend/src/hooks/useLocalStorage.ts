@@ -1,0 +1,1 @@
+// Persists calculator inputs across page reloads via localStorage

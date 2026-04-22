@@ -1,0 +1,1 @@
+// Returns visible element refs — powers TableOfContents active heading

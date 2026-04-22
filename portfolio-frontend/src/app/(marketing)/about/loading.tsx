@@ -1,0 +1,1 @@
+// Skeleton for timeline (prevents CLS while timeline data loads)

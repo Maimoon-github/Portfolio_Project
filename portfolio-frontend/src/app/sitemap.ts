@@ -1,0 +1,1 @@
+// Generates /sitemap.xml — fetches dynamic slugs (blog posts, projects, calculators) from API

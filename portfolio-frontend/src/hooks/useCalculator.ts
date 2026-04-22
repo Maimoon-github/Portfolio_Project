@@ -1,0 +1,1 @@
+// Generic calculator state: inputs map, derived results, reset, validation

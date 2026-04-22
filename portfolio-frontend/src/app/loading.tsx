@@ -1,0 +1,1 @@
+// Global Suspense fallback — page-level skeleton during route transition

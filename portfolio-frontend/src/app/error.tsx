@@ -1,0 +1,1 @@
+// Global React error boundary — must be 'use client', shows friendly crash UI

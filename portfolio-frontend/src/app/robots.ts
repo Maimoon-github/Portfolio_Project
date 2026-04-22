@@ -1,0 +1,1 @@
+// Generates /robots.txt — disallows /cms/ (Wagtail admin), sets sitemap URL
