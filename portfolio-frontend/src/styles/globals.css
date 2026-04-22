@@ -1,1 +1,26 @@
 /* Tailwind @import directives + CSS custom properties for theme (matches shadcn convention) */
+
+/* Tailwind @import directives + CSS custom properties for theme (matches shadcn convention) */
+
+/* Sovereign Architect Footer Utilities */
+footer {
+  position: relative;
+}
+
+footer a {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+footer .social-icon {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+footer .social-icon:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 0 4px rgba(255, 198, 139, 0.15);
+}
+
+/* Subtle tonal separator for footer */
+.footer-separator {
+  border-top: 1px solid rgba(84, 68, 52, 0.08);
+}
