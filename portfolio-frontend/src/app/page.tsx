@@ -1,21 +1,18 @@
 // src/app/page.tsx
-// [SSG] Home page – Sovereign Architect design system
+// [SSG] Home page — Sovereign Architect design system
 import Link from "next/link"
-import { ArrowRight, Github, Star, Calculator } from "lucide-react"
+import { ArrowRight, Calculator } from "lucide-react"
 import { ProjectCard } from "@/components/portfolio/ProjectCard"
-import { CalculatorCard } from "@/components/calculators/CalculatorCard"
-// Future API import (SSG data will be fetched here in Phase 1)
-// import { fetchFeaturedProjects, fetchLatestPosts } from "@/lib/api"
 
 export const dynamic = "force-static"
 
 export default function HomePage() {
-  // Placeholder featured data – replaced with real API in Phase 1
+  // Placeholder featured data (real API fetch in Phase 1)
   const featuredProjects = [
     {
       slug: "llm-rag-system",
       title: "Production RAG Pipeline",
-      description: "End-to-end LLM retrieval system with 99.9% uptime and sub-200ms latency.",
+      description: "End-to-end LLM retrieval system with sub-200ms latency and 99.9% uptime.",
       thumbnail: "/images/projects/rag-hero.jpg",
       techTags: ["Next.js", "Django", "Pinecone", "OpenAI"],
       liveUrl: "#",
@@ -38,7 +35,7 @@ export default function HomePage() {
               <div className="flex items-center gap-2 mb-8">
                 <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-chart-3/10 border border-chart-3/20">
                   <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                  <span className="text-chart-3 text-[0.72rem] font-semibold tracking-widest uppercase">
+                  <span className="text-chart-3 text-xs font-semibold tracking-widest uppercase">
                     Available for Consulting
                   </span>
                 </div>
@@ -51,7 +48,7 @@ export default function HomePage() {
               </h1>
 
               <p className="text-foreground/60 text-lg leading-relaxed max-w-2xl mb-10">
-                Senior AI/ML Engineer specialising in large language models, computer vision, and MLOps infrastructure.
+                Senior AI/ML Engineer specialising in large language models, computer vision, and MLOps infrastructure. I build systems that scale.
               </p>
 
               <div className="flex flex-wrap items-center gap-4">
