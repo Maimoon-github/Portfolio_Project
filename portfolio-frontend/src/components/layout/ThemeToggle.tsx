@@ -1,34 +1,45 @@
-import { useEffect, useState } from "react";
-import { Sun, Moon } from "lucide-react";
+// src/components/layout/ThemeToggle.tsx
+"use client"
 
+import { useTheme } from "next-themes"
+import { Sun, Moon } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { useEffect, useState } from "react"
+
+/**
+ * ThemeToggle — Client Component
+ * Uses next-themes hook for proper SSR compatibility with Providers.tsx.
+ * Sovereign Architect styling (amber glow on hover).
+ */
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const saved = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    setTheme(saved as "light" | "dark");
-    if (saved === "dark") document.documentElement.classList.add("dark");
-  }, []);
+    setMounted(true)
+  }, [])
 
-  const toggle = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
+  if (!mounted) {
+    return (
+      <Button variant="ghost" size="icon" className="w-10 h-10">
+        <span className="sr-only">Toggle theme</span>
+      </Button>
+    )
+  }
 
   return (
-    <button
-      onClick={toggle}
-      className="p-2 rounded-lg transition-all hover:bg-[rgba(255,198,139,0.1)]"
-      style={{ color: "#f0e6d3" }}
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      className="w-10 h-10 hover:bg-[rgba(255,198,139,0.1)] transition-colors"
       aria-label="Toggle theme"
     >
-      {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-    </button>
-  );
+      {theme === "dark" ? (
+        <Sun className="h-5 w-5 text-[#f0e6d3]" />
+      ) : (
+        <Moon className="h-5 w-5 text-[#f0e6d3]" />
+      )}
+    </Button>
+  )
 }

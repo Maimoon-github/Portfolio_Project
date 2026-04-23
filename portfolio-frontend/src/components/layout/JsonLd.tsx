@@ -1,33 +1,20 @@
-export function JsonLd() {
-  const schema = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        name: "Alex Reeves",
-        jobTitle: "Senior AI/ML Engineer",
-        description: "Building production-grade intelligence systems. Open to consulting and ambitious projects.",
-        url: "https://alexreeves.dev",
-        sameAs: ["https://github.com", "https://twitter.com", "https://linkedin.com"],
-      },
-      {
-        "@type": "WebSite",
-        name: "Alex Reeves • Sovereign Architect",
-        url: "https://alexreeves.dev",
-        description: "Portfolio • Blog • Calculators • Services",
-        potentialAction: {
-          "@type": "SearchAction",
-          target: "https://alexreeves.dev/search?q={search_term_string}",
-          "query-input": "required name=search_term_string",
-        },
-      },
-    ],
-  };
+// src/components/layout/JsonLd.tsx
+/**
+ * JsonLd — Server Component
+ * Injects arbitrary JSON-LD structured data via <script type="application/ld+json">.
+ * Used on every page that has schema.org markup (Home, About, Blog posts, Calculators).
+ * Never add 'use client' — must remain a Server Component to render in <head>.
+ */
+interface JsonLdProps {
+  schema: Record<string, unknown> | Record<string, unknown>[]
+}
 
+export function JsonLd({ schema }: JsonLdProps) {
   return (
     <script
       type="application/ld+json"
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: structured data is server-controlled
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
-  );
+  )
 }

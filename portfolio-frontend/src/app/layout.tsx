@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Providers } from "@/components/layout/Providers";
-import { Navigation } from "@/components/layout/Navigation";
+import { Navigation } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/layout/JsonLd";
 import "./globals.css";
