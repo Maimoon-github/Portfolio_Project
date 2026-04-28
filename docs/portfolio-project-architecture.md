@@ -12,15 +12,15 @@
 |-----|-----------|-------|
 | `/` | SSG | Never changes without deploy |
 | `/about` | SSG | Static bio, timeline, skills |
-| `/projects` | ISR 3600 | Grid changes when you add work |
-| `/projects/[slug]` | ISR 3600 | Case study per project |
+| `/portfolio` | ISR 3600 | Grid changes when you add work |
+| `/portfolio/[slug]` | ISR 3600 | Case study per project |
 | `/blog` | ISR 300 | Index refreshes as posts publish |
 | `/blog/[slug]` | ISR 600 + tag-invalidation | Tag webhook from Django signal |
 | `/blog/category/[category]` | ISR 300 | Category archive |
 | `/blog/tag/[tag]` | ISR 300 | Tag archive |
 | `/blog/feed.xml` | Route Handler | application/xml, no caching |
-| `/calculators` | SSG | Static hub listing |
-| `/calculators/[slug]` | SSG shell + CSR | Static SEO wrapper, client logic |
+| `/tools` | SSG | Tools Hub listing |
+| `/tools/[slug]` | SSG shell + CSR | Static SEO wrapper, client logic |
 | `/contact` | SSR | Form needs fresh CSRF awareness |
 | `/privacy` | SSG | Legal copy |
 | `/terms` | SSG | Legal copy |
@@ -34,9 +34,10 @@
 
 | Domain | Django App | Key Models |
 |--------|-----------|-----------|
+| Auth | `apps/auth` | User, Role, Permission (simplejwt token management) |
 | Portfolio | `apps/portfolio` | Project, Skill, SkillCategory, Experience, Testimonial |
 | Blog | `apps/blog` | BlogIndexPage, BlogPost (Wagtail pages), Category, Tag (Snippets), Comment |
-| Calculators | `apps/calculators` | Calculator, CalculatorCategory |
+| Tools Hub | `apps/tools` | Tool, ToolCategory, Feature, Guide, Review |
 | Cross-cutting | `apps/core` | ContactMessage, NewsletterSubscriber, SiteMetadata |
 
 ---
@@ -72,7 +73,7 @@ portfolio-frontend/
 │   │   ├── error.tsx            # Global React error boundary — must be 'use client', shows friendly crash UI
 │   │   ├── loading.tsx          # Global Suspense fallback — page-level skeleton during route transition
 │   │   ├── icon.svg             # App icon served at /icon.svg per Next.js metadata file convention
-│   │   ├── sitemap.ts           # Generates /sitemap.xml — fetches dynamic slugs (blog posts, projects, calculators) from API
+│   │   ├── sitemap.ts           # Generates /sitemap.xml — fetches dynamic slugs (blog posts, portfolio projects, tools) from API
 │   │   └── robots.ts            # Generates /robots.txt — disallows /cms/ (Wagtail admin), sets sitemap URL
 │   │   │
 │   │   ├── (marketing)/         # Route group — no URL segment added; groups About + Contact under shared intent
@@ -83,13 +84,13 @@ portfolio-frontend/
 │   │   │       ├── page.tsx     # [SSR] Contact: form with honeypot field, rate-limit awareness, toast feedback
 │   │   │       └── loading.tsx  # Form skeleton
 │   │   │
-│   │   ├── projects/
-│   │   │   ├── page.tsx         # [ISR:3600] Projects gallery: masonry/grid of ProjectCards, category filter tabs
+│   │   ├── portfolio/
+│   │   │   ├── page.tsx         # [ISR:3600] Portfolio gallery: masonry/grid of ProjectCards, category filter tabs
 │   │   │   ├── loading.tsx      # Grid of skeleton cards matching ProjectCard dimensions
 │   │   │   └── [slug]/
 │   │   │       ├── page.tsx     # [ISR:3600] Case study: hero, problem/solution/outcome, tech stack badges, live/repo links
 │   │   │       ├── loading.tsx  # Hero image + content skeleton
-│   │   │       └── not-found.tsx # "Project not found" with link back to /projects
+│   │   │       └── not-found.tsx # "Project not found" with link back to /portfolio
 │   │   │
 │   │   ├── blog/
 │   │   │   ├── layout.tsx       # Blog shell: persistent sidebar (categories/tags), breadcrumb, reading progress bar
@@ -110,12 +111,12 @@ portfolio-frontend/
 │   │   │   └── feed.xml/
 │   │   │       └── route.ts     # [Route Handler] RSS/Atom feed — returns application/xml, no-store cache header
 │   │   │
-│   │   ├── calculators/
-│   │   │   ├── page.tsx         # [SSG] Calculator hub: category grid, search input, SiteLinksSearchBox schema.org
-│   │   │   ├── loading.tsx      # Calculator card skeletons
+│   │   ├── tools/
+│   │   │   ├── page.tsx         # [SSG] Tools Hub: category grid, search input, SiteLinksSearchBox schema.org
+│   │   │   ├── loading.tsx      # Tool card skeletons
 │   │   │   └── [slug]/
 │   │   │       ├── page.tsx     # [SSG] shell + [CSR] logic: metadata from API, SoftwareApplication schema, social share
-│   │   │       └── loading.tsx  # Calculator UI skeleton (prevents layout shift while JS hydrates)
+│   │   │       └── loading.tsx  # Tool UI skeleton (prevents layout shift while JS hydrates)
 │   │   │
 │   │   ├── (legal)/             # Route group — legal pages share no layout with marketing or blog
 │   │   │   ├── privacy/
@@ -156,13 +157,13 @@ portfolio-frontend/
 │   │   │   ├── Footer.tsx       # Footer: nav links, social icons, newsletter signup form
 │   │   │   ├── MobileMenu.tsx   # 'use client' — Sheet-based slide-over navigation for mobile
 │   │   │   ├── ThemeToggle.tsx  # 'use client' — dark/light toggle powered by next-themes
-│   │   │   ├── Providers.tsx    # 'use client' — wraps ThemeProvider + ReactQueryClientProvider (client boundary)
+│   │   │   ├── Providers.tsx    # 'use client' — wraps ThemeProvider + ReactQueryClientProvider + ZustandStoreProvider (client boundary)
 │   │   │   └── JsonLd.tsx       # Injects arbitrary JSON-LD via <script type="application/ld+json"> — used on every page
 │   │   │
 │   │   ├── blog/                # Blog-specific display components
 │   │   │   ├── PostCard.tsx     # Preview card: title, excerpt, category badge, reading time, date (Server Component)
 │   │   │   ├── PostHeader.tsx   # Full-bleed post header: title, author, date, reading time, share buttons
-│   │   │   ├── RichTextRenderer.tsx  # 'use client' — sanitises and renders Wagtail HTML rich text (DOMPurify)
+│   │   │   ├── RichTextRenderer.tsx  # 'use client' — sanitises and renders Wagtail StreamField HTML (DOMPurify)
 │   │   │   ├── TableOfContents.tsx   # 'use client' — IntersectionObserver highlights active heading
 │   │   │   ├── CategoryFilter.tsx    # 'use client' — URL-synced category tabs (nuqs for search param state)
 │   │   │   ├── SearchBar.tsx         # 'use client' — debounced input drives API search query
@@ -177,12 +178,12 @@ portfolio-frontend/
 │   │   │   ├── ExperienceTimeline.tsx # Vertical timeline of work history entries
 │   │   │   └── TestimonialCard.tsx    # Pull-quote card with avatar and attribution
 │   │   │
-│   │   ├── calculators/         # Calculator shell and shared UI primitives
-│   │   │   ├── CalculatorShell.tsx   # Shared layout wrapper: title, description, share button, SEO fields passed as props
+│   │   ├── tools/               # Tools Hub shell and shared UI primitives
+│   │   │   ├── ToolShell.tsx         # Shared layout wrapper: title, description, share button, SEO fields passed as props
 │   │   │   ├── InputField.tsx        # Labelled input with inline unit display and inline error message
 │   │   │   ├── ResultDisplay.tsx     # Highlighted result panel with optional breakdown table
-│   │   │   ├── CalculatorCard.tsx    # Hub listing card: icon, title, description, category badge, link
-│   │   │   └── tools/               # Individual calculator implementations — all 'use client' (pure browser logic)
+│   │   │   ├── ToolCard.tsx          # Hub listing card: icon, title, description, category badge, link
+│   │   │   └── implementations/     # Individual tool implementations — all 'use client' (pure browser logic)
 │   │   │       ├── MortgageCalculator.tsx
 │   │   │       ├── CompoundInterestCalculator.tsx
 │   │   │       ├── BMICalculator.tsx
@@ -194,19 +195,24 @@ portfolio-frontend/
 │   │       └── BreadcrumbSchema.tsx   # BreadcrumbList JSON-LD — rendered on all non-root pages
 │   │
 │   ├── hooks/                   # Custom React hooks — all implicitly 'use client' (never imported in Server Components)
-│   │   ├── useCalculator.ts           # Generic calculator state: inputs map, derived results, reset, validation
+│   │   ├── useTool.ts                 # Generic tool state: inputs map, derived results, reset, validation
 │   │   ├── useDebounce.ts             # Delays value emission — used in SearchBar to avoid per-keystroke API calls
 │   │   ├── useIntersectionObserver.ts # Returns visible element refs — powers TableOfContents active heading
-│   │   └── useLocalStorage.ts         # Persists calculator inputs across page reloads via localStorage
+│   │   └── useLocalStorage.ts         # Persists tool inputs across page reloads via localStorage
+│   │
+│   ├── store/                   # Zustand global client state — 'use client' boundary; never imported in Server Components
+│   │   ├── index.ts             # Re-exports all slices; single import point: import { useAuthStore } from '@/store'
+│   │   ├── authStore.ts         # Auth slice: { user, token, isAuthenticated, login(), logout() } — syncs with HttpOnly cookie
+│   │   └── uiStore.ts           # UI slice: { sidebarOpen, theme, activeToast } — UI preferences, persisted to localStorage
 │   │
 │   ├── lib/
 │   │   ├── api/                 # ALL typed fetch wrappers live here — no raw fetch() is permitted outside this directory
 │   │   │   ├── client.ts        # Base apiFetch<T>() with next: {tags, revalidate} passthrough for RSC caching
 │   │   │   ├── blog.ts          # fetchPost.list(), .detail(), fetchCategories(), fetchTags(), fetchSearch()
 │   │   │   ├── portfolio.ts     # fetchProject.list(), .detail(), fetchSkills(), fetchExperience(), fetchTestimonials()
-│   │   │   └── calculators.ts   # fetchCalculator.list(), .detail(), fetchCalculatorCategories()
+│   │   │   └── tools.ts         # fetchTool.list(), .detail(), fetchToolCategories()
 │   │   ├── utils.ts             # cn() (clsx+twMerge), formatDate(), slugify(), truncate(), calculateReadingTime()
-│   │   ├── rich-text.ts         # DOMPurify wrapper that safely renders Wagtail HTML rich text server-side
+│   │   ├── rich-text.ts         # DOMPurify wrapper that safely renders Wagtail StreamField HTML server-side
 │   │   └── og.ts                # Shared OG image config: font loading, palette, dimensions for ImageResponse
 │   │
 │   ├── styles/
@@ -228,6 +234,8 @@ portfolio-frontend/
 ├── README.md                    # Setup guide, env vars, sync-api-types workflow, deployment notes
 ├── components.json              # shadcn/ui config: style=default, baseColor=slate, aliases for @/components, @/lib
 ├── next.config.ts               # images.remotePatterns (Django media), headers (CSP), redirects, bundleAnalyzer
+│                                # rewrites: { source: '/api/:path*', destination: 'http://localhost:8000/api/:path*' }
+│                                #   — dev proxy bypasses CORS; prod traffic hits real API Gateway at the same path
 ├── playwright.config.ts         # E2E test config: baseURL, projects (chromium/firefox/webkit), reporter
 ├── postcss.config.mjs
 └── tsconfig.json                # strict: true, paths: @/* → ./src/*, moduleResolution: bundler
@@ -255,10 +263,26 @@ portfolio-backend/
 │       ├── __init__.py          # Instantiates NinjaAPI(version="v1"), mounts all routers — single versioning point
 │       ├── portfolio.py         # Ninja router: GET /projects/ (list+filter), /projects/{slug}/, /skills/, /experience/, /testimonials/
 │       ├── blog.py              # Ninja router: GET /blog/posts/ (paginated), /blog/posts/{slug}/, /blog/categories/, /blog/tags/, /blog/search/
-│       ├── calculators.py       # Ninja router: GET /calculators/ (by category), /calculators/{slug}/
+│       ├── tools.py             # Ninja router: GET /tools/ (by category), /tools/{slug}/, /tools/features/, /tools/guides/, /tools/reviews/
 │       └── core.py              # Ninja router: POST /contact/, POST /newsletter/, GET /health/ (liveness probe for Render)
 │
 ├── apps/
+│   │
+│   ├── auth/
+│   │   ├── migrations/
+│   │   │   ├── 0001_initial.py  # Creates extended User, Role, Permission tables
+│   │   │   └── __init__.py
+│   │   ├── __init__.py
+│   │   ├── admin.py             # UserAdmin: list_display (email, role, is_active), role assignment action
+│   │   ├── apps.py              # AppConfig: name="apps.auth", verbose_name="Authentication"
+│   │   ├── models.py            # Role(models.Model), Permission(models.Model)
+│   │   │                        # Uses Django's built-in User model; simplejwt handles token issuance/rotation
+│   │   ├── schemas.py           # TokenPairOut (access, refresh), UserOut, LoginIn — Ninja Pydantic schemas
+│   │   ├── services.py          # authenticate_user(), get_user_by_id(), assign_role() — no ORM logic in routers
+│   │   └── tests/
+│   │       ├── __init__.py
+│   │       ├── factories.py     # UserFactory (with Role), PermissionFactory
+│   │       └── test_api.py      # pytest: login returns JWT pair, refresh rotates token, blacklist on logout, 401 on bad creds
 │   │
 │   ├── portfolio/
 │   │   ├── migrations/
@@ -299,22 +323,25 @@ portfolio-backend/
 │   │       ├── factories.py     # BlogPostFactory (creates Wagtail page under BlogIndexPage), CategoryFactory, TagFactory
 │   │       └── test_api.py      # pytest: post list pagination, slug detail, category filter, tag filter, search, 404
 │   │
-│   ├── calculators/
+│   ├── tools/
 │   │   ├── migrations/
-│   │   │   ├── 0001_initial.py  # Creates CalculatorCategory, Calculator tables
+│   │   │   ├── 0001_initial.py  # Creates ToolCategory, Tool, Feature, Guide, Review tables
 │   │   │   └── __init__.py
 │   │   ├── __init__.py
-│   │   ├── admin.py             # CalculatorAdmin: list_display (title, category, slug), list_filter by category
-│   │   ├── apps.py              # AppConfig: name="apps.calculators"
-│   │   ├── models.py            # CalculatorCategory (name, slug, icon_name, order)
-│   │   │                        # Calculator (slug, title, short_description, full_description, category FK,
-│   │   │                        #   schema_org_json (JSONField), is_active, order, created_at)
-│   │   ├── schemas.py           # CalculatorOut, CalculatorListOut, CalculatorCategoryOut
-│   │   ├── services.py          # get_active_calculators(), get_calculators_by_category(), get_calculator_by_slug()
+│   │   ├── admin.py             # ToolAdmin: list_display (title, category, slug, is_active), list_filter by category
+│   │   ├── apps.py              # AppConfig: name="apps.tools", verbose_name="Tools Hub"
+│   │   ├── models.py            # ToolCategory (name, slug, icon_name, order)
+│   │   │                        # Tool (slug, title, short_description, full_description, category FK,
+│   │   │                        #   schema_org_json (JSONField), features M2M, is_active, order, created_at)
+│   │   │                        # Feature (name, description, tool FK)
+│   │   │                        # Guide (title, body, tool FK, order)
+│   │   │                        # Review (author FK→User, tool FK, rating, body, created_at, is_approved)
+│   │   ├── schemas.py           # ToolOut, ToolListOut, ToolCategoryOut, FeatureOut, GuideOut, ReviewIn, ReviewOut
+│   │   ├── services.py          # get_active_tools(), get_tools_by_category(), get_tool_by_slug(), get_tool_guides()
 │   │   └── tests/
 │   │       ├── __init__.py
-│   │       ├── factories.py     # CalculatorCategoryFactory, CalculatorFactory
-│   │       └── test_api.py      # pytest: hub list, category filter, slug detail, 404, inactive filtered out
+│   │       ├── factories.py     # ToolCategoryFactory, ToolFactory, GuideFactory, ReviewFactory
+│   │       └── test_api.py      # pytest: hub list, category filter, slug detail, 404, inactive filtered out, guide list
 │   │
 │   └── core/
 │       ├── migrations/
@@ -339,8 +366,9 @@ portfolio-backend/
 │   ├── wsgi.py                  # WSGI entrypoint — Gunicorn in production
 │   └── settings/
 │       ├── __init__.py
-│       ├── base.py              # INSTALLED_APPS (Django, Wagtail, Ninja, CORS, Taggit, Storages)
+│       ├── base.py              # INSTALLED_APPS (Django, Wagtail, Ninja, CORS, Taggit, Storages, rest_framework, simplejwt)
 │       │                        # WAGTAIL_SITE_NAME, WAGTAILADMIN_BASE_URL, WAGTAIL_FRONTEND_LOGIN_URL
+│       │                        # SIMPLE_JWT: ACCESS_TOKEN_LIFETIME=5min, REFRESH_TOKEN_LIFETIME=7days, ROTATE_REFRESH_TOKENS=True
 │       │                        # CACHES (configured but overridden in local/production), MEDIA_ROOT, STATIC_ROOT
 │       │                        # LOGGING base config, EMAIL_BACKEND (console in base)
 │       ├── local.py             # DEBUG=True, SQLite fallback (or local Postgres), django-debug-toolbar
@@ -386,8 +414,8 @@ All ORM queries live in `services.py`, never in routers or views; this is the si
 **Decision 5 — `loading.tsx` colocated with every route segment**
 Each route segment having its own `loading.tsx` enables per-route Suspense streaming; a single root `loading.tsx` would flash a full-page skeleton on every navigation including child-route transitions, which is visually worse.
 
-**Decision 6 — Calculator components under `tools/` subdirectory**
-Individual calculator implementations are nested under `components/calculators/tools/` rather than at the top level because they are consumed exclusively by `calculators/[slug]/page.tsx`; top-level placement would create naming ambiguity with the shared `CalculatorShell` and `CalculatorCard` components.
+**Decision 6 — Tool implementations under `implementations/` subdirectory**
+Individual tool implementations are nested under `components/tools/implementations/` rather than at the top level because they are consumed exclusively by `tools/[slug]/page.tsx`; top-level placement would create naming ambiguity with the shared `ToolShell` and `ToolCard` components.
 
 **Decision 7 — `api/v1/__init__.py` as the single router-mount point**
 All five Ninja routers are mounted in one place; when v2 becomes necessary, `api/v2/` is created without modifying `api/v1/` — backward compatibility preserved by default.
@@ -425,11 +453,12 @@ npx shadcn@latest init
 # Core runtime dependencies
 npm install \
   next-themes \                    # Dark/light mode with SSR-safe hydration
-  nuqs \                           # URL search param state for calculator inputs
+  nuqs \                           # URL search param state for tool inputs and filters
+  zustand \                        # Global client state (auth status, UI preferences)
   @vercel/og \                     # OG image generation with ImageResponse
   next-mdx-remote \                # MDX rendering for legal pages
-  dompurify \                      # Sanitise Wagtail rich text HTML server-side
-  @tanstack/react-query            # Client-side data fetching for CSR calculator pages
+  dompurify \                      # Sanitise Wagtail StreamField HTML server-side
+  @tanstack/react-query            # Client-side data fetching for CSR tool pages
 
 # Type definitions
 npm install -D \
@@ -459,6 +488,7 @@ pip install \
   "Django==5.2.*" \
   "wagtail==6.*" \
   "django-ninja==1.*" \
+  "djangorestframework-simplejwt==5.*" \  # JWT issuance, rotation, and blacklisting for the auth app
   "django-cors-headers==4.*" \
   "python-decouple==3.*" \
   "psycopg2-binary==2.*" \          # Replace with psycopg2 (non-binary) in production Docker builds
@@ -484,24 +514,25 @@ pip install \
 django-admin startproject config portfolio-backend
 cd portfolio-backend
 
-# Create the apps/ directory and all four domain apps
+# Create the apps/ directory and all five domain apps
 mkdir -p apps
-python manage.py startapp portfolio apps/portfolio
-python manage.py startapp blog      apps/blog
-python manage.py startapp calculators apps/calculators
-python manage.py startapp core      apps/core
+python manage.py startapp auth         apps/auth
+python manage.py startapp portfolio    apps/portfolio
+python manage.py startapp blog         apps/blog
+python manage.py startapp tools        apps/tools
+python manage.py startapp core         apps/core
 
 # Create api/v1 package structure
 mkdir -p api/v1
 touch api/__init__.py api/auth.py
-touch api/v1/__init__.py api/v1/portfolio.py api/v1/blog.py api/v1/calculators.py api/v1/core.py
+touch api/v1/__init__.py api/v1/portfolio.py api/v1/blog.py api/v1/tools.py api/v1/core.py
 
 # Create settings split
 mkdir -p config/settings
 touch config/settings/__init__.py config/settings/base.py config/settings/local.py config/settings/production.py
 
 # Create tests directories for all apps
-for app in portfolio blog calculators core; do
+for app in auth portfolio blog tools core; do
   mkdir -p apps/$app/tests
   touch apps/$app/tests/__init__.py apps/$app/tests/factories.py apps/$app/tests/test_api.py
   rm apps/$app/tests.py 2>/dev/null || true   # Remove default tests.py (replaced by tests/)
@@ -588,7 +619,7 @@ Commit this as `portfolio-frontend/CLAUDE.md` on day one.
 ## Stack
 - Framework: Next.js 15 (App Router), React 19, TypeScript strict
 - Styling: Tailwind CSS v4, shadcn/ui
-- State: nuqs (URL params), TanStack Query (CSR data)
+- State: nuqs (URL params), TanStack Query (CSR server data), Zustand (global client state)
 - Deployment: Vercel
 
 ## Commands
@@ -603,14 +634,16 @@ Commit this as `portfolio-frontend/CLAUDE.md` on day one.
 - All fetch calls in src/lib/api/ only — never inline fetch() in components or pages
 - src/components/ui/ — never regenerate with shadcn CLI (would overwrite customisations)
 - src/types/api.ts — never edit manually (auto-generated from OpenAPI schema)
+- src/store/ — Zustand only; never import store slices in Server Components
 - 'use client' only when: useState, useEffect, browser APIs, or event handlers are needed
 - Every route segment must have: page.tsx + loading.tsx. Add not-found.tsx for dynamic segments.
 
 ## Key Files
 - src/app/layout.tsx        — root layout, ThemeProvider
+- src/store/index.ts        — Zustand stores (authStore, uiStore); never import in Server Components
 - src/lib/api/client.ts     — base apiFetch() with ISR tag support
 - src/types/api.ts          — auto-generated API types
-- next.config.ts            — image domains, headers, redirects
+- next.config.ts            — image domains, headers, redirects, /api/* dev proxy rewrite
 - .env.local                — NEXT_PUBLIC_API_URL, REVALIDATE_SECRET (never commit)
 ```
 
@@ -653,3 +686,434 @@ redis:
 ---
 
 *Trees reflect your existing scaffolding in `portfolio-frontend/` and `portfolio-backend/` and extend it to the full production structure described in `portfolio-roadmap.md` (Phase 0 checked, Phases 1–5 remaining). The `Portfolio_and_Blog_Website/` Vite prototype is superseded by this structure.*
+
+---
+
+## 6. Target Production Architecture — Decentralized Microservices
+
+> **Reference:** `architecture/decentralized-microservices.png`
+> This section documents the *target* production topology. The monolithic Django backend described in Sections 2–5 is the Phase 0/1 starting point; the microservices split below is the Phase 3+ evolution. Migrate incrementally — extract one service at a time, starting with Auth.
+
+### 6.1 High-Level Topology
+
+```
+User / Browser
+      │
+      ▼
+┌─────────────────────────────────────────────────────────┐
+│  FRONTEND  (Next.js — App Router)                        │
+│  React · TypeScript · Tailwind CSS                       │
+│                                                          │
+│  /portfolio   /blog   /tools                             │
+│                                                          │
+│  Data Fetching: SSG · ISR · SSR · CSR                    │
+│  State:         TanStack Query (server) + Local (client) │
+│  SEO:           Metadata API · Sitemap · Schema.org       │
+└──────────────────────┬──────────────────────────────────┘
+                       │  HTTPS  REST API / JSON
+                       ▼
+┌──────────────────────────────────────────────────────────┐
+│  API GATEWAY  (Edge Layer)                                │
+│                                                          │
+│  • Route requests to the correct downstream service      │
+│  • Rate Limiting                                         │
+│  • Request Validation                                    │
+│  • Response Standardisation                              │
+│  • CORS Handling                                         │
+└────────┬──────────────┬──────────────┬──────────────┬───┘
+         │              │              │              │
+         ▼              ▼              ▼              ▼
+  ┌────────────┐ ┌────────────┐ ┌──────────┐ ┌──────────────┐
+  │    Auth    │ │ Portfolio  │ │   Blog   │ │  Tools Hub   │
+  │  Service   │ │  Service   │ │ Service  │ │   Service    │
+  │  (Django)  │ │  (Django)  │ │ (Django) │ │  (Django)    │
+  └──────┬─────┘ └──────┬─────┘ └────┬─────┘ └──────┬───────┘
+         │              │             │               │
+         ▼              ▼             ▼               ▼
+      Auth DB      Portfolio DB    Blog DB        Tools DB
+    (PostgreSQL)  (PostgreSQL)  (PostgreSQL)    (PostgreSQL)
+```
+
+Each service owns its database. No service queries another service's DB directly — cross-service reads go through the API Gateway.
+
+---
+
+### 6.2 Frontend — Data Fetching Strategy per Route
+
+| Route | Strategy | Rationale |
+|-------|----------|-----------|
+| `/portfolio`, `/about`, `/` | SSG | Stable content; never changes without a deploy |
+| `/blog`, `/blog/[slug]` | ISR | Dynamic content; revalidates when a post publishes (Django signal → webhook) |
+| `/blog/category/[c]`, `/blog/tag/[t]` | ISR | Archive pages refresh as posts are tagged |
+| `/tools/[slug]` (search, filters) | CSR | User-driven interactive state; must be fresh per request |
+| `/contact` | SSR | Form needs per-request CSRF awareness |
+
+---
+
+### 6.3 API Gateway — Responsibilities
+
+| Concern | Implementation Note |
+|---------|---------------------|
+| Routing | Matches path prefix (`/api/auth/`, `/api/portfolio/`, `/api/blog/`, `/api/tools/`) to the correct service |
+| Rate Limiting | Per-IP token bucket; stricter on `/api/auth/login` (brute-force protection) |
+| Request Validation | Schema-level validation before the request ever reaches a service |
+| Response Standardisation | Wraps all responses in `{ data, meta, errors }` envelope |
+| CORS Handling | Single CORS policy applied at the gateway; individual services trust the gateway only |
+
+---
+
+### 6.4 Authentication Flow — JWT (6 Steps)
+
+```
+1. User POSTs credentials → /auth/login
+2. Auth Service validates credentials against Auth DB
+3. Auth Service returns signed Access Token (JWT)
+4. Client stores token in an HttpOnly Cookie (no JS access, XSS-safe)
+5. Client attaches token in Authorization: Bearer <token> header on subsequent requests
+6. Downstream services validate the token via Auth Service introspection (or a shared JWKS endpoint)
+```
+
+**Auth Service endpoints (Django):**
+
+| Endpoint | Purpose |
+|----------|---------|
+| `POST /auth/login` | Issue Access + Refresh tokens |
+| `POST /auth/logout` | Invalidate refresh token |
+| `POST /auth/token/refresh` | Exchange Refresh token for new Access token |
+| `GET  /auth/me` | Return user profile from token claims |
+
+---
+
+### 6.5 Backend Services — REST Endpoints
+
+#### Auth Service
+
+| Endpoint | Method | Notes |
+|----------|--------|-------|
+| `/auth/login` | POST | Credential validation, JWT issuance |
+| `/auth/logout` | POST | Token invalidation |
+| `/auth/token/refresh` | POST | Sliding session |
+| `/auth/users/` | GET/POST | User management (admin-scoped) |
+
+**Models:** `User`, `Role`, `Permission`
+**DB:** Dedicated `auth_db` (PostgreSQL)
+
+---
+
+#### Portfolio Service
+
+| Endpoint | Method | Notes |
+|----------|--------|-------|
+| `/portfolio/projects/` | GET | List with category filter |
+| `/portfolio/projects/{slug}/` | GET | Detail + case study body |
+| `/portfolio/skills/` | GET | Grouped by `SkillCategory` |
+| `/portfolio/categories/` | GET | Category list |
+| `/portfolio/tech-stack/` | GET | Technology tags |
+| `/portfolio/case-studies/` | GET | Featured case studies |
+
+**Models:** `Project`, `Skill`, `SkillCategory`, `TechStack`, `CaseStudy`
+**DB:** Dedicated `portfolio_db` (PostgreSQL)
+
+---
+
+#### Blog Service
+
+| Endpoint | Method | Notes |
+|----------|--------|-------|
+| `/blog/posts/` | GET | Paginated, filterable by category/tag |
+| `/blog/posts/{slug}/` | GET | Full post detail |
+| `/blog/categories/` | GET | Category list |
+| `/blog/tags/` | GET | Tag cloud |
+| `/blog/comments/` | GET/POST | Comment list + submit (auth required) |
+| `/blog/authors/` | GET | Author profiles |
+
+**Models:** `Post`, `Category`, `Tag`, `Comment`, `Author`
+**DB:** Dedicated `blog_db` (PostgreSQL)
+
+---
+
+#### Tools Hub Service
+
+> **Note:** In the roadmap this maps to the `calculators` domain. The image labels it *Tools Hub* — treat as the same service; rename the `apps/calculators` app to `apps/tools` when extracting.
+
+| Endpoint | Method | Notes |
+|----------|--------|-------|
+| `/tools/` | GET | List all tools with category filter |
+| `/tools/{slug}/` | GET | Tool detail + metadata |
+| `/tools/categories/` | GET | Category list |
+| `/tools/features/` | GET | Feature flags per tool |
+| `/tools/guides/` | GET | Usage guides |
+| `/tools/reviews/` | GET | User reviews (auth required to submit) |
+
+**Models:** `Tool`, `ToolCategory`, `Feature`, `Guide`, `Review`
+**DB:** Dedicated `tools_db` (PostgreSQL)
+
+---
+
+### 6.6 Global Shared Concerns (Applied Across All Services)
+
+| Concern | Standard |
+|---------|----------|
+| Logging | Structured JSON (`python-json-logger`); include `request_id`, `service`, `user_id` |
+| Error Handling | `{ "errors": [{ "code": "...", "detail": "...", "field": "..." }] }` envelope |
+| Pagination | Cursor-based for feeds; page-number for admin lists; `?page=N&page_size=N` |
+| Filtering / Sorting | `?ordering=-created_at&category=python` convention on all list endpoints |
+| Search | Full-text search via `?q=` parameter; powered by PostgreSQL `tsvector` or dedicated search index |
+
+---
+
+### 6.7 Cross-Cutting Data Flow (End-to-End)
+
+```
+Client Request (Browser)
+      │
+      ▼
+Next.js App  (SSR / SSG / ISR / CSR)
+      │
+      ▼  HTTPS
+API Gateway  (Route & Validate)
+      │
+      ▼
+Appropriate Microservice
+      │
+      ▼
+Service DB  (Read / Write)
+      │
+      ▼
+JSON Response
+      │
+      ▼
+Rendered UI + SEO Optimised HTML
+```
+
+---
+
+### 6.8 Microservices Migration Path (from Monolith)
+
+| Phase | Action |
+|-------|--------|
+| Phase 0–1 | Single `portfolio-backend` monolith (current); all apps in one Django project |
+| Phase 2 | Extract Auth Service first; introduce API Gateway (nginx or Caddy as reverse proxy) |
+| Phase 3 | Extract Portfolio Service; point API Gateway at both |
+| Phase 4 | Extract Blog Service; migrate Wagtail pages to DRF ViewSets if Wagtail overhead is undesirable at scale |
+| Phase 5 | Extract Tools Hub Service; all four services + Gateway running independently |
+
+> **Rule:** Do not extract a service until it has a passing test suite and a published OpenAPI schema. The gateway must never contain business logic.
+
+---
+
+## 7. Local Development Environment
+
+> **Reference:** `architecture/local-dev-environment.png`
+> This section documents the local development topology used during active feature development. It mirrors the production microservices intent but collapses everything into two processes + Docker Compose for simplicity.
+
+### 7.1 Process Map
+
+| Process | Command | Port | Notes |
+|---------|---------|------|-------|
+| Next.js dev server | `npm run dev` | `localhost:3000` | Hot Module Replacement (HMR) active |
+| Django DRF dev server | `python manage.py runserver` | `localhost:8000` | Django development server |
+| PostgreSQL (Docker) | `docker compose up db` | `localhost:5432` | Matches production schema; data persists in named volume |
+| Redis (Docker) | `docker compose up redis` | `localhost:6379` | Cache + session storage; flushed between test runs |
+
+---
+
+### 7.2 CORS Bypass — Next.js Dev Proxy
+
+In production the API Gateway handles CORS. Locally, the Next.js dev server is configured as a reverse proxy to eliminate CORS preflight errors during development:
+
+```typescript
+// next.config.ts
+const nextConfig: NextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://localhost:8000/api/:path*', // Proxied to Django
+      },
+    ];
+  },
+};
+```
+
+The frontend always calls `/api/*` — in dev the rewrite silently forwards to `:8000`; in production the same path hits the real API Gateway. **No environment-specific fetch URLs needed in application code.**
+
+---
+
+### 7.3 Frontend Layer (localhost:3000)
+
+```
+Next.js App Router
+      │
+      ├── Server Components  ──────────────────────────────►  Django DRF
+      │   (SSR / build-time)        Server-Side Rendering      (fetch during
+      │                              (SSR) or at build time     build / request)
+      │
+      └── Client Components  ──────────────────────────────►  Django DRF
+          (browser runtime)        REST API (JSON) via         (via /api/* proxy
+                                   TanStack Query / SWR         in dev)
+```
+
+**State management:**
+
+| Layer | Library | Scope |
+|-------|---------|-------|
+| URL params | `nuqs` | Calculator inputs, filters, pagination |
+| Global client state | `Zustand` | Auth status, UI preferences |
+| Server data cache | `TanStack Query` | CSR data fetching with stale-while-revalidate |
+| Local persistence | `localStorage` (hook) | Calculator inputs across page reloads |
+
+> `Zustand` appears in the local dev diagram as the global store. The production diagram references TanStack Query for server state. Use both — they are complementary, not alternatives.
+
+---
+
+### 7.4 Backend Layer (localhost:8000)
+
+```
+HTTP Request
+      │
+      ▼
+Django URL Router  (urls.py)
+      │
+      ▼
+DRF Views / ViewSets  (api/v1/*.py)
+      │
+      ▼
+Serializers  (schemas.py / serializers.py)
+  Data validation and conversion to JSON
+      │
+      ▼
+Django ORM Models  (models.py)
+      │
+      ├──► PostgreSQL  (database reads/writes)
+      └──► Redis        (cache / session storage)
+
+Authentication Middleware (runs on every request)
+  Validates JWT in Authorization header before the view is reached
+```
+
+---
+
+### 7.5 Authentication Flow in Local Dev
+
+```
+1. React client POSTs credentials → /api/token/
+2. Django DRF validates and returns Access Token + Refresh Token (JWTs)
+3. React client stores tokens:
+   • Access Token  → HttpOnly cookie  (XSS-safe, sent automatically)
+   • Refresh Token → HttpOnly cookie  (rotation on each use)
+4. All subsequent requests attach Access Token in Authorization: Bearer <token> header
+5. Authentication Middleware validates the token on every request before it reaches any view
+```
+
+**Token endpoints (local):**
+
+| Endpoint | Library | Notes |
+|----------|---------|-------|
+| `POST /api/token/` | `djangorestframework-simplejwt` | Issue Access + Refresh |
+| `POST /api/token/refresh/` | `djangorestframework-simplejwt` | Slide session |
+| `POST /api/token/blacklist/` | `simplejwt` blacklist app | Logout / revoke |
+
+---
+
+### 7.6 Local Data Layer — docker-compose.yml
+
+```yaml
+# docker-compose.yml (portfolio-backend root)
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: portfolio_dev
+      POSTGRES_USER: portfolio
+      POSTGRES_PASSWORD: devpassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server --save "" --appendonly no  # Disable persistence for dev speed
+
+volumes:
+  postgres_data:
+```
+
+Add the corresponding `.env` values:
+
+```bash
+DATABASE_URL=postgres://portfolio:devpassword@localhost:5432/portfolio_dev
+REDIS_URL=redis://localhost:6379/0
+```
+
+---
+
+### 7.7 Hot Module Replacement (HMR)
+
+Next.js dev server watches all source files under `src/`. On save:
+- **Client Components**: React Fast Refresh patches the component in-place — state is preserved.
+- **Server Components**: Full route re-render triggered automatically.
+- **CSS / Tailwind**: PostCSS rebuilds and styles update without page reload.
+
+No configuration required — enabled by default in `next dev`. Disable with `next dev --no-hmr` only for profiling.
+
+---
+
+### 7.8 Developer Tooling Checklist
+
+```bash
+# Start the full local stack (run in separate terminals or use a Procfile runner)
+
+# Terminal 1 — Data layer
+docker compose up
+
+# Terminal 2 — Django backend
+cd portfolio-backend
+source .venv/bin/activate
+DJANGO_SETTINGS_MODULE=config.settings.local python manage.py runserver
+
+# Terminal 3 — Next.js frontend
+cd portfolio-frontend
+npm run dev
+
+# Verify the proxy is working
+curl http://localhost:3000/api/v1/health/
+# Expected: {"status": "ok"} — confirms Next.js proxy → Django is wired correctly
+
+# Confirm JWT endpoint is reachable through the proxy
+curl -X POST http://localhost:3000/api/token/ \
+  -H "Content-Type: application/json" \
+  -d '{"username":"admin","password":"<your-superuser-password>"}'
+# Expected: {"access":"eyJ...","refresh":"eyJ..."}
+```
+
+---
+
+## 8. Additional Architectural Decisions (Images Reference)
+
+**Decision 11 — API Gateway as the single CORS and auth boundary**
+All CORS policies and token-validation middleware live exclusively in the API Gateway; individual microservices trust only requests that have already passed through it. This means services never need CORS headers configured locally and cannot be accessed by external clients without going through the gateway — reducing the attack surface.
+
+**Decision 12 — One database per service (no shared DB)**
+Each microservice owns its PostgreSQL instance exclusively. Cross-service joins are forbidden; data that needs to be read across service boundaries is either duplicated (denormalised) into the consuming service's DB via an event/message, or fetched through the API. This eliminates tight schema coupling and allows independent migration cycles.
+
+**Decision 13 — Next.js rewrites proxy for local dev (no per-environment fetch URLs)**
+Using `next.config.ts` rewrites to proxy `/api/*` to `localhost:8000` means all application code references the same relative `/api/` path in every environment. Production traffic hits the real gateway at the same path — zero environment-specific branching in fetch logic.
+
+**Decision 14 — Zustand for global client state, TanStack Query for server state**
+`Zustand` manages truly global UI state (auth status, theme, modals) that persists across route navigations. `TanStack Query` manages server-derived data (blog posts, project lists) with its built-in caching and stale-while-revalidate semantics. Mixing them is intentional — they solve different problems and should not be collapsed into one store.
+
+**Decision 15 — Auth Service extracted first in microservices migration**
+Authentication is the highest-risk shared concern. Extracting it first as a standalone service with its own DB means all other services can depend on a stable, versioned JWT contract before any other migration work begins. It also forces the team to solve the gateway routing and inter-service JWT validation pattern once, at the start.
+
+**Decision 16 — `djangorestframework-simplejwt` for local dev; shared JWKS in production**
+In local development, each Django process validates JWTs independently using the shared `SECRET_KEY`. In production the Auth Service publishes a JWKS endpoint; all other services validate tokens by fetching the public keys from that endpoint — no `SECRET_KEY` sharing across service boundaries.
+
+**Decision 17 — Docker Compose for local data layer; no local microservice isolation**
+Running each future microservice in its own Docker container locally adds unnecessary startup friction during active development. All Django code runs as a single `runserver` process locally; Docker Compose is used only for the stateful dependencies (PostgreSQL, Redis) that cannot run as simple Python processes.
+
+**Decision 18 — `/tools` replaces `/calculators` in the Tools Hub Service**
+The production architecture diagram labels the fourth service *Tools Hub* (with endpoints for tools, categories, features, guides, reviews), which is broader than the initial *Calculators* concept. When extracting `apps/calculators` into a standalone service, rename the app to `apps/tools` and extend the model set accordingly. The frontend route `/calculators` can be redirected to `/tools` via a `next.config.ts` redirect to preserve existing URLs.
