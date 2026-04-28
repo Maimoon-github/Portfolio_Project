@@ -148,5 +148,3 @@ celerybeat.pid
 *.pyc3.lock.bak10
 Temp
 temp 
-
-Portfolio
