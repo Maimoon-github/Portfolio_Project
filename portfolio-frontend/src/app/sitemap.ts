@@ -1,3 +1,5 @@
+//  Generates /sitemap.xml — fetches dynamic slugs (blog posts, portfolio projects, tools) from API
+
 // src/app/sitemap.ts
 import { MetadataRoute } from "next"
 
