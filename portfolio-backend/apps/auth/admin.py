@@ -1,0 +1,1 @@
+# UserAdmin: list_display (email, role, is_active), role assignment action
