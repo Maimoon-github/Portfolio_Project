@@ -1,0 +1,1 @@
+# Connects to page_published signal → fires POST to NEXTJS_REVALIDATE_URL with tag name
