@@ -33,18 +33,16 @@
 - Consistency is non-negotiable — match existing naming conventions, file structure, and code style unless a full migration is scoped
 - Dead code, redundancy, and side effects must be explicitly flagged, never silently left or removed
 
-# Your task: is to Implement each file in `src/app` directory that is been gaven to you . Follow the established frontend patterns consistently.
+# Your task: is to Implement each file in `src/components/layout` directory that is been gaven to you . Follow the established frontend patterns consistently.
 
 ```Task
-# All routes live here — App Router file-system convention
-## Root layout: ThemeProvider, font variables, global metadata defaults, Analytics script
-## [SSG] Home: hero section, featured projects grid, skills summary, CTA
-## Global branded 404 — catches all unmatched routes, linked "back home"
-## Global React error boundary — must be 'use client', shows friendly crash UI
-## Global Suspense fallback — page-level skeleton during route transition
-## App icon served at /icon.svg per Next.js metadata file convention
-## Generates /sitemap.xml — fetches dynamic slugs (blog posts, portfolio projects, tools) from API
-## Generates /robots.txt — disallows /cms/ (Wagtail admin), sets sitemap URL
+# Site-wide structural components (mostly Server Components)
+## Top nav: responsive, active-link highlights, mobile hamburger trigger
+## Footer: nav links, social icons, newsletter signup form
+## 'use client' - Sheet-based slide-over navigation for mobile
+## 'use client' - dark/light toggle powered by next-themes
+## 'use client' - wraps ThemeProvider + ReactQueryClientProvider + ZustandStoreProvider (client boundary)
+## Injects arbitrary JSON-LD via <script type="application/ld+json"> - used on every page
 ```
 
 ## **Pro Tip:** stick with Sources Custom knowledge base for this project like TLS
@@ -52,15 +50,15 @@
 ```
 ├── src/
 │   │
-│   ├── app/                     # All routes live here — App Router file-system convention
+│   ├── components/
 │   │   │
-│   │   ├── layout.tsx           # Root layout: ThemeProvider, font variables, global metadata defaults, Analytics script
-│   │   ├── page.tsx             # [SSG] Home: hero section, featured projects grid, skills summary, CTA
-│   │   ├── not-found.tsx        # Global branded 404 — catches all unmatched routes, linked "back home"
-│   │   ├── error.tsx            # Global React error boundary — must be 'use client', shows friendly crash UI
-│   │   ├── loading.tsx          # Global Suspense fallback — page-level skeleton during route transition
-│   │   ├── icon.svg             # App icon served at /icon.svg per Next.js metadata file convention
-│   │   ├── sitemap.ts           # Generates /sitemap.xml — fetches dynamic slugs (blog posts, portfolio projects, tools) from API
+│   │   ├── layout/              # Site-wide structural components (mostly Server Components)
+│   │   │   ├── Header.tsx       # Top nav: responsive, active-link highlights, mobile hamburger trigger
+│   │   │   ├── Footer.tsx       # Footer: nav links, social icons, newsletter signup form
+│   │   │   ├── MobileMenu.tsx   # 'use client' — Sheet-based slide-over navigation for mobile
+│   │   │   ├── ThemeToggle.tsx  # 'use client' — dark/light toggle powered by next-themes
+│   │   │   ├── Providers.tsx    # 'use client' — wraps ThemeProvider + ReactQueryClientProvider + ZustandStoreProvider (client boundary)
+│   │   │   └── JsonLd.tsx       # Injects arbitrary JSON-LD via <script type="application/ld+json"> — used on every page
 ```
 
 > **Tech stack:** next.js + React + TypeScript + Tailwind CSS + HTML5/CSS3.
