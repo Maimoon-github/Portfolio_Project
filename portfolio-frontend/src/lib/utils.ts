@@ -1,5 +1,4 @@
 // src/lib/utils.ts
-// cn() (clsx+twMerge), formatDate(), slugify(), truncate(), calculateReadingTime()
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
