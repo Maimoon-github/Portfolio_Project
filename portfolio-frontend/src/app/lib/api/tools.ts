@@ -2,7 +2,7 @@ import { apiFetch } from "./client";
 import type { ToolListResponse, Tool, ToolCategory } from "@/types/api";
 
 export const fetchTool = {
-  list: (params?: Record<string, unknown>) =>
+  list: (params: Record<string, unknown> = {}) =>
     apiFetch<ToolListResponse>(
       `/api/v1/tools/?${new URLSearchParams(params as any)}`,
       { tags: ["tools"], revalidate: 3600 }

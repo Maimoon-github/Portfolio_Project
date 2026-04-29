@@ -1,4 +1,3 @@
-// src/app/(marketing)/about/page.tsx  [SSG]
 import { ExperienceTimeline } from "@/components/portfolio/ExperienceTimeline"
 import { SkillSection } from "@/components/portfolio/SkillSection"
 import { TestimonialCard } from "@/components/portfolio/TestimonialCard"
@@ -16,18 +15,23 @@ export default function AboutPage() {
 
       <section>
         <h2 className="mb-6 text-2xl font-semibold">Skills</h2>
-        <SkillSection />
+        <SkillSection categories={[]} />
       </section>
 
       <section>
         <h2 className="mb-6 text-2xl font-semibold">Experience</h2>
-        <ExperienceTimeline />
+        <ExperienceTimeline experiences={[]} />
       </section>
 
       <section>
         <h2 className="mb-6 text-2xl font-semibold">Testimonials</h2>
         <div className="grid gap-6 md:grid-cols-2">
-          <TestimonialCard />
+          <TestimonialCard 
+            quote="Great work!" 
+            authorName="John Doe" 
+            authorRole="CTO" 
+            authorCompany="Tech Corp" 
+          />
         </div>
       </section>
     </div>

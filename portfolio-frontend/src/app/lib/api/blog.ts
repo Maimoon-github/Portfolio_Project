@@ -2,7 +2,7 @@ import { apiFetch } from "./client";
 import type { PostListResponse, Post } from "@/types/api";
 
 export const fetchPost = {
-  list: (params?: Record<string, unknown>) =>
+  list: (params: Record<string, unknown> = {}) =>
     apiFetch<PostListResponse>(
       `/api/v1/blog/posts/?${new URLSearchParams(params as any)}`,
       { tags: ["blog-posts"], revalidate: 300 }

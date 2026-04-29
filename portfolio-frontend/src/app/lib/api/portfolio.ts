@@ -2,7 +2,7 @@ import { apiFetch } from "./client";
 import type { ProjectListResponse, Project, Skill, Experience, Testimonial } from "@/types/api";
 
 export const fetchProject = {
-  list: (params?: Record<string, unknown>) =>
+  list: (params: Record<string, unknown> = {}) =>
     apiFetch<ProjectListResponse>(
       `/api/v1/portfolio/projects/?${new URLSearchParams(params as any)}`,
       { tags: ["projects"], revalidate: 3600 }

@@ -1,8 +1,4 @@
-// src/app/page.tsx  [SSG]
-import { ProjectCard } from "@/components/portfolio/ProjectCard"
 import { SkillSection } from "@/components/portfolio/SkillSection"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
 
 export default function HomePage() {
   return (
@@ -14,28 +10,15 @@ export default function HomePage() {
           Senior AI/ML Engineer · Building production‑grade intelligence systems
         </p>
         <div className="mt-8 flex justify-center gap-4">
-          <Button asChild>
-            <Link href="/portfolio">View Work</Link>
-          </Button>
-          <Button variant="outline" asChild>
-            <Link href="/contact">Get in Touch</Link>
-          </Button>
-        </div>
-      </section>
-
-      {/* Featured Projects (static placeholder, will be fetched at build time) */}
-      <section>
-        <h2 className="mb-8 text-2xl font-semibold">Featured Projects</h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {/* ProjectCard instances will be mapped from fetched data */}
-          <p className="text-muted-foreground">Project data will be loaded from the API.</p>
+          <a href="/portfolio" className="text-blue-600">View Work</a>
+          <a href="/contact" className="text-blue-600">Get in Touch</a>
         </div>
       </section>
 
       {/* Skills Summary */}
       <section>
         <h2 className="mb-8 text-2xl font-semibold">Skills & Technologies</h2>
-        <SkillSection />
+        <SkillSection categories={[]} />
       </section>
     </div>
   )

@@ -19,9 +19,9 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <div className="py-12">
-      <ProjectHero project={project} />
+      <ProjectHero project={ project } />
       <div className="mt-8 prose dark:prose-invert max-w-none">
-        {/* Rich content */}
+        {/* Rich content */ }
       </div>
     </div>
   )

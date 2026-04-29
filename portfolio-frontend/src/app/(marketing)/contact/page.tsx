@@ -1,5 +1,5 @@
-// src/app/(marketing)/contact/page.tsx  [SSR]
-import { ContactForm } from "@/components/contact/ContactForm"
+// Create this file if missing or fix import
+import ContactForm from "@/components/contact/ContactForm"
 
 export default function ContactPage() {
   return (
