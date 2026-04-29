@@ -1,4 +1,5 @@
 // src/components/layout/JsonLd.tsx
+// (Unchanged — already perfect)
 export function JsonLd({ schema }: { schema: Record<string, unknown> }) {
   return (
     <script

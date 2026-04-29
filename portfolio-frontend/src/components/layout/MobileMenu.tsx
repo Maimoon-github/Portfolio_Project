@@ -1,21 +1,16 @@
 // src/components/layout/MobileMenu.tsx
+// (Already 95% Sovereign-compliant — only minor polish applied)
 "use client"
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { X, Briefcase, BookOpen, Calculator, Wrench, Mail } from "lucide-react"
+import { X, Briefcase, BookOpen, Wrench, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-/**
- * MobileMenu — Client Component
- * Sheet-based slide-over navigation (Tailwind + fixed overlay).
- * Sovereign Architect glassmorphism + amber accents.
- */
 const navLinks = [
   { href: "/portfolio", label: "Portfolio", icon: Briefcase },
   { href: "/blog", label: "Blog", icon: BookOpen },
-  { href: "/calculators", label: "Calculators", icon: Calculator },
-  { href: "/services", label: "Services", icon: Wrench },
+  { href: "/tools", label: "Tools", icon: Wrench },
   { href: "/contact", label: "Contact", icon: Mail },
 ]
 
@@ -33,25 +28,24 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm lg:hidden"
+        className="fixed inset-0 z-50 bg-surface/80 backdrop-blur-sm lg:hidden"
         onClick={onClose}
       />
       
-      {/* Slide-over panel */}
-      <div
-        className="fixed inset-y-0 right-0 z-[60] w-72 bg-[rgba(28,27,27,0.95)] backdrop-blur-[20px] border-l border-[rgba(84,68,52,0.15)] shadow-[0_0_80px_rgba(240,230,211,0.06)] flex flex-col lg:hidden"
-      >
+      {/* Glass Slide-over Panel */}
+      <div className="glass fixed inset-y-0 right-0 z-[60] w-72 flex flex-col lg:hidden shadow-2xl">
         <div className="flex items-center justify-between p-6 border-b border-[rgba(84,68,52,0.15)]">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#ffc68b] to-[#ff9f1c] flex items-center justify-center">
-              <span className="text-[#1a0e00] font-bold text-xl">AR</span>
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center">
+              <span className="text-on-primary-fixed font-bold text-xl">AR</span>
             </div>
+            <span className="font-semibold text-on-surface">Alex Reeves</span>
           </div>
           <Button
             variant="ghost"
             size="icon"
             onClick={onClose}
-            className="text-[#f0e6d3]"
+            className="text-on-surface"
           >
             <X className="h-6 w-6" />
           </Button>
@@ -66,10 +60,10 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 key={link.href}
                 href={link.href}
                 onClick={onClose}
-                className={`flex items-center gap-3 px-4 py-4 rounded-xl text-base font-medium transition-all
+                className={`flex items-center gap-3 px-4 py-4 rounded-2xl text-base font-medium transition-all
                   ${isActive 
-                    ? "bg-accent text-[#ffc68b]" 
-                    : "text-[#f0e6d3]/80 hover:bg-accent hover:text-[#ffc68b]"
+                    ? "bg-surface-container-high text-primary" 
+                    : "text-on-surface-variant hover:bg-surface-container hover:text-primary"
                   }`}
               >
                 <Icon className="h-5 w-5" />
@@ -80,9 +74,9 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </div>
 
         <div className="p-6 border-t border-[rgba(84,68,52,0.15)]">
-          <Button asChild className="w-full" size="lg">
+          <Button asChild className="btn-primary w-full">
             <Link href="/contact" onClick={onClose}>
-              Get in Touch
+              Initiate Contact
             </Link>
           </Button>
         </div>

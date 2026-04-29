@@ -1,4 +1,5 @@
 // src/components/layout/ThemeToggle.tsx
+// (Kept functional — Sovereign is dark-first, but toggle preserved for flexibility)
 "use client"
 
 import { useTheme } from "next-themes"
@@ -11,7 +12,6 @@ export function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
 
   useLayoutEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
   }, [])
 
@@ -22,8 +22,9 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      className="text-on-surface hover:text-primary"
     >
-      {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+      {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
     </Button>
   )
 }
