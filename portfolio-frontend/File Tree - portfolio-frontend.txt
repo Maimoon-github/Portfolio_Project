@@ -63,7 +63,6 @@ Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 │   │   │   └── 📄 page.tsx
 │   │   ├── 📄 error.tsx
 │   │   ├── 📄 favicon.ico
-│   │   ├── 🎨 globals.css
 │   │   ├── 🖼️ icon.svg
 │   │   ├── 📄 layout.tsx
 │   │   ├── 📄 loading.tsx

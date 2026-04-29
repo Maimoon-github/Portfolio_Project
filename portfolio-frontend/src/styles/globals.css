@@ -1,325 +1,235 @@
-@import "tailwindcss";
-@import "tw-animate-css";
+/* src/styles/globals.css */
+/* Sovereign Architect Design System — High-End Editorial for Senior AI/ML Portfolio */
+/* Fully implements DESIGN.md: Deep Near-Black tonal hierarchy, Space Grotesk, no hard borders, amber-orange + protective blue aura */
 
-/* Space Grotesk — geometric, authoritative, editorial */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import 'tailwindcss';
+@import './fonts.css'; /* Space Grotesk + range/scrollbar/selection styles */
 
-@custom-variant dark (&:is(.dark *));
+@theme {
+  /* Surface Hierarchy (DESIGN.md §2) */
+  --color-surface: #131313;                    /* infinite void */
+  --color-surface-container-low: #1c1b1b;      /* main sections */
+  --color-surface-container: #201f1f;          /* cards */
+  --color-surface-container-high: #2a2929;
+  --color-surface-container-highest: #353534;  /* hover / chips */
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   THEME TOKENS
-   Maps CSS custom properties → Tailwind utility classes.
-   If using next/font, swap --font-sans literal to var(--font-space-grotesk).
-───────────────────────────────────────────────────────────────────────────── */
+  /* Aura Palette (DESIGN.md §2 + Ramal 146 aura) */
+  --color-primary: #ffc68b;                    /* Radiant Amber-Orange */
+  --color-primary-container: #ff9f1c;
+  --color-on-primary-fixed: #2c1f0f;
+
+  --color-secondary: #a3c4ff;                  /* Soft Protective Blue */
+  --color-secondary-container: #4a7eff;
+
+  --color-on-surface: #f0e9e0;                 /* Golden-White */
+  --color-on-surface-variant: #c4b8a8;
+
+  --color-outline-variant: #544434;            /* Ghost border (15% opacity) */
+
+  /* Gradients */
+  --gradient-primary-metallic: linear-gradient(135deg, #ffc68b 0%, #ff9f1c 100%);
+  --gradient-ambient-glow: radial-gradient(circle at 30% 20%, rgba(255, 198, 139, 0.08) 0%, transparent 60%);
+  --gradient-protective: radial-gradient(circle at 70% 80%, rgba(163, 196, 255, 0.06) 0%, transparent 70%);
+}
+
+/* shadcn/ui compatibility layer — maps Sovereign tokens to shadcn variables */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
-  --font-heading: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   :ROOT — Sovereign Architect dark palette (dark-first site; no separate
-   light mode. Both :root and .dark carry identical values so shadcn
-   components behave correctly regardless of which class is applied.)
-
-   Surface hierarchy (DESIGN.md §2):
-     surface                  #131313  → --background  (the void)
-     surface_container_low    #1c1b1b  → --card / --popover / --sidebar
-     surface_container        #201f1f  → --secondary / --muted
-     surface_container_highest#353534  → --accent  (interaction/hover)
-   Accent colours:
-     primary (Amber-Orange)   #ffc68b  → --primary
-     primary_container        #ff9f1c  → --chart-2 / gradient endpoint
-     on_surface (Golden-White)#f0e6d3  → --foreground
-     secondary (Soft Blue)    #7ba4c4  → --chart-3 / technical badges
-     outline_variant          #544434  → base of ghost borders (15% opacity)
-     muted warm-brown         #a28d7a  → --muted-foreground
-───────────────────────────────────────────────────────────────────────────── */
-:root {
-  /* surfaces */
-  --background:         #131313;
-  --foreground:         #f0e6d3;
-
-  --card:               #1c1b1b;
-  --card-foreground:    #f0e6d3;
-
-  --popover:            #1c1b1b;
-  --popover-foreground: #f0e6d3;
-
-  /* primary — Amber-Orange; CTA gradient endpoint is #ff9f1c */
-  --primary:            #ffc68b;
-  --primary-foreground: #1a0e00;
-
-  /* secondary / muted — next surface step up */
-  --secondary:            #201f1f;
-  --secondary-foreground: #f0e6d3;
-
-  --muted:            #201f1f;
-  --muted-foreground: #a28d7a;
-
-  /* accent — interaction / hover surface */
-  --accent:            #353534;
-  --accent-foreground: #f0e6d3;
-
-  /* destructive */
-  --destructive: #c0392b;
-
-  /* ghost border — outline_variant at 15% (DESIGN.md "No-Line" rule) */
-  --border: rgba(84, 68, 52, 0.15);
-  --input:  rgba(84, 68, 52, 0.15);
-
-  /* focus ring matches primary */
-  --ring: #ffc68b;
-
-  /* charts: warm → cool gradient across the palette */
-  --chart-1: #ffc68b;   /* primary amber */
-  --chart-2: #ff9f1c;   /* deep amber / gradient end */
-  --chart-3: #7ba4c4;   /* soft blue — "security / infrastructure" */
-  --chart-4: #f0e6d3;   /* golden white */
-  --chart-5: #544434;   /* warm brown */
-
+  --color-background: var(--color-surface);
+  --color-foreground: var(--color-on-surface);
+  --color-card: var(--color-surface-container-low);
+  --color-card-foreground: var(--color-on-surface);
+  --color-popover: var(--color-surface-container-low);
+  --color-popover-foreground: var(--color-on-surface);
+  --color-primary: var(--color-primary);
+  --color-primary-foreground: var(--color-on-primary-fixed);
+  --color-secondary: var(--color-secondary);
+  --color-secondary-foreground: var(--color-on-surface);
+  --color-muted: var(--color-surface-container);
+  --color-muted-foreground: var(--color-on-surface-variant);
+  --color-accent: var(--color-surface-container-highest);
+  --color-accent-foreground: var(--color-on-surface);
+  --color-border: rgba(84, 68, 52, 0.15);
+  --color-input: var(--color-surface-container-low);
+  --color-ring: var(--color-primary);
   --radius: 0.5rem;
-
-  /* sidebar — floats one surface level above background */
-  --sidebar:                    #1c1b1b;
-  --sidebar-foreground:         #f0e6d3;
-  --sidebar-primary:            #ffc68b;
-  --sidebar-primary-foreground: #1a0e00;
-  --sidebar-accent:             #353534;
-  --sidebar-accent-foreground:  #f0e6d3;
-  --sidebar-border:             rgba(84, 68, 52, 0.08);
-  --sidebar-ring:               #ffc68b;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   .DARK — mirrors :root exactly (identical palette, explicit declaration
-   keeps shadcn dark-mode utilities consistent if a toggle is added later)
-───────────────────────────────────────────────────────────────────────────── */
+/* Root + Dark (both identical — dark-first, no light mode) */
+:root,
 .dark {
-  --background:         #131313;
-  --foreground:         #f0e6d3;
-
-  --card:               #1c1b1b;
-  --card-foreground:    #f0e6d3;
-
-  --popover:            #1c1b1b;
-  --popover-foreground: #f0e6d3;
-
-  --primary:            #ffc68b;
-  --primary-foreground: #1a0e00;
-
-  --secondary:            #201f1f;
-  --secondary-foreground: #f0e6d3;
-
-  --muted:            #201f1f;
+  --background: #131313;
+  --foreground: #f0e9e0;
+  --card: #1c1b1b;
+  --card-foreground: #f0e9e0;
+  --popover: #1c1b1b;
+  --popover-foreground: #f0e9e0;
+  --primary: #ffc68b;
+  --primary-foreground: #2c1f0f;
+  --secondary: #201f1f;
+  --secondary-foreground: #f0e9e0;
+  --muted: #201f1f;
   --muted-foreground: #a28d7a;
-
-  --accent:            #353534;
-  --accent-foreground: #f0e6d3;
-
-  --destructive: #c0392b;
-
+  --accent: #353534;
+  --accent-foreground: #f0e9e0;
   --border: rgba(84, 68, 52, 0.15);
-  --input:  rgba(84, 68, 52, 0.15);
-
+  --input: #1c1b1b;
   --ring: #ffc68b;
-
-  --chart-1: #ffc68b;
-  --chart-2: #ff9f1c;
-  --chart-3: #7ba4c4;
-  --chart-4: #f0e6d3;
-  --chart-5: #544434;
-
-  --sidebar:                    #1c1b1b;
-  --sidebar-foreground:         #f0e6d3;
-  --sidebar-primary:            #ffc68b;
-  --sidebar-primary-foreground: #1a0e00;
-  --sidebar-accent:             #353534;
-  --sidebar-accent-foreground:  #f0e6d3;
-  --sidebar-border:             rgba(84, 68, 52, 0.08);
-  --sidebar-ring:               #ffc68b;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BASE LAYER
-   Reset + document defaults. All Tailwind utilities override these.
-───────────────────────────────────────────────────────────────────────────── */
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  html {
-    @apply font-sans;
-    font-size: 16px;
-    scroll-behavior: smooth;
-  }
-
-  /* Typography scale — DESIGN.md §3
-     h1 is a "Statement" display; h2 marks project titles / narrative breaks */
-  h1 {
-    font-size: 3.5rem;        /* display-lg */
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.02em; /* "authoritative" tightening per DESIGN.md */
-  }
-
-  h2 {
-    font-size: 2rem;          /* headline-lg */
-    font-weight: 500;
-    line-height: 1.3;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-    font-weight: 500;
-    line-height: 1.5;
-  }
-
-  h4 {
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.5;
-  }
-
-  label {
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.5;
-  }
-
-  button {
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.5;
-  }
-
-  input {
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-  }
-
-  /* Selection — primary amber tint */
-  ::selection {
-    background-color: rgba(255, 198, 139, 0.25);
-    color: #f0e6d3;
-  }
-
-  /* Scrollbar — minimal, on-brand */
-  ::-webkit-scrollbar         { width: 6px; }
-  ::-webkit-scrollbar-track   { background: #131313; }
-  ::-webkit-scrollbar-thumb   {
-    background: rgba(84, 68, 52, 0.5);
-    border-radius: 9999px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 198, 139, 0.3);
-  }
-
-  /* Range inputs — shared by Calculator Hub sliders */
-  input[type='range'] {
-    -webkit-appearance: none;
-    appearance: none;
-    height: 6px;
-    border-radius: 9999px;
-    cursor: pointer;
-    outline: none;
-  }
-
-  input[type='range']::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #ffc68b;
-    border: 2px solid #131313;
-    box-shadow: 0 0 0 2px rgba(255, 198, 139, 0.3);
-    cursor: pointer;
-    transition: box-shadow 0.15s ease;
-  }
-
-  input[type='range']::-webkit-slider-thumb:hover {
-    box-shadow: 0 0 0 4px rgba(255, 198, 139, 0.25);
-  }
-
-  input[type='range']::-moz-range-thumb {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #ffc68b;
-    border: 2px solid #131313;
-    cursor: pointer;
-  }
+/* Base Reset & Body */
+html {
+  scroll-behavior: smooth;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   UTILITIES
-   Non-component helpers consumed across pages.
-───────────────────────────────────────────────────────────────────────────── */
-
-/* Footer */
-footer { position: relative; }
-
-footer a {
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+body {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  line-height: 1.7;
+  font-size: 1rem;
 }
 
-footer .social-icon {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* Typography Hierarchy (DESIGN.md §3) */
+.display-lg {
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
-footer .social-icon:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 0 4px rgba(255, 198, 139, 0.15);
+.headline-lg {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
-/* Tonal separator — outline_variant at 8% per ghost-border rule */
-.footer-separator {
-  border-top: 1px solid rgba(84, 68, 52, 0.08);
+.label-md {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+/* No-Line Rule + Section Blobs (DESIGN.md §2) */
+.section {
+  padding-block: 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-ambient-glow);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.6;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(39, 38, 37, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(84, 68, 52, 0.15);
+}
+
+/* Primary CTA — Metallic Gold */
+.btn-primary {
+  background: var(--gradient-primary-metallic);
+  color: var(--color-on-primary-fixed);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 20px 25px -5px rgb(255 198 139 / 0.15),
+              0 8px 10px -6px rgb(255 198 139 / 0.15);
+}
+
+/* Secondary Ghost */
+.btn-secondary {
+  border: 1px solid rgba(162, 141, 122, 0.2);
+  background: transparent;
+  color: var(--color-on-surface);
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 198, 139, 0.1);
+  border-color: rgba(255, 198, 139, 0.3);
+}
+
+/* Tonal Cards */
+.card {
+  background-color: var(--color-surface-container);
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  background-color: var(--color-surface-container-high);
+  transform: translateY(-4px);
+}
+
+/* Project imagery */
+.project-image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-image-container img {
+  transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.project-image-container:hover img {
+  transform: scale(1.03);
+}
+
+/* Technical Chips */
+.chip {
+  background-color: var(--color-surface-container-highest);
+  color: var(--color-secondary);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+/* Sovereign Inputs */
+.input {
+  background-color: var(--color-surface-container-low);
+  border: none;
+  border-radius: 0.125rem;
+  padding: 0.75rem 1rem;
+  color: var(--color-on-surface);
+  transition: box-shadow 0.2s ease;
+}
+
+.input:focus {
+  box-shadow: 0 0 0 2px rgba(163, 196, 255, 0.3);
+  outline: none;
+}
+
+/* Utilities */
+.asymmetric-left { margin-left: -2rem; }
+.asymmetric-right { margin-right: -2rem; }
+
+@layer utilities {
+  .no-border { border: none !important; }
+  .tonal-shift { background-color: var(--color-surface-container-low); }
+  .editorial-whitespace { padding-block: 7rem; }
+  .elevation-float { box-shadow: 0 40px 60px -15px rgb(0 0 0 / 0.06); }
+}
+
+/* Mobile reset for asymmetry */
+@media (max-width: 768px) {
+  .asymmetric-left,
+  .asymmetric-right {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
