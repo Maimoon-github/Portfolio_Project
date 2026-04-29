@@ -33,7 +33,19 @@
 - Consistency is non-negotiable — match existing naming conventions, file structure, and code style unless a full migration is scoped
 - Dead code, redundancy, and side effects must be explicitly flagged, never silently left or removed
 
-# Your task: is to Implement each style as a standalone `globals.css` file . Follow the established frontend patterns consistently.
+# Your task: is to Implement each file in `src/app` directory that is been gaven to you . Follow the established frontend patterns consistently.
+
+```Task
+# All routes live here — App Router file-system convention
+## Root layout: ThemeProvider, font variables, global metadata defaults, Analytics script
+## [SSG] Home: hero section, featured projects grid, skills summary, CTA
+## Global branded 404 — catches all unmatched routes, linked "back home"
+## Global React error boundary — must be 'use client', shows friendly crash UI
+## Global Suspense fallback — page-level skeleton during route transition
+## App icon served at /icon.svg per Next.js metadata file convention
+## Generates /sitemap.xml — fetches dynamic slugs (blog posts, portfolio projects, tools) from API
+## Generates /robots.txt — disallows /cms/ (Wagtail admin), sets sitemap URL
+```
 
 ## **Pro Tip:** stick with Sources Custom knowledge base for this project like TLS
 
@@ -86,6 +98,7 @@ visualize the combo layout as listed:
 Overall vibe: The aura feels **warm, fortunate, and magnetically harmonious** — like a golden sun filtered through protective, nurturing light. It draws people in with a sense of blessing and stability, while subtly supporting growth, balance, and material-spiritual well-being. It’s not flashy or chaotic; it’s steady, prosperous energy that says “things tend to work out well around me” while also offering quiet protection and relational depth.
 
 CSS Files to Apply (Always): `DESIGN.md` 
+
 ---
 
 Font:
