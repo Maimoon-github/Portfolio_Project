@@ -36,13 +36,15 @@
 # Your task: is to Implement each file in `src/components/layout` directory that is been gaven to you . Follow the established frontend patterns consistently.
 
 ```Task
-# Site-wide structural components (mostly Server Components)
-## Top nav: responsive, active-link highlights, mobile hamburger trigger
-## Footer: nav links, social icons, newsletter signup form
-## 'use client' - Sheet-based slide-over navigation for mobile
-## 'use client' - dark/light toggle powered by next-themes
-## 'use client' - wraps ThemeProvider + ReactQueryClientProvider + ZustandStoreProvider (client boundary)
-## Injects arbitrary JSON-LD via <script type="application/ld+json"> - used on every page
+# Blog-specific display components
+# Preview card: title, excerpt, category badge, reading time, date (Server Component)
+# Full-bleed post header: title, author, date, reading time, share buttons
+# 'use client' - sanitises and renders Wagtail StreamField HTML (DOMPurify)
+# 'use client' - IntersectionObserver highlights active heading
+# 'use client' - URL-synced category tabs (nuqs for search param state)
+# 'use client' - debounced input drives API search query
+# Prev/next post navigation links (Server Component)
+# 'use client' - optimistic comment form with server action submit
 ```
 
 ## **Pro Tip:** stick with Sources Custom knowledge base for this project like TLS
@@ -52,15 +54,17 @@
 │   │
 │   ├── components/
 │   │   │
-│   │   ├── layout/              # Site-wide structural components (mostly Server Components)
-│   │   │   ├── Header.tsx       # Top nav: responsive, active-link highlights, mobile hamburger trigger
-│   │   │   ├── Footer.tsx       # Footer: nav links, social icons, newsletter signup form
-│   │   │   ├── MobileMenu.tsx   # 'use client' — Sheet-based slide-over navigation for mobile
-│   │   │   ├── ThemeToggle.tsx  # 'use client' — dark/light toggle powered by next-themes
-│   │   │   ├── Providers.tsx    # 'use client' — wraps ThemeProvider + ReactQueryClientProvider + ZustandStoreProvider (client boundary)
-│   │   │   └── JsonLd.tsx       # Injects arbitrary JSON-LD via <script type="application/ld+json"> — used on every page
+│   │   ├── blog/                      # Blog-specific display components
+│   │   │   ├── PostCard.tsx           # Preview card: title, excerpt, category badge, reading time, date (Server Component)
+│   │   │   ├── PostHeader.tsx         # Full-bleed post header: title, author, date, reading time, share buttons
+│   │   │   ├── RichTextRenderer.tsx   # 'use client' — sanitises and renders Wagtail StreamField HTML (DOMPurify)
+│   │   │   ├── TableOfContents.tsx    # 'use client' — IntersectionObserver highlights active heading
+│   │   │   ├── CategoryFilter.tsx     # 'use client' — URL-synced category tabs (nuqs for search param state)
+│   │   │   ├── SearchBar.tsx          # 'use client' — debounced input drives API search query
+│   │   │   ├── PrevNextPost.tsx       # Prev/next post navigation links (Server Component)
+│   │   │   └── CommentSection.tsx     # 'use client' — optimistic comment form with server action submit
 ```
-
+ 
 > **Tech stack:** next.js + React + TypeScript + Tailwind CSS + HTML5/CSS3.
 
 ## **Tip:** Remember the content which is provided by user. Put it in your knowledge.
