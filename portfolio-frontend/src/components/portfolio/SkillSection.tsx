@@ -8,6 +8,6 @@ interface SkillSectionProps {
   }>
 }
 
-export function SkillSection(_props: SkillSectionProps) {
+export function SkillSection({}: SkillSectionProps) {
   return <div>Skills Section</div>
 }
