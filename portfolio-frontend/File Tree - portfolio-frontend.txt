@@ -1,0 +1,152 @@
+File Tree: portfolio-frontend
+Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
+
+────────────────────────────────────────────────────────────────────────────────
+
+├── 📁 public/
+│   ├── 🖼️ file.svg
+│   ├── 🖼️ globe.svg
+│   ├── 🖼️ next.svg
+│   ├── 🖼️ vercel.svg
+│   └── 🖼️ window.svg
+├── 📁 src/
+│   ├── 📁 app/
+│   │   ├── 📁 (legal)/
+│   │   │   ├── 📁 privacy/
+│   │   │   │   └── 📄 page.tsx
+│   │   │   └── 📁 terms/
+│   │   │       └── 📄 page.tsx
+│   │   ├── 📁 (marketing)/
+│   │   │   ├── 📁 about/
+│   │   │   │   ├── 📄 loading.tsx
+│   │   │   │   └── 📄 page.tsx
+│   │   │   └── 📁 contact/
+│   │   │       ├── 📄 loading.tsx
+│   │   │       └── 📄 page.tsx
+│   │   ├── 📁 api/
+│   │   │   ├── 📁 contact/
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 og/
+│   │   │   │   └── 📄 route.tsx
+│   │   │   └── 📁 revalidate/
+│   │   │       └── 📄 route.ts
+│   │   ├── 📁 blog/
+│   │   │   ├── 📁 [slug]/
+│   │   │   │   ├── 📄 loading.tsx
+│   │   │   │   ├── 📄 not-found.tsx
+│   │   │   │   └── 📄 page.tsx
+│   │   │   ├── 📁 category/
+│   │   │   │   └── 📁 [category]/
+│   │   │   │       ├── 📄 loading.tsx
+│   │   │   │       └── 📄 page.tsx
+│   │   │   ├── 📁 feed.xml/
+│   │   │   │   └── 📄 route.ts
+│   │   │   ├── 📁 tag/
+│   │   │   │   └── 📁 [tag]/
+│   │   │   │       ├── 📄 loading.tsx
+│   │   │   │       └── 📄 page.tsx
+│   │   │   ├── 📄 layout.tsx
+│   │   │   ├── 📄 loading.tsx
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📁 portfolio/
+│   │   │   ├── 📁 [slug]/
+│   │   │   │   ├── 📄 loading.tsx
+│   │   │   │   ├── 📄 not-found.tsx
+│   │   │   │   └── 📄 page.tsx
+│   │   │   ├── 📄 loading.tsx
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📁 tools/
+│   │   │   ├── 📁 [slug]/
+│   │   │   │   ├── 📄 loading.tsx
+│   │   │   │   └── 📄 page.tsx
+│   │   │   ├── 📄 loading.tsx
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📄 error.tsx
+│   │   ├── 📄 favicon.ico
+│   │   ├── 🎨 globals.css
+│   │   ├── 🖼️ icon.svg
+│   │   ├── 📄 layout.tsx
+│   │   ├── 📄 loading.tsx
+│   │   ├── 📄 not-found.tsx
+│   │   ├── 📄 page.tsx
+│   │   ├── 📄 robots.ts
+│   │   └── 📄 sitemap.ts
+│   ├── 📁 components/
+│   │   ├── 📁 blog/
+│   │   │   ├── 📄 CategoryFilter.tsx
+│   │   │   ├── 📄 CommentSection.tsx
+│   │   │   ├── 📄 PostCard.tsx
+│   │   │   ├── 📄 PostHeader.tsx
+│   │   │   ├── 📄 PrevNextPost.tsx
+│   │   │   ├── 📄 RichTextRenderer.tsx
+│   │   │   ├── 📄 SearchBar.tsx
+│   │   │   └── 📄 TableOfContents.tsx
+│   │   ├── 📁 contact/
+│   │   │   └── 📄 ContactForm.tsx
+│   │   ├── 📁 layout/
+│   │   │   ├── 📄 Footer.tsx
+│   │   │   ├── 📄 Header.tsx
+│   │   │   ├── 📄 JsonLd.tsx
+│   │   │   ├── 📄 MobileMenu.tsx
+│   │   │   ├── 📄 Providers.tsx
+│   │   │   └── 📄 ThemeToggle.tsx
+│   │   ├── 📁 portfolio/
+│   │   │   ├── 📄 ExperienceTimeline.tsx
+│   │   │   ├── 📄 ProjectCard.tsx
+│   │   │   ├── 📄 ProjectHero.tsx
+│   │   │   ├── 📄 SkillBadge.tsx
+│   │   │   ├── 📄 SkillSection.tsx
+│   │   │   └── 📄 TestimonialCard.tsx
+│   │   └── 📁 ui/
+│   │       ├── 📄 badge.tsx
+│   │       ├── 📄 button.tsx
+│   │       ├── 📄 card.tsx
+│   │       ├── 📄 dialog.tsx
+│   │       ├── 📄 dropdown-menu.tsx
+│   │       ├── 📄 input.tsx
+│   │       ├── 📄 label.tsx
+│   │       ├── 📄 progress.tsx
+│   │       ├── 📄 select.tsx
+│   │       ├── 📄 separator.tsx
+│   │       ├── 📄 skeleton.tsx
+│   │       ├── 📄 slider.tsx
+│   │       ├── 📄 tabs.tsx
+│   │       ├── 📄 textarea.tsx
+│   │       ├── 📄 toast.tsx
+│   │       └── 📄 tooltip.tsx
+│   ├── 📁 hooks/
+│   │   ├── 📄 useCalculator.ts
+│   │   ├── 📄 useDebounce.ts
+│   │   ├── 📄 useIntersectionObserver.ts
+│   │   └── 📄 useLocalStorage.ts
+│   ├── 📁 lib/
+│   │   ├── 📁 api/
+│   │   │   ├── 📄 blog.ts
+│   │   │   ├── 📄 client.ts
+│   │   │   ├── 📄 portfolio.ts
+│   │   │   └── 📄 tools.ts
+│   │   ├── 📄 og.tsx
+│   │   ├── 📄 rich-text.ts
+│   │   └── 📄 utils.ts
+│   ├── 📁 styles/
+│   │   ├── 🎨 fonts.css
+│   │   ├── 🎨 globals.css
+│   │   ├── 🎨 index.css
+│   │   ├── 🎨 tailwind.css
+│   │   └── 🎨 theme.css
+│   └── 📁 types/
+│       └── 📄 api.ts
+├── ⚙️ .gitignore
+├── 📝 AGENTS.md
+├── 📝 CLAUDE.md
+├── 📄 File Tree - portfolio-frontend.txt
+├── 📝 README.md
+├── ⚙️ components.json
+├── 📄 eslint.config.mjs
+├── 📄 next.config.ts
+├── ⚙️ package-lock.json
+├── ⚙️ package.json
+├── 📄 postcss.config.mjs
+└── ⚙️ tsconfig.json
+
+────────────────────────────────────────────────────────────────────────────────

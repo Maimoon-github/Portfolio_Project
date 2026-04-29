@@ -1,0 +1,25 @@
+// src/app/portfolio/[slug]/page.tsx
+import { ProjectHero } from "@/components/portfolio/ProjectHero"
+import { notFound } from "next/navigation"
+
+export const revalidate = 3600
+
+interface Props {
+  params: { slug: string }
+}
+
+export default async function ProjectPage({}: Props) {
+  // const project = await fetchProject.detail(params.slug)
+  const project = null // placeholder
+
+  if (!project) notFound()
+
+  return (
+    <div className="py-12">
+      <ProjectHero project={project} />
+      <div className="mt-8 prose dark:prose-invert max-w-none">
+        {/* Rich content */}
+      </div>
+    </div>
+  )
+}

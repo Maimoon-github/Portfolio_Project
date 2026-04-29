@@ -1,0 +1,78 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Sovereign Architect + Aura Palette (Golden-White + Radiant Amber-Orange + Protective Blue) */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: "Space Grotesk", var(--font-sans);
+
+  /* Surface Hierarchy (No-Line Rule) */
+  --color-surface: oklch(0.16 0.04 0);           /* Deep Near-Black base */
+  --color-surface-container-low: oklch(0.20 0.04 78); /* #1c1b1b */
+  --color-surface-container: oklch(0.22 0.06 78);
+  --color-surface-container-high: oklch(0.26 0.06 78);
+  --color-surface-container-highest: oklch(0.35 0.06 78);
+
+  /* Aura Primary */
+  --color-primary: oklch(0.88 0.12 78);           /* Golden-White / Radiant Amber */
+  --color-primary-foreground: oklch(0.15 0.02 0);
+
+  /* Protective Blue */
+  --color-blue: oklch(0.65 0.12 240);
+  --color-blue-foreground: oklch(0.98 0.02 0);
+
+  --color-secondary: oklch(0.96 0.04 78);
+  --color-secondary-foreground: oklch(0.25 0.08 78);
+
+  --color-accent: oklch(0.72 0.18 38);            /* Amber-Orange accent */
+  --color-accent-foreground: oklch(0.98 0.02 0);
+
+  --color-muted: oklch(0.96 0.02 0);
+  --color-muted-foreground: oklch(0.55 0.05 0);
+
+  --color-destructive: oklch(0.58 0.22 27);
+  --color-border: oklch(0.92 0.03 0 / 0.15);      /* Ghost border */
+  --color-input: oklch(0.22 0.06 78);
+  --color-ring: oklch(0.72 0.12 78);
+
+  --radius: 0.75rem;
+}
+
+:root {
+  --background: oklch(0.985 0.015 78);            /* Golden-White light base */
+  --foreground: oklch(0.18 0.04 0);
+  --card: var(--color-surface-container-low);
+  --card-foreground: var(--foreground);
+  --popover: var(--color-surface-container-low);
+  --popover-foreground: var(--foreground);
+}
+
+.dark {
+  --background: oklch(0.16 0.04 0);               /* Deep Near-Black */
+  --foreground: oklch(0.96 0.02 78);
+  --card: var(--color-surface-container-low);
+  --card-foreground: var(--foreground);
+  --popover: var(--color-surface-container-low);
+  --popover-foreground: var(--foreground);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-[-0.02em];
+  }
+  html {
+    @apply font-sans;
+  }
+}
