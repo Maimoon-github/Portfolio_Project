@@ -1,3 +1,3 @@
-export function SomeComponent(props?: any) {
-  return <div>SomeComponent placeholder</div>
+export default function ContactForm() {
+  return <div>Contact Form Placeholder</div>
 }
