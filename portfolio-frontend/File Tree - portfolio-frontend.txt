@@ -1,4 +1,4 @@
-File Tree -  portfolio-frontend
+File Tree: portfolio-frontend
 Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 
 ────────────────────────────────────────────────────────────────────────────────
@@ -48,77 +48,6 @@ Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 │   │   │   ├── 📄 layout.tsx
 │   │   │   ├── 📄 loading.tsx
 │   │   │   └── 📄 page.tsx
-│   │   ├── 📁 components/
-│   │   │   ├── 📁 blog/
-│   │   │   │   ├── 📄 CategoryFilter.tsx
-│   │   │   │   ├── 📄 CommentSection.tsx
-│   │   │   │   ├── 📄 PostCard.tsx
-│   │   │   │   ├── 📄 PostHeader.tsx
-│   │   │   │   ├── 📄 PrevNextPost.tsx
-│   │   │   │   ├── 📄 RichTextRenderer.tsx
-│   │   │   │   ├── 📄 SearchBar.tsx
-│   │   │   │   └── 📄 TableOfContents.tsx
-│   │   │   ├── 📁 contact/
-│   │   │   │   └── 📄 ContactForm.tsx
-│   │   │   ├── 📁 layout/
-│   │   │   │   ├── 📄 Footer.tsx
-│   │   │   │   ├── 📄 Header.tsx
-│   │   │   │   ├── 📄 JsonLd.tsx
-│   │   │   │   ├── 📄 MobileMenu.tsx
-│   │   │   │   ├── 📄 Providers.tsx
-│   │   │   │   └── 📄 ThemeToggle.tsx
-│   │   │   ├── 📁 portfolio/
-│   │   │   │   ├── 📄 ExperienceTimeline.tsx
-│   │   │   │   ├── 📄 ProjectCard.tsx
-│   │   │   │   ├── 📄 ProjectHero.tsx
-│   │   │   │   ├── 📄 SkillBadge.tsx
-│   │   │   │   ├── 📄 SkillSection.tsx
-│   │   │   │   └── 📄 TestimonialCard.tsx
-│   │   │   ├── 📁 seo/
-│   │   │   │   ├── 📄 BreadcrumbSchema.tsx
-│   │   │   │   └── 📄 PersonSchema.tsx
-│   │   │   ├── 📁 tools/
-│   │   │   │   ├── 📁 implementations/
-│   │   │   │   │   ├── 📄 BMICalculator.tsx
-│   │   │   │   │   ├── 📄 CompoundInterestCalculator.tsx
-│   │   │   │   │   ├── 📄 ContrastCheckerCalculator.tsx
-│   │   │   │   │   ├── 📄 MortgageCalculator.tsx
-│   │   │   │   │   └── 📄 ReadingTimeCalculator.tsx
-│   │   │   │   ├── 📄 CalculatorCard.tsx
-│   │   │   │   ├── 📄 CalculatorShell.tsx
-│   │   │   │   ├── 📄 InputField.tsx
-│   │   │   │   └── 📄 ResultDisplay.tsx
-│   │   │   └── 📁 ui/
-│   │   │       ├── 📄 badge.tsx
-│   │   │       ├── 📄 button.tsx
-│   │   │       ├── 📄 card.tsx
-│   │   │       ├── 📄 dialog.tsx
-│   │   │       ├── 📄 dropdown-menu.tsx
-│   │   │       ├── 📄 input.tsx
-│   │   │       ├── 📄 label.tsx
-│   │   │       ├── 📄 progress.tsx
-│   │   │       ├── 📄 select.tsx
-│   │   │       ├── 📄 separator.tsx
-│   │   │       ├── 📄 skeleton.tsx
-│   │   │       ├── 📄 slider.tsx
-│   │   │       ├── 📄 tabs.tsx
-│   │   │       ├── 📄 textarea.tsx
-│   │   │       ├── 📄 toast.tsx
-│   │   │       └── 📄 tooltip.tsx
-│   │   ├── 📁 hooks/
-│   │   │   ├── 📄 useCalculator.ts
-│   │   │   ├── 📄 useDebounce.ts
-│   │   │   ├── 📄 useIntersectionObserver.ts
-│   │   │   └── 📄 useLocalStorage.ts
-│   │   ├── 📁 lib/
-│   │   │   ├── 📁 api/
-│   │   │   │   ├── 📄 blog.ts
-│   │   │   │   ├── 📄 client.ts
-│   │   │   │   ├── 📄 portfolio.ts
-│   │   │   │   └── 📄 tools.ts
-│   │   │   ├── 📄 og.tsx
-│   │   │   ├── 📄 rich-text.ts
-│   │   │   └── 📄 utils.ts
 │   │   ├── 📁 portfolio/
 │   │   │   ├── 📁 [slug]/
 │   │   │   │   ├── 📄 loading.tsx
@@ -132,8 +61,6 @@ Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 │   │   │   │   └── 📄 page.tsx
 │   │   │   ├── 📄 loading.tsx
 │   │   │   └── 📄 page.tsx
-│   │   ├── 📁 types/
-│   │   │   └── 📄 api.ts
 │   │   ├── 📄 error.tsx
 │   │   ├── 📄 favicon.ico
 │   │   ├── 🎨 globals.css
@@ -186,11 +113,32 @@ Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 │   │       ├── 📄 tabs.tsx
 │   │       ├── 📄 textarea.tsx
 │   │       └── 📄 tooltip.tsx
-│   └── 📁 lib/
-│       └── 📄 utils.ts
+│   ├── 📁 hooks/
+│   │   ├── 📄 useCalculator.ts
+│   │   ├── 📄 useDebounce.ts
+│   │   ├── 📄 useIntersectionObserver.ts
+│   │   └── 📄 useLocalStorage.ts
+│   ├── 📁 lib/
+│   │   ├── 📁 api/
+│   │   │   ├── 📄 blog.ts
+│   │   │   ├── 📄 client.ts
+│   │   │   ├── 📄 portfolio.ts
+│   │   │   └── 📄 tools.ts
+│   │   ├── 📄 og.tsx
+│   │   ├── 📄 rich-text.ts
+│   │   └── 📄 utils.ts
+│   ├── 📁 styles/
+│   │   ├── 🎨 fonts.css
+│   │   ├── 🎨 globals.css
+│   │   ├── 🎨 index.css
+│   │   ├── 🎨 tailwind.css
+│   │   └── 🎨 theme.css
+│   └── 📁 types/
+│       └── 📄 api.ts
 ├── ⚙️ .gitignore
 ├── 📝 AGENTS.md
 ├── 📝 CLAUDE.md
+├── 📄 File Tree - portfolio-frontend.txt
 ├── 📝 README.md
 ├── ⚙️ components.json
 ├── 📄 eslint.config.mjs
