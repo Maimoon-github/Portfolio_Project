@@ -1,1 +1,0 @@
-// [SSG] About: bio, skills section, experience timeline, testimonials carousel
