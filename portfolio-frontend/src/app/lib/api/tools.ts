@@ -1,23 +1,21 @@
-// src/lib/api/calculators.ts
-// fetchCalculator.list(), .detail(), fetchCalculatorCategories()
-import { apiFetch } from "./client"
-import type { CalculatorListResponse, Calculator, CalculatorCategory } from "@/types/api"
+import { apiFetch } from "./client";
+import type { ToolListResponse, Tool, ToolCategory } from "@/types/api";
 
-export const fetchCalculator = {
+export const fetchTool = {
   list: (params?: Record<string, unknown>) =>
-    apiFetch<CalculatorListResponse>(
-      `/api/v1/calculators/?${new URLSearchParams(params as any)}`,
-      { tags: ["calculators"], revalidate: 3600 }
+    apiFetch<ToolListResponse>(
+      `/api/v1/tools/?${new URLSearchParams(params as any)}`,
+      { tags: ["tools"], revalidate: 3600 }
     ),
   detail: (slug: string) =>
-    apiFetch<Calculator>(`/api/v1/calculators/${slug}/`, {
-      tags: [`calculator-${slug}`],
+    apiFetch<Tool>(`/api/v1/tools/${slug}/`, {
+      tags: [`tool-${slug}`],
       revalidate: 3600,
     }),
-}
+};
 
-export const fetchCalculatorCategories = () =>
-  apiFetch<CalculatorCategory[]>("/api/v1/calculators/categories/", {
-    tags: ["calculator-categories"],
+export const fetchToolCategories = () =>
+  apiFetch<ToolCategory[]>("/api/v1/tools/categories/", {
+    tags: ["tool-categories"],
     revalidate: 3600,
-  })
+  });

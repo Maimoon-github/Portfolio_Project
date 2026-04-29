@@ -1,7 +1,5 @@
-// src/lib/api/blog.ts
-// fetchPost.list(), .detail(), fetchCategories(), fetchTags(), fetchSearch()
-import { apiFetch } from "./client"
-import type { PostListResponse, Post } from "@/types/api"
+import { apiFetch } from "./client";
+import type { PostListResponse, Post } from "@/types/api";
 
 export const fetchPost = {
   list: (params?: Record<string, unknown>) =>
@@ -14,22 +12,16 @@ export const fetchPost = {
       tags: [`blog-post-${slug}`],
       revalidate: 600,
     }),
-}
+};
 
 export const fetchCategories = () =>
   apiFetch<{ slug: string; name: string }[]>("/api/v1/blog/categories/", {
     tags: ["blog-categories"],
     revalidate: 300,
-  })
+  });
 
 export const fetchTags = () =>
   apiFetch<{ slug: string; name: string }[]>("/api/v1/blog/tags/", {
     tags: ["blog-tags"],
     revalidate: 300,
-  })
-
-export const fetchSearch = (query: string) =>
-  apiFetch<Post[]>("/api/v1/blog/search/", {
-    tags: ["blog-search"],
-    revalidate: 60,
-  })
+  });
