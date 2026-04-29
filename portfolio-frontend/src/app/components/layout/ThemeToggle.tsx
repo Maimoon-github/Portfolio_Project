@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes";
 import { Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -13,9 +13,7 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return <Button variant="ghost" size="icon" className="w-10 h-10" />;
-  }
+  if (!mounted) return <Button variant="ghost" size="icon" />;
 
   return (
     <Button

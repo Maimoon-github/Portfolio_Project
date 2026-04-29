@@ -5,19 +5,11 @@ export async function apiFetch<T>(
   opts: RequestInit & { tags?: string[]; revalidate?: number } = {}
 ): Promise<T> {
   const { tags, revalidate, ...fetchOpts } = opts;
-
   const res = await fetch(`${API_BASE}${path}`, {
     ...fetchOpts,
     next: { tags, revalidate },
-    headers: {
-      "Content-Type": "application/json",
-      ...fetchOpts.headers,
-    },
+    headers: { "Content-Type": "application/json", ...fetchOpts.headers },
   });
-
-  if (!res.ok) {
-    throw new Error(`API error ${res.status}: ${path}`);
-  }
-
+  if (!res.ok) throw new Error(`API error ${res.status}: ${path}`);
   return res.json();
 }

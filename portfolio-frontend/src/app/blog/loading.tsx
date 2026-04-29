@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export default function Loading() {
   return (
     <>
@@ -5,16 +7,13 @@ export default function Loading() {
         <aside className="w-64 shrink-0 border-r pr-6">
           <h2 className="font-semibold">Blog</h2>
           <nav className="mt-4 flex flex-col gap-2 text-sm">
-            <a href="/blog">All posts</a>
-            <a href="/blog/category/ai">AI/ML</a>
-            <a href="/blog/category/webdev">Web Dev</a>
+            <Link href="/blog">All posts</Link>
+            <Link href="/blog/category/ai">AI/ML</Link>
+            <Link href="/blog/category/webdev">Web Dev</Link>
           </nav>
         </aside>
-        <main className="flex-1">
-          {/* Skeleton for blog loading */}
-          <div>Loading blog posts...</div>
-        </main>
+        <main className="flex-1">Loading...</main>
       </div>
     </>
-  );
+  )
 }
