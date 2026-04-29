@@ -1,7 +1,7 @@
-// src/app/sitemap.ts
-import { MetadataRoute } from "next"
+import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Static routes + dynamic slugs (will be populated via API in future)
   const routes = [
     { url: "https://yourdomain.dev", lastModified: new Date(), changeFrequency: "weekly" as const, priority: 1 },
     { url: "https://yourdomain.dev/about", lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.9 },
@@ -11,6 +11,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: "https://yourdomain.dev/contact", lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.7 },
     { url: "https://yourdomain.dev/privacy", lastModified: new Date(), changeFrequency: "yearly" as const, priority: 0.3 },
     { url: "https://yourdomain.dev/terms", lastModified: new Date(), changeFrequency: "yearly" as const, priority: 0.3 },
-  ]
-  return routes
+  ];
+  return routes;
 }

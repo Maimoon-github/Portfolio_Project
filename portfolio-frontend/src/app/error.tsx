@@ -1,9 +1,8 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
-import { Home, RefreshCw } from "lucide-react"
+import { RefreshCw, Home } from "lucide-react"
 
 interface ErrorPageProps {
   error: Error & { digest?: string }
@@ -12,37 +11,37 @@ interface ErrorPageProps {
 
 export default function ErrorPage({ error, reset }: ErrorPageProps) {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <Card className="w-full max-w-md shadow-lg">
-        <CardHeader>
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-destructive/10 text-destructive">
-            <RefreshCw className="h-8 w-8" />
+    <div className="min-h-screen flex items-center justify-center bg-surface px-6 py-12">
+      <div className="max-w-md w-full">
+        <div className="glass rounded-3xl p-10 text-center relative overflow-hidden">
+          {/* Ambient glow */}
+          <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-surface-container-high text-primary">
+            <RefreshCw className="h-10 w-10" />
           </div>
-          <CardTitle className="text-center text-2xl">Something went wrong</CardTitle>
-          <CardDescription className="text-center">
-            We encountered an unexpected error. Please try again or head back home.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
+          <h1 className="headline-lg mb-3">Something went wrong</h1>
+          <p className="text-on-surface-variant mb-8 text-lg">
+            An unexpected error occurred. Our systems are protected, but even sovereign architectures need a reset.
+          </p>
           {process.env.NODE_ENV === "development" && (
-            <div className="rounded-lg border border-destructive/10 bg-destructive/5 p-3">
-              <p className="font-mono text-xs text-destructive/80">{error.message}</p>
+            <div className="tonal-shift mb-8 p-4 rounded-2xl text-left font-mono text-xs text-on-surface-variant">
+              {error.message}
             </div>
           )}
-        </CardContent>
-        <CardFooter className="flex flex-col gap-3">
-          <Button onClick={reset} className="w-full">
-            <RefreshCw className="mr-2 h-4 w-4" />
-            Try Again
-          </Button>
-          <Button variant="outline" className="w-full" asChild>
-            <Link href="/">
-              <Home className="mr-2 h-4 w-4" />
-              Back to Home
-            </Link>
-          </Button>
-        </CardFooter>
-      </Card>
+          <div className="flex flex-col gap-4">
+            <Button onClick={reset} className="btn-primary w-full text-lg py-7">
+              <RefreshCw className="mr-3 h-5 w-5" />
+              Try Again
+            </Button>
+            <Button variant="outline" asChild className="btn-secondary w-full py-7 text-lg">
+              <Link href="/">
+                <Home className="mr-3 h-5 w-5" />
+                Return Home
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }

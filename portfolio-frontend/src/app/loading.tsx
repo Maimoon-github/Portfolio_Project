@@ -1,57 +1,40 @@
-// src/app/layout.tsx
-import type { Metadata } from "next"
-import { Providers } from "@/components/layout/Providers"
-import { Header } from "@/components/layout/Header"
-import { Footer } from "@/components/layout/Footer"
-import { JsonLd } from "@/components/layout/JsonLd"
-import "./globals.css"
-
-export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
-  ),
-  title: {
-    default: "Alex Reeves • Senior AI/ML Engineer",
-    template: "%s | Alex Reeves",
-  },
-  description: "Engineering production-grade intelligence systems at scale.",
-  keywords: ["AI/ML Engineer", "LLM", "MLOps", "Computer Vision", "Portfolio", "Blog"],
-  authors: [{ name: "Alex Reeves", url: "https://yourdomain.dev" }],
-  creator: "Alex Reeves",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://yourdomain.dev",
-    siteName: "Alex Reeves",
-    images: [{ url: "/images/og-default.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    creator: "@yourhandle",
-  },
-  robots: { index: true, follow: true },
-}
-
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function Loading() {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-background text-foreground font-sans antialiased">
-        <Providers>
-          <JsonLd
-            schema={{
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "Alex Reeves",
-              url: "https://yourdomain.dev",
-            }}
-          />
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </Providers>
-      </body>
-    </html>
-  )
+    <div className="min-h-screen bg-surface">
+      {/* Hero skeleton */}
+      <section className="section pt-24 pb-20">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="h-14 w-3/4 mx-auto bg-surface-container rounded-3xl mb-6 animate-pulse" />
+            <div className="h-8 w-1/2 mx-auto bg-surface-container rounded-3xl mb-8 animate-pulse" />
+            <div className="h-6 w-96 mx-auto bg-surface-container/70 rounded-2xl animate-pulse" />
+          </div>
+          <div className="flex justify-center gap-4 mt-12">
+            <div className="h-12 w-40 bg-gradient-to-r from-primary to-primary-container rounded-2xl animate-pulse" />
+            <div className="h-12 w-40 bg-surface-container rounded-2xl animate-pulse" />
+          </div>
+        </div>
+      </section>
+
+      {/* Featured / Cards skeleton */}
+      <section className="section bg-surface-container-low">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="h-9 w-64 bg-surface-container rounded-3xl animate-pulse mb-12" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="card h-80 rounded-3xl animate-pulse" />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Skills skeleton */}
+      <section className="section">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="h-8 w-48 bg-surface-container rounded-3xl animate-pulse mb-8" />
+          <div className="h-64 bg-surface-container rounded-3xl animate-pulse" />
+        </div>
+      </section>
+    </div>
+  );
 }
