@@ -1,6 +1,4 @@
 // src/components/portfolio/SkillBadge.tsx
-// Skill chip with proficiency ring indicator
-import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 

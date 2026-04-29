@@ -8,8 +8,8 @@ interface Props {
   params: { slug: string }
 }
 
-export default async function ProjectPage({ params }: Props) {
-  // const project = await fetchProject.detail(params.slug)
+export default async function ProjectPage({ params: _params }: Props) {
+  // const project = await fetchProject.detail(_params.slug)
   const project = null // placeholder
 
   if (!project) notFound()

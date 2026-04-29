@@ -8,6 +8,6 @@ interface SkillSectionProps {
   }>
 }
 
-export function SkillSection({ categories }: SkillSectionProps) {
+export function SkillSection({ categories: _categories }: SkillSectionProps) {
   return <div>Skills Section</div>
 }

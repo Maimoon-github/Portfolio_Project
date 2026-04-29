@@ -2,7 +2,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
 import { cn } from "@/lib/utils"
 
 interface TocItem {
