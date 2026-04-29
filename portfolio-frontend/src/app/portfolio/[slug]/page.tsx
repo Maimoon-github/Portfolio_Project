@@ -1,4 +1,4 @@
-// src/app/portfolio/[slug]/page.tsx  [ISR:3600]
+// src/app/portfolio/[slug]/page.tsx
 import { ProjectHero } from "@/components/portfolio/ProjectHero"
 import { notFound } from "next/navigation"
 
@@ -8,8 +8,8 @@ interface Props {
   params: { slug: string }
 }
 
-export default async function ProjectPage({ params: _params }: Props) {
-  // const project = await fetchProject.detail(_params.slug)
+export default async function ProjectPage(_props: Props) {
+  // const project = await fetchProject.detail(_props.params.slug)
   const project = null // placeholder
 
   if (!project) notFound()
