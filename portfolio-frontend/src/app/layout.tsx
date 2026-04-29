@@ -3,7 +3,7 @@ import { Providers } from "@/components/layout/Providers";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/layout/JsonLd";
-import "./globals.css";
+import "@/styles/index.css";   // ← Correct Sovereign Architect entry point
 
 export const metadata: Metadata = {
   title: {
@@ -11,16 +11,11 @@ export const metadata: Metadata = {
     template: "%s | Alex Reeves",
   },
   description: "Sovereign Architect of production-grade intelligence systems at scale.",
-  keywords: ["AI/ML Engineer", "LLM", "MLOps", "Computer Vision", "PyTorch", "Transformers", "Sovereign Architect"],
-  authors: [{ name: "Alex Reeves" }],
+  keywords: ["AI/ML Engineer", "LLM", "MLOps", "PyTorch", "Transformers"],
   openGraph: {
     type: "website",
-    locale: "en_US",
     siteName: "Alex Reeves",
     images: [{ url: "/images/og-default.png", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
   },
 };
 
@@ -37,7 +32,6 @@ export default function RootLayout({
               "@type": "Person",
               name: "Alex Reeves",
               jobTitle: "Senior AI/ML Engineer",
-              url: "https://yourdomain.dev",
             }}
           />
           <Header />

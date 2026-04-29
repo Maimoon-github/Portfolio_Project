@@ -1,3 +1,8 @@
+/* src/styles/index.css — Sovereign Architect Entry Point */
+/* All @import rules MUST come first — Google Fonts at absolute top */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
