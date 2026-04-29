@@ -6,11 +6,14 @@ import { JsonLd } from "@/components/layout/JsonLd";
 import "@/styles/index.css";   // ← Correct Sovereign Architect entry point
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+  ),
   title: {
     default: "Alex Reeves • Senior AI/ML Engineer",
     template: "%s | Alex Reeves",
+    description: "Sovereign Architect of production-grade intelligence systems at scale.", // ← Added description here
   },
-  description: "Sovereign Architect of production-grade intelligence systems at scale.",
   keywords: ["AI/ML Engineer", "LLM", "MLOps", "PyTorch", "Transformers"],
   openGraph: {
     type: "website",
@@ -23,7 +26,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body className="min-h-screen bg-surface text-on-surface font-sans antialiased">
         <Providers>
           <JsonLd
