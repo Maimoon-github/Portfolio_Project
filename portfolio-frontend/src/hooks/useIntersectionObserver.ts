@@ -3,8 +3,8 @@ import { useEffect, useRef, useState, type RefObject } from "react"
 
 export function useIntersectionObserver(
   options: IntersectionObserverInit = {}
-): [RefObject<HTMLElement>, boolean] {
-  const ref = useRef<HTMLElement>(null)
+): [RefObject<HTMLElement | null>, boolean] {
+  const ref = useRef<HTMLElement | null>(null)
   const [isIntersecting, setIsIntersecting] = useState(false)
 
   useEffect(() => {

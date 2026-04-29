@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/toast"
+import { useToast as useSonner } from "sonner" // or implement custom if not using sonner
 
 interface Comment {
   id: string
@@ -94,4 +95,17 @@ export function CommentSection() {
       </form>
     </div>
   )
+}
+
+
+
+// Simple toast function for now
+export function toast({ title, description, variant = "default" }: {
+  title: string
+  description?: string
+  variant?: "default" | "success" | "destructive"
+}) {
+  // For now using console + alert fallback. Replace with sonner/toast library later.
+  console.log(`[${variant.toUpperCase()}] ${title}: ${description}`)
+  // In production: import { toast } from "sonner" and call it
 }

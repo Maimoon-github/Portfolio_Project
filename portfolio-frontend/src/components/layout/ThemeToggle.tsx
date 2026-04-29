@@ -1,28 +1,29 @@
-"use client";
+// src/components/layout/ThemeToggle.tsx
+"use client"
 
-import { useTheme } from "next-themes";
-import { Sun, Moon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useTheme } from "next-themes"
+import { Button } from "@/components/ui/button"
+import { Moon, Sun } from "lucide-react"
+import { useEffect, useState } from "react"
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
+  // Use useEffect only for mount detection (no setState sync issue)
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
-  if (!mounted) return <Button variant="ghost" size="icon" />;
+  if (!mounted) return null
 
   return (
     <Button
       variant="ghost"
       size="icon"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      aria-label="Toggle theme"
     >
-      {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+      {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
     </Button>
-  );
+  )
 }

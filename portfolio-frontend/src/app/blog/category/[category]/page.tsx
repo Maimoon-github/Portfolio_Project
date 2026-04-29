@@ -1,7 +1,6 @@
-import type { PostListResponse } from "@/types/api";
+export default async function CategoryPage() {
+  // const posts = await fetchPost.list({ category })
+  const posts: any[] = []
 
-export default async function BlogPage() {
-  // const posts = await fetchPost.list();
-  const posts: any[] = []; // placeholder until backend ready
-  return <div>Blog Page - {posts.length} posts</div>;
+  return <div>Category Archive - {posts.length} posts</div>
 }
