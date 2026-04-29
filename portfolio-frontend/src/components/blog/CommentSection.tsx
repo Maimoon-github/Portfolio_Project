@@ -5,8 +5,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Input } from "@/components/ui/input"
-import { toast } from "@/components/ui/toast"
-import { useToast as useSonner } from "sonner" // or implement custom if not using sonner
+import { toast } from "@/components/ui/toast"   // ← now correctly exported
 
 interface Comment {
   id: string
@@ -37,13 +36,9 @@ export function CommentSection() {
 
     setComments((prev) => [...prev, optimisticComment])
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 800))
 
-    toast({
-      title: "Comment submitted for moderation",
-      variant: "success",
-    })
+    toast({ title: "Comment submitted for moderation", variant: "success" })
 
     setBody("")
     setName("")
@@ -55,7 +50,6 @@ export function CommentSection() {
     <div className="mt-16">
       <h3 className="text-xl font-medium mb-6">Comments</h3>
 
-      {/* Existing comments */}
       <div className="space-y-8 mb-12">
         {comments.map((comment) => (
           <div key={comment.id} className="bg-secondary/50 rounded-2xl p-6">
@@ -68,7 +62,6 @@ export function CommentSection() {
         ))}
       </div>
 
-      {/* Comment form */}
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-2 gap-4">
           <Input
@@ -95,17 +88,4 @@ export function CommentSection() {
       </form>
     </div>
   )
-}
-
-
-
-// Simple toast function for now
-export function toast({ title, description, variant = "default" }: {
-  title: string
-  description?: string
-  variant?: "default" | "success" | "destructive"
-}) {
-  // For now using console + alert fallback. Replace with sonner/toast library later.
-  console.log(`[${variant.toUpperCase()}] ${title}: ${description}`)
-  // In production: import { toast } from "sonner" and call it
 }

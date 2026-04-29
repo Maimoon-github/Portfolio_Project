@@ -1,7 +1,7 @@
-import type { PostListResponse } from "@/types/api";
+// src/app/blog/tag/[tag]/page.tsx
+export default async function TagPage() {
+  // const posts = await fetchPost.list({ tag: params.tag })
+  const posts: unknown[] = []
 
-export default async function BlogPage() {
-  // const posts = await fetchPost.list();
-  const posts: any[] = []; // placeholder until backend ready
-  return <div>Blog Page - {posts.length} posts</div>;
+  return <div>Tag Archive - {posts.length} posts</div>
 }

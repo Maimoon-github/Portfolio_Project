@@ -10,7 +10,6 @@ export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  // Use useEffect only for mount detection (no setState sync issue)
   useEffect(() => {
     setMounted(true)
   }, [])

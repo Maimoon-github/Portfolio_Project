@@ -126,3 +126,20 @@ export {
   ToastClose,
   ToastAction,
 }
+
+// src/components/ui/toast.tsx
+// ... (all existing Radix toast primitives stay exactly as you had them) ...
+
+// Simple toast function (no external dependencies)
+export function toast({
+  title,
+  description,
+  variant = "default",
+}: {
+  title: string
+  description?: string
+  variant?: "default" | "success" | "destructive"
+}) {
+  // Placeholder until full toast system (sonner or Radix) is wired up
+  console.log(`[Toast ${variant.toUpperCase()}] ${title}`, description || "")
+}
