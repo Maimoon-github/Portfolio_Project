@@ -1,5 +1,4 @@
-// src/hooks/useLocalStorage.ts
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export function useLocalStorage<T>(
   key: string,
@@ -11,8 +10,7 @@ export function useLocalStorage<T>(
     try {
       const item = window.localStorage.getItem(key)
       return item ? (JSON.parse(item) as T) : initialValue
-    } catch (error) {
-      console.error(error)
+    } catch {
       return initialValue
     }
   })
@@ -25,8 +23,8 @@ export function useLocalStorage<T>(
       if (typeof window !== "undefined") {
         window.localStorage.setItem(key, JSON.stringify(valueToStore))
       }
-    } catch (error) {
-      console.error(error)
+    } catch {
+      // Ignore write errors
     }
   }
 
