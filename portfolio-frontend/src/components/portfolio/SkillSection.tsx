@@ -1,5 +1,13 @@
-import type { Skill } from "@/types/api";
+// src/components/portfolio/SkillSection.tsx
+import type { Skill } from "@/types/api"
 
-export function SkillSection({ categories }: { categories: any[] }) {
-  return <div>Skills Section</div>;
+interface SkillSectionProps {
+  categories: Array<{
+    name: string
+    skills: Skill[]
+  }>
+}
+
+export function SkillSection({ categories }: SkillSectionProps) {
+  return <div>Skills Section</div>
 }

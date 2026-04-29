@@ -14,7 +14,7 @@ interface Comment {
   createdAt: string
 }
 
-export function CommentSection({ postSlug }: { postSlug: string }) {
+export function CommentSection() {
   const [comments, setComments] = useState<Comment[]>([])
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -26,20 +26,27 @@ export function CommentSection({ postSlug }: { postSlug: string }) {
     if (!body.trim()) return
 
     setIsSubmitting(true)
-    // Optimistic update
+
     const optimisticComment: Comment = {
       id: `temp-${Date.now()}`,
       author: name || "Anonymous",
       body,
       createdAt: new Date().toISOString(),
     }
+
     setComments((prev) => [...prev, optimisticComment])
 
-    // Simulate API call (replace with real server action later)
+    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 800))
 
-    toast({ title: "Comment submitted for moderation", variant: "success" })
+    toast({
+      title: "Comment submitted for moderation",
+      variant: "success",
+    })
+
     setBody("")
+    setName("")
+    setEmail("")
     setIsSubmitting(false)
   }
 

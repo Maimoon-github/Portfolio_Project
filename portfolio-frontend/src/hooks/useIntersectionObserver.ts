@@ -1,15 +1,8 @@
 // src/hooks/useIntersectionObserver.ts
-// Returns visible element refs — powers TableOfContents active heading
-import { useEffect, useRef, useState, RefObject } from "react"
-
-interface UseIntersectionObserverOptions {
-  threshold?: number | number[]
-  rootMargin?: string
-  root?: Element | null
-}
+import { useEffect, useRef, useState, type RefObject } from "react"
 
 export function useIntersectionObserver(
-  options: UseIntersectionObserverOptions = {}
+  options: IntersectionObserverInit = {}
 ): [RefObject<HTMLElement>, boolean] {
   const ref = useRef<HTMLElement>(null)
   const [isIntersecting, setIsIntersecting] = useState(false)
@@ -18,19 +11,14 @@ export function useIntersectionObserver(
     const element = ref.current
     if (!element) return
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsIntersecting(entry.isIntersecting),
-      {
-        threshold: options.threshold ?? 0,
-        rootMargin: options.rootMargin ?? "0px",
-        root: options.root ?? null,
-      }
-    )
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsIntersecting(entry.isIntersecting)
+    }, options)
 
     observer.observe(element)
 
     return () => observer.disconnect()
-  }, [options.threshold, options.rootMargin, options.root])
+  }, [options])
 
   return [ref, isIntersecting]
 }

@@ -11,43 +11,46 @@ interface TocItem {
   level: number
 }
 
-interface TableOfContentsProps {
-  headings: TocItem[]
-}
-
-export function TableOfContents({ headings }: TableOfContentsProps) {
+export function TableOfContents({ headings }: { headings: TocItem[] }) {
   const [activeId, setActiveId] = useState<string>("")
 
-  const { observe } = useIntersectionObserver({
-    threshold: 0.5,
-    rootMargin: "-100px 0px -50% 0px",
-    onIntersect: (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) setActiveId(entry.target.id)
-      })
-    },
-  })
-
   useEffect(() => {
-    const elements = headings.map((h) => document.getElementById(h.id)).filter(Boolean) as HTMLElement[]
-    elements.forEach((el) => observe(el))
-    return () => elements.forEach((el) => el && observe(el, false))
-  }, [headings, observe])
+    if (headings.length === 0) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: "-80px 0px -40% 0px" }
+    )
+
+    headings.forEach(({ id }) => {
+      const element = document.getElementById(id)
+      if (element) observer.observe(element)
+    })
+
+    return () => observer.disconnect()
+  }, [headings])
+
+  if (headings.length === 0) return null
 
   return (
-    <nav className="sticky top-24 hidden xl:block w-64 text-sm">
-      <h4 className="font-medium text-muted-foreground mb-4 uppercase tracking-widest text-xs">On this page</h4>
+    <nav className="sticky top-24 space-y-2 text-sm">
+      <p className="font-medium text-muted-foreground mb-3">On this page</p>
       <ul className="space-y-2">
         {headings.map((heading) => (
-          <li key={heading.id}>
-            <a
-              href={`#${heading.id}`}
-              className={cn(
-                "block py-1 transition-colors hover:text-[#ffc68b]",
-                activeId === heading.id ? "text-[#ffc68b] font-medium" : "text-muted-foreground"
-              )}
-              style={{ paddingLeft: `${(heading.level - 2) * 12}px` }}
-            >
+          <li
+            key={heading.id}
+            className={cn(
+              "transition-colors",
+              activeId === heading.id ? "text-foreground font-medium" : "text-muted-foreground hover:text-foreground"
+            )}
+          >
+            <a href={`#${heading.id}`} className="block py-1">
               {heading.text}
             </a>
           </li>

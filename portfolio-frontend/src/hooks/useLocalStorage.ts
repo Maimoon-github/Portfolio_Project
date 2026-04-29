@@ -1,5 +1,4 @@
 // src/hooks/useLocalStorage.ts
-// Persists calculator inputs across page reloads via localStorage
 import { useState, useEffect } from "react"
 
 export function useLocalStorage<T>(
@@ -8,6 +7,7 @@ export function useLocalStorage<T>(
 ): [T, (value: T | ((val: T) => T)) => void] {
   const [storedValue, setStoredValue] = useState<T>(() => {
     if (typeof window === "undefined") return initialValue
+
     try {
       const item = window.localStorage.getItem(key)
       return item ? (JSON.parse(item) as T) : initialValue
@@ -21,6 +21,7 @@ export function useLocalStorage<T>(
     try {
       const valueToStore = value instanceof Function ? value(storedValue) : value
       setStoredValue(valueToStore)
+
       if (typeof window !== "undefined") {
         window.localStorage.setItem(key, JSON.stringify(valueToStore))
       }

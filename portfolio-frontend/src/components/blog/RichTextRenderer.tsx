@@ -1,38 +1,27 @@
 // src/components/blog/RichTextRenderer.tsx
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useMemo } from "react"
 import DOMPurify from "dompurify"
+import { cn } from "@/lib/utils"
 
-/**
- * RichTextRenderer — sanitises & renders Wagtail StreamField/HTML safely.
- * 'use client' required for DOMPurify (browser-only).
- */
 interface RichTextRendererProps {
   html: string
   className?: string
 }
 
-export function RichTextRenderer({ html, className = "" }: RichTextRendererProps) {
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (ref.current && html) {
-      ref.current.innerHTML = DOMPurify.sanitize(html, {
-        ADD_ATTR: ["target"],
-      })
-    }
+export function RichTextRenderer({ html, className }: RichTextRendererProps) {
+  const safeHtml = useMemo(() => {
+    return DOMPurify.sanitize(html, {
+      ADD_ATTR: ["target", "rel"],
+      ALLOWED_TAGS: ["a", "p", "h1", "h2", "h3", "h4", "ul", "ol", "li", "strong", "em", "blockquote", "code", "pre", "img"],
+    })
   }, [html])
 
   return (
     <div
-      ref={ref}
-      className={cn(
-        "prose prose-invert max-w-none",
-        "prose-headings:font-medium prose-headings:tracking-[-0.02em]",
-        "prose-a:text-[#ffc68b] prose-a:no-underline hover:prose-a:underline",
-        className
-      )}
+      className={cn("prose dark:prose-invert max-w-none", className)}
+      dangerouslySetInnerHTML={{ __html: safeHtml }}
     />
   )
 }

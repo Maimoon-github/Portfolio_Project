@@ -1,9 +1,6 @@
-export function CategoryFilter({ 
-  categories = [], 
-  currentCategory 
-}: { 
-  categories: { slug: string; name: string }[]; 
-  currentCategory?: string;
-}) {
-  return <div>Category Filter</div>;
+// src/components/blog/CategoryFilter.tsx
+"use client"
+
+export function CategoryFilter() {
+  return <div>Category Filter</div>
 }

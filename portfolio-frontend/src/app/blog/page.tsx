@@ -1,3 +1,9 @@
+// src/app/blog/page.tsx
+import type { PostListResponse } from "@/types/api"
+
 export default async function BlogPage() {
-  return <div>Blog Page - Posts will load here</div>
+  // const posts = await fetchPost.list()
+  const posts: PostListResponse["items"] = [] // placeholder until backend ready
+
+  return <div>Blog Page - {posts.length} posts</div>
 }
