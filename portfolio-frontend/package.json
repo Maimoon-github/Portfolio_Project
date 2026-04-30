@@ -10,6 +10,7 @@
     "sync-api-types": "openapi-typescript http://localhost:8000/api/v1/openapi.json -o src/types/api.ts"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
     "@tanstack/react-query": "^5.100.6",
     "@vercel/og": "^0.11.1",
     "class-variance-authority": "^0.7.1",

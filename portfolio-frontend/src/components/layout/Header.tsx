@@ -1,77 +1,127 @@
 // src/components/layout/Header.tsx
-'use client'
+// Sticky site header — glassmorphic bar, logo, nav links, CTA.
+// Client component for scroll-aware opacity.
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { useState } from "react"
-import { Menu } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { MobileMenu } from "./MobileMenu"
-import { ThemeToggle } from "./ThemeToggle"
+'use client';
 
-const navLinks = [
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/blog", label: "Blog" },
-  { href: "/tools", label: "Tools" },
-  { href: "/contact", label: "Contact" },
-]
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { cn } from '@/lib/utils';
+
+const NAV_LINKS = [
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/about',     label: 'About'     },
+  { href: '/tools',     label: 'Tools'     },
+  { href: '/blog',      label: 'Blog'      },
+] as const;
 
 export function Header() {
-  const pathname = usePathname()
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <>
-      <header className="glass fixed top-0 left-0 right-0 z-50 border-b border-[rgba(84,68,52,0.15)]">
-        <div className="max-w-screen-2xl mx-auto px-6">
-          <div className="h-16 flex items-center justify-between">
-            {/* Logo — Monolithic AR */}
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="w-9 h-9 rounded-2xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center shadow-inner">
-                <span className="text-on-primary-fixed font-bold text-2xl leading-none tracking-tighter">AR</span>
-              </div>
-              <span className="headline-lg text-on-surface tracking-tighter hidden sm:block">Alex Reeves</span>
+    <header
+      className={cn(
+        'fixed top-0 inset-x-0 z-[var(--z-overlay)]',
+        'transition-all duration-[400ms] ease-[var(--ease-out-expo)]',
+        scrolled
+          ? [
+              'bg-[var(--color-surface-container-lowest)]/80',
+              'backdrop-blur-[40px]',
+              'border-b border-[var(--color-outline-variant)]',
+              'shadow-[var(--shadow-glow-sm)]',
+            ]
+          : 'bg-transparent border-b border-transparent'
+      )}
+    >
+      <div className="w-full max-w-[1280px] mx-auto px-8 h-16 flex items-center justify-between">
+
+        {/* ── Logo ── */}
+        <Link
+          href="/"
+          className="flex items-center gap-2 group"
+          aria-label="Alex Reeves – home"
+        >
+          {/* Lotus sigil */}
+          <span
+            className={cn(
+              'inline-block w-7 h-7 rounded-[var(--radius-sm)]',
+              'bg-[var(--color-primary-container)]',
+              'shadow-[var(--shadow-glow-md)]',
+              'transition-transform duration-[220ms] ease-[var(--ease-spring)]',
+              'group-hover:scale-110'
+            )}
+            aria-hidden="true"
+          />
+          <span
+            className={cn(
+              'text-[var(--color-on-surface)] font-semibold tracking-[-0.01em] text-[15px]',
+              'transition-colors duration-[120ms]',
+              'group-hover:text-[var(--color-primary)]'
+            )}
+          >
+            Alex Reeves
+          </span>
+        </Link>
+
+        {/* ── Nav ── */}
+        <nav
+          className="hidden md:flex items-center gap-1"
+          aria-label="Primary navigation"
+        >
+          {NAV_LINKS.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className={cn(
+                'px-4 py-2 rounded-[var(--radius-sm)]',
+                'type-label-caps text-[var(--color-on-surface-variant)]',
+                'transition-colors duration-[120ms] ease-[var(--ease-out-expo)]',
+                'hover:text-[var(--color-on-surface)] hover:bg-[var(--color-surface-container)]'
+              )}
+            >
+              {label}
             </Link>
+          ))}
+        </nav>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => {
-                const isActive = pathname.startsWith(link.href)
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={`label-md transition-colors hover:text-primary ${
-                      isActive
-                        ? "text-primary"
-                        : "text-on-surface-variant"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                )
-              })}
-            </nav>
+        {/* ── CTA ── */}
+        <Link
+          href="/contact"
+          className={cn(
+            'hidden sm:inline-flex btn-primary',
+            'px-5 py-2.5 text-[11px] tracking-[0.15em]'
+          )}
+        >
+          Contact
+        </Link>
 
-            <div className="flex items-center gap-4">
-              <ThemeToggle />
-              
-              {/* Mobile Hamburger */}
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setMobileOpen(true)}
-                className="md:hidden text-on-surface"
-              >
-                <Menu className="h-6 w-6" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Mobile Menu Overlay */}
-      <MobileMenu isOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
-    </>
-  )
+        {/* ── Mobile menu trigger (placeholder) ── */}
+        <button
+          className={cn(
+            'md:hidden p-2 rounded-[var(--radius-sm)]',
+            'text-[var(--color-on-surface-variant)]',
+            'hover:bg-[var(--color-surface-container)]',
+            'transition-colors duration-[120ms]'
+          )}
+          aria-label="Open navigation menu"
+        >
+          <svg
+            width="20" height="20" viewBox="0 0 20 20" fill="none"
+            stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
+            aria-hidden="true"
+          >
+            <line x1="3" y1="6"  x2="17" y2="6"  />
+            <line x1="3" y1="10" x2="17" y2="10" />
+            <line x1="3" y1="14" x2="17" y2="14" />
+          </svg>
+        </button>
+      </div>
+    </header>
+  );
 }

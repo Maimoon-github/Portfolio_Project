@@ -1,56 +1,92 @@
 // src/components/layout/Footer.tsx
+// Minimal editorial footer — server component.
+
+import Link from 'next/link';
+
+const FOOTER_LINKS = [
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/about',     label: 'About'     },
+  { href: '/tools',     label: 'Tools'     },
+  { href: '/blog',      label: 'Blog'      },
+  { href: '/contact',   label: 'Contact'   },
+] as const;
+
+const SOCIAL_LINKS = [
+  { href: 'https://github.com',   label: 'GitHub'   },
+  { href: 'https://linkedin.com', label: 'LinkedIn' },
+  { href: 'https://twitter.com',  label: 'Twitter'  },
+] as const;
+
 export function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="section bg-surface-container-low border-t border-[rgba(84,68,52,0.15)]">
-      <div className="max-w-screen-2xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-          {/* Brand Column */}
-          <div>
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 rounded-2xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center">
-                <span className="text-on-primary-fixed font-bold text-xl">AR</span>
-              </div>
-              <span className="text-xl font-semibold text-on-surface">Alex Reeves</span>
-            </div>
-            <p className="text-on-surface-variant text-sm max-w-xs">
+    <footer
+      className="border-t border-[var(--color-outline-variant)] bg-[var(--color-surface-container-lowest)]"
+    >
+      <div className="w-full max-w-[1280px] mx-auto px-8 py-16">
+
+        {/* Top row */}
+        <div className="flex flex-col md:flex-row justify-between gap-12 mb-16">
+
+          {/* Brand */}
+          <div className="max-w-xs">
+            <p className="text-[var(--color-on-surface)] font-semibold text-[15px] tracking-[-0.01em] mb-3">
+              Alex Reeves
+            </p>
+            <p
+              className="text-[var(--color-on-surface-variant)] text-[14px] leading-relaxed"
+            >
               Sovereign Architect of production-grade intelligence systems.
+              Crafting interfaces where precision meets soul.
             </p>
           </div>
 
-          {/* Navigation */}
-          <div>
-            <div className="label-md mb-4 text-secondary">Navigation</div>
-            <div className="flex flex-col gap-3 text-sm">
-              <a href="/portfolio" className="text-on-surface-variant hover:text-primary transition-colors">Portfolio</a>
-              <a href="/blog" className="text-on-surface-variant hover:text-primary transition-colors">Blog</a>
-              <a href="/tools" className="text-on-surface-variant hover:text-primary transition-colors">Tools</a>
-              <a href="/about" className="text-on-surface-variant hover:text-primary transition-colors">About</a>
-            </div>
-          </div>
+          {/* Nav */}
+          <nav aria-label="Footer navigation" className="flex flex-wrap gap-x-8 gap-y-3">
+            {FOOTER_LINKS.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className="type-label-caps text-[var(--color-on-surface-variant)] hover:text-[var(--color-on-surface)] transition-colors duration-[120ms]"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
 
-          {/* Legal */}
-          <div>
-            <div className="label-md mb-4 text-secondary">Legal</div>
-            <div className="flex flex-col gap-3 text-sm">
-              <a href="/privacy" className="text-on-surface-variant hover:text-primary transition-colors">Privacy</a>
-              <a href="/terms" className="text-on-surface-variant hover:text-primary transition-colors">Terms</a>
+          {/* Social */}
+          <div className="flex flex-col gap-3">
+            <span className="type-label-caps text-[var(--color-outline)]">Connect</span>
+            <div className="flex gap-4">
+              {SOCIAL_LINKS.map(({ href, label }) => (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="type-label-caps text-[var(--color-on-surface-variant)] hover:text-[var(--color-primary)] transition-colors duration-[120ms]"
+                >
+                  {label}
+                </a>
+              ))}
             </div>
           </div>
+        </div>
 
-          {/* Connect */}
-          <div>
-            <div className="label-md mb-4 text-secondary">Connect</div>
-            <div className="flex gap-6 text-on-surface-variant">
-              <a href="https://github.com" target="_blank" className="hover:text-primary transition-colors">GitHub</a>
-              <a href="https://linkedin.com" target="_blank" className="hover:text-primary transition-colors">LinkedIn</a>
-              <a href="https://x.com" target="_blank" className="hover:text-primary transition-colors">𝕏</a>
-            </div>
-            <p className="mt-12 text-xs text-on-surface-variant/60">
-              © {new Date().getFullYear()} Alex Reeves. All rights reserved.
-            </p>
-          </div>
+        {/* Divider */}
+        <div className="h-px bg-[var(--color-outline-variant)] mb-8" />
+
+        {/* Bottom row */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="type-label-caps text-[var(--color-outline)]">
+            © {year} Alex Reeves — All rights reserved
+          </p>
+          <p className="type-label-caps text-[var(--color-outline)]">
+            Mystical Black Lotus Design System
+          </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }
