@@ -1,68 +1,49 @@
+/* ============================================================
+   fonts.css — Mystical Black Lotus Design System
+   Typography: Space Grotesk (variable font via Google Fonts)
+   Scope: Font imports, @font-face declarations, font utilities
+   ============================================================ */
 
-body {
-  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+/* ── Google Fonts CDN: Space Grotesk (variable weight 300–700) ── */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+/* ── Local fallback @font-face (place woff2 in /public/fonts/) ── */
+@font-face {
+  font-family: 'Space Grotesk';
+  src:
+    url('/fonts/SpaceGrotesk-Variable.woff2') format('woff2 supports variations'),
+    url('/fonts/SpaceGrotesk-Variable.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Font Feature Settings ─────────────────────────────────── */
+:root {
+  --font-primary: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+
+  /* Open-type features: tabular nums, contextual alternates */
+  --font-features-default: 'tnum' on, 'calt' on;
+  --font-features-display: 'tnum' off, 'calt' on, 'ss01' on;
+  --font-features-mono:    'tnum' on, 'calt' off;
+}
+
+/* ── Base font assignment ───────────────────────────────────── */
+html {
+  font-family: var(--font-primary);
+  font-feature-settings: var(--font-features-default);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* Range input track styling */
-input[type='range'] {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 6px;
-  border-radius: 9999px;
-  cursor: pointer;
-  outline: none;
+/* ── Display & heading font utilities ───────────────────────── */
+.font-display {
+  font-family: var(--font-primary);
+  font-feature-settings: var(--font-features-display);
 }
 
-input[type='range']::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #ffc68b;
-  border: 2px solid #131313;
-  box-shadow: 0 0 0 2px rgba(255, 198, 139, 0.3);
-  cursor: pointer;
-  transition: box-shadow 0.15s ease;
-}
-
-input[type='range']::-webkit-slider-thumb:hover {
-  box-shadow: 0 0 0 4px rgba(255, 198, 139, 0.25);
-}
-
-input[type='range']::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #ffc68b;
-  border: 2px solid #131313;
-  cursor: pointer;
-}
-
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Selection color */
-::selection {
-  background-color: rgba(255, 198, 139, 0.25);
-  color: #f0e6d3;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #131313;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(84, 68, 52, 0.5);
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 198, 139, 0.3);
+.font-mono-numerals {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: var(--font-features-mono);
 }
