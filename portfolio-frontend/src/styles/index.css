@@ -12,6 +12,8 @@
    In Next.js: import this file once in `app/layout.tsx`
    ============================================================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";          /* ← must stay before any @apply */
 @import './fonts.css';
 @import './theme.css';
 @import './globals.css';
