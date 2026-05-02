@@ -4,6 +4,7 @@ Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 ────────────────────────────────────────────────────────────────────────────────
 
 ├── 📁 public/
+│   ├── 📁 images/
 │   ├── 🖼️ file.svg
 │   ├── 🖼️ globe.svg
 │   ├── 🖼️ next.svg
@@ -96,6 +97,14 @@ Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 │   │   │   ├── 📄 SkillBadge.tsx
 │   │   │   ├── 📄 SkillSection.tsx
 │   │   │   └── 📄 TestimonialCard.tsx
+│   │   ├── 📁 seo/
+│   │   │   ├── 📄 BreadcrumbSchema.tsx
+│   │   │   └── 📄 PersonSchema.tsx
+│   │   ├── 📁 tools/
+│   │   │   ├── 📄 InputField.tsx
+│   │   │   ├── 📄 ResultDisplay.tsx
+│   │   │   ├── 📄 ToolCard.tsx
+│   │   │   └── 📄 ToolShell.tsx
 │   │   └── 📁 ui/
 │   │       ├── 📄 badge.tsx
 │   │       ├── 📄 button.tsx
@@ -113,11 +122,14 @@ Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 │   │       ├── 📄 textarea.tsx
 │   │       ├── 📄 toast.tsx
 │   │       └── 📄 tooltip.tsx
+│   ├── 📁 content/
+│   │   ├── 📄 privacy.mdx
+│   │   └── 📄 terms.mdx
 │   ├── 📁 hooks/
-│   │   ├── 📄 useCalculator.ts
 │   │   ├── 📄 useDebounce.ts
 │   │   ├── 📄 useIntersectionObserver.ts
-│   │   └── 📄 useLocalStorage.ts
+│   │   ├── 📄 useLocalStorage.ts
+│   │   └── 📄 useTool.ts
 │   ├── 📁 lib/
 │   │   ├── 📁 api/
 │   │   │   ├── 📄 blog.ts
@@ -127,6 +139,10 @@ Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 │   │   ├── 📄 og.tsx
 │   │   ├── 📄 rich-text.ts
 │   │   └── 📄 utils.ts
+│   ├── 📁 store/
+│   │   ├── 📄 authStore.ts
+│   │   ├── 📄 index.ts
+│   │   └── 📄 uiStore.ts
 │   ├── 📁 styles/
 │   │   ├── 🎨 fonts.css
 │   │   ├── 🎨 globals.css
@@ -138,6 +154,7 @@ Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 ├── ⚙️ .gitignore
 ├── 📝 AGENTS.md
 ├── 📝 CLAUDE.md
+├── 📝 DESIGN.MD
 ├── 📄 File Tree - portfolio-frontend.txt
 ├── 📝 README.md
 ├── ⚙️ components.json
