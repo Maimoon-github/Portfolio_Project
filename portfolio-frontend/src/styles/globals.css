@@ -1,3 +1,31 @@
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-secondary: hsl(var(--secondary));
+  --color-muted: hsl(var(--muted));
+  --color-accent: hsl(var(--accent));
+  --color-destructive: hsl(var(--destructive));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  
+  --color-surface: var(--color-surface);
+  --color-on-surface: var(--color-on-surface);
+  --color-surface-dim: var(--color-surface-dim);
+  --color-surface-bright: var(--color-surface-bright);
+  --color-neo-mint: var(--color-neo-mint);
+  --color-deep-navy: var(--color-deep-navy);
+  --color-deep-moss: var(--color-deep-moss);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  
+  --animate-reveal: reveal 0.8s var(--ease-out-expo) forwards;
+}
+
 /* ============================================================
    globals.css — Mystical Black Lotus Design System
    Scope: CSS reset, base element styles, global utilities,

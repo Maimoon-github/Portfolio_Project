@@ -1,20 +1,16 @@
-/* ============================================================
-   index.css — Mystical Black Lotus Design System
-   Main CSS entry point. Import order is load-order-critical.
-   ============================================================
+@import "tailwindcss";
 
-   Load order:
-     1. fonts.css   — @font-face, font-feature-settings
-     2. theme.css   — :root custom properties (design tokens)
-     3. globals.css — Reset, base elements, component primitives
-     4. tailwind.css — Tailwind directives + @layer extensions
+/* ── Mystical Black Lotus Design System ──────────────────────── */
+@import "./theme.css";
+@import "./globals.css";
 
-   In Next.js: import this file once in `app/layout.tsx`
-   ============================================================ */
-
+/* ── Typography ──────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-@import "tailwindcss";          /* ← must stay before any @apply */
 @import './fonts.css';
-@import './theme.css';
-@import './globals.css';
-@import './tailwind.css';
+
+/* ── Tailwind Layer Extensions ───────────────────────────────── */
+@layer base {
+  :root {
+    --font-sans: var(--font-family-primary);
+  }
+}

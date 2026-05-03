@@ -16,6 +16,11 @@ export interface Project {
   title: string;
   description?: string;
   thumbnail?: string;
+  tech_tags?: string[];
+  content?: string;
+  role?: string;
+  timeline?: string;
+  live_url?: string;
 }
 
 export interface ProjectListResponse {
@@ -47,6 +52,8 @@ export interface Tool {
   slug: string;
   title: string;
   description?: string;
+  category?: string;
+  icon?: string;
 }
 
 export interface ToolListResponse {

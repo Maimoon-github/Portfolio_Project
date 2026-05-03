@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo } from "react";
+import { } from "react";
 import DOMPurify from "dompurify";
 import { cn } from "@/lib/utils";
 
@@ -10,12 +10,10 @@ interface RichTextRendererProps {
 }
 
 export function RichTextRenderer({ html, className }: RichTextRendererProps) {
-  const safeHtml = useMemo(() => {
-    return DOMPurify.sanitize(html, {
-      ADD_ATTR: ["target", "rel"],
-      ALLOWED_TAGS: ["a", "p", "h1", "h2", "h3", "h4", "ul", "ol", "li", "strong", "em", "blockquote", "code", "pre", "img"],
-    });
-  }, [html]);
+  const safeHtml = DOMPurify.sanitize(html, {
+    ADD_ATTR: ["target", "rel"],
+    ALLOWED_TAGS: ["a", "p", "h1", "h2", "h3", "h4", "ul", "ol", "li", "strong", "em", "blockquote", "code", "pre", "img"],
+  });
 
   return (
     <div

@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/cms/", "/api/"],
     },
-    sitemap: "https://yourdomain.dev/sitemap.xml",
+    sitemap: "https://alexreeves.dev/sitemap.xml",
   }
 }

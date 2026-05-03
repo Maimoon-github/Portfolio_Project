@@ -10,15 +10,31 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
   ),
   title: {
-    default: "Alex Reeves • Senior AI/ML Engineer",
+    default: "Alex Reeves • Senior AI/ML Engineer & Systems Architect",
     template: "%s | Alex Reeves",
-    description: "Sovereign Architect of production-grade intelligence systems at scale.", // ← Added description here
   },
-  keywords: ["AI/ML Engineer", "LLM", "MLOps", "PyTorch", "Transformers"],
+  description: "Sovereign Architect of production-grade intelligence systems and high-performance 3D web ecosystems.",
+  keywords: ["AI Engineer", "MLOps", "Three.js", "React 19", "Next.js 15", "Mystical Black Lotus"],
+  authors: [{ name: "Alex Reeves" }],
+  creator: "Alex Reeves",
   openGraph: {
     type: "website",
-    siteName: "Alex Reeves",
-    images: [{ url: "/images/og-default.png", width: 1200, height: 630 }],
+    locale: "en_US",
+    url: "https://alexreeves.dev",
+    siteName: "Alex Reeves Portfolio",
+    title: "Alex Reeves • Senior AI/ML Engineer",
+    description: "Architecting the future of intelligence and web performance.",
+    images: [{ url: "/images/og-default.png", width: 1200, height: 630, alt: "Alex Reeves Portfolio" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Alex Reeves • Senior AI/ML Engineer",
+    description: "Architecting the future of intelligence and web performance.",
+    images: ["/images/og-default.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

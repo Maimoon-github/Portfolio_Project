@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import type { Project } from '@/lib/api/portfolio';
+import type { Project } from '@/types/api';
 
 interface ProjectCardProps {
   project: Project;

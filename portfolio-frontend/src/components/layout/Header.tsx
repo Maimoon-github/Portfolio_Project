@@ -10,10 +10,10 @@ import { cn } from '@/lib/utils';
 import { ThemeToggle } from './ThemeToggle';
 
 const NAV_LINKS = [
-  { href: '/portfolio', label: 'PORTFOLIO'  },
-  { href: '/labs',      label: 'NEURAL LABS' },
-  { href: '/theorems',  label: 'THEOREMS'    },
-  { href: '/process',   label: 'PROCESS'     },
+  { href: '/portfolio', label: 'PORTFOLIO' },
+  { href: '/blog',      label: 'BLOG'      },
+  { href: '/tools',     label: 'TOOLS'     },
+  { href: '/about',     label: 'ABOUT'     },
 ] as const;
 
 export function Header() {
@@ -46,9 +46,9 @@ export function Header() {
         <Link
           href="/"
           className="text-[var(--color-on-surface)] font-bold text-[20px] tracking-tight hover:text-[var(--color-primary)] transition-colors duration-[120ms]"
-          aria-label="Aether.AI – home"
+          aria-label="Alex Reeves – home"
         >
-          Aether.AI
+          ALEX REEVES
         </Link>
 
         {/* ── Nav ── */}

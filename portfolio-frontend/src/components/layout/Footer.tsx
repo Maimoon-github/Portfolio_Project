@@ -17,7 +17,7 @@ export function Footer() {
 
   return (
     <footer
-      className="bg-[#0a0a0a] border-t border-[var(--color-outline-variant)]/30 py-24"
+      className="bg-background border-t border-[var(--color-outline-variant)]/30 py-24"
     >
       <div className="w-full max-w-[1280px] mx-auto px-8">
 
@@ -25,19 +25,19 @@ export function Footer() {
           
           {/* Brand & Social Metrics */}
           <div className="md:col-span-1">
-            <h3 className="text-[20px] font-bold text-[var(--color-on-surface)] mb-6">Aether.AI</h3>
+            <h3 className="text-[20px] font-bold text-[var(--color-on-surface)] mb-6">ALEX REEVES</h3>
             <p className="text-[14px] leading-relaxed text-[var(--color-on-surface-variant)] opacity-70 mb-8">
-              Precision Meets the Void.<br />
-              Architecting the next generation of ambient intelligence.
+              Sovereign Architect.<br />
+              Precision Mathematics & Neural Design.
             </p>
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3 text-[12px] text-[var(--color-on-surface-variant)] opacity-60">
                 <Github size={14} />
-                <span>4.5k Stars</span>
+                <span>Open Source Contributor</span>
               </div>
               <div className="flex items-center gap-3 text-[12px] text-[var(--color-on-surface-variant)] opacity-60">
                 <Linkedin size={14} />
-                <span>124 Endorsements</span>
+                <span>Strategic Partner</span>
               </div>
             </div>
           </div>
@@ -60,18 +60,18 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Join the Collective */}
+          {/* Newsletter */}
           <div className="md:col-span-2">
             <h4 className="text-[12px] font-semibold tracking-wider text-[var(--color-primary)] uppercase mb-8 opacity-80">
-              Join the Collective
+              Neural Dispatch
             </h4>
             <p className="text-[14px] text-[var(--color-on-surface-variant)] opacity-70 mb-8">
-              Subscribe to my monthly dispatch on neural architectures and the future of autonomous systems.
+              Monthly insights on neural architectures, agentic systems, and high-performance engineering.
             </p>
             <form className="flex gap-4">
               <input 
                 type="email" 
-                placeholder="void@exploretio" 
+                placeholder="architect@domain.com" 
                 className={cn(
                   "flex-grow bg-[var(--color-surface-container-low)] border border-[var(--color-outline-variant)]/30",
                   "rounded-lg px-6 py-4 text-[14px] text-[var(--color-on-surface)] outline-none focus:border-[var(--color-primary)]/50"
@@ -79,9 +79,9 @@ export function Footer() {
               />
               <button 
                 type="submit" 
-                className="bg-[var(--color-primary)] text-[#0a0a0a] font-bold text-[11px] tracking-widest uppercase px-10 rounded-lg hover:opacity-90 transition-opacity"
+                className="bg-[var(--color-primary)] text-white font-bold text-[11px] tracking-widest uppercase px-10 rounded-lg hover:opacity-90 transition-opacity"
               >
-                SIGNUP
+                SUBSCRIBE
               </button>
             </form>
           </div>
@@ -90,7 +90,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-12 border-t border-[var(--color-outline-variant)]/20">
           <p className="text-[12px] text-[var(--color-on-surface-variant)] opacity-50">
-            © {year} Aether.AI — Precision Meets the Void
+            © {year} ALEX REEVES — All Rights Reserved
           </p>
           <div className="flex gap-8 text-[12px] text-[var(--color-on-surface-variant)] opacity-50">
             <Link href="/privacy" className="hover:text-[var(--color-on-surface)]">Privacy</Link>

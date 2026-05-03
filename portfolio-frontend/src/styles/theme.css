@@ -6,16 +6,29 @@
 
 :root {
 
+  /* ── shadcn/ui Variables (HSL) ───────────────────────────── */
+  --background: 247 40% 10%;    /* #131026 — deepest */
+  --foreground: 264 41% 57%;    /* #8B65BF — ethereal purple */
+  --primary: 264 57% 41%;       /* #5F2DA6 — deep violet core */
+  --secondary: 264 37% 32%;     /* #4E3473 — muted royal */
+  --muted: 247 41% 17%;         /* #1F1A40 — dark surface */
+  --accent: 264 41% 57%;        /* #8B65BF — accent glow */
+  --destructive: 0 84.2% 60.2%;
+  --border: 247 41% 17%;
+  --input: 247 41% 17%;
+  --ring: 264 57% 41%;
+  --radius: 0.5rem;
+
   /* ── Color: Surface Roles ────────────────────────────────── */
-  --color-surface:                   #0a0a0a;
-  --color-surface-dim:               #0a0a0a;
-  --color-surface-bright:            #2a2a2a;
-  --color-surface-container-lowest:  #050505;
-  --color-surface-container-low:     #0d0d0d;
-  --color-surface-container:         #121212;
-  --color-surface-container-high:    #1a1a1a;
-  --color-surface-container-highest: #222222;
-  --color-surface-variant:           #222222;
+  --color-surface:                   #131026;
+  --color-surface-dim:               #131026;
+  --color-surface-bright:            #3c3840;
+  --color-surface-container-lowest:  #100d14;
+  --color-surface-container-low:     #1d1a22;
+  --color-surface-container:         #221e26;
+  --color-surface-container-high:    #2c2830;
+  --color-surface-container-highest: #37333b;
+  --color-surface-variant:           #37333b;
   --color-surface-tint:              #d6baff;
 
   /* ── Color: On-Surface Roles ─────────────────────────────── */
@@ -29,8 +42,8 @@
   --color-outline-variant: #4a4452;
 
   /* ── Color: Primary ──────────────────────────────────────── */
-  --color-primary:                   #d6baff;   /* Lavender Glow      */
-  --color-on-primary:                #430089;
+  --color-primary:                   #5f2da6;   /* Deep Violet Core   */
+  --color-on-primary:                #ffffff;
   --color-primary-container:         #5f2da6;   /* Deep Violet Core   */
   --color-on-primary-container:      #cdadff;
   --color-inverse-primary:           #7343bb;
@@ -66,7 +79,7 @@
   --color-on-error-container: #ffdad6;
 
   /* ── Color: Background ───────────────────────────────────── */
-  --color-background:    #0a0a0a;
+  --color-background:    #131026;
   --color-on-background: #e8e0eb;
 
   /* ── Color: Named Semantic Aliases ───────────────────────── */
