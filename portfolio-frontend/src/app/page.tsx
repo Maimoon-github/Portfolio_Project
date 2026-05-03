@@ -8,7 +8,8 @@ import { BlogTeaser } from '@/components/blog/BlogTeaser';
 import { TypingEffect } from '@/components/ui/TypingEffect';
 import { cn } from '@/lib/utils';
 
-import { fetchFeaturedProjects, type Project } from '@/lib/api/portfolio';
+import { fetchProject } from '@/lib/api/portfolio';
+import type { Project } from '@/types/api';
 
 // ── Static project fallbacks (Updated to match screen.png) ───────────────────
 const STATIC_PROJECTS: Project[] = [
@@ -59,7 +60,8 @@ export default async function HomePage() {
   let featuredProjects: Project[] = [];
 
   try {
-    featuredProjects = await fetchFeaturedProjects();
+    const response = await fetchProject.featured();
+    featuredProjects = response.results;
   } catch {
     // API unavailable
   }

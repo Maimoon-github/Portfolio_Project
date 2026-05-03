@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 /* ── Mystical Black Lotus Design System ──────────────────────── */
@@ -5,7 +6,6 @@
 @import "./globals.css";
 
 /* ── Typography ──────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import './fonts.css';
 
 /* ── Tailwind Layer Extensions ───────────────────────────────── */

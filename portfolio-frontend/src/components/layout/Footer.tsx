@@ -1,9 +1,9 @@
-// src/components/layout/Footer.tsx
-// Minimal editorial footer — server component.
+'use client';
 
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { Github, Linkedin } from '@/components/ui/Icons';
+import { useEffect, useState } from 'react';
 
 const NAV_LINKS = [
   { href: '/newsletter', label: 'Newsletter'    },
@@ -13,7 +13,11 @@ const NAV_LINKS = [
 ] as const;
 
 export function Footer() {
-  const year = new Date().getFullYear();
+  const [year, setYear] = useState(2026);
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
 
   return (
     <footer
@@ -102,4 +106,3 @@ export function Footer() {
     </footer>
   );
 }
-
