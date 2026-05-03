@@ -3,88 +3,81 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const TEASERS = [
   {
-    category: 'Blog',
-    title: 'Agentic Workflows in Production',
-    date: 'MAY 2026',
-    excerpt: 'Exploring the shift from chain-of-thought to self-correcting agent architectures.',
-    link: '/blog/agentic-workflows',
+    category: 'ARTICLE / 5024',
+    title: 'Softmax in Large Language Models: A New Metric for Reasoning',
+    excerpt: 'Exploring how thermodynamic entropy correlates with logical consistency in chain-of-thought prompting...',
+    link: '/blog/softmax-reasoning',
+    linkLabel: 'READ MORE',
   },
   {
-    category: 'Tool',
-    title: 'Molecular Latent Explorer',
-    date: 'APR 2026',
-    excerpt: 'An interactive tool for navigating high-dimensional chemical spaces.',
-    link: '/tools/molecular-explorer',
+    category: 'TOOL / OPEN SOURCE',
+    title: 'AetherBrain: Semantic Visualization for Knowledge Bases',
+    excerpt: 'A new tool for mapping high-relational paths into high-dimensional interactive manifolds...',
+    link: 'https://github.com/aether/brain',
+    linkLabel: 'VIEW ON GITHUB',
   },
   {
-    category: 'Blog',
-    title: 'Precision Bio-Informatics',
-    date: 'MAR 2026',
-    excerpt: 'Leveraging graph neural networks for protein fold prediction.',
-    link: '/blog/bio-informatics',
+    category: 'CASE STUDY / BXP',
+    title: 'Abstract: Nextflow in Cloud Native Environments',
+    excerpt: 'Scaling protein folding simulations across modern HPC clusters with automated orchestration...',
+    link: '/portfolio/nextflow-cloud',
+    linkLabel: 'READ MORE',
   },
 ];
 
 export function BlogTeaser() {
   return (
-    <section className="py-20 bg-[var(--color-surface)]">
+    <section className="py-32 bg-[#0a0a0a]">
       <div className="container mx-auto px-8">
-        <h2 className="text-[var(--type-h2-size)] font-medium text-[var(--color-on-surface)] mb-12">
-          Latest Thinking
-        </h2>
+        <div className="flex items-center justify-between mb-16">
+          <h2 className="text-[var(--type-h2-size)] font-medium text-[var(--color-primary)] opacity-90">
+            Latest Thinking
+          </h2>
+          <div className="flex gap-4">
+            <button className="w-12 h-12 rounded-lg border border-[var(--color-outline-variant)]/30 flex items-center justify-center text-[var(--color-on-surface-variant)] hover:bg-[var(--color-surface-container)] transition-colors">
+              <ChevronLeft size={20} />
+            </button>
+            <button className="w-12 h-12 rounded-lg border border-[var(--color-outline-variant)]/30 flex items-center justify-center text-[var(--color-on-surface-variant)] hover:bg-[var(--color-surface-container)] transition-colors">
+              <ChevronRight size={20} />
+            </button>
+          </div>
+        </div>
 
         {/* Horizontal scroll track */}
-        <div 
-          className={cn(
-            "flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scrollbar-none",
-            "md:grid md:grid-cols-3 md:overflow-visible md:pb-0"
-          )}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {TEASERS.map((item, index) => (
             <article 
               key={index}
               className={cn(
-                "flex-shrink-0 w-[320px] md:w-full snap-start",
-                "bg-[var(--color-surface-container-low)] rounded-[var(--radius-xl)] p-8",
-                "border border-transparent hover:border-[var(--color-outline-variant)]",
-                "transition-all duration-[220ms] ease-[var(--ease-out-expo)]"
+                "bg-[#121212] border border-[var(--color-outline-variant)]/10 rounded-xl p-10",
+                "transition-all duration-300 hover:border-[var(--color-primary)]/20 hover:bg-[#161616]"
               )}
             >
-              <span className="type-label-caps text-[var(--color-mid-purple)] block mb-4">
+              <span className="text-[9px] font-bold tracking-[0.2em] text-[var(--color-primary)] opacity-60 block mb-6 uppercase">
                 {item.category}
               </span>
-              <h3 className="text-[var(--type-h3-size)] font-medium text-[var(--color-on-surface)] mb-3">
+              <h3 className="text-[18px] font-semibold text-[var(--color-on-surface)] leading-tight mb-5 tracking-tight">
                 {item.title}
               </h3>
-              <span className="type-label-caps text-[var(--color-outline-variant)] text-[10px] block mb-4">
-                {item.date}
-              </span>
-              <p className="text-[var(--type-body-md-size)] text-[var(--color-on-surface-variant)] mb-6 line-clamp-2">
+              <p className="text-[14px] text-[var(--color-on-surface-variant)] opacity-60 mb-10 line-clamp-3 leading-relaxed">
                 {item.excerpt}
               </p>
               <Link 
                 href={item.link}
-                className="text-[var(--color-primary)] hover:underline type-label-caps text-[11px]"
+                className="text-[10px] font-bold tracking-[0.2em] text-[var(--color-primary)] opacity-80 hover:opacity-100 transition-opacity uppercase inline-flex items-center gap-2"
               >
-                Read more
+                {item.linkLabel}
+                <span className="text-[12px]">↗</span>
               </Link>
             </article>
           ))}
         </div>
       </div>
-
-      <style jsx>{`
-        .scrollbar-none::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-none {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </section>
   );
 }
+

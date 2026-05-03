@@ -10,46 +10,46 @@ import { cn } from '@/lib/utils';
 
 import { fetchFeaturedProjects, type Project } from '@/lib/api/portfolio';
 
-// ── Static project fallbacks ──────────────────────────────────────────────────
+// ── Static project fallbacks (Updated to match screen.png) ───────────────────
 const STATIC_PROJECTS: Project[] = [
   {
-    slug:        'agentic-search',
-    title:       'Agentic Search Engine',
-    description: 'A sovereign search architect that reason through complex queries via multi-step reasoning chains.',
+    slug:        'cogito-framework',
+    title:       'Cogito: Agentic Framework',
+    description: 'An autonomous multi-agent system for real-time market analysis and automated hedging strategies.',
     thumbnail:   '/images/project-agent.jpg',
-    tech_tags:   ['LangChain', 'LlamaIndex', 'Next.js'],
+    tech_tags:   ['Python', 'LangChain'],
   },
   {
-    slug:        'bio-latent-explorer',
-    title:       'Bio-Latent Explorer',
-    description: 'Visualizing high-dimensional protein embedding spaces for drug discovery pipelines.',
+    slug:        'molecular-discovery',
+    title:       'Molecular Discovery Engine',
+    description: 'Deep generative models for accelerating small-molecule synthesis in neuro-pharmacology.',
     thumbnail:   '/images/project-bio.jpg',
-    tech_tags:   ['PyTorch', 'RDKit', 'Three.js'],
+    tech_tags:   ['Torch', 'RDKit'],
   },
   {
-    slug:        'data-viz-monolith',
-    title:       'Data Viz Monolith',
-    description: 'Immersive real-time telemetry dashboard for high-frequency trading clusters.',
+    slug:        'global-data-fabric',
+    title:       'Global Data Fabric',
+    description: 'Architecting petabyte-scale data lakes with integrated zero-trust security layers for fintech.',
     thumbnail:   '/images/project-viz.jpg',
-    tech_tags:   ['D3.js', 'WebSockets', 'Rust'],
+    tech_tags:   ['AWS', 'Kubernetes'],
   },
   {
-    slug:        'gen-art-engine',
-    title:       'Generative Art Engine',
-    description: 'Neural style transfer system producing mystical aesthetics for digital sanctuaries.',
+    slug:        'quantum-neural-hybrid',
+    title:       'Quantum Neural Hybrid',
+    description: 'Research into hybrid algorithms combining classical deep learning with quantum gate circuits.',
     thumbnail:   '/images/project-art.jpg',
-    tech_tags:   ['TensorFlow', 'Python', 'React'],
+    tech_tags:   ['Cirq', 'TensorFlow'],
   },
 ];
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'Alex Reeves • AI Engineer & Data Scientist',
+  title: 'Aether.AI • Engineering Agentic Systems',
   description:
     'Sovereign architect of production-grade intelligence systems. Where code becomes sanctuary.',
   openGraph: {
-    title:       'Alex Reeves • AI Engineer & Data Scientist',
-    description: 'Mystical Black Lotus design system. Where code becomes sanctuary.',
+    title:       'Aether.AI • Engineering Agentic Systems',
+    description: 'Precision Mathematics and Neural Design.',
     images:      [{ url: '/images/og-default.png', width: 1200, height: 630 }],
   },
 };
@@ -70,69 +70,64 @@ export default async function HomePage() {
     <main className="relative overflow-hidden">
       {/* ── HERO ────────────────────────────────────────────────────────────── */}
       <section
-        className="relative min-h-[90vh] flex items-center pt-[64px]"
+        className="relative min-h-screen flex items-center pt-[64px]"
       >
+        {/* Background Ethereal Glows */}
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[var(--color-primary)] opacity-[0.08] blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-[20%] right-[-5%] w-[40%] h-[40%] bg-[var(--color-secondary)] opacity-[0.05] blur-[100px] rounded-full pointer-events-none" />
+        
         {/* Atmospheric noise */}
         <div className="bg-noise absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden="true" />
 
-        <div className="container relative z-10 py-32 md:py-48">
-          <div className="max-w-4xl">
+        <div className="container relative z-10 py-20">
+          <div className="max-w-3xl text-left">
             {/* Overline */}
-            <span className="type-label-caps text-[var(--color-mid-purple)] block mb-6 animate-reveal">
-              AI Engineer / Data Scientist
+            <span className="type-label-caps text-[var(--color-primary)] opacity-80 block mb-6 animate-reveal">
+              Senior AI Engineer
             </span>
 
             {/* Headline */}
-            <h1 className="text-[var(--type-h1-size)] font-semibold text-[var(--color-on-surface)] leading-[1.1] tracking-[-0.02em] mb-8">
-              <span className="block mb-2">Architecting</span>
-              <TypingEffect 
-                phrases={["Agentic Systems", "Bioinformatics Pipelines", "Data Visualizations"]}
-                className="text-[var(--color-primary)] text-glow-primary h-[1.1em]"
-              />
+            <h1 className="text-[var(--type-display-size)] font-bold text-[var(--color-on-surface)] leading-[1.05] tracking-[-0.03em] mb-10">
+              <span className="block mb-2 text-glow-primary animate-reveal" style={{ animationDelay: '100ms' }}>Engineering</span>
+              <span className="block text-glow-primary animate-reveal" style={{ animationDelay: '300ms' }}>Agentic Systems</span>
             </h1>
 
             {/* Bio */}
-            <p className="text-[var(--type-body-lg-size)] text-[var(--color-on-surface-variant)] leading-relaxed max-w-[65ch] mb-12">
-              Building sovereign intelligence systems where precision meets ethereal aesthetics. 
-              Specializing in LLM orchestration, molecular latent spaces, and production-grade 
-              AI infrastructure for the next era of discovery.
+            <p className="text-[var(--type-body-lg-size)] text-[var(--color-on-surface-variant)] leading-relaxed max-w-[60ch] mb-12 opacity-90 animate-reveal" style={{ animationDelay: '500ms' }}>
+              Architecting high-dimensional intelligence at the intersection of precision 
+              mathematics and neural design. I specialize in crafting scalable AI solutions 
+              that transform complex data into autonomous, actionable agents.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-wrap gap-4">
-              <a href="/portfolio" className="btn btn-primary">
-                See My Work
+            <div className="flex flex-wrap gap-5 animate-reveal" style={{ animationDelay: '700ms' }}>
+              <a href="/portfolio" className="btn btn-primary px-8 py-4 text-[12px] tracking-[0.15em]">
+                SEE MY WORK
               </a>
-              <a href="/contact" className="btn btn-ghost">
-                Contact Me
+              <a href="/contact" className="btn btn-ghost px-8 py-4 text-[12px] tracking-[0.15em]">
+                CONTACT ME
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── FEATURED PROJECTS ────────────────────────────────────────────────── */}
-      <section className="py-20 md:py-40 bg-[var(--color-surface-container-low)]" id="work">
+      {/* ── FEATURED WORK ───────────────────────────────────────────────────── */}
+      <section className="py-24 bg-[var(--color-surface)]" id="work">
         <div className="container">
-          <div className="mb-16">
-            <h2 className="text-[var(--type-h2-size)] font-medium text-gradient-violet inline-block">
+          <div className="mb-20">
+            <h2 className="text-[var(--type-h2-size)] font-medium text-[var(--color-primary)] opacity-90">
               Featured Work
             </h2>
           </div>
 
-          <Suspense fallback={<div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-96 bg-[var(--color-surface-container)] rounded-xl animate-pulse" />}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Suspense fallback={<div className="grid grid-cols-1 md:grid-cols-2 gap-10 h-96 bg-[var(--color-surface-container)] rounded-xl animate-pulse" />}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
               {projects.map((project) => (
                 <ProjectCard key={project.slug} project={project} />
               ))}
             </div>
           </Suspense>
-
-          <div className="mt-16 flex justify-center">
-            <a href="/portfolio" className="text-[var(--color-primary)] hover:underline type-label-caps text-[11px] flex items-center gap-2">
-              View all projects <span>→</span>
-            </a>
-          </div>
         </div>
       </section>
 

@@ -7,15 +7,15 @@
 :root {
 
   /* ── Color: Surface Roles ────────────────────────────────── */
-  --color-surface:                   #151219;
-  --color-surface-dim:               #151219;
-  --color-surface-bright:            #3c3840;
-  --color-surface-container-lowest:  #100d14;
-  --color-surface-container-low:     #1d1a22;
-  --color-surface-container:         #221e26;
-  --color-surface-container-high:    #2c2830;
-  --color-surface-container-highest: #37333b;
-  --color-surface-variant:           #37333b;
+  --color-surface:                   #0a0a0a;
+  --color-surface-dim:               #0a0a0a;
+  --color-surface-bright:            #2a2a2a;
+  --color-surface-container-lowest:  #050505;
+  --color-surface-container-low:     #0d0d0d;
+  --color-surface-container:         #121212;
+  --color-surface-container-high:    #1a1a1a;
+  --color-surface-container-highest: #222222;
+  --color-surface-variant:           #222222;
   --color-surface-tint:              #d6baff;
 
   /* ── Color: On-Surface Roles ─────────────────────────────── */
@@ -66,7 +66,7 @@
   --color-on-error-container: #ffdad6;
 
   /* ── Color: Background ───────────────────────────────────── */
-  --color-background:    #151219;
+  --color-background:    #0a0a0a;
   --color-on-background: #e8e0eb;
 
   /* ── Color: Named Semantic Aliases ───────────────────────── */

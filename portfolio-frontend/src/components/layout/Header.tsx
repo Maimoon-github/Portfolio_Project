@@ -10,10 +10,10 @@ import { cn } from '@/lib/utils';
 import { ThemeToggle } from './ThemeToggle';
 
 const NAV_LINKS = [
-  { href: '/portfolio', label: 'Work'   },
-  { href: '/#skills',   label: 'Skills' },
-  { href: '/blog',      label: 'Blog'   },
-  { href: '/tools',     label: 'Tools'  },
+  { href: '/portfolio', label: 'PORTFOLIO'  },
+  { href: '/labs',      label: 'NEURAL LABS' },
+  { href: '/theorems',  label: 'THEOREMS'    },
+  { href: '/process',   label: 'PROCESS'     },
 ] as const;
 
 export function Header() {
@@ -40,20 +40,20 @@ export function Header() {
           : 'bg-transparent border-b border-transparent'
       )}
     >
-      <div className="w-full max-w-[1280px] mx-auto px-8 h-[64px] flex items-center justify-between">
+      <div className="w-full max-w-[1280px] mx-auto px-8 h-[72px] flex items-center justify-between">
 
         {/* ── Logo ── */}
         <Link
           href="/"
-          className="type-label-caps text-[var(--color-on-surface)] hover:text-[var(--color-primary)] transition-colors duration-[120ms]"
-          aria-label="Alex Reeves – home"
+          className="text-[var(--color-on-surface)] font-bold text-[20px] tracking-tight hover:text-[var(--color-primary)] transition-colors duration-[120ms]"
+          aria-label="Aether.AI – home"
         >
-          Alex Reeves
+          Aether.AI
         </Link>
 
         {/* ── Nav ── */}
         <nav
-          className="hidden md:flex items-center gap-2"
+          className="hidden md:flex items-center gap-10"
           aria-label="Primary navigation"
         >
           {NAV_LINKS.map(({ href, label }) => (
@@ -61,10 +61,9 @@ export function Header() {
               key={href}
               href={href}
               className={cn(
-                'px-4 py-2 rounded-[var(--radius-sm)]',
-                'type-label-caps text-[var(--color-on-surface-variant)] text-[11px]',
+                'text-[var(--color-on-surface-variant)] text-[12px] font-medium tracking-[0.1em]',
                 'transition-colors duration-[120ms] ease-[var(--ease-out-expo)]',
-                'hover:text-[var(--color-primary)]'
+                'hover:text-[var(--color-on-surface)]'
               )}
             >
               {label}
@@ -73,9 +72,19 @@ export function Header() {
         </nav>
 
         {/* ── Actions ── */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-6">
           <ThemeToggle />
           
+          <Link
+            href="/contact"
+            className={cn(
+              'btn btn-primary px-6 py-2.5 rounded-full text-[11px] tracking-[0.1em]',
+              'bg-[var(--color-primary)] text-[#0a0a0a]'
+            )}
+          >
+            Connect
+          </Link>
+
           <button
             className={cn(
               'md:hidden p-2 rounded-[var(--radius-sm)]',
@@ -99,4 +108,5 @@ export function Header() {
       </div>
     </header>
   );
-}
+}
+

@@ -1,5 +1,5 @@
 // src/components/portfolio/ProjectCard.tsx
-// Glassmorphic project card — follows DESIGN.MD elevation rules
+// Glassmorphic project card — refined to match reference design
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -23,69 +23,67 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
   return (
     <article
       className={cn(
-        'relative group rounded-[var(--radius-xl)] overflow-hidden',
-        'bg-[var(--glass-bg)] backdrop-blur-[var(--glass-blur)]',
-        'transition-all duration-[220ms] ease-[var(--ease-out-expo)]',
-        'hover:scale-[1.02] hover:shadow-[var(--shadow-glow-md)]',
+        'relative group rounded-[12px] overflow-hidden',
+        'bg-[#121212] border border-[var(--color-outline-variant)]/20',
+        'transition-all duration-300 hover:border-[var(--color-primary)]/30 hover:bg-[#161616]',
         className
       )}
     >
-      {/* Gradient border overlay */}
-      <span
-        className="absolute inset-0 pointer-events-none z-10 rounded-[inherit]"
-        style={{
-          background: 'linear-gradient(135deg, rgba(139,101,191,0.60) 0%, transparent 100%)',
-          maskImage: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-          WebkitMaskComposite: 'destination-out',
-          maskComposite: 'exclude',
-          padding: '1px',
-        }}
-        aria-hidden="true"
-      />
-
       {/* Thumbnail: 16:10 aspect ratio */}
-      <div className="relative aspect-[16/10] bg-[var(--color-surface-container-high)] overflow-hidden rounded-t-[var(--radius-xl)]">
+      <div className="relative aspect-[16/10] overflow-hidden">
         {thumbnail ? (
           <Image
             src={thumbnail}
             alt={`${title} preview`}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover transition-transform duration-[400ms] ease-[var(--ease-out-expo)] group-hover:scale-105"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center bg-[var(--color-surface-container)]">
-             <div className="w-12 h-12 rounded-full bg-[var(--color-primary-container)] opacity-20" />
+          <div className="absolute inset-0 flex items-center justify-center bg-[#1a1a1a]">
+             <div className="w-12 h-12 rounded-full bg-[var(--color-primary)] opacity-10" />
           </div>
         )}
+        {/* Subtle overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#121212] to-transparent opacity-40" />
       </div>
 
       {/* Content */}
-      <div className="p-6">
-        <h3 className="text-[var(--type-h3-size)] font-medium text-[var(--color-on-surface)] mb-3">
-          {title}
-        </h3>
-        <p className="text-[var(--type-body-md-size)] text-[var(--color-on-surface-variant)] mb-6 line-clamp-2">
-          {description}
-        </p>
-
-        {/* Tech stack: Specific chip styling from DESIGN.MD */}
+      <div className="p-8">
+        {/* Tech tags: Uppercase pills */}
         <div className="flex flex-wrap gap-2 mb-6">
           {tech_tags?.map((tag) => (
-            <span key={tag} className="chip">
+            <span 
+              key={tag} 
+              className={cn(
+                "px-3 py-1 rounded-sm text-[9px] font-bold tracking-widest uppercase",
+                "bg-[#1f1a40] text-[var(--color-primary)] border border-[var(--color-primary)]/20"
+              )}
+            >
               {tag}
             </span>
           ))}
         </div>
 
+        <h3 className="text-[18px] font-semibold text-[var(--color-on-surface)] mb-4 tracking-tight">
+          {title}
+        </h3>
+        <p className="text-[14px] text-[var(--color-on-surface-variant)] opacity-70 mb-8 line-clamp-2 leading-relaxed">
+          {description}
+        </p>
+
         <Link
           href={`/portfolio/${slug}`}
-          className="text-[var(--color-primary)] hover:underline type-label-caps text-[11px] inline-flex items-center gap-1 focus-ring"
+          className={cn(
+            "inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase",
+            "text-[var(--color-primary)] opacity-80 hover:opacity-100 transition-opacity"
+          )}
         >
-          Read Case Study
-          <span className="text-sm">→</span>
+          READ CASE STUDY
+          <span className="text-[12px] translate-y-[-1px]">→</span>
         </Link>
       </div>
     </article>
   );
-}
+}
+
