@@ -1,9 +1,9 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  reactCompiler: true,
+  cacheComponents: true,
   experimental: {
-    reactCompiler: true,
-    ppr: 'incremental',
     optimizePackageImports: ['@react-three/fiber', '@react-three/drei', 'gsap', 'three'],
   },
   typedRoutes: true,
