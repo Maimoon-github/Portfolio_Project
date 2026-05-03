@@ -69,45 +69,44 @@ export default async function HomePage() {
   const projects = featuredProjects.length > 0 ? (featuredProjects.length > 4 ? featuredProjects.slice(0, 4) : featuredProjects) : STATIC_PROJECTS;
 
   return (
-    <main className="relative overflow-hidden">
+    <main className="relative overflow-hidden bg-[var(--color-surface)]">
       {/* ── HERO ────────────────────────────────────────────────────────────── */}
-      <section
-        className="relative min-h-screen flex items-center pt-[64px]"
-      >
+      <section className="relative min-h-screen flex items-center pt-32 pb-20">
         {/* Background Ethereal Glows */}
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[var(--color-primary)] opacity-[0.08] blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-[20%] right-[-5%] w-[40%] h-[40%] bg-[var(--color-secondary)] opacity-[0.05] blur-[100px] rounded-full pointer-events-none" />
-        
-        {/* Atmospheric noise */}
-        <div className="bg-noise absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden="true" />
+        <div className="absolute top-0 left-[-10%] w-[800px] h-[600px] bg-[var(--color-primary)] opacity-[0.08] blur-3xl rounded-full pointer-events-none" />
+        <div className="absolute bottom-[10%] right-[-5%] w-[600px] h-[600px] bg-[var(--color-secondary)] opacity-[0.06] blur-3xl rounded-full pointer-events-none" />
 
-        <div className="container relative z-10 py-20">
-          <div className="max-w-3xl text-left">
+        <div className="container relative z-10">
+          <div className="max-w-3xl">
             {/* Overline */}
-            <span className="type-label-caps text-[var(--color-primary)] opacity-80 block mb-6 animate-reveal">
-              Senior AI Engineer
-            </span>
+            <div className="mb-8 inline-block animate-reveal" style={{ animationDelay: '0ms' }}>
+              <span className="px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase text-[var(--color-primary)] bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/20">
+                Senior AI Engineer
+              </span>
+            </div>
 
-            {/* Headline */}
-            <h1 className="text-[var(--type-display-size)] font-bold text-[var(--color-on-surface)] leading-[1.05] tracking-[-0.03em] mb-10">
-              <span className="block mb-2 text-glow-primary animate-reveal" style={{ animationDelay: '100ms' }}>Engineering</span>
-              <span className="block text-glow-primary animate-reveal" style={{ animationDelay: '300ms' }}>Agentic Systems</span>
+            {/* Headline with gradient */}
+            <h1 className="text-[64px] md:text-[88px] font-bold leading-[1.1] tracking-[-0.02em] mb-12 animate-reveal" style={{ animationDelay: '100ms' }}>
+              <span className="block mb-3 bg-gradient-to-b from-white via-[var(--color-primary)] to-[var(--color-primary)] bg-clip-text text-transparent">
+                Engineering
+              </span>
+              <span className="block bg-gradient-to-b from-white via-[var(--color-primary)] to-[var(--color-primary)] bg-clip-text text-transparent">
+                Agentic Systems
+              </span>
             </h1>
 
             {/* Bio */}
-            <p className="text-[var(--type-body-lg-size)] text-[var(--color-on-surface-variant)] leading-relaxed max-w-[60ch] mb-12 opacity-90 animate-reveal" style={{ animationDelay: '500ms' }}>
-              Architecting high-dimensional intelligence at the intersection of precision 
-              mathematics and neural design. I specialize in crafting scalable AI solutions 
-              that transform complex data into autonomous, actionable agents.
+            <p className="text-lg text-[var(--color-on-surface-variant)] leading-relaxed max-w-2xl mb-12 opacity-90 animate-reveal" style={{ animationDelay: '200ms' }}>
+              Architecting high-dimensional intelligence at the intersection of precision mathematics and neural design. I specialize in crafting scalable AI solutions that transform complex data into autonomous, actionable agents.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-wrap gap-5 animate-reveal" style={{ animationDelay: '700ms' }}>
-              <a href="/portfolio" className="btn btn-primary px-8 py-4 text-[12px] tracking-[0.15em]">
-                SEE MY WORK
+            <div className="flex flex-wrap gap-4 animate-reveal" style={{ animationDelay: '300ms' }}>
+              <a href="/portfolio" className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-neo-mint)] text-black text-xs font-bold tracking-widest uppercase rounded-lg hover:bg-[var(--color-neo-mint)]/90 transition-colors">
+                See My Work
               </a>
-              <a href="/contact" className="btn btn-ghost px-8 py-4 text-[12px] tracking-[0.15em]">
-                CONTACT ME
+              <a href="/contact" className="inline-flex items-center justify-center px-8 py-3 border border-[var(--color-outline-variant)] text-[var(--color-on-surface)] text-xs font-bold tracking-widest uppercase rounded-lg hover:bg-[var(--color-surface-container)] transition-colors">
+                Contact Me
               </a>
             </div>
           </div>
@@ -115,16 +114,16 @@ export default async function HomePage() {
       </section>
 
       {/* ── FEATURED WORK ───────────────────────────────────────────────────── */}
-      <section className="py-24 bg-[var(--color-surface)]" id="work">
+      <section className="py-32 bg-[var(--color-surface)]" id="work">
         <div className="container">
           <div className="mb-20">
-            <h2 className="text-[var(--type-h2-size)] font-medium text-[var(--color-primary)] opacity-90">
+            <h2 className="text-4xl font-medium text-[var(--color-primary)] opacity-90">
               Featured Work
             </h2>
           </div>
 
-          <Suspense fallback={<div className="grid grid-cols-1 md:grid-cols-2 gap-10 h-96 bg-[var(--color-surface-container)] rounded-xl animate-pulse" />}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+          <Suspense fallback={<div className="grid grid-cols-1 md:grid-cols-2 gap-12 h-96 bg-[var(--color-surface-container)] rounded-xl animate-pulse" />}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               {projects.map((project) => (
                 <ProjectCard key={project.slug} project={project} />
               ))}
@@ -144,21 +143,25 @@ export default async function HomePage() {
       {/* ── FINAL CTA ────────────────────────────────────────────────────────── */}
       <section className="py-40 bg-[var(--color-surface)]">
         <div className="container">
-          <div className="max-w-4xl mx-auto card p-12 md:p-20 text-center">
-             <span className="type-label-caps text-[var(--color-neo-mint)] block mb-6">Inquiry</span>
-             <h2 className="text-[var(--type-h2-size)] font-medium text-[var(--color-on-surface)] mb-8">
-               Ready to architect the future?
-             </h2>
-             <p className="text-[var(--type-body-md-size)] text-[var(--color-on-surface-variant)] mb-12 max-w-md mx-auto">
-               Whether it's a bioinformatics pipeline or an agentic system, let's build something that lasts.
-             </p>
-             <div className="flex justify-center gap-4">
-               <a href="/contact" className="btn btn-primary">Start a Project</a>
-               <a href="/about" className="btn btn-ghost">Learn More</a>
-             </div>
+          <div className="max-w-3xl mx-auto bg-[var(--color-surface-container-low)] border border-[var(--color-outline-variant)]/30 rounded-2xl p-16 md:p-24 text-center">
+            <span className="text-xs font-bold tracking-widest uppercase text-[var(--color-neo-mint)] block mb-6">Ready</span>
+            <h2 className="text-4xl font-semibold text-[var(--color-on-surface)] mb-8">
+              Let's build something extraordinary.
+            </h2>
+            <p className="text-base text-[var(--color-on-surface-variant)] mb-12 max-w-xl mx-auto opacity-80">
+              Whether it's architecting AI systems, optimizing data pipelines, or pushing the boundaries of what's possible—I'm ready to collaborate.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a href="/contact" className="inline-flex items-center justify-center px-8 py-3 bg-[var(--color-neo-mint)] text-black text-xs font-bold tracking-widest uppercase rounded-lg hover:bg-[var(--color-neo-mint)]/90 transition-colors">
+                Start a Conversation
+              </a>
+              <a href="/portfolio" className="inline-flex items-center justify-center px-8 py-3 border border-[var(--color-outline-variant)] text-[var(--color-on-surface)] text-xs font-bold tracking-widest uppercase rounded-lg hover:bg-[var(--color-surface-container)] transition-colors">
+                Explore My Work
+              </a>
+            </div>
           </div>
         </div>
       </section>
     </main>
   );
-}
+}

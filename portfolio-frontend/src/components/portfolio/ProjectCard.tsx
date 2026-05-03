@@ -23,67 +23,62 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
   return (
     <article
       className={cn(
-        'relative group rounded-[12px] overflow-hidden',
-        'bg-[#121212] border border-[var(--color-outline-variant)]/20',
-        'transition-all duration-300 hover:border-[var(--color-primary)]/30 hover:bg-[#161616]',
+        'group relative rounded-xl overflow-hidden',
+        'bg-[var(--color-surface-container-low)] border border-[var(--color-outline-variant)]/40',
+        'transition-all duration-300 hover:border-[var(--color-primary)]/50 hover:bg-[var(--color-surface-container)]',
+        'flex flex-col h-full',
         className
       )}
     >
-      {/* Thumbnail: 16:10 aspect ratio */}
-      <div className="relative aspect-[16/10] overflow-hidden">
+      {/* Thumbnail: 16:9 aspect ratio */}
+      <div className="relative aspect-video overflow-hidden">
         {thumbnail ? (
           <Image
             src={thumbnail}
             alt={`${title} preview`}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center bg-[#1a1a1a]">
-             <div className="w-12 h-12 rounded-full bg-[var(--color-primary)] opacity-10" />
+          <div className="absolute inset-0 flex items-center justify-center bg-[var(--color-surface-container)]">
+            <div className="w-16 h-16 rounded-full bg-[var(--color-primary)] opacity-10" />
           </div>
         )}
-        {/* Subtle overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#121212] to-transparent opacity-40" />
+        {/* Overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface-container-low)] via-transparent to-transparent opacity-60" />
       </div>
 
       {/* Content */}
-      <div className="p-8">
-        {/* Tech tags: Uppercase pills */}
+      <div className="p-8 flex flex-col flex-grow">
+        {/* Tech tags */}
         <div className="flex flex-wrap gap-2 mb-6">
           {tech_tags?.map((tag) => (
             <span 
               key={tag} 
-              className={cn(
-                "px-3 py-1 rounded-sm text-[9px] font-bold tracking-widest uppercase",
-                "bg-[#1f1a40] text-[var(--color-primary)] border border-[var(--color-primary)]/20"
-              )}
+              className="px-3 py-1.5 rounded-sm text-xs font-bold tracking-widest uppercase text-[var(--color-primary)] bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/30"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        <h3 className="text-[18px] font-semibold text-[var(--color-on-surface)] mb-4 tracking-tight">
+        <h3 className="text-xl font-semibold text-[var(--color-on-surface)] mb-4 leading-tight">
           {title}
         </h3>
-        <p className="text-[14px] text-[var(--color-on-surface-variant)] opacity-70 mb-8 line-clamp-2 leading-relaxed">
+        <p className="text-sm text-[var(--color-on-surface-variant)] opacity-70 mb-8 line-clamp-3 leading-relaxed flex-grow">
           {description}
         </p>
 
         <Link
           href={`/portfolio/${slug}`}
-          className={cn(
-            "inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] uppercase",
-            "text-[var(--color-primary)] opacity-80 hover:opacity-100 transition-opacity"
-          )}
+          className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-[var(--color-primary)] opacity-80 hover:opacity-100 transition-opacity group/link"
         >
           READ CASE STUDY
-          <span className="text-[12px] translate-y-[-1px]">→</span>
+          <span className="text-xs translate-y-[-1px]">→</span>
         </Link>
       </div>
     </article>
   );
 }
-
+

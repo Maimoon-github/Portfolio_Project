@@ -31,47 +31,47 @@ const TEASERS = [
 
 export function BlogTeaser() {
   return (
-    <section className="py-32 bg-[#0a0a0a]">
-      <div className="container mx-auto px-8">
-        <div className="flex items-center justify-between mb-16">
-          <h2 className="text-[var(--type-h2-size)] font-medium text-[var(--color-primary)] opacity-90">
+    <section className="py-32 bg-[var(--color-surface)]">
+      <div className="container">
+        <div className="flex items-center justify-between mb-20">
+          <h2 className="text-4xl font-medium text-[var(--color-primary)] opacity-90">
             Latest Thinking
           </h2>
           <div className="flex gap-4">
-            <button className="w-12 h-12 rounded-lg border border-[var(--color-outline-variant)]/30 flex items-center justify-center text-[var(--color-on-surface-variant)] hover:bg-[var(--color-surface-container)] transition-colors">
+            <button className="w-12 h-12 rounded-lg border border-[var(--color-outline-variant)]/40 flex items-center justify-center text-[var(--color-on-surface-variant)] hover:bg-[var(--color-surface-container)] hover:border-[var(--color-primary)]/50 transition-colors">
               <ChevronLeft size={20} />
             </button>
-            <button className="w-12 h-12 rounded-lg border border-[var(--color-outline-variant)]/30 flex items-center justify-center text-[var(--color-on-surface-variant)] hover:bg-[var(--color-surface-container)] transition-colors">
+            <button className="w-12 h-12 rounded-lg border border-[var(--color-outline-variant)]/40 flex items-center justify-center text-[var(--color-on-surface-variant)] hover:bg-[var(--color-surface-container)] hover:border-[var(--color-primary)]/50 transition-colors">
               <ChevronRight size={20} />
             </button>
           </div>
         </div>
 
-        {/* Horizontal scroll track */}
+        {/* Articles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {TEASERS.map((item, index) => (
             <article 
               key={index}
               className={cn(
-                "bg-[#121212] border border-[var(--color-outline-variant)]/10 rounded-xl p-10",
-                "transition-all duration-300 hover:border-[var(--color-primary)]/20 hover:bg-[#161616]"
+                "bg-[var(--color-surface-container-low)] border border-[var(--color-outline-variant)]/40 rounded-lg p-8 flex flex-col h-full",
+                "transition-all duration-300 hover:border-[var(--color-primary)]/50 hover:bg-[var(--color-surface-container)]"
               )}
             >
-              <span className="text-[9px] font-bold tracking-[0.2em] text-[var(--color-primary)] opacity-60 block mb-6 uppercase">
+              <span className="text-xs font-bold tracking-widest uppercase text-[var(--color-primary)] opacity-60 block mb-6">
                 {item.category}
               </span>
-              <h3 className="text-[18px] font-semibold text-[var(--color-on-surface)] leading-tight mb-5 tracking-tight">
+              <h3 className="text-lg font-semibold text-[var(--color-on-surface)] leading-tight mb-5">
                 {item.title}
               </h3>
-              <p className="text-[14px] text-[var(--color-on-surface-variant)] opacity-60 mb-10 line-clamp-3 leading-relaxed">
+              <p className="text-sm text-[var(--color-on-surface-variant)] opacity-70 mb-8 line-clamp-3 leading-relaxed flex-grow">
                 {item.excerpt}
               </p>
               <Link 
                 href={item.link}
-                className="text-[10px] font-bold tracking-[0.2em] text-[var(--color-primary)] opacity-80 hover:opacity-100 transition-opacity uppercase inline-flex items-center gap-2"
+                className="text-xs font-bold tracking-widest uppercase text-[var(--color-primary)] opacity-80 hover:opacity-100 transition-opacity inline-flex items-center gap-2"
               >
                 {item.linkLabel}
-                <span className="text-[12px]">↗</span>
+                <span className="text-sm">↗</span>
               </Link>
             </article>
           ))}
