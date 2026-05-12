@@ -1,0 +1,686 @@
+$
+(base) 
+Aurum@DESKTOP-ESRANVJ MINGW64 ~/vscode/Portfolio_Project/portfolio-frontend (templates)
+$ npm run lint
+
+> portfolio-frontend@0.1.0 lint
+> next lint
+
+Invalid project directory provided, no such directory: C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\lint
+(base) 
+Aurum@DESKTOP-ESRANVJ MINGW64 ~/vscode/Portfolio_Project/portfolio-frontend (templates)
+$ npx tsc --noEmit
+.next/dev/types/validator.ts:42:39 - error TS2307: Cannot find module '../../../src/app/page.js' or its corresponding type declarations.
+
+42   const handler = {} as typeof import("../../../src/app/page.js")
+                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/app/(marketing)/page.tsx:30:5 - error TS2339: Property 'titleHighlight' does not exist on type '{ name: string; title: string; tagline: string; heroSubtitle: string; heroDescription: string; about: { heading: string; content: string; }; skills: { heading: string; items: { icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<...>>; title: string; description: string; }[]; }; projects: { ...;...'.
+
+30     titleHighlight = 'autonomous',
+       ~~~~~~~~~~~~~~
+
+src/app/(marketing)/page.tsx:57:9 - error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: AgenticWorkflowProps, context?: any): string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | ... 4 more ... | undefined', gave the following error.       
+    Type '{ framework: string; title: string; description: string; features: string[]; position: number[]; }[]' is not assignable to type 'AgentFramework[]'.
+      Type '{ framework: string; title: string; description: string; features: string[]; position: number[]; }' is not assignable to type 'AgentFramework'.
+        Types of property 'framework' are incompatible.
+          Type 'string' is not assignable to type '"langgraph" | "autogen" | "crewai"'.
+  Overload 2 of 2, '(props: AgenticWorkflowProps): string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | ... 4 more ... | undefined', gave the following error.
+    Type '{ framework: string; title: string; description: string; features: string[]; position: number[]; }[]' is not assignable to type 'AgentFramework[]'.
+      Type '{ framework: string; title: string; description: string; features: string[]; position: number[]; }' is not assignable to type 'AgentFramework'.
+        Types of property 'framework' are incompatible.
+          Type 'string' is not assignable to type '"langgraph" | "autogen" | "crewai"'.
+
+57         items={agentFrameworks.items}
+           ~~~~~
+
+  src/components/sections/AgenticWorkflow.tsx:15:3
+    15   items: AgentFramework[];
+         ~~~~~
+    The expected type comes from property 'items' which is declared here on type 'IntrinsicAttributes & AgenticWorkflowProps'
+  src/components/sections/AgenticWorkflow.tsx:15:3
+    15   items: AgentFramework[];
+         ~~~~~
+    The expected type comes from property 'items' which is declared here on type 'IntrinsicAttributes & AgenticWorkflowProps'
+
+src/app/(marketing)/page.tsx:59:17 - error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: {}, context?: any): string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<...> | Component<...> | null | undefined', gave the following error.
+    Type '{ heading: string; items: { title: string; description: string; tags: string[]; href: string; }[]; }' is not assignable to type 'IntrinsicAttributes'.
+      Property 'heading' does not exist on type 'IntrinsicAttributes'.
+  Overload 2 of 2, '(props: {}): string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<...> | Component<...> | null | undefined', gave the following error.
+    Type '{ heading: string; items: { title: string; description: string; tags: string[]; href: string; }[]; }' is not assignable to type 'IntrinsicAttributes'.
+      Property 'heading' does not exist on type 'IntrinsicAttributes'.
+
+59       <Projects heading={projects.heading} items={projects.items} />
+                   ~~~~~~~
+
+
+src/app/contact/page.tsx:8:24 - error TS2305: Module '"lucide-react"' has no exported member 'Linkedin'.
+
+8 import { Mail, MapPin, Linkedin, Github, Twitter } from 'lucide-react';
+                         ~~~~~~~~
+
+src/app/contact/page.tsx:8:34 - error TS2305: Module '"lucide-react"' has no exported member 'Github'.
+
+8 import { Mail, MapPin, Linkedin, Github, Twitter } from 'lucide-react';
+                                   ~~~~~~
+
+src/app/contact/page.tsx:8:42 - error TS2305: Module '"lucide-react"' has no exported member 'Twitter'.
+
+8 import { Mail, MapPin, Linkedin, Github, Twitter } from 'lucide-react';
+                                           ~~~~~~~
+
+src/app/lab/page.tsx:75:15 - error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ active: string; 'coming-soon': string; experimental: string; }'.
+  No index signature with a parameter of type 'string' was found on type '{ active: string; 'coming-soon': string; experimental: string; }'.
+
+75               statusColors[experiment.status]
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/app/lab/page.tsx:78:14 - error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ active: string; 'coming-soon': string; experimental: string; }'.
+  No index signature with a parameter of type 'string' was found on type '{ active: string; 'coming-soon': string; experimental: string; }'.
+
+78             {statusLabels[experiment.status]}
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/app/lab/page.tsx:106:28 - error TS2339: Property 'demoUrl' does not exist on type '{ id: string; title: string; description: string; icon: string; status: string; tags: string[]; }'.
+
+106           href={experiment.demoUrl || `#`}
+                               ~~~~~~~
+
+src/app/projects/[slug]/page.tsx:23:25 - error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ readonly "agentic-ai": "Agentic AI"; readonly "data-science": "Data Science"; readonly mlops: "MLOps"; readonly web3: "Web3 / Blockchain"; readonly research: "Research"; }'.
+  No index signature with a parameter of type 'string' was found on type '{ readonly "agentic-ai": "Agentic AI"; readonly "data-science": "Data Science"; readonly mlops: "MLOps"; readonly web3: "Web3 / Blockchain"; readonly research: "Research"; }'.
+
+23   const categoryLabel = projectsData.categoryLabels[project.category] || project.category;
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/app/projects/[slug]/page.tsx:58:31 - error TS2322: Type '{ id: string; slug: string; title: string; category: string; client: string; industry: string; timeline: string; role: string; shortDescription: string; fullDescription: string; problemStatement: string; ... 12 more ...; status: string; } | { ...; }' is not assignable to type 'Project'.
+  Type '{ id: string; slug: string; title: string; category: string; client: string; industry: string; timeline: string; role: string; shortDescription: string; fullDescription: string; problemStatement: string; ... 12 more ...; status: string; }' is not assignable to type 'Project'.
+    Types of property 'category' are incompatible.
+      Type 'string' is not assignable to type '"agentic-ai" | "mlops" | "data-science" | "web3" | "research"'.
+
+58   return <ProjectDetailClient project={project} />;
+                                 ~~~~~~~
+
+  src/app/projects/[slug]/ProjectDetailClient.tsx:12:52
+    12 export function ProjectDetailClient({ project }: { project: Project }) {
+                                                          ~~~~~~~
+    The expected type comes from property 'project' which is declared here on type 'IntrinsicAttributes & { project: Project; }'
+
+src/app/projects/[slug]/ProjectDetailClient.tsx:8:35 - error TS2305: Module '"lucide-react"' has no exported member 'Github'.
+
+8 import { ArrowLeft, ExternalLink, Github, Calendar, Users, Building2 } from 'lucide-react';
+                                    ~~~~~~
+
+src/app/projects/page.tsx:14:35 - error TS2305: Module '"lucide-react"' has no exported member 'Github'.
+
+14 import { Search, X, ExternalLink, Github } from 'lucide-react';
+                                     ~~~~~~
+
+src/app/projects/page.tsx:145:19 - error TS2339: Property 'description' does not exist on type '{ id: string; slug: string; title: string; category: string; client: string; industry: string; timeline: string; role: string; shortDescription: string; fullDescription: string; problemStatement: string; ... 12 more ...; status: string; } | { ...; }'.
+  Property 'description' does not exist on type '{ id: string; slug: string; title: string; category: string; client: string; industry: string; timeline: string; role: string; shortDescription: string; fullDescription: string; problemStatement: string; ... 12 more ...; status: string; }'.
+
+145           project.description.toLowerCase().includes(query) ||
+                      ~~~~~~~~~~~
+
+src/app/projects/page.tsx:146:19 - error TS2339: Property 'tags' does not exist on type '{ id: string; slug: string; title: string; category: string; client: string; industry: string; timeline: string; role: string; shortDescription: string; fullDescription: string; problemStatement: string; ... 12 more ...; status: string; } | { ...; }'.
+  Property 'tags' does not exist on type '{ id: string; slug: string; title: string; category: string; client: string; industry: string; timeline: string; role: string; shortDescription: string; fullDescription: string; problemStatement: string; ... 12 more ...; status: string; }'.
+
+146           project.tags.some((tag) => tag.toLowerCase().includes(query))
+                      ~~~~
+
+src/app/projects/page.tsx:146:30 - error TS7006: Parameter 'tag' implicitly has an 'any' type.
+
+146           project.tags.some((tag) => tag.toLowerCase().includes(query))
+                                 ~~~
+
+src/app/projects/page.tsx:307:16 - error TS2322: Type '{ id: string; slug: string; title: string; category: string; client: string; industry: string; timeline: string; role: string; shortDescription: string; fullDescription: string; problemStatement: string; ... 13 more ...; key: string; } | { ...; }' is not assignable to type 'IntrinsicAttributes & ProjectCardProps'.
+  Type '{ id: string; slug: string; title: string; category: string; client: string; industry: string; timeline: string; role: string; shortDescription: string; fullDescription: string; problemStatement: string; ... 13 more ...; key: string; }' is missing the following properties from type 'ProjectCardProps': description, tags
+
+307               <ProjectCard key={project.id} {...project} />
+                   ~~~~~~~~~~~
+
+src/components/3d/core/CanvasWrapper.tsx:4:18 - error TS2724: '"@react-three/fiber"' has no exported member named 'Props'. Did you mean 'GLProps'?
+
+4 import { Canvas, Props as CanvasProps } from '@react-three/fiber';
+                   ~~~~~
+
+src/components/3d/elements/AgenticGraphImpl.tsx:4:27 - error TS2307: Cannot find module 'r3f-forcegraph' or its corresponding type declarations.
+
+4 import R3fForceGraph from 'r3f-forcegraph';
+                            ~~~~~~~~~~~~~~~~
+
+src/components/3d/elements/AgenticGraphImpl.tsx:17:17 - error TS2554: Expected 1 arguments, but got 0.
+
+17   const fgRef = useRef<any>();
+                   ~~~~~~
+
+  node_modules/@types/react/index.d.ts:1737:24
+    1737     function useRef<T>(initialValue: T): RefObject<T>;
+                                ~~~~~~~~~~~~~~~
+    An argument for 'initialValue' was not provided.
+
+src/components/3d/elements/AgenticGraphImpl.tsx:58:41 - error TS2339: Property 'id' does not exist on type 'string'.
+
+58         const isConnected = link.source.id === nodeId || link.target.id === nodeId;
+                                           ~~
+
+src/components/3d/elements/AgenticGraphImpl.tsx:58:70 - error TS2339: Property 'id' does not exist on type 'string'.
+
+58         const isConnected = link.source.id === nodeId || link.target.id === nodeId;
+                                                                        ~~
+
+src/components/3d/elements/NeuralNetwork.tsx:6:18 - error TS2305: Module '"@react-three/drei"' has no exported member 'LineBasicMaterial'.
+
+6 import { Sphere, LineBasicMaterial } from '@react-three/drei';
+                   ~~~~~~~~~~~~~~~~~
+
+src/components/3d/elements/NeuralNetwork.tsx:27:23 - error TS2304: Cannot find name 'useState'.
+
+27   const [positions] = useState(() => {
+                         ~~~~~~~~
+
+src/components/3d/elements/NeuralNetwork.tsx:83:35 - error TS2322: Type '{ children: Element; key: string; geometry: BufferGeometry<NormalBufferAttributes, BufferGeometryEventMap>; }' is not assignable to type 'SVGLineElementAttributes<SVGLineElement>'.
+  Property 'geometry' does not exist on type 'SVGLineElementAttributes<SVGLineElement>'.
+
+83         <line key={`edge-${idx}`} geometry={geom}>
+                                     ~~~~~~~~
+
+src/components/3d/elements/NeuralNetwork.tsx:89:23 - error TS7006: Parameter 'pos' implicitly has an 'any' type.
+
+89       {positions.map((pos, idx) => (
+                         ~~~
+
+src/components/3d/elements/NeuralNetwork.tsx:89:28 - error TS7006: Parameter 'idx' implicitly has an 'any' type.
+
+89       {positions.map((pos, idx) => (
+                              ~~~
+
+src/components/animations/TextReveal.tsx:74:13 - error TS2322: Type '{ hidden: { opacity: number; y: number; scale: number; }; visible: { opacity: number; y: number; scale: number; transition: { duration: number; ease: string; }; }; }' is not assignable to type 'Variants'.
+  Property 'visible' is incompatible with index signature.
+    Type '{ opacity: number; y: number; scale: number; transition: { duration: number; ease: string; }; }' is not assignable to type 'Variant'.
+      Type '{ opacity: number; y: number; scale: number; transition: { duration: number; ease: string; }; }' is not assignable to type 'TargetAndTransition'.
+        Type '{ opacity: number; y: number; scale: number; transition: { duration: number; ease: string; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+          Types of property 'transition' are incompatible.
+            Type '{ duration: number; ease: string; }' is not assignable to type 'Transition<any> | undefined'.
+              Type '{ duration: number; ease: string; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                Type '{ duration: number; ease: string; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                  Types of property 'ease' are incompatible.
+                    Type 'string' is not assignable to type 'Easing | Easing[] | undefined'.
+
+74             variants={childVariants}
+               ~~~~~~~~
+
+  node_modules/motion-dom/dist/index.d.ts:290:5
+    290     variants?: Variants;
+            ~~~~~~~~
+    The expected type comes from property 'variants' which is declared here on type 'IntrinsicAttributes & Omit<HTMLMotionProps<"span">, "ref"> & RefAttributes<HTMLSpanElement>'
+
+src/components/sections/AgenticWorkflow.tsx:33:16 - error TS2741: Property 'icon' is missing in type '{ key: "langgraph" | "autogen" | "crewai"; framework: "langgraph" | "autogen" | "crewai"; title: string; description: string; features: string[]; position: [number, number, number]; }' but required in type 'ModelCardImplProps'.
+
+33               <ModelCard
+                  ~~~~~~~~~
+
+  src/components/3d/elements/ModelCardImpl.tsx:25:3
+    25   icon: ReactNode;
+         ~~~~
+    'icon' is declared here.
+
+src/components/seo/StructuredData.tsx:10:39 - error TS2694: Namespace 'global.JSX' has no exported member 'Element'.
+
+10 export function StructuredData(): JSX.Element {
+                                         ~~~~~~~
+
+src/components/ui/ProjectCard.tsx:8:24 - error TS2305: Module '"lucide-react"' has no exported member 'Github'.
+
+8 import { ExternalLink, Github } from 'lucide-react';
+                         ~~~~~~
+
+src/components/ui/ProjectCard.tsx:9:15 - error TS2305: Module '"@/types/project"' has no exported member 'ProjectTechnology'.
+
+9 import type { ProjectTechnology } from '@/types/project';
+                ~~~~~~~~~~~~~~~~~
+
+src/hooks/use-3d-interaction.ts:42:21 - error TS2503: Cannot find namespace 'THREE'.
+
+42   camera: RefObject<THREE.Camera>,
+                       ~~~~~
+
+src/lib/three.ts:40:36 - error TS2339: Property 'isPerspectiveCamera' does not exist on type 'Camera & Record<"aspect", unknown>'.
+
+40   if ('aspect' in camera && camera.isPerspectiveCamera) {
+                                      ~~~~~~~~~~~~~~~~~~~
+
+src/lib/three.ts:42:12 - error TS2551: Property 'updateProjectionMatrix' does not exist on type 'Camera & Record<"aspect", unknown>'. Did you mean 'projectionMatrix'?
+
+42     camera.updateProjectionMatrix();
+              ~~~~~~~~~~~~~~~~~~~~~~
+
+  node_modules/@types/three/src/cameras/Camera.d.ts:24:5
+    24     projectionMatrix: Matrix4;
+           ~~~~~~~~~~~~~~~~
+    'projectionMatrix' is declared here.
+
+src/types/project.ts:40:17 - error TS2304: Cannot find name 'ProjectTechnology'.
+
+40   technologies: ProjectTechnology[];
+                   ~~~~~~~~~~~~~~~~~
+
+src/types/project.ts:41:11 - error TS2304: Cannot find name 'ProjectImage'.
+
+41   images: ProjectImage[];
+             ~~~~~~~~~~~~
+
+src/types/project.ts:42:10 - error TS2304: Cannot find name 'ProjectLink'.
+
+42   links: ProjectLink[];
+            ~~~~~~~~~~~
+
+
+Found 39 errors in 17 files.
+
+Errors  Files
+     1  .next/dev/types/validator.ts:42
+     3  src/app/(marketing)/page.tsx:30
+     3  src/app/contact/page.tsx:8
+     3  src/app/lab/page.tsx:75
+     2  src/app/projects/[slug]/page.tsx:23
+     1  src/app/projects/[slug]/ProjectDetailClient.tsx:8
+     5  src/app/projects/page.tsx:14
+     1  src/components/3d/core/CanvasWrapper.tsx:4
+     4  src/components/3d/elements/AgenticGraphImpl.tsx:4
+     5  src/components/3d/elements/NeuralNetwork.tsx:6
+     1  src/components/animations/TextReveal.tsx:74
+     1  src/components/sections/AgenticWorkflow.tsx:33
+     1  src/components/seo/StructuredData.tsx:10
+     2  src/components/ui/ProjectCard.tsx:8
+     1  src/hooks/use-3d-interaction.ts:42
+     2  src/lib/three.ts:40
+     3  src/types/project.ts:40
+
+(base) 
+Aurum@DESKTOP-ESRANVJ MINGW64 ~/vscode/Portfolio_Project/portfolio-frontend (templates)
+$ npx eslint .
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\app\about\page.tsx
+  30:9  warning  'isTechInView' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\app\contact\page.tsx
+   4:28  warning  'useEffect' is defined but never used              @typescript-eslint/no-unused-vars
+  25:7   warning  'itemVariants' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  59:14  warning  'err' is defined but never used                    @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\app\expertise\page.tsx
+   4:18  warning  'useInView' is defined but never used  @typescript-eslint/no-unused-vars
+   5:10  warning  'useRef' is defined but never used     @typescript-eslint/no-unused-vars
+  71:45  warning  'pillarIdx' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\app\journey\page.tsx
+  10:10  warning  'StaggerList' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\app\projects\page.tsx
+  166:9  warning  'headerContentVariants' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\app\sitemap.ts
+  2:10  warning  'portfolioData' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\core\Scene.tsx
+  7:10  warning  'Group' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\AgenticGraph.tsx
+  12:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\AgenticGraphImpl.tsx
+  16:36  warning  'nodeCount' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  16:51  warning  'linkCount' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  17:24  error    Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  53:34  error    Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  81:31  error    Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  94:31  error    Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\HolographicOrb.tsx
+  36:21  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\HolographicOrb.tsx:36:21
+  34 |     for (let i = 0; i < particleCount; i++) {
+  35 |       // Spherical distribution with some randomness in radius
+> 36 |       const theta = Math.random() * Math.PI * 2;
+     |                     ^^^^^^^^^^^^^ Cannot call impure function
+  37 |       const phi = Math.acos(2 * Math.random() - 1);
+  38 |       const r = radius + (Math.random() - 0.5) * 0.3;
+  39 |       const x = r * Math.sin(phi) * Math.cos(theta);                     react-hooks/purity
+  37:33  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\HolographicOrb.tsx:37:33
+  35 |       // Spherical distribution with some randomness in radius
+  36 |       const theta = Math.random() * Math.PI * 2;
+> 37 |       const phi = Math.acos(2 * Math.random() - 1);
+     |                                 ^^^^^^^^^^^^^ Cannot call impure function
+  38 |       const r = radius + (Math.random() - 0.5) * 0.3;
+  39 |       const x = r * Math.sin(phi) * Math.cos(theta);
+  40 |       const y = r * Math.sin(phi) * Math.sin(theta);  react-hooks/purity
+  38:27  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\HolographicOrb.tsx:38:27
+  36 |       const theta = Math.random() * Math.PI * 2;
+  37 |       const phi = Math.acos(2 * Math.random() - 1);
+> 38 |       const r = radius + (Math.random() - 0.5) * 0.3;
+     |                           ^^^^^^^^^^^^^ Cannot call impure function
+  39 |       const x = r * Math.sin(phi) * Math.cos(theta);
+  40 |       const y = r * Math.sin(phi) * Math.sin(theta);
+  41 |       const z = r * Math.cos(phi);                                    react-hooks/purity
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\ModelCardImpl.tsx
+   69:3   warning  'icon' is defined but never used   @typescript-eslint/no-unused-vars
+  106:13  warning  '_' is defined but never used      @typescript-eslint/no-unused-vars
+  106:16  warning  'delta' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\NeuralNetwork.tsx
+  6:18  warning  'LineBasicMaterial' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\ParticleFieldImpl.tsx
+  24:17  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\ParticleFieldImpl.tsx:24:17
+  22 |     for (let i = 0; i < count; i++) {
+  23 |       // Uniform distribution in a sphere with flattened Y axis for atmospheric spread
+> 24 |       const u = Math.random();
+     |                 ^^^^^^^^^^^^^ Cannot call impure function
+  25 |       const v = Math.random();
+  26 |       const theta = 2 * Math.PI * u;
+  27 |       const phi = Math.acos(2 * v - 1);                                react-hooks/purity
+  25:17  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\ParticleFieldImpl.tsx:25:17
+  23 |       // Uniform distribution in a sphere with flattened Y axis for atmospheric spread
+  24 |       const u = Math.random();
+> 25 |       const v = Math.random();
+     |                 ^^^^^^^^^^^^^ Cannot call impure function
+  26 |       const theta = 2 * Math.PI * u;
+  27 |       const phi = Math.acos(2 * v - 1);
+  28 |       const r = radius * Math.cbrt(Math.random());                   react-hooks/purity
+  28:36  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\ParticleFieldImpl.tsx:28:36
+  26 |       const theta = 2 * Math.PI * u;
+  27 |       const phi = Math.acos(2 * v - 1);
+> 28 |       const r = radius * Math.cbrt(Math.random());
+     |                                    ^^^^^^^^^^^^^ Cannot call impure function
+  29 |       const x = r * Math.sin(phi) * Math.cos(theta);
+  30 |       const y = r * Math.sin(phi) * Math.sin(theta) * 0.4;
+  31 |       const z = r * Math.cos(phi);  react-hooks/purity
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\ui\ProjectCard.tsx
+   5:8  warning  'Link' is defined but never used  @typescript-eslint/no-unused-vars
+  34:3  warning  'id' is defined but never used    @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\hooks\use-3d-interaction.ts
+  26:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\hooks\use-3d-interaction.ts:26:5
+  24 |     const normX = (x - centerX) / centerX;
+  25 |     const normY = (centerY - y) / centerY; // invert Y for 3D space
+> 26 |     setNormalized({ x: normX, y: normY });
+     |     ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  27 |   }, [x, y]);
+  28 |
+  29 |   return normalized;                                                                                                                                                                                                      
+                                              react-hooks/set-state-in-effect
+  38:40  warning  'Intersection' is defined but never used                                                                                                                                                                       
+                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                 
+     @typescript-eslint/no-unused-vars
+  53:5   error    Error: Cannot modify local variables after render completes
+
+This argument is a function which may reassign or mutate `mouse` after render, which can cause inconsistent behavior on subsequent renders. Consider using state instead.
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\hooks\use-3d-interaction.ts:53:5
+  51 |
+  52 |   const onMouseMove = useCallback(
+> 53 |     (event: MouseEvent) => {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^
+> 54 |       if (!canvasRef.current || !camera.current) return;
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 55 |
+     …
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 69 |       }
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 70 |     },
+     | ^^^^^^ This function may (indirectly) reassign or modify `mouse` after render
+  71 |     [objects, camera, canvasRef, raycaster]
+  72 |   );
+  73 |
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\hooks\use-3d-interaction.ts:57:7
+  55 |
+  56 |       const rect = canvasRef.current.getBoundingClientRect();
+> 57 |       mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+     |       ^^^^^ This modifies `mouse`
+  58 |       mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+  59 |
+  60 |       raycaster.setFromCamera(mouse, camera.current);  react-hooks/immutability
+  71:5   warning  React Hook useCallback has a missing dependency: 'mouse'. Either include it or remove the dependency array                                                                                                     
+                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                 
+     react-hooks/exhaustive-deps
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\lib\data.ts
+  5:9  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\lib\motion.ts
+  2:33  warning  'TargetAndTransition' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\lib\three.ts
+  2:18  warning  'Scene' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\types\three.d.ts
+   2:10  warning  'Object3D' is defined but never used        @typescript-eslint/no-unused-vars
+   2:20  warning  'Material' is defined but never used        @typescript-eslint/no-unused-vars
+   2:30  warning  'BufferGeometry' is defined but never used  @typescript-eslint/no-unused-vars
+   7:31  error    Unexpected any. Specify a different type    @typescript-eslint/no-explicit-any
+  46:35  error    Unexpected any. Specify a different type    @typescript-eslint/no-explicit-any
+
+✖ 42 problems (16 errors, 26 warnings)
+
+> Get-Content tsc_errors.log | Select-Object -First 100
+.next/dev/types/validator.ts(42,39): error TS2307: Cannot find module '../../../src/app/page.js' or its corresponding type declarations.
+src/app/(marketing)/page.tsx(30,5): error TS2339: Property 'titleHighlight' does not exist on type '{ name: string; title: string; tagline: string; heroSubtitle: string; heroDescription: string; about: { heading: string; content: string; }; skills: { heading: string; items: { icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<...>>; title: string; description: string; }[]; }; projects: { ...;...'.
+src/app/(marketing)/page.tsx(57,9): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: AgenticWorkflowProps, context?: any): string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | ... 4 more ... | undefined', gave the following error.
+    Type '{ framework: string; title: string; description: string; features: string[]; position: number[]; }[]' is not assignable to type 'AgentFramework[]'.
+      Type '{ framework: string; title: string; description: string; features: string[]; position: number[]; }' is not assignable to type 'AgentFramework'.
+        Types of property 'framework' are incompatible.
+          Type 'string' is not assignable to type '"langgraph" | "autogen" | "crewai"'.
+  Overload 2 of 2, '(props: AgenticWorkflowProps): string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | ... 4 more ... | undefined', gave the following error.
+    Type '{ framework: string; title: string; description: string; features: string[]; position: number[]; }[]' is not assignable to type 'AgentFramework[]'.
+      Type '{ framework: string; title: string; description: string; features: string[]; position: number[]; }' is not assignable to type 'AgentFramework'.
+        Types of property 'framework' are incompatible.
+          Type 'string' is not assignable to type '"langgraph" | "autogen" | "crewai"'.
+src/app/(marketing)/page.tsx(59,17): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: {}, context?: any): string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<...> | Component<...> | null | undefined', gave the following error.
+    Type '{ heading: string; items: { title: string; description: string; tags: string[]; href: string; }[]; }' is not assignable to type 'IntrinsicAttributes'.
+      Property 'heading' does not exist on type 'IntrinsicAttributes'.
+  Overload 2 of 2, '(props: {}): string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<...> | Component<...> | null | undefined', gave the following error.
+    Type '{ heading: string; items: { title: string; description: string; tags: string[]; href: string; }[]; }' is not assignable to type 'IntrinsicAttributes'.
+      Property 'heading' does not exist on type 'IntrinsicAttributes'.
+src/app/contact/page.tsx(8,24): error TS2305: Module '"lucide-react"' has no exported member 'Linkedin'.
+src/app/contact/page.tsx(8,34): error TS2305: Module '"lucide-react"' has no exported member 'Github'.
+src/app/contact/page.tsx(8,42): error TS2305: Module '"lucide-react"' has no exported member 'Twitter'.
+src/app/lab/page.tsx(75,15): error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ active: string; 'coming-soon': string; experimental: string; }'.
+  No index signature with a parameter of type 'string' was found on type '{ active: string; 'coming-soon': string; experimental: string; }'.
+src/app/lab/page.tsx(78,14): error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ active: string; 'coming-soon': string; experimental: string; }'.
+  No index signature with a parameter of type 'string' was found on type '{ active: string; 'coming-soon': string; experimental: string; }'.
+src/app/lab/page.tsx(106,28): error TS2339: Property 'demoUrl' does not exist on type '{ id: string; title: string; description: string; icon: string; status: string; tags: string[]; }'.
+src/app/projects/[slug]/page.tsx(23,25): error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ readonly "agentic-ai": "Agentic AI"; readonly "data-science": "Data Science"; readonly mlops: "MLOps"; readonly web3: "Web3 / Blockchain"; readonly research: "Research"; }'.
+  No index signature with a parameter of type 'string' was found on type '{ readonly "agentic-ai": "Agentic AI"; readonly "data-science": "Data Science"; readonly mlops: "MLOps"; readonly web3: "Web3 / Blockchain"; readonly research: "Research"; }'.
+src/app/projects/[slug]/page.tsx(58,31): error TS2322: Type '{ id: string; slug: string; title: string; category: string; client: string; industry: string; timeline: string; role: string; shortDescription: string; fullDescription: string; problemStatement: string; ... 12 more ...; status: string; } | { ...; }' is not assignable to type 'Project'.
+  Type '{ id: string; slug: string; title: string; category: string; client: string; industry: string; timeline: string; role: string; shortDescription: string; fullDescription: string; problemStatement: string; ... 12 more ...; status: string; }' is not assignable to type 'Project'.
+    Types of property 'category' are incompatible.
+      Type 'string' is not assignable to type '"agentic-ai" | "mlops" | "data-science" | "web3" | "research"'.
+src/app/projects/[slug]/ProjectDetailClient.tsx(8,35): error TS2305: Module '"lucide-react"' has no exported member 'Github'.
+src/app/projects/page.tsx(14,35): error TS2305: Module '"lucide-react"' has no exported member 'Github'.
+src/app/projects/page.tsx(145,19): error TS2339: Property 'description' does not exist on type '{ id: string; slug: string; title: string; category: string; client: string; industry: string; timeline: string; role: string; shortDescription: string; fullDescription: string; problemStatement: string; ... 12 more ...; status: string; } | { ...; }'.
+  Property 'description' does not exist on type '{ id: string; slug: string; title: string; category: string; client: string; industry: string; timeline: string; role: string; shortDescription: string; fullDescription: string; problemStatement: string; ... 12 more ...; status: string; }'.
+src/app/projects/page.tsx(146,19): error TS2339: Property 'tags' does not exist on type '{ id: string; slug: string; title: string; category: string; client: string; industry: string; timeline: string; role: string; shortDescription: string; fullDescription: string; problemStatement: string; ... 12 more ...; status: string; } | { ...; }'.
+  Property 'tags' does not exist on type '{ id: string; slug: string; title: string; category: string; client: string; industry: string; timeline: string; role: string; shortDescription: string; fullDescription: string; problemStatement: string; ... 12 more ...; status: string; }'.
+src/app/projects/page.tsx(146,30): error TS7006: Parameter 'tag' implicitly has an 'any' type.
+src/app/projects/page.tsx(307,16): error TS2322: Type '{ id: string; slug: string; title: string; category: string; client: string; industry: string; timeline: string; role: string; shortDescription: string; fullDescription: string; problemStatement: string; ... 13 more ...; key: string; } | { ...; }' is not assignable to type 'IntrinsicAttributes & ProjectCardProps'.
+  Type '{ id: string; slug: string; title: string; category: string; client: string; industry: string; timeline: string; role: string; shortDescription: string; fullDescription: string; problemStatement: string; ... 13 more ...; key: string; }' is missing the following properties from type 'ProjectCardProps': description, tags
+src/components/3d/core/CanvasWrapper.tsx(4,18): error TS2724: '"@react-three/fiber"' has no exported member named 'Props'. Did you mean 'GLProps'?
+src/components/3d/elements/AgenticGraphImpl.tsx(4,27): error TS2307: Cannot find module 'r3f-forcegraph' or its corresponding type declarations.
+src/components/3d/elements/AgenticGraphImpl.tsx(17,17): error TS2554: Expected 1 arguments, but got 0.
+src/components/3d/elements/AgenticGraphImpl.tsx(58,41): error TS2339: Property 'id' does not exist on type 'string'.
+src/components/3d/elements/AgenticGraphImpl.tsx(58,70): error TS2339: Property 'id' does not exist on type 'string'.
+src/components/3d/elements/NeuralNetwork.tsx(6,18): error TS2305: Module '"@react-three/drei"' has no exported member 'LineBasicMaterial'.
+src/components/3d/elements/NeuralNetwork.tsx(27,23): error TS2304: Cannot find name 'useState'.
+src/components/3d/elements/NeuralNetwork.tsx(83,35): error TS2322: Type '{ children: Element; key: string; geometry: BufferGeometry<NormalBufferAttributes, BufferGeometryEventMap>; }' is not assignable to type 'SVGLineElementAttributes<SVGLineElement>'.
+  Property 'geometry' does not exist on type 'SVGLineElementAttributes<SVGLineElement>'.
+src/components/3d/elements/NeuralNetwork.tsx(89,23): error TS7006: Parameter 'pos' implicitly has an 'any' type.
+src/components/3d/elements/NeuralNetwork.tsx(89,28): error TS7006: Parameter 'idx' implicitly has an 'any' type.
+src/components/animations/TextReveal.tsx(74,13): error TS2322: Type '{ hidden: { opacity: number; y: number; scale: number; }; visible: { opacity: number; y: number; scale: number; transition: { duration: number; ease: string; }; }; }' is not assignable to type 'Variants'.
+  Property 'visible' is incompatible with index signature.
+    Type '{ opacity: number; y: number; scale: number; transition: { duration: number; ease: string; }; }' is not assignable to type 'Variant'.
+      Type '{ opacity: number; y: number; scale: number; transition: { duration: number; ease: string; }; }' is not assignable to type 'TargetAndTransition'.
+        Type '{ opacity: number; y: number; scale: number; transition: { duration: number; ease: string; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+          Types of property 'transition' are incompatible.
+            Type '{ duration: number; ease: string; }' is not assignable to type 'Transition<any> | undefined'.
+              Type '{ duration: number; ease: string; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                Type '{ duration: number; ease: string; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                  Types of property 'ease' are incompatible.
+                    Type 'string' is not assignable to type 'Easing | Easing[] | undefined'.
+src/components/sections/AgenticWorkflow.tsx(33,16): error TS2741: Property 'icon' is missing in type '{ key: "langgraph" | "autogen" | "crewai"; framework: "langgraph" | "autogen" | "crewai"; title: string; description: string; features: string[]; position: [number, number, number]; }' but required in type 'ModelCardImplProps'.
+src/components/seo/StructuredData.tsx(10,39): error TS2694: Namespace 'global.JSX' has no exported member 'Element'.
+src/components/ui/ProjectCard.tsx(8,24): error TS2305: Module '"lucide-react"' has no exported member 'Github'.
+src/components/ui/ProjectCard.tsx(9,15): error TS2305: Module '"@/types/project"' has no exported member 'ProjectTechnology'.
+src/hooks/use-3d-interaction.ts(42,21): error TS2503: Cannot find namespace 'THREE'.
+src/lib/three.ts(40,36): error TS2339: Property 'isPerspectiveCamera' does not exist on type 'Camera & Record<"aspect", unknown>'.
+src/lib/three.ts(42,12): error TS2551: Property 'updateProjectionMatrix' does not exist on type 'Camera & Record<"aspect", unknown>'. Did you mean 'projectionMatrix'?
+src/types/project.ts(40,17): error TS2304: Cannot find name 'ProjectTechnology'.
+src/types/project.ts(41,11): error TS2304: Cannot find name 'ProjectImage'.
+src/types/project.ts(42,10): error TS2304: Cannot find name 'ProjectLink'.
+
+> Get-Content eslint_errors.log | Select-Object -First 100
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\app\about\page.tsx
+  30:9  warning  'isTechInView' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\app\contact\page.tsx
+   4:28  warning  'useEffect' is defined but never used              @typescript-eslint/no-unused-vars
+  25:7   warning  'itemVariants' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  59:14  warning  'err' is defined but never used                    @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\app\expertise\page.tsx
+   4:18  warning  'useInView' is defined but never used  @typescript-eslint/no-unused-vars
+   5:10  warning  'useRef' is defined but never used     @typescript-eslint/no-unused-vars
+  71:45  warning  'pillarIdx' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\app\journey\page.tsx
+  10:10  warning  'StaggerList' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\app\projects\page.tsx
+  166:9  warning  'headerContentVariants' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\app\sitemap.ts
+  2:10  warning  'portfolioData' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\core\Scene.tsx
+  7:10  warning  'Group' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\AgenticGraph.tsx
+  12:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\AgenticGraphImpl.tsx
+  16:36  warning  'nodeCount' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  16:51  warning  'linkCount' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  17:24  error    Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  53:34  error    Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  81:31  error    Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+  94:31  error    Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\HolographicOrb.tsx
+  36:21  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\HolographicOrb.tsx:36:21
+  34 |     for (let i = 0; i < particleCount; i++) {
+  35 |       // Spherical distribution with some randomness in radius
+> 36 |       const theta = Math.random() * Math.PI * 2;
+     |                     ^^^^^^^^^^^^^ Cannot call impure function
+  37 |       const phi = Math.acos(2 * Math.random() - 1);
+  38 |       const r = radius + (Math.random() - 0.5) * 0.3;
+  39 |       const x = r * Math.sin(phi) * Math.cos(theta);                     react-hooks/purity
+  37:33  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\HolographicOrb.tsx:37:33
+  35 |       // Spherical distribution with some randomness in radius
+  36 |       const theta = Math.random() * Math.PI * 2;
+> 37 |       const phi = Math.acos(2 * Math.random() - 1);
+     |                                 ^^^^^^^^^^^^^ Cannot call impure function
+  38 |       const r = radius + (Math.random() - 0.5) * 0.3;
+  39 |       const x = r * Math.sin(phi) * Math.cos(theta);
+  40 |       const y = r * Math.sin(phi) * Math.sin(theta);  react-hooks/purity
+  38:27  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\HolographicOrb.tsx:38:27
+  36 |       const theta = Math.random() * Math.PI * 2;
+  37 |       const phi = Math.acos(2 * Math.random() - 1);
+> 38 |       const r = radius + (Math.random() - 0.5) * 0.3;
+     |                           ^^^^^^^^^^^^^ Cannot call impure function
+  39 |       const x = r * Math.sin(phi) * Math.cos(theta);
+  40 |       const y = r * Math.sin(phi) * Math.sin(theta);
+  41 |       const z = r * Math.cos(phi);                                    react-hooks/purity
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\ModelCardImpl.tsx
+   69:3   warning  'icon' is defined but never used   @typescript-eslint/no-unused-vars
+  106:13  warning  '_' is defined but never used      @typescript-eslint/no-unused-vars
+  106:16  warning  'delta' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\NeuralNetwork.tsx
+  6:18  warning  'LineBasicMaterial' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\ParticleFieldImpl.tsx
+  24:17  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend\src\components\3d\elements\ParticleFieldImpl.tsx:24:17
+  22 |     for (let i = 0; i < count; i++) {
+  23 |       // Uniform distribution in a sphere with flattened Y axis for atmospheric spread
+> 24 |       const u = Math.random();
+     |                 ^^^^^^^^^^^^^ Cannot call impure function
+  25 |       const v = Math.random();
+  26 |       const theta = 2 * Math.PI * u;
+  27 |       const phi = Math.acos(2 * v - 1);                                react-hooks/purity
+  25:17  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).

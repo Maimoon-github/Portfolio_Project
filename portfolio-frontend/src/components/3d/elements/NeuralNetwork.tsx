@@ -24,7 +24,7 @@ export function NeuralNetwork({
   const prefersReduced = useReducedMotion();
 
   // Generate random node positions within a sphere
-  const positions = useMemo(() => {
+  const [positions] = useState(() => {
     const pos = new Array(nodeCount).fill(0).map(() => {
       // Uniform distribution in sphere using cubic root method
       const u = Math.random();
@@ -38,7 +38,7 @@ export function NeuralNetwork({
       return new THREE.Vector3(x, y, z);
     });
     return pos;
-  }, [nodeCount, radius]);
+  });
 
   // Build edges (line segments) between nodes within distance
   const edges = useMemo(() => {

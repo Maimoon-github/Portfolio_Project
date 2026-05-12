@@ -1,4 +1,20 @@
 // src/types/project.ts
+export interface ProjectTechnology {
+  name: string;
+  icon?: string;
+}
+
+export interface ProjectImage {
+  src: string;
+  alt: string;
+}
+
+export interface ProjectLink {
+  type: 'demo' | 'github' | 'article' | 'other';
+  url: string;
+  label: string;
+}
+
 export interface ArchitectureHighlight {
   title: string;
   description: string;
@@ -37,6 +53,7 @@ export interface Project {
   dataFlowDescription?: string;
   results?: string[];
   metrics?: ProjectMetric[];
+  tags: string[];
   technologies: ProjectTechnology[];
   images: ProjectImage[];
   links: ProjectLink[];

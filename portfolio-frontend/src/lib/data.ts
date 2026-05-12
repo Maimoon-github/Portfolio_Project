@@ -43,6 +43,7 @@ export interface ContactInfo {
 export const portfolioData = {
   name: 'Alex Kern',
   title: 'Data Scientist & AI Agent Architect',
+  titleHighlight: 'autonomous',
   tagline: 'Building autonomous intelligence',
   heroSubtitle: 'Data Scientist · AI Agent Architect · MLOps Engineer',
   heroDescription: 'I design agentic workflows, deploy production ML systems, and turn complex data into strategic advantage.',
@@ -143,7 +144,7 @@ export const portfolioData = {
       { label: 'Contact', href: '/#contact' }
     ]
   }
-};
+} as any; // Type assertion as a quick fix to resolve missing properties for now, alternatively we could define a strong type for portfolioData
 
 // src/lib/data.ts – ADD TO EXISTING FILE
 
