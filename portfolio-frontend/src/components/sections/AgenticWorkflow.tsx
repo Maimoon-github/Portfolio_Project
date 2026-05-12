@@ -2,7 +2,7 @@
 'use client';
 
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
-import { AgenticGraph } from '@/components/3d/AgenticGraph';
+import { AgenticGraph } from '@/components/3d/elements/AgenticGraph';
 
 export default function AgenticWorkflow() {
   return (
