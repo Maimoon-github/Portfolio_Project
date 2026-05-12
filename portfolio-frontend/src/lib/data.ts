@@ -275,3 +275,220 @@ export const expertiseData = {
     },
   ],
 };
+
+// src/lib/data.ts – ADD TO EXISTING FILE
+
+// Types for Journey page data structures
+export interface RoleMatrix {
+  title: string;
+  role: string;
+  focus: string;
+  keySkills: string[];
+  icon: string;
+  upFromRole?: string;
+}
+
+export interface SeniorityLevel {
+  level: string;
+  title: string;
+  yearsMin: number;
+  yearsMax: number;
+  coreFocus: string;
+  technologies: string[];
+  icon: string;
+}
+
+export interface CareerMilestone {
+  year: string;
+  title: string;
+  organization: string;
+  description: string;
+  skillsGained: string[];
+  icon: string;
+}
+
+export interface LearningResource {
+  name: string;
+  type: 'course' | 'book' | 'platform' | 'certification';
+  description?: string;
+  skillsTargeted: string[];
+}
+
+// Journey page content
+export const journeyData = {
+  introTitle: "Navigating the AI Career Landscape in 2026",
+  introDescription:
+    "The AI job market is evolving faster than ever. While junior roles have declined significantly, AI Engineer positions have surged, creating unprecedented opportunities for those who strategically position themselves. This journey map reflects not only my professional evolution but the broader shifts reshaping our industry.",
+
+  // Role matrix — comparing key AI roles (data-driven from the 2026 job market)
+  roleMatrix: [
+    {
+      title: "Data Scientist",
+      role: "Explorer & Analyst",
+      focus: "Extracting insights from data, building models, and validating hypotheses",
+      keySkills: ["Python", "SQL", "Statistical Modeling", "Experiment Design", "Data Visualization"],
+      icon: "🔬",
+    },
+    {
+      title: "ML Engineer",
+      role: "Builder & Optimizer",
+      focus: "Deploying models to production, building scalable pipelines, and monitoring model health",
+      keySkills: ["Python", "Docker", "Kubernetes", "CI/CD", "MLflow", "Cloud Platforms"],
+      upFromRole: "Data Scientist",
+      icon: "⚙️",
+    },
+    {
+      title: "AI Architect (My Role)",
+      role: "Orchestrator & Visionary",
+      focus: "Designing end-to-end AI systems, selecting the tech stack, and aligning strategy with business goals",
+      keySkills: ["System Design", "Agentic Frameworks", "Cloud Architecture", "Governance", "Cross- Team Leadership"],
+      upFromRole: "ML Engineer",
+      icon: "🏛️",
+    },
+    {
+      title: "Agentic AI Engineer",
+      role: "Orchestrator & Visionary",
+      focus: "Building autonomous agents that reason, plan, act, and self-correct using LLMs and tools",
+      keySkills: ["LangChain", "CrewAI", "MCP", "Async Programming", "Tool Integration", "Evaluation"],
+      icon: "🧠",
+    },
+  ],
+
+  // Seniority progression — how career levels are being redefined in 2026
+  seniorityLevels: [
+    {
+      level: "Associate/Junior",
+      title: "ML Engineer",
+      yearsMin: 0,
+      yearsMax: 2,
+      coreFocus: "Basic model building, data processing, API integration",
+      technologies: ["Python", "SQL", "Pandas", "Scikit-learn", "Basic Cloud"],
+      icon: "🌱",
+    },
+    {
+      level: "Mid-Level",
+      title: "ML Engineer II",
+      yearsMin: 2,
+      yearsMax: 5,
+      coreFocus: "Model deployment, pipeline building, MLOps foundations",
+      technologies: ["Docker", "Kubernetes", "CI/CD", "MLflow", "AWS/GCP"],
+      icon: "⚡",
+    },
+    {
+      level: "Senior",
+      title: "Senior ML Engineer",
+      yearsMin: 5,
+      yearsMax: 8,
+      coreFocus: "System architecture, multi-agent design, cross-team technical leadership",
+      technologies: ["Distributed Systems", "Agentic Frameworks", "Event-Driven Architecture", "Governance"],
+      icon: "🚀",
+    },
+    {
+      level: "Principal / Architect",
+      title: "AI Architect",
+      yearsMin: 8,
+      yearsMax: 12,
+      coreFocus: "End-to-end AI strategy, platform vision, organizational alignment",
+      technologies: ["Enterprise Architecture", "Strategic Planning", "Risk & Compliance", "Innovation Scouting"],
+      icon: "🏛️",
+    },
+  ],
+
+  // Personal career milestones — based on actual experience
+  careerMilestones: [
+    {
+      year: "2020",
+      title: "Started as a Data Analyst",
+      organization: "AI Startup",
+      description:
+        "Began the journey with exploratory data analysis, building dashboards, and uncovering actionable insights from messy datasets. My first real hands-on with Python and SQL at scale.",
+      skillsGained: ["Data Wrangling", "SQL", "Storytelling with Data", "Python"],
+      icon: "📊",
+    },
+    {
+      year: "2022",
+      title: "Transition to Data Scientist",
+      organization: "Fintech",
+      description:
+        "Moved into building predictive models for fraud detection and risk assessment. Learned statistical modeling, experiment design, and how to communicate model outputs to non‑technical stakeholders.",
+      skillsGained: ["Scikit-learn", "Regression/Classification", "A/B Testing", "Feature Engineering"],
+      icon: "📈",
+    },
+    {
+      year: "2024",
+      title: "AI Engineer & Prompt Architect",
+      organization: "Tech Consultancy",
+      description:
+        "Started working with LLMs at scale, building retrieval-augmented generation pipelines, prompt engineering, and evaluating model performance. Began experimenting with agentic frameworks like LangGraph.",
+      skillsGained: ["LangChain", "RAG", "LLM Evaluation", "Vector Databases", "Agentic Workflows"],
+      icon: "🤖",
+    },
+    {
+      year: "2026",
+      title: "AI Architect & Agentic System Lead",
+      organization: "Global Tech Leader",
+      description:
+        "Currently leading the architecture of multi-agent systems, designing production‑grade agent pipelines, bridging AI research with enterprise engineering, and mentoring the next generation of AI engineers.",
+      skillsGained: ["System Architecture", "CrewAI", "MCP", "Enterprise AI Governance", "Tech Leadership"],
+      icon: "🧩",
+    },
+  ],
+
+  // Key skills to master (based on 2026 market demand)
+  essentialSkills: [
+    {
+      category: "Programming & Fundamentals",
+      skills: ["Python (Advanced)", "TypeScript", "SQL", "Graph Theory", "Async Programming"],
+    },
+    {
+      category: "AI/ML & Frameworks",
+      skills: ["LLM APIs (OpenAI, Anthropic)", "LangChain", "PyTorch", "TensorFlow", "Vector Databases"],
+    },
+    {
+      category: "Agentic & Orchestration",
+      skills: ["CrewAI", "LangGraph", "MCP", "n8n", "Orchestration", "Tool-Using Agents"],
+    },
+    {
+      category: "MLOps & Production",
+      skills: ["Docker", "Kubernetes", "CI/CD", "MLflow", "Cloud (AWS/GCP/Azure)", "Observability"],
+    },
+    {
+      category: "Architecture & Strategy",
+      skills: ["System Design", "Enterprise AI", "Technical Leadership", "Governance", "Product Mindset"],
+    },
+  ],
+
+  // Learning resources for each stage of the journey
+  learningResources: [
+    {
+      name: "Python for Everybody (Coursera)",
+      type: "course",
+      description: "Foundational Python programming — ideal for absolute beginners.",
+      skillsTargeted: ["Python"],
+    },
+    {
+      name: "Fast.ai",
+      type: "platform",
+      description: "Practical deep learning, top-down approach, great for motivated learners.",
+      skillsTargeted: ["Deep Learning", "PyTorch"],
+    },
+    {
+      name: "LangChain & LangGraph Documentation",
+      type: "platform",
+      description: "Official docs and tutorials — essential for mastering agentic frameworks.",
+      skillsTargeted: ["LangChain", "LangGraph", "Agentic Workflows"],
+    },
+    {
+      name: "AWS Certified ML Engineer",
+      type: "certification",
+      description: "Validate your MLOps and cloud ML skills.",
+      skillsTargeted: ["AWS", "MLOps", "Model Deployment"],
+    },
+    {
+      name: "Designing Data-Intensive Applications",
+      type: "book",
+      description: "A must-read for understanding distributed systems and production reliability.",
+      skillsTargeted: ["System Design", "Distributed Systems"],
+    },
+  ],
+};
