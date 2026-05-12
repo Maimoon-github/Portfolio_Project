@@ -21,18 +21,24 @@ Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 │   │   │   ├── 📄 layout.tsx
 │   │   │   └── 📄 page.tsx
 │   │   ├── 📁 about/
+│   │   │   ├── 📄 layout.tsx
 │   │   │   └── 📄 page.tsx
 │   │   ├── 📁 contact/
 │   │   │   └── 📄 page.tsx
 │   │   ├── 📁 expertise/
+│   │   │   ├── 📄 layout.tsx
 │   │   │   └── 📄 page.tsx
 │   │   ├── 📁 journey/
+│   │   │   ├── 📄 layout.tsx
 │   │   │   └── 📄 page.tsx
 │   │   ├── 📁 lab/
+│   │   │   ├── 📄 layout.tsx
 │   │   │   └── 📄 page.tsx
 │   │   ├── 📁 projects/
 │   │   │   ├── 📁 [slug]/
+│   │   │   │   ├── 📄 ProjectDetailClient.tsx
 │   │   │   │   └── 📄 page.tsx
+│   │   │   ├── 📄 layout.tsx
 │   │   │   └── 📄 page.tsx
 │   │   ├── 🎨 globals.css
 │   │   └── 📄 layout.tsx
@@ -46,6 +52,8 @@ Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 │   │   │   │   ├── 📄 AgenticGraph.tsx
 │   │   │   │   ├── 📄 AgenticGraphImpl.tsx
 │   │   │   │   ├── 📄 HolographicOrb.tsx
+│   │   │   │   ├── 📄 ModelCard.tsx
+│   │   │   │   ├── 📄 ModelCardImpl.tsx
 │   │   │   │   ├── 📄 NeuralNetwork.tsx
 │   │   │   │   ├── 📄 ParticleField.tsx
 │   │   │   │   └── 📄 ParticleFieldImpl.tsx
