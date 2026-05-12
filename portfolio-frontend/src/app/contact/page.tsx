@@ -1,132 +1,276 @@
-import { Metadata } from "next";
-import { ContactForm } from "./ContactForm";
-import { CanvasWrapper } from "@/components/3d/core/CanvasWrapper";
-import { Scene } from "@/components/3d/core/Scene";
-import { CameraRig } from "@/components/3d/core/CameraRig";
-import type { Viewport } from "next";
+// src/app/contact/page.tsx
+'use client';
 
-export const metadata: Metadata = {
-  title: "Contact | Alex Kern | Data Scientist & AI Agent Architect",
-  description:
-    "Get in touch with Alex Kern for collaborations, speaking engagements, or to discuss AI agent architectures, MLOps, and data science projects.",
+import { useState, useRef, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { ScrollReveal } from '@/components/animations/ScrollReveal';
+import { cn } from '@/lib/utils';
+import { Mail, MapPin, Linkedin, Github, Twitter } from 'lucide-react';
+import dynamic from 'next/dynamic';
+
+// Dynamically import the particle field to avoid SSR and reduce initial bundle
+const ParticleField = dynamic(
+  () => import('@/components/3d/elements/ParticleField').then(mod => mod.ParticleField),
+  { ssr: false }
+);
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 };
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const heroRef = useRef<HTMLElement>(null);
+  const isHeroInView = useInView(heroRef, { once: true, margin: '-100px' });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+
+    // Simulate API call (replace with actual endpoint later)
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      console.log('Form submitted:', formData);
+      setSubmitted(true);
+      setFormData({ name: '', email: '', message: '' });
+    } catch (err) {
+      setError('Something went wrong. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <div className="space-y-16">
-      {/* Hero Section with 3D Globe */}
-      <section className="relative flex min-h-[40vh] items-center justify-center overflow-hidden rounded-2xl glass md:min-h-[50vh]">
-        <div className="absolute inset-0 z-0 opacity-60">
-          <CanvasWrapper>
-            <Scene ambientIntensity={0.3}>
-              <CameraRig
-                enableOrbit={false}
-                autoRotate
-                autoRotateSpeed={0.4}
-                cameraPosition={[0, 0, 4]}
-                enableZoom={false}
-                enablePan={false}
-              />
-              <mesh>
-                <sphereGeometry args={[1.5, 64, 64]} />
-                <meshStandardMaterial
-                  color="#5f2da6"
-                  emissive="#2dd4bf"
-                  emissiveIntensity={0.3}
-                  wireframe
-                />
-              </mesh>
-            </Scene>
-          </CanvasWrapper>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="space-y-12"
+    >
+      {/* Hero Section with 3D Background */}
+      <section
+        ref={heroRef}
+        className="relative min-h-[40vh] flex items-center justify-center overflow-hidden rounded-2xl glass"
+      >
+        <div className="absolute inset-0 z-0 opacity-30">
+          <ParticleField />
         </div>
+
         <div className="relative z-10 max-w-4xl px-6 text-center">
-          <span className="glass-card inline-block px-4 py-2 text-xs font-mono tracking-wider text-primary-light">
-            LET'S CONNECT
-          </span>
-          <h1 className="mt-4 text-h1 font-bold md:text-5xl lg:text-6xl">
-            Start a{" "}
-            <span className="bg-gradient-to-r from-primary-light via-primary to-accent bg-clip-text text-transparent">
-              Conversation
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.1, duration: 0.6 }}
+          >
+            <span className="inline-block px-4 py-2 glass-card text-xs font-mono tracking-wider text-primary-light mb-6">
+              LET’S CONNECT
             </span>
-          </h1>
-          <p className="mt-4 text-body-lg text-on-background/70">
-            Have a project in mind or just want to chat about AI agents, MLOps,
-            or data science? I'm always open to new opportunities and ideas.
-          </p>
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="text-h1 md:text-display font-bold bg-gradient-to-r from-primary-light via-primary to-accent bg-clip-text text-transparent mb-4"
+          >
+            Get in Touch
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            className="text-body-lg text-on-background/70 max-w-2xl mx-auto"
+          >
+            Interested in collaborating or have a project in mind? I’d love to hear from you.
+          </motion.p>
         </div>
       </section>
 
-      {/* Contact Form & Information Section */}
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-        <ContactForm />
-        <div className="space-y-6">
-          <div className="glass-card p-6">
-            <h3 className="text-h3 font-semibold text-primary-light">
-              Direct Reach
-            </h3>
-            <div className="mt-4 space-y-4">
-              <a
-                href="mailto:hello@alexkern.dev"
-                className="flex items-center gap-3 text-on-background/70 transition-colors hover:text-primary-light"
-              >
-                📧 hello@alexkern.dev
-              </a>
-              <div className="flex flex-wrap gap-4 pt-4">
+      {/* Contact Form & Info Grid */}
+      <ScrollReveal>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Form Card */}
+          <div className="glass-card p-6 md:p-8">
+            <h2 className="text-h3 font-semibold text-primary-light mb-6">Send a Message</h2>
+            {submitted ? (
+              <div className="text-center py-8">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-accent/20 flex items-center justify-center">
+                  <Mail className="w-8 h-8 text-accent" />
+                </div>
+                <h3 className="text-h3 font-semibold text-on-background mb-2">Message Sent!</h3>
+                <p className="text-on-background/60">
+                  Thanks for reaching out. I’ll get back to you as soon as possible.
+                </p>
+                <button
+                  onClick={() => setSubmitted(false)}
+                  className="mt-6 text-accent hover:text-primary-light text-sm transition-colors"
+                >
+                  Send another message →
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-on-background/80 mb-1">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full glass bg-surface-container rounded-lg px-4 py-2 border border-outline-variant/20 focus:border-primary transition-colors outline-none"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-on-background/80 mb-1">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full glass bg-surface-container rounded-lg px-4 py-2 border border-outline-variant/20 focus:border-primary transition-colors outline-none"
+                    placeholder="you@example.com"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-on-background/80 mb-1">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={5}
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full glass bg-surface-container rounded-lg px-4 py-2 border border-outline-variant/20 focus:border-primary transition-colors outline-none resize-none"
+                    placeholder="Tell me about your project or idea..."
+                  />
+                </div>
+                {error && <p className="text-error text-sm">{error}</p>}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={cn(
+                    'w-full rounded-lg bg-accent py-3 font-semibold text-background transition-all',
+                    'hover:scale-105 hover:shadow-lg hover:shadow-accent/30',
+                    'disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100'
+                  )}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </button>
+              </form>
+            )}
+          </div>
+
+          {/* Contact Info Card */}
+          <div className="glass-card p-6 md:p-8 space-y-6">
+            <h2 className="text-h3 font-semibold text-primary-light mb-6">Connect Directly</h2>
+
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                  <Mail className="w-5 h-5 text-primary-light" />
+                </div>
+                <div>
+                  <p className="text-sm text-on-background/60">Email</p>
+                  <a
+                    href="mailto:hello@alexkern.dev"
+                    className="text-on-background hover:text-accent transition-colors"
+                  >
+                    hello@alexkern.dev
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+                  <MapPin className="w-5 h-5 text-primary-light" />
+                </div>
+                <div>
+                  <p className="text-sm text-on-background/60">Location</p>
+                  <p className="text-on-background">San Francisco, CA (Remote friendly)</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-outline-variant/20">
+              <h3 className="text-lg font-semibold text-primary-light mb-4">Social & Profiles</h3>
+              <div className="flex gap-4">
                 <a
                   href="https://github.com/alexkern"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-full bg-surface-container-high px-4 py-2 text-sm transition-colors hover:bg-primary/20 hover:text-primary-light"
+                  className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary/20 transition-colors"
+                  aria-label="GitHub"
                 >
-                  <span>GitHub</span>
-                  <span className="text-xs text-accent">/alexkern</span>
+                  <Github className="w-5 h-5 text-on-background" />
                 </a>
                 <a
                   href="https://linkedin.com/in/alexkern"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-full bg-surface-container-high px-4 py-2 text-sm transition-colors hover:bg-primary/20 hover:text-primary-light"
+                  className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary/20 transition-colors"
+                  aria-label="LinkedIn"
                 >
-                  <span>LinkedIn</span>
-                  <span className="text-xs text-accent">/in/alexkern</span>
+                  <Linkedin className="w-5 h-5 text-on-background" />
                 </a>
                 <a
-                  href="https://x.com/alexkern"
+                  href="https://twitter.com/alexkern"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-full bg-surface-container-high px-4 py-2 text-sm transition-colors hover:bg-primary/20 hover:text-primary-light"
+                  className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary/20 transition-colors"
+                  aria-label="Twitter"
                 >
-                  <span>X (Twitter)</span>
-                  <span className="text-xs text-accent">@alexkern</span>
+                  <Twitter className="w-5 h-5 text-on-background" />
                 </a>
               </div>
             </div>
-          </div>
 
-          <div className="glass-card p-6">
-            <h3 className="text-h3 font-semibold text-primary-light">
-              Availability
-            </h3>
-            <div className="mt-4 space-y-3 text-on-background/70">
-              <div className="flex items-center gap-3">
-                <div className="h-2 w-2 rounded-full bg-accent"></div>
-                <span>Open for freelance collaborations</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="h-2 w-2 rounded-full bg-accent"></div>
-                <span>Speaking engagements & workshops</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="h-2 w-2 rounded-full bg-accent"></div>
-                <span>Technical advisory roles</span>
-              </div>
-            </div>
-            <div className="mt-4 text-sm italic text-on-background/50">
-              Average response time: <strong>24 hours</strong>
+            <div className="pt-4 text-on-background/60 text-sm">
+              <p>Typically reply within 48 hours.</p>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </ScrollReveal>
+
+      {/* Optional CTA / Availability note */}
+      <ScrollReveal>
+        <div className="glass-card p-6 text-center">
+          <p className="text-on-background/70">
+            ✦ Open to freelance collaborations, speaking engagements, and full‑time opportunities.
+          </p>
+        </div>
+      </ScrollReveal>
+    </motion.div>
   );
 }
