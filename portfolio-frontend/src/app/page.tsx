@@ -1,11 +1,26 @@
-// src/app/page.tsx
+// src/app/page.tsx — lazy‑load below‑the‑fold sections
 import { Hero } from '@/components/sections/Hero';
-import { About } from '@/components/sections/About';
-import { Skills } from '@/components/sections/Skills';
-import { AgenticWorkflow } from '@/components/sections/AgenticWorkflow';
-import { Projects } from '@/components/sections/Projects';
-import { Contact } from '@/components/sections/Contact';
-import { Footer } from '@/components/sections/Footer';
+import dynamic from 'next/dynamic';
+import { SectionSkeleton } from '@/components/ui/SectionSkeleton';
+
+const About = dynamic(() => import('@/components/sections/About'), {
+  loading: () => <SectionSkeleton />,
+});
+const Skills = dynamic(() => import('@/components/sections/Skills'), {
+  loading: () => <SectionSkeleton />,
+});
+const AgenticWorkflow = dynamic(() => import('@/components/sections/AgenticWorkflow'), {
+  loading: () => <SectionSkeleton />,
+});
+const Projects = dynamic(() => import('@/components/sections/Projects'), {
+  loading: () => <SectionSkeleton />,
+});
+const Contact = dynamic(() => import('@/components/sections/Contact'), {
+  loading: () => <SectionSkeleton />,
+});
+const Footer = dynamic(() => import('@/components/sections/Footer'), {
+  loading: () => <SectionSkeleton />,
+});
 
 export default function Home() {
   return (
