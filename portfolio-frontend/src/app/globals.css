@@ -1,28 +1,22 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
-
-  /* Cyberpunk Primary/Accent */
-  --color-primary: #00E5FF;
-  --color-accent: #5F2DA6;
-
-  /* Mystical Black Lotus Surface */
-  --color-surface: #151219;
-  --color-surface-dim: #1d1a22;
-  --color-surface-bright: #3c3840;
-}
-
-@layer base {
-  body {
-    @apply bg-surface text-white antialiased;
-    overscroll-behavior: none; /* essential for Lenis smooth scroll */
-  }
-}
-
-@layer utilities {
-  .glass {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg rounded-xl;
-  }
+:root {
+  --surface: #151219;
+  --surface-dim: #151219;
+  --surface-bright: #3c3840;
+  --surface-container-lowest: #100d14;
+  --surface-container-low: #1d1a22;
+  --surface-container: #221e26;
+  --surface-container-high: #2c2830;
+  --surface-container-highest: #37333b;
+  
+  --primary: #d6baff;
+  --on-primary: #430089;
+  --primary-container: #5f2da6;
+  --on-primary-container: #cdadff;
+  
+  --secondary: #d8b9ff;
+  --on-secondary: #401972;
 }
