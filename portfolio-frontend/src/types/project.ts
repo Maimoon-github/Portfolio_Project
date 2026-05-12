@@ -53,7 +53,7 @@ export interface Project {
   dataFlowDescription?: string;
   results?: string[];
   metrics?: ProjectMetric[];
-  tags: string[];
+  tags?: string[];
   technologies: ProjectTechnology[];
   images: ProjectImage[];
   links: ProjectLink[];

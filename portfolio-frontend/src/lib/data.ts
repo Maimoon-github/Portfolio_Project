@@ -34,8 +34,8 @@ export interface SocialLink {
 }
 
 export interface ContactInfo {
-  email: string;
-  github?: string;
+  demoUrl?: string;
+  githubUrl?: string;
   linkedin?: string;
   twitter?: string;
 }

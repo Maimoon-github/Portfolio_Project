@@ -143,7 +143,7 @@ export default function ProjectsPage() {
         (project) =>
           project.title.toLowerCase().includes(query) ||
           project.shortDescription.toLowerCase().includes(query) ||
-          project.tags.some((tag: string) => tag.toLowerCase().includes(query))
+          (project.tags || []).some((tag: string) => tag.toLowerCase().includes(query))
       );
     }
 
@@ -304,7 +304,7 @@ export default function ProjectsPage() {
         ) : (
           <StaggerList stagger={0.08} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProjects.map((project) => (
-              <ProjectCard key={project.id} {...project} />
+              <ProjectCard key={project.id} {...project} tags={project.tags || []} />
             ))}
           </StaggerList>
         )}
