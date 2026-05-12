@@ -5,7 +5,17 @@ import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { useRef, useState } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { NAVIGATION_ITEMS } from '@/constants';
+
+// src/components/layout/Navbar.tsx – ADD 'About' to navigation array
+
+const NAVIGATION_ITEMS = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },  // ← new link
+  { label: 'Expertise', href: '/expertise' },
+  { label: 'Projects', href: '/projects' },
+  { label: 'Journey', href: '/journey' },
+  { label: 'Contact', href: '/contact' },
+];
 
 export function Navbar() {
   const { scrollY } = useScroll();

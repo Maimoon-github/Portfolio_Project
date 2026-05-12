@@ -144,3 +144,36 @@ export const portfolioData = {
     ]
   }
 };
+
+// src/lib/data.ts – ADD TO EXISTING FILE
+
+export const aboutData = {
+  introTitle: "Architect of Autonomous Intelligence",
+  introDescription:
+    "I'm a Data Scientist and AI Engineer who builds systems that don't just compute—they reason, adapt, and orchestrate. My work bridges the gap between production-grade MLOps and autonomous agent architectures.",
+  journeyTimeline: [
+    { year: "2019–2021", title: "Data Science Foundations", description: "Predictive modeling at scale" },
+    { year: "2021–2023", title: "MLOps & Production AI", description: "Kubeflow, MLflow, Kserve" },
+    { year: "2023–2025", title: "Agentic Systems", description: "LangGraph, AutoGen, CrewAI" },
+    { year: "2025–Present", title: "Multi‑Agent Orchestration", description: "Swarms, planning, memory systems" }
+  ],
+  corePhilosophy: [
+    "Build durable, not just demos.",
+    "Think in graphs, not just prompts.",
+    "Production is the ultimate benchmark.",
+    "Agents are teams, not tools."
+  ],
+  technologies: [
+    { name: "Python", level: "expert", years: 8 },
+    { name: "TypeScript", level: "advanced", years: 5 },
+    { name: "PyTorch", level: "advanced", years: 4 },
+    { name: "LangChain/LangGraph", level: "expert", years: 3 }
+  ],
+  recognitions: [
+    { title: "Featured Speaker", issuer: "AI Engineer World's Fair 2025", year: "2025" },
+    { title: "Open Source Contributor", issuer: "LangChain, AutoGen", year: "2024–2025" },
+    { title: "MLOps Certified", issuer: "Databricks", year: "2024" }
+  ],
+  headlineQuote: "AI won’t replace engineers. Engineers using AI will.",
+  headlineAuthor: "— My philosophy in a line"
+};
