@@ -177,3 +177,101 @@ export const aboutData = {
   headlineQuote: "AI won’t replace engineers. Engineers using AI will.",
   headlineAuthor: "— My philosophy in a line"
 };
+
+// src/lib/data.ts – ADD TO EXISTING FILE
+
+export const expertiseData = {
+  introTitle: "Technical Expertise & Specialisations",
+  introDescription:
+    "Specialised in building autonomous intelligence systems that reason, adapt, and orchestrate. My technical journey spans the full spectrum of modern ML: from foundation model fine-tuning and agent architecture to production-grade orchestration and observability.",
+
+  pillars: [
+    {
+      title: "🧠 Multi‑Agent Orchestration",
+      description:
+        "Deep expertise across LangGraph, AutoGen, and CrewAI — the three leading frameworks for building stateful, conversational, and role‑playing agent systems.",
+      subcategories: [
+        {
+          name: "LangGraph",
+          description:
+            "Low‑level graph‑based orchestration framework for durable, stateful multi‑agent systems with human‑in‑the‑loop control, persistent memory, and checkpoint‑based recovery.",
+        },
+        {
+          name: "AutoGen",
+          description:
+            "Conversational multi‑agent framework with asynchronous event‑driven architecture, group chat collaboration, and two‑agent setups covering 60% of production deployments.",
+        },
+        {
+          name: "CrewAI",
+          description:
+            "Lean, standalone role‑playing framework for autonomous agent teams with real‑time tracing, metrics, and observability via Crew Control Plane.",
+        },
+      ],
+    },
+    {
+      title: "⚙️ Production LLMOps & AgentOps",
+      description:
+        "End‑to‑end operational pipelines for LLMs and autonomous agents — from fine‑tuning and RAG deployment to inference optimisation and production observability.",
+      subcategories: [
+        {
+          name: "Fine‑Tuning (LoRA/QLoRA/PEFT)",
+          description:
+            "Efficiently adapt foundation models to domain‑specific tasks using parameter‑efficient fine‑tuning techniques.",
+        },
+        {
+          name: "RAG Architecture",
+          description:
+            "Multi‑source retrieval with LlamaIndex, vector databases, and hybrid search pipelines for grounded generation.",
+        },
+        {
+          name: "Agent Evaluation & Observability",
+          description:
+            "Production tracing, logging, and evaluation frameworks for autonomous agent systems — metrics, logs, and traces via platforms like LangSmith and Crew Control Plane.",
+        },
+      ],
+    },
+    {
+      title: "📊 MLOps Foundation",
+      description:
+        "Full lifecycle model management: training, versioning, deployment, monitoring, and governance at scale.",
+      subcategories: [
+        {
+          name: "Model Lifecycle Management",
+          description: "End‑to‑end pipelines with Kubeflow, MLflow, and KServe for reproducible training and deployment.",
+        },
+        {
+          name: "Infrastructure & Orchestration",
+          description:
+            "Kubernetes, Docker, serverless architectures for AI workloads, and event‑driven inference pipelines.",
+        },
+        {
+          name: "AI Governance & Security",
+          description:
+            "Responsible AI guardrails, model fallbacks, tool error handling, and compliance frameworks for enterprise deployment.",
+        },
+      ],
+    },
+    {
+      title: "🔬 Advanced Data Science",
+      description:
+        "Sophisticated predictive modeling, causal inference, and experimental design that drives measurable business outcomes.",
+      subcategories: [
+        {
+          name: "Predictive Modeling",
+          description:
+            "Time series forecasting, classification, regression, and ensemble methods at enterprise scale.",
+        },
+        {
+          name: "Causal Inference",
+          description:
+            "Understanding interventions and policy effects — bridging correlation and actionable causation for ROI‑driven decisions.",
+        },
+        {
+          name: "NLP Pipelines",
+          description:
+            "Entity extraction, sentiment analysis, document classification, and domain‑specific language models.",
+        },
+      ],
+    },
+  ],
+};
