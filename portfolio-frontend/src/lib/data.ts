@@ -578,26 +578,11 @@ export const labData = {
   ],
 };
 
-// src/lib/data.ts – ADD TO EXISTING FILE
-
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  tags: string[];
-  category: "agentic-ai" | "data-science" | "mlops" | "web3" | "research";
-  image?: string;
-  demoUrl?: string;
-  githubUrl?: string;
-  featured?: boolean;
-}
-
 export const projectsData = {
   introTitle: "Selected Projects & Experiments",
   introDescription:
-    "A curated selection of AI‑driven projects spanning autonomous agents, production MLOps, data science pipelines, and experimental research.",
+    "A curated selection of AI‑driven projects spanning autonomous agents, production MLOps pipelines, data science insights, and experimental research. Each case study includes architecture, outcomes, and technical highlights.",
 
-  // Category labels for display
   categoryLabels: {
     "agentic-ai": "Agentic AI",
     "data-science": "Data Science",
@@ -606,117 +591,8 @@ export const projectsData = {
     research: "Research",
   } as const,
 
-  // Main project list
   projects: [
-    {
-      id: "agentic-workflow-engine",
-      title: "Agentic Workflow Engine",
-      description:
-        "A production‑ready multi‑agent orchestration system built with LangGraph, supporting durable execution, human‑in‑the‑loop checkpoints, and persistent memory across sessions.",
-      tags: ["LangGraph", "TypeScript", "Durable Execution", "MCP"],
-      category: "agentic-ai",
-      demoUrl: "#",
-      githubUrl: "#",
-      featured: true,
-    },
-    {
-      id: "llm-observability-platform",
-      title: "LLM Observability Platform",
-      description:
-        "End‑to‑end tracing and evaluation platform for LLM applications. Features real‑time metrics, latency tracking, cost analysis, and a custom evaluation harness for agentic systems.",
-      tags: ["OpenTelemetry", "ClickHouse", "LangSmith", "MLflow"],
-      category: "mlops",
-      demoUrl: "#",
-      githubUrl: "#",
-      featured: true,
-    },
-    {
-      id: "rag-knowledge-hub",
-      title: "RAG Knowledge Hub",
-      description:
-        "Enterprise multi‑source RAG system combining vector search, hybrid retrieval, and re‑ranking. Includes chunking strategies, evaluation pipelines, and A/B testing framework.",
-      tags: ["RAG", "LlamaIndex", "Vector DB", "Qdrant"],
-      category: "mlops",
-      demoUrl: "#",
-      githubUrl: "#",
-    },
-    {
-      id: "causal-inference-suite",
-      title: "Causal Inference Suite",
-      description:
-        "A Python library for causal effect estimation and sensitivity analysis, used to measure the business impact of AI feature rollouts. Supports matching, difference‑in‑differences, and synthetic controls.",
-      tags: ["Python", "Causal Inference", "Jupyter", "Statistical Modeling"],
-      category: "data-science",
-      demoUrl: "#",
-      githubUrl: "#",
-    },
-    {
-      id: "multi-agent-simulator",
-      title: "Multi‑Agent Economy Simulator",
-      description:
-        "Interactive simulation environment for reinforcement learning and agent‑based modeling. Designed to test coordination strategies, market dynamics, and emergent collaboration protocols.",
-      tags: ["RL", "Multi‑Agent Systems", "CrewAI", "Simulation"],
-      category: "agentic-ai",
-      demoUrl: "#",
-      githubUrl: "#",
-      featured: true,
-    },
-    {
-      id: "web3-agent-oracle",
-      title: "Web3 Agent Oracle",
-      description:
-        "Autonomous agent that monitors blockchain events, analyses on‑chain data, and triggers workflows in response to predefined conditions — bridging the gap between smart contracts and agentic logic.",
-      tags: ["Web3", "Ethers.js", "Agentic Workflows", "Solidity"],
-      category: "web3",
-      demoUrl: "#",
-      githubUrl: "#",
-    },
-    {
-      id: "fine-tuning-studio",
-      title: "LLM Fine‑Tuning Studio",
-      description:
-        "A streamlined interface for fine‑tuning small‑to‑medium LLMs, incorporating LoRA, QLoRA, and PEFT techniques. The platform automates data validation, training, and deployment to an internal inference endpoint.",
-      tags: ["LLM", "Fine‑Tuning", "PyTorch", "LoRA"],
-      category: "mlops",
-      demoUrl: "#",
-      githubUrl: "#",
-    },
-  ] as Project[],
-
-  // Call to action
-  cta: {
-    heading: "Have a project in mind?",
-    description: "From agent architectures to production AI pipelines — let’s build something extraordinary together.",
-    buttonText: "Start a Conversation",
-    href: "/contact",
-  },
-};
-
-// src/lib/data.ts – ADD TO EXISTING FILE
-
-export interface ArchitectureHighlight {
-  title: string;
-  description: string;
-  icon?: string;
-}
-
-export interface ImplementationPhase {
-  phase: string;
-  title: string;
-  description: string;
-  duration?: string;
-}
-
-export interface ProjectMetric {
-  label: string;
-  value: string;
-  trend?: 'up' | 'down' | 'neutral';
-}
-
-// Extend existing projects array with case study fields
-export const projectsData = {
-  // ... existing fields
-  projects: [
+    // 1. Agentic Workflow Engine (Agentic AI)
     {
       id: "agentic-workflow-engine",
       slug: "agentic-workflow-engine",
@@ -726,65 +602,70 @@ export const projectsData = {
       industry: "Financial Services",
       timeline: "6 months",
       role: "Lead AI Architect",
-      shortDescription: "A production‑ready multi‑agent orchestration system built with LangGraph, supporting durable execution, human‑in‑the‑loop checkpoints, and persistent memory across sessions.",
-      fullDescription: "The Agentic Workflow Engine is a production-grade orchestration layer built to coordinate multiple specialised AI agents across complex business processes for a Fortune 500 financial services client. It supports durable execution with checkpoint-based recovery, human‑in‑the‑loop state inspection, and persistent short‑term and long‑term memory across sessions.",
-      problemStatement: "The client faced significant challenges orchestrating multiple autonomous agents across different business domains—fraud detection, customer support, and compliance. Individual agents were highly capable but lacked coordination, leading to inconsistent state management, duplicate work, and no ability to resume long-running workflows after failures.",
-      solution: "Built a graph-based orchestration framework using LangGraph that treats agent workflows as stateful graphs rather than linear pipelines. Designed a durable execution system with checkpoint‑based recovery, human‑in‑the‑loop inspection points, and a combined short‑term working memory with long‑term persistent vector store. The platform now scales across 200+ daily workflows with full observability.",
+      shortDescription:
+        "Production‑ready multi‑agent orchestration system with durable execution, human‑in‑the‑loop checkpoints, and persistent memory across sessions.",
+      fullDescription:
+        "The Agentic Workflow Engine is a production‑grade orchestration layer built to coordinate multiple specialised AI agents across complex business processes for a Fortune 500 financial services client. It supports durable execution with checkpoint‑based recovery, human‑in‑the‑loop state inspection, and persistent short‑term and long‑term memory across sessions.",
+      problemStatement:
+        "The client faced significant challenges orchestrating multiple autonomous agents across different business domains—fraud detection, customer support, and compliance. Individual agents were highly capable but lacked coordination, leading to inconsistent state management, duplicate work, and no ability to resume long‑running workflows after failures.",
+      solution:
+        "Built a graph‑based orchestration framework using LangGraph that treats agent workflows as stateful graphs rather than linear pipelines. Designed a durable execution system with checkpoint‑based recovery, human‑in‑the‑loop inspection points, and a combined short‑term working memory with long‑term persistent vector store. The platform now scales across 200+ daily workflows with full observability.",
       architectureHighlights: [
         {
           title: "Graph‑Based Orchestration",
           description: "LangGraph nodes represent specialised agents, edges define conditional routing between them based on state transitions.",
-          icon: "GraphQL"
+          icon: "GraphQL",
         },
         {
           title: "Durable Execution",
           description: "Checkpoint‑based recovery ensures workflows survive any failure and resume from the exact point of interruption.",
-          icon: "Database"
+          icon: "Database",
         },
         {
           title: "Human‑in‑the‑Loop",
           description: "Breakpoints allow human inspectors to review, override, or resume state before critical decisions.",
-          icon: "Users"
-        }
+          icon: "Users",
+        },
       ],
       implementationPhases: [
         {
           phase: "Phase 1",
           title: "Discovery & Architecture",
           description: "Mapped 35+ business processes to agent graph, defined state schemas, and established human handoff protocols.",
-          duration: "6 weeks"
+          duration: "6 weeks",
         },
         {
           phase: "Phase 2",
           title: "Core Engine Development",
           description: "Built custom LangGraph runtime with checkpointing, persistent storage integration, and observability hooks.",
-          duration: "10 weeks"
+          duration: "10 weeks",
         },
         {
           phase: "Phase 3",
           title: "Agent Fleet Integration",
           description: "Connected fraud detection, customer service, and compliance agents to unified orchestration layer.",
-          duration: "8 weeks"
-        }
+          duration: "8 weeks",
+        },
       ],
       keyFeatures: [
-        "Checkpoint‑based recovery: workflows survive any failure",
+        "Checkpoint‑based recovery – workflows survive any failure",
         "Human‑in‑the‑loop state inspection and override",
         "Short‑term working memory + long‑term persistent memory",
-        "Production‑ready deployment platform with 200+ daily workflows"
+        "Production‑ready deployment platform with 200+ daily workflows",
       ],
-      dataFlowDescription: "User input → Orchestrator Agent → Task decomposition → Specialist agents via graph edges → Shared state → Conditional routing → Human review (if confidence low) → Output generation",
+      dataFlowDescription:
+        "User input → Orchestrator Agent → Task decomposition → Specialist agents via graph edges → Shared state → Conditional routing → Human review (if confidence low) → Output generation",
       results: [
         "Reduced workflow failures by 87% with durable execution",
         "Decreased manual intervention by 64%",
         "Process completion time improved by 53%",
-        "Scaled from prototype to 200+ daily workflows in 4 months"
+        "Scaled from prototype to 200+ daily workflows in 4 months",
       ],
       metrics: [
         { label: "Failure Reduction", value: "87%", trend: "up" },
         { label: "Manual Intervention Reduction", value: "64%", trend: "up" },
         { label: "Completion Time Improvement", value: "53%", trend: "up" },
-        { label: "Daily Workflows", value: "200+", trend: "up" }
+        { label: "Daily Workflows", value: "200+", trend: "up" },
       ],
       technologies: [
         { name: "LangGraph", icon: "🧠" },
@@ -792,14 +673,333 @@ export const projectsData = {
         { name: "PostgreSQL", icon: "🐘" },
         { name: "Redis", icon: "⚡" },
         { name: "Docker", icon: "🐳" },
-        { name: "Kubernetes", icon: "⎈" }
+        { name: "Kubernetes", icon: "⎈" },
       ],
       images: [{ src: "/projects/agentic-workflow-hero.jpg", alt: "Agentic Workflow Architecture" }],
-      links: [{ type: "demo", url: "#", label: "Live Demo" }, { type: "github", url: "#", label: "Source Code" }],
+      links: [
+        { type: "demo", url: "#", label: "Live Demo" },
+        { type: "github", url: "#", label: "Source Code" },
+      ],
       featured: true,
       order: 1,
-      status: "completed"
+      status: "completed",
     },
-    // ... similarly enrich other projects
-  ]
+
+    // 2. LLM Observability Platform (MLOps)
+    {
+      id: "llm-observability-platform",
+      slug: "llm-observability-platform",
+      title: "LLM Observability Platform",
+      category: "mlops",
+      client: "AI Startup",
+      industry: "SaaS / AI",
+      timeline: "4 months",
+      role: "Lead MLOps Engineer",
+      shortDescription:
+        "End‑to‑end tracing and evaluation platform for LLM applications, featuring real‑time metrics, latency analysis, cost tracking, and custom evaluation harnesses.",
+      fullDescription:
+        "An open‑standard observability platform built for companies deploying LLM‑powered applications. It ingests traces from LangChain, AutoGen, and custom agents, stores them in ClickHouse, and provides dashboards for latency, token usage, cost, and quality metrics. The platform includes an evaluation harness that allows teams to run offline tests against production traces.",
+      problemStatement:
+        "Teams deploying LLM applications lacked visibility into production behaviour. Debugging agent loops was painful, costs were opaque, and there was no standard way to evaluate model outputs against expected quality.",
+      solution:
+        "Built a lightweight OpenTelemetry‑compatible collector that intercepts LLM calls and agent steps. Traces are stored in ClickHouse for real‑time analytics. A React dashboard displays metrics, and an evaluation framework lets users define custom judges (LLM‑as‑judge, regex, or Python functions) to score traces.",
+      architectureHighlights: [
+        {
+          title: "OpenTelemetry Native",
+          description: "Uses OTLP exports from LangChain and custom agents – no vendor lock‑in.",
+          icon: "OpenTelemetry",
+        },
+        {
+          title: "Real‑time ClickHouse Analytics",
+          description: "High‑performance analytical queries for cost and latency trends.",
+          icon: "ClickHouse",
+        },
+        {
+          title: "Evaluation Harness",
+          description: "Offline trace replay with custom judges; integrates with Weights & Biases.",
+          icon: "W&B",
+        },
+      ],
+      implementationPhases: [
+        { phase: "Phase 1", title: "Collector & Ingestion", description: "Built OTLP gRPC collector and wrote ClickHouse schemas.", duration: "6 weeks" },
+        { phase: "Phase 2", title: "Dashboard & Visualisations", description: "React dashboard with real‑time filters and charts.", duration: "5 weeks" },
+        { phase: "Phase 3", title: "Evaluation Framework", description: "Traced replay, custom judges, and CI integration.", duration: "4 weeks" },
+      ],
+      keyFeatures: [
+        "OTLP ingestion – compatible with LangSmith, OpenInference, and custom agents",
+        "Dashboard: token usage, cost per request, latency percentiles",
+        "Evaluation framework – unit tests for LLM outputs",
+        "Alerts for cost spikes or degraded quality",
+      ],
+      results: [
+        "Adopted by 5 internal teams, reducing manual debugging time by 70%",
+        "Detected and fixed prompt regression within 24 hours",
+        "Saved 30% in LLM costs through usage optimisation",
+      ],
+      metrics: [
+        { label: "Manual Debugging Reduction", value: "70%", trend: "up" },
+        { label: "Cost Savings", value: "30%", trend: "up" },
+        { label: "Deployed Teams", value: "5", trend: "up" },
+      ],
+      technologies: [
+        { name: "OpenTelemetry", icon: "📡" },
+        { name: "ClickHouse", icon: "🏦" },
+        { name: "React", icon: "⚛️" },
+        { name: "Python", icon: "🐍" },
+        { name: "Docker", icon: "🐳" },
+      ],
+      images: [{ src: "/projects/llm-observability.jpg", alt: "LLM Observability Dashboard" }],
+      links: [{ type: "github", url: "#", label: "Source Code" }],
+      featured: false,
+      order: 2,
+      status: "completed",
+    },
+
+    // 3. RAG Knowledge Hub (MLOps / Agentic AI)
+    {
+      id: "rag-knowledge-hub",
+      slug: "rag-knowledge-hub",
+      title: "RAG Knowledge Hub",
+      category: "mlops",
+      client: "LegalTech Company",
+      industry: "Legal / Professional Services",
+      timeline: "3 months",
+      role: "Lead AI Engineer",
+      shortDescription:
+        "Enterprise multi‑source RAG system combining vector search, hybrid retrieval, and re‑ranking. Includes chunking strategies, evaluation pipelines, and A/B testing.",
+      fullDescription:
+        "A production RAG pipeline that ingests legal documents (PDFs, emails, transcripts) and provides grounded, citation‑backed answers to internal analysts. Uses a hybrid retrieval strategy: BM25 + dense vector (ColBERT) + cross‑encoder re‑ranking. The system includes an evaluation suite to measure retrieval precision and answer faithfulness.",
+      problemStatement:
+        "Legal analysts spent hours finding relevant clauses and precedents in thousands of documents. Off‑the‑shelf RAG produced hallucinations and lacked proper citations.",
+      solution:
+        "Developed a multi‑stage retrieval pipeline with LlamaIndex customisations. Chunking strategies were tuned per document type. A feedback loop captures user corrections to improve future retrievals.",
+      architectureHighlights: [
+        {
+          title: "Hybrid Retrieval",
+          description: "Combined sparse (BM25) and dense (ColBERT) retrieval with a learned re‑ranker.",
+          icon: "🔍",
+        },
+        {
+          title: "Evaluation Pipeline",
+          description: "Automated NDCG@k and Faithfulness scores using LLM‑as‑judge.",
+          icon: "📊",
+        },
+        {
+          title: "Citation & Attribution",
+          description: "Every answer links directly to source text chunk with highlight.",
+          icon: "📄",
+        },
+      ],
+      implementationPhases: [
+        { phase: "Phase 1", title: "Indexing Pipeline", description: "Document parsing, chunking, and vector DB ingestion.", duration: "4 weeks" },
+        { phase: "Phase 2", title: "Retrieval & Reranking", description: "Integrated BM25, dense, cross‑encoder.", duration: "4 weeks" },
+        { phase: "Phase 3", title: "Evaluation & A/B Testing", description: "Built evaluation harness and experiment logging.", duration: "3 weeks" },
+      ],
+      keyFeatures: [
+        "Support for 10+ document formats including PDF, DOCX, HTML",
+        "ColBERTv2 for late interaction – high recall",
+        "Cross‑encoder re‑ranker (MiniLM) to boost precision",
+        "A/B testing framework for retrieval strategies",
+      ],
+      results: [
+        "Retrieval precision (NDCG@10) improved from 0.62 to 0.84",
+        "Analysts reported 80% reduction in time finding relevant documents",
+        "Hallucination rate dropped below 5% on internal tests",
+      ],
+      metrics: [
+        { label: "NDCG@10", value: "0.84", trend: "up" },
+        { label: "Time Saved", value: "80%", trend: "up" },
+      ],
+      technologies: [
+        { name: "LlamaIndex", icon: "🦙" },
+        { name: "Qdrant", icon: "📦" },
+        { name: "ColBERTv2", icon: "🔤" },
+        { name: "FastAPI", icon: "⚡" },
+      ],
+      images: [{ src: "/projects/rag-knowledge-hub.jpg", alt: "RAG Pipeline Architecture" }],
+      links: [{ type: "demo", url: "#", label: "Case Study" }],
+      featured: false,
+      order: 3,
+      status: "completed",
+    },
+
+    // 4. Causal Inference Suite (Data Science)
+    {
+      id: "causal-inference-suite",
+      slug: "causal-inference-suite",
+      title: "Causal Inference Suite",
+      category: "data-science",
+      client: "E‑commerce Marketplace",
+      industry: "Retail / E‑commerce",
+      timeline: "8 weeks",
+      role: "Lead Data Scientist",
+      shortDescription:
+        "A Python library for causal effect estimation and sensitivity analysis, used to measure the business impact of AI feature rollouts.",
+      fullDescription:
+        "An internal library that provides matching, difference‑in‑differences, instrumental variables, and synthetic control methods. It integrates with the company’s experimentation platform and automatically produces reports with robustness checks.",
+      problemStatement:
+        "The company ran many A/B tests but struggled to interpret results when treatment effects were heterogeneous or when violations of stable unit treatment value assumption (SUTVA) occurred.",
+      solution:
+        "Developed a library that implements modern causal inference methods, with automated balance checking, sensitivity analysis, and visual diagnostics. The library outputs plain‑English summaries and effect estimates with credible intervals.",
+      architectureHighlights: [
+        { title: "Propensity Score Matching", description: "Nearest neighbour matching with caliper and exact matching constraints.", icon: "🎯" },
+        { title: "Difference‑in‑Differences", description: "Parallel trends testing and event‑study plots.", icon: "📈" },
+        { title: "Synthetic Control", description: "Optimised weighting to construct counterfactual.", icon: "🧪" },
+      ],
+      implementationPhases: [
+        { phase: "Phase 1", title: "Matching & Balance", description: "Implemented matching algorithms and diagnostic plots.", duration: "3 weeks" },
+        { phase: "Phase 2", title: "Panel Methods", description: "DiD and synthetic control with robust standard errors.", duration: "3 weeks" },
+        { phase: "Phase 3", title: "Reporting & Integration", description: "Integrated with experimentation platform, generated automated reports.", duration: "2 weeks" },
+      ],
+      keyFeatures: [
+        "Scikit‑learn compatible API",
+        "Automated balance tables and love plots",
+        "Sensitivity analysis for unobserved confounding",
+        "Jupyter widget for interactive exploration",
+      ],
+      results: [
+        "Adopted by 12 data science teams across the company",
+        "Reduced time to produce causal estimates from days to hours",
+        "Enabled decision‑making for 5 major product launches",
+      ],
+      metrics: [
+        { label: "Adopted Teams", value: "12", trend: "up" },
+        { label: "Time Saved per Analysis", value: "80%", trend: "up" },
+      ],
+      technologies: [
+        { name: "Python", icon: "🐍" },
+        { name: "NumPy", icon: "🔢" },
+        { name: "Pandas", icon: "🐼" },
+        { name: "SciPy", icon: "🔬" },
+      ],
+      images: [{ src: "/projects/causal-suite.jpg", alt: "Causal Inference Diagnostics" }],
+      links: [{ type: "github", url: "#", label: "Internal Library" }],
+      featured: false,
+      order: 4,
+      status: "completed",
+    },
+
+    // 5. Multi‑Agent Economy Simulator (Agentic AI / Research)
+    {
+      id: "multi-agent-simulator",
+      slug: "multi-agent-simulator",
+      title: "Multi‑Agent Economy Simulator",
+      category: "agentic-ai",
+      client: "Academic Research Lab",
+      industry: "Research / Academia",
+      timeline: "3 months",
+      role: "AI Research Engineer",
+      shortDescription:
+        "Interactive simulation environment for reinforcement learning and agent‑based modeling, designed to test coordination strategies, market dynamics, and emergent collaboration.",
+      fullDescription:
+        "A simulation environment where heterogeneous agents (reinforcement learning, rule‑based, or LLM‑driven) interact in a virtual economy. Agents consume resources, trade, and form alliances. The platform records trajectories and supports custom reward functions.",
+      problemStatement:
+        "Researchers needed a flexible framework to test multi‑agent reinforcement learning algorithms in partially observable, co‑operative/competitive environments with complex emergent behaviours.",
+      solution:
+        "Built a modular simulator using CrewAI for agent orchestration and PettingZoo for RL environments. Agents communicate via a message bus. Visualisation layer written in Three.js for real‑time rendering of agent positions and states.",
+      architectureHighlights: [
+        { title: "Hybrid Agent Types", description: "RL agents, scripted policies, or LLM‑driven (via Ollama).", icon: "🤖" },
+        { title: "Environment Recording", description: "Full trajectory logging and replay for analysis.", icon: "📼" },
+        { title: "3D Real‑time Viewer", description: "Three.js visualisation of agent movements and resource flows.", icon: "🌍" },
+      ],
+      implementationPhases: [
+        { phase: "Phase 1", title: "Core Simulator", description: "Market mechanics, resource dynamics, agent base classes.", duration: "6 weeks" },
+        { phase: "Phase 2", title: "Agent Integration", description: "Wrapped RLlib and CrewAI agents; built message bus.", duration: "4 weeks" },
+        { phase: "Phase 3", title: "Visualisation & Analysis", description: "Three.js viewer, trajectory database, and analysis notebooks.", duration: "3 weeks" },
+      ],
+      keyFeatures: [
+        "Supports heterogeneous agents (RL, rule‑based, LLM)",
+        "Configurable environment parameters (supply, demand, cooperation incentives)",
+        "Real‑time 3D visualisation",
+        "Export trajectories for offline analysis",
+      ],
+      results: [
+        "Used in three published research papers",
+        "Open‑sourced and starred by 250+ researchers",
+        "Enabled rapid prototyping of novel coordination algorithms",
+      ],
+      metrics: [
+        { label: "GitHub Stars", value: "250+", trend: "up" },
+        { label: "Research Papers", value: "3", trend: "up" },
+      ],
+      technologies: [
+        { name: "CrewAI", icon: "👥" },
+        { name: "Ray/RLlib", icon: "⚡" },
+        { name: "Three.js", icon: "🎨" },
+        { name: "Python", icon: "🐍" },
+      ],
+      images: [{ src: "/projects/multi-agent-sim.jpg", alt: "Agent Economy Simulator" }],
+      links: [{ type: "github", url: "#", label: "Open Source" }],
+      featured: true,
+      order: 5,
+      status: "completed",
+    },
+
+    // 6. Fine‑Tuning Studio (MLOps / Agentic AI)
+    {
+      id: "fine-tuning-studio",
+      slug: "fine-tuning-studio",
+      title: "LLM Fine‑Tuning Studio",
+      category: "mlops",
+      client: "Internal AI Platform Team",
+      industry: "Technology",
+      timeline: "4 months",
+      role: "ML Engineer",
+      shortDescription:
+        "A streamlined interface for fine‑tuning small‑to‑medium LLMs, incorporating LoRA, QLoRA, and PEFT techniques. Automates data validation, training, and deployment to an internal inference endpoint.",
+      fullDescription:
+        "An internal platform that allows engineers to fine‑tune open‑source LLMs (e.g., Llama 3, Mistral) on custom datasets without deep knowledge of distributed training. The platform handles dataset curation, PEFT configuration, training job orchestration, and model registry.",
+      problemStatement:
+        "Fine‑tuning was a bottleneck: engineers had to write custom scripts, manage GPU quotas, and manually deploy models. The process was error‑prone and not reproducible.",
+      solution:
+        "Built a web interface (Next.js) that accepts dataset uploads, selects base models, and configures LoRA hyperparameters. Training runs on a Kubernetes job using Axolotl. The resulting adapter is registered in MLflow and deployed via vLLM.",
+      architectureHighlights: [
+        { title: "PEFT Configurator", description: "LoRA rank, alpha, target modules – with resource estimation.", icon: "⚙️" },
+        { title: "Kubernetes Training Jobs", description: "Spot instance support, automatic checkpointing.", icon: "⎈" },
+        { title: "Model Registry & Deployment", description: "MLflow + vLLM for low‑latency inference.", icon: "🚀" },
+      ],
+      implementationPhases: [
+        { phase: "Phase 1", title: "Dataset Management", description: "Data validation, splitting, and versioning.", duration: "4 weeks" },
+        { phase: "Phase 2", title: "Training Orchestration", description: "Kubernetes job submission, monitoring, and logging.", duration: "6 weeks" },
+        { phase: "Phase 3", title: "Deployment Pipeline", description: "Model registry, canary deployments, and auto‑scaling.", duration: "4 weeks" },
+      ],
+      keyFeatures: [
+        "Drag‑and‑drop dataset upload with automatic validation",
+        "LoRA/QLoRA configuration with budget estimation",
+        "Training job dashboard with real‑time metrics",
+        "One‑click deployment to inference endpoint",
+      ],
+      results: [
+        "Reduced fine‑tuning time from weeks to hours",
+        "Empowered 8 engineering teams to fine‑tune their own models",
+        "Saved ~$30k/month in GPU costs through spot instance optimisation",
+      ],
+      metrics: [
+        { label: "Fine‑tuning Time Reduction", value: "90%", trend: "up" },
+        { label: "Monthly Savings", value: "$30k", trend: "up" },
+        { label: "Teams Using Platform", value: "8", trend: "up" },
+      ],
+      technologies: [
+        { name: "Axolotl", icon: "🦎" },
+        { name: "MLflow", icon: "📦" },
+        { name: "vLLM", icon: "⚡" },
+        { name: "Kubernetes", icon: "⎈" },
+        { name: "Next.js", icon: "▲" },
+      ],
+      images: [{ src: "/projects/fine-tuning-studio.jpg", alt: "Fine‑Tuning Studio Interface" }],
+      links: [{ type: "demo", url: "#", label: "Case Study" }],
+      featured: false,
+      order: 6,
+      status: "completed",
+    },
+  ],
+
+  // Call to Action
+  cta: {
+    heading: "Have a project in mind?",
+    description:
+      "From agent architectures to production AI pipelines — let’s build something extraordinary together.",
+    buttonText: "Start a Conversation",
+    href: "/contact",
+  },
 };
