@@ -1,22 +1,94 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-:root {
-  --surface: #151219;
-  --surface-dim: #151219;
-  --surface-bright: #3c3840;
-  --surface-container-lowest: #100d14;
-  --surface-container-low: #1d1a22;
-  --surface-container: #221e26;
-  --surface-container-high: #2c2830;
-  --surface-container-highest: #37333b;
-  
-  --primary: #d6baff;
-  --on-primary: #430089;
-  --primary-container: #5f2da6;
-  --on-primary-container: #cdadff;
-  
-  --secondary: #d8b9ff;
-  --on-secondary: #401972;
+/* 
+   Define the design tokens using @theme.
+   Everything here becomes a CSS variable and Tailwind utility automatically.
+*/
+@theme {
+  /* --- Cyberpunk Palette --- */
+
+  /* Primary: Cyan */
+  --color-primary-50: #e0f7ff;
+  --color-primary-100: #b3eeff;
+  --color-primary-200: #80e5ff;
+  --color-primary-300: #4ddbff;
+  --color-primary-400: #00d0ff;
+  --color-primary-500: #00c4e6;
+  --color-primary-600: #009fba;
+  --color-primary-700: #007b8f;
+  --color-primary-800: #005866;
+  --color-primary-900: #003740;
+  --color-primary: var(--color-primary-500); /* default shade */
+
+  /* Accent: Purple */
+  --color-accent-50: #f2e9fe;
+  --color-accent-100: #dac4fd;
+  --color-accent-200: #c19cfc;
+  --color-accent-300: #a36efa;
+  --color-accent-400: #8045f7;
+  --color-accent-500: #7B2FF7;   /* your main accent */
+  --color-accent-600: #6625d2;
+  --color-accent-700: #4f1ba8;
+  --color-accent-800: #39117c;
+  --color-accent-900: #240952;
+  --color-accent: var(--color-accent-500);
+
+  /* Surfaces (dark) */
+  --color-surface-50: #f0f0f5;
+  --color-surface-100: #dcdcf0;
+  ... (unused for dark, but included for completeness)
+  --color-surface-700: #2a2a3a;
+  --color-surface-800: #1a1a28;
+  --color-surface-900: #0d0d16;
+  --color-surface: #09090f;          /* deepest bg */
+  --color-surface-dim: #0d0d16;      /* slightly lifted */
+  --color-surface-bright: #1a1a28;   /* interactive surfaces */
+  --color-surface-container: #1e1e2e;
+  --color-surface-container-high: #28283a;
+  --color-surface-container-highest: #32324a;
+
+  /* On-surface text colours (high contrast) */
+  --color-on-surface: #ffffff;
+  --color-on-surface-variant: #d1d1e0;
+
+  /* Outline / border */
+  --color-outline: #3a3a5c;
+  --color-outline-variant: #22223a;
+
+  /* You can add semantic aliases */
+  --color-background: var(--color-surface);
+  --color-foreground: var(--color-on-surface);
+
+  /* Typography (keep your Space Grotesk) */
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Border radii */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Spacing scale (8px unit) */
+  --spacing-unit: 0.5rem; /* 8px */
+}
+
+/* 
+   .glass utility using Tailwind's @utility directive.
+   All the values now refer to the design tokens above.
+*/
+@utility glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid var(--color-outline-variant);
+  box-shadow: 0 8px 32px -8px rgba(123, 47, 247, 0.15); /* subtle accent glow */
+}
+
+/* Optional: global overrides */
+body {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-sans);
 }
