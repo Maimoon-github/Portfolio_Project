@@ -11,7 +11,7 @@ import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { StaggerList } from '@/components/animations/StaggerList';
 import { projectsData } from '@/lib/data';
 import { cn } from '@/lib/utils';
-import { Search, X, ExternalLink, Github } from 'lucide-react';
+import { Search, X, ExternalLink, Code } from 'lucide-react';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },

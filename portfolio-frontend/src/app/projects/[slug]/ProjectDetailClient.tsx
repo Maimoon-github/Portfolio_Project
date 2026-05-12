@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { StaggerList } from '@/components/animations/StaggerList';
-import { ArrowLeft, ExternalLink, Github, Calendar, Users, Building2 } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Code, Calendar, Users, Building2 } from 'lucide-react';
 import type { Project } from '@/types/project';
 import { projectsData } from '@/lib/data';
 
@@ -150,7 +150,9 @@ export function ProjectDetailClient({ project }: { project: Project }) {
                   <div className="absolute -top-3 left-4 px-2 py-0.5 bg-primary/20 text-primary-light text-[10px] font-mono rounded-full">
                     {phase.phase}
                   </div>
-                  <h3 className="text-lg font-semibold text-primary-light mt-2 mb-1">{phase.title}</h3>
+                  <h3 className="text-lg font-semibold text-primary-light mt-2 mb-1">
+                    <Code className="w-5 h-5 group-hover:text-primary-light transition-colors" />{phase.title}
+                  </h3>
                   {phase.duration && <p className="text-xs text-on-background/50 mb-2">{phase.duration}</p>}
                   <p className="text-sm text-on-background/70">{phase.description}</p>
                 </div>
