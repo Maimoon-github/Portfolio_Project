@@ -4,7 +4,6 @@
 import R3fForceGraph from 'r3f-forcegraph';
 import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
-import { Color } from 'three';
 import * as THREE from 'three';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
 
@@ -55,7 +54,9 @@ export function AgenticGraphImpl({ nodeCount = 6, linkCount = 12 }: AgenticGraph
     if (fgRef.current) {
       const nodeId = node.id;
       const highlightedLinks = links.map(link => {
-        const isConnected = link.source.id === nodeId || link.target.id === nodeId;
+        const sourceId = typeof link.source === 'object' ? (link.source as any).id : link.source;
+        const targetId = typeof link.target === 'object' ? (link.target as any).id : link.target;
+        const isConnected = sourceId === nodeId || targetId === nodeId;
         return {
           ...link,
           __highlighted: isConnected,
@@ -112,9 +113,6 @@ export function AgenticGraphImpl({ nodeCount = 6, linkCount = 12 }: AgenticGraph
       onNodeClick={handleNodeClick}
       warmupTicks={100}
       cooldownTicks={prefersReduced ? 0 : 50}
-      // --- Camera & Environment ---
-      backgroundColor={new Color(colors.background)}
-      showNavInfo={false}
     />
   );
 }
