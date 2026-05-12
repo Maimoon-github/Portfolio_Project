@@ -492,3 +492,88 @@ export const journeyData = {
     },
   ],
 };
+
+// src/lib/data.ts – ADD TO EXISTING FILE
+
+export interface LabExperiment {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  status: 'active' | 'coming-soon' | 'experimental';
+  component?: string; // Component name for dynamic imports
+  tags: string[];
+  demoUrl?: string;
+}
+
+export const labData = {
+  introTitle: "Experimental Playground",
+  introDescription:
+    "A living laboratory where I prototype new ideas, test emerging technologies, and push the boundaries of what's possible on the web. These experiments combine AI, 3D graphics, and interactive design into immersive digital experiences.",
+
+  experiments: [
+    {
+      id: "agentic-graph",
+      title: "Agentic Workflow Visualizer",
+      description:
+        "Interactive 3D visualisation of multi‑agent reasoning graphs. Nodes represent intentions, steps, and decisions, with edges showing the flow of AI workflow components.",
+      icon: "🌐",
+      status: "active",
+      tags: ["Three.js", "React Three Fiber", "Force-Directed Graph", "D3"],
+    },
+    {
+      id: "neural-particle-field",
+      title: "Neural Particle Field",
+      description:
+        "Procedurally generated particle system simulating neural network activation patterns. Real‑time particle flows respond to cursor movement and audio input.",
+      icon: "✨",
+      status: "active",
+      tags: ["Three.js", "Particle System", "WebGL", "Procedural"],
+    },
+    {
+      id: "ai-chat-avatar",
+      title: "AI Avatar Chat",
+      description:
+        "Experimental conversational interface powered by GPT with a fully rigged 3D avatar. Features voice synthesis, real‑time lip sync, and emotional expression mapping.",
+      icon: "💬",
+      status: "coming-soon",
+      tags: ["OpenAI", "Three.js", "Web Speech API", "ElevenLabs"],
+    },
+    {
+      id: "knowledge-graph",
+      title: "Knowledge Graph Explorer",
+      description:
+        "3D force‑directed graph of interconnected AI concepts and research papers. Search, filter, and explore relationships between topics in real time.",
+      icon: "📊",
+      status: "experimental",
+      tags: ["D3.js", "Three.js", "Spatial Navigation", "Search"],
+    },
+    {
+      id: "reactive-terrain",
+      title: "Reactive Terrain Generator",
+      description:
+        "Procedurally generated landscape that evolves in real time based on audio frequency analysis and user interaction.",
+      icon: "🏔️",
+      status: "experimental",
+      tags: ["Three.js", "Simplex Noise", "Audio Analysis", "Shader"],
+    },
+    {
+      id: "ai-motion-capture",
+      title: "AI Motion Capture",
+      description:
+        "Real‑time pose estimation using TensorFlow.js, driving a 3D character skeleton through your webcam feed.",
+      icon: "🎥",
+      status: "active",
+      tags: ["TensorFlow.js", "PoseNet", "Three.js", "Webcam"],
+    },
+  ],
+
+  techHighlights: [
+    { label: "React Three Fiber", count: 18 },
+    { label: "Three.js", count: 22 },
+    { label: "WebGL", count: 15 },
+    { label: "Web Audio API", count: 8 },
+    { label: "TensorFlow.js", count: 5 },
+    { label: "OpenAI API", count: 6 },
+  ],
+};
