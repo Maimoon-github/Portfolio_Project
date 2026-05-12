@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { useCardTilt } from '@/hooks/use-card-tilt';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Code } from 'lucide-react';
 import type { ProjectTechnology } from '@/types/project';
 
 export interface ProjectCardProps {
@@ -155,7 +155,7 @@ export function ProjectCard({
                 className="inline-flex items-center gap-1 text-xs text-[var(--color-on-background)]/60 hover:text-[var(--color-primary-light)] transition-colors"
                 onClick={(e) => e.stopPropagation()}
               >
-                <Github className="w-3.5 h-3.5" />
+                <Code className="w-3.5 h-3.5" />
                 Source
               </a>
             )}

@@ -1,11 +1,12 @@
 // src/components/3d/core/CanvasWrapper.tsx
 'use client';
 
-import { Canvas, Props as CanvasProps } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { ReactNode, Suspense } from 'react';
+import type { ComponentProps } from 'react';
 import { canvasPerformanceSettings } from '@/lib/three';
 
-interface CanvasWrapperProps extends Partial<CanvasProps> {
+interface CanvasWrapperProps extends Partial<ComponentProps<typeof Canvas>> {
   children: ReactNode;
   fallback?: ReactNode;
 }

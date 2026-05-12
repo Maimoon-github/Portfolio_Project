@@ -71,7 +71,7 @@ export function TextReveal({
         {splitArray.map((item, index) => (
           <motion.span
             key={index}
-            variants={childVariants}
+            variants={childVariants as any}
             className={splitBy === 'words' ? 'inline-block mr-1' : 'inline-block'}
           >
             {item}

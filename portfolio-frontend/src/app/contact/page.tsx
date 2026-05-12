@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { cn } from '@/lib/utils';
-import { Mail, MapPin, Linkedin, Github, Twitter } from 'lucide-react';
+import { Mail, MapPin, Briefcase, Code, MessageCircle } from 'lucide-react';
 import dynamic from 'next/dynamic';
 
 // Dynamically import the particle field to avoid SSR and reduce initial bundle
@@ -233,7 +233,7 @@ export default function ContactPage() {
                   className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary/20 transition-colors"
                   aria-label="GitHub"
                 >
-                  <Github className="w-5 h-5 text-on-background" />
+                  <Code className="w-5 h-5 text-on-background" />
                 </a>
                 <a
                   href="https://linkedin.com/in/alexkern"
@@ -242,7 +242,7 @@ export default function ContactPage() {
                   className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary/20 transition-colors"
                   aria-label="LinkedIn"
                 >
-                  <Linkedin className="w-5 h-5 text-on-background" />
+                  <Briefcase className="w-5 h-5 text-on-background" />
                 </a>
                 <a
                   href="https://twitter.com/alexkern"
@@ -251,7 +251,7 @@ export default function ContactPage() {
                   className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary/20 transition-colors"
                   aria-label="Twitter"
                 >
-                  <Twitter className="w-5 h-5 text-on-background" />
+                  <MessageCircle className="w-5 h-5 text-on-background" />
                 </a>
               </div>
             </div>

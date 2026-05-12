@@ -37,6 +37,7 @@ export default function AgenticWorkflow({ heading, subheading, description, item
                 description={item.description}
                 features={item.features}
                 position={item.position}
+                icon={<></>}
               />
             ))}
           </Scene>

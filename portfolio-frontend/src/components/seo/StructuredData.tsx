@@ -1,13 +1,14 @@
 // src/components/seo/StructuredData.tsx
 'use client';
 
+import React from 'react';
 import { SITE_CONFIG, SOCIAL_LINKS } from '@/constants';
 
 /**
  * Generates JSON-LD structured data for Person, Organization, and WebSite.
  * All data sourced from SITE_CONFIG and SOCIAL_LINKS constants.
  */
-export function StructuredData(): JSX.Element {
+export function StructuredData(): React.ReactElement {
   const sameAs = SOCIAL_LINKS
     .filter(link => link.platform !== 'email')
     .map(link => link.url);

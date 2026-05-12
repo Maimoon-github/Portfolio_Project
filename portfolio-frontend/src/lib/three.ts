@@ -1,4 +1,5 @@
 // src/lib/three.ts
+import * as THREE from 'three';
 import { Camera, Scene, WebGLRenderer } from 'three';
 
 /**
@@ -37,9 +38,10 @@ export function handleResize(
   const width = container ? container.clientWidth : window.innerWidth;
   const height = container ? container.clientHeight : window.innerHeight;
 
-  if ('aspect' in camera && camera.isPerspectiveCamera) {
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
+  if ('aspect' in camera) {
+    const perspectiveCamera = camera as THREE.PerspectiveCamera;
+    perspectiveCamera.aspect = width / height;
+    perspectiveCamera.updateProjectionMatrix();
   }
   renderer.setSize(width, height);
 }
