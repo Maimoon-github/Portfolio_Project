@@ -24,7 +24,7 @@ const projects = [
     title: 'DataMosaic',
     description:
       'Real‑time anomaly detection engine processing millions of events per second with Apache Flink.',
-    tags: ['Spark', 'Flink', 'Kafka'],
+    tags: ['Apache Flink', 'Kafka'],
     href: '#',
   },
 ];

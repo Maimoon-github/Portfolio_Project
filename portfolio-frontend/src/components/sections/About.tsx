@@ -1,3 +1,4 @@
+// src/components/sections/About.tsx
 'use client';
 
 export default function About() {
@@ -10,4 +11,3 @@ export default function About() {
     </section>
   );
 }
-
