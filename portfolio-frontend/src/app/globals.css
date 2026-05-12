@@ -5,8 +5,8 @@
    ============================================ */
 
 @import "tailwindcss";
-@import "./fonts.css";
-@import "./theme.css";
+@import "../styles/fonts.css";
+@import "../styles/theme.css";
 
 /* -------------------------------------------------
    @theme – Tailwind v4 token definition
