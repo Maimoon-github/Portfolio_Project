@@ -38,13 +38,13 @@ interface ExperimentCardProps {
 
 function ExperimentCard({ experiment, index }: ExperimentCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const statusColors = {
+  const statusColors: Record<string, string> = {
     active: 'bg-accent/20 text-accent',
     'coming-soon': 'bg-primary/20 text-primary-light',
     experimental: 'bg-secondary/20 text-secondary-light',
   };
 
-  const statusLabels = {
+  const statusLabels: Record<string, string> = {
     active: 'Live Demo',
     'coming-soon': 'Coming Soon',
     experimental: 'Experimental',

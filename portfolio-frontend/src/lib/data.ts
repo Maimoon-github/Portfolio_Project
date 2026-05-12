@@ -501,7 +501,7 @@ export interface LabExperiment {
   title: string;
   description: string;
   icon: string;
-  status: 'active' | 'coming-soon' | 'experimental';
+  status: 'active' | 'coming-soon' | 'experimental' | string;
   component?: string; // Component name for dynamic imports
   tags: string[];
   demoUrl?: string;
