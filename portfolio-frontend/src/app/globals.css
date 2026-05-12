@@ -94,25 +94,25 @@
 @utility glass-btn {
   @apply glass rounded-lg px-6 py-3;
   transition: all 0.2s ease;
-}
-@utility glass-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 12px var(--color-accent-muted);
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 12px var(--color-accent-muted);
+  }
 }
 @utility glass-link {
   color: var(--color-primary-light);
   transition: color 0.2s ease, text-shadow 0.2s ease;
-}
-@utility glass-link:hover {
-  color: var(--color-accent);
-  text-shadow: 0 0 6px var(--color-accent-muted);
+  &:hover {
+    color: var(--color-accent);
+    text-shadow: 0 0 6px var(--color-accent-muted);
+  }
 }
 @utility glass-avatar {
   @apply rounded-full;
   transition: box-shadow 0.2s ease;
-}
-@utility glass-avatar:hover {
-  box-shadow: 0 0 12px var(--color-primary);
+  &:hover {
+    box-shadow: 0 0 12px var(--color-primary);
+  }
 }
 
 /* -------------------------------------------------
