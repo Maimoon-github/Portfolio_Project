@@ -1,94 +1,106 @@
+/* globals.css */
 @import 'tailwindcss';
 
-/* 
-   Define the design tokens using @theme.
-   Everything here becomes a CSS variable and Tailwind utility automatically.
-*/
 @theme {
-  /* --- Cyberpunk Palette --- */
+  /* Semantic color tokens (Mystical Black Lotus) */
+  --color-background: #151219;
+  --color-on-background: #e8e0eb;
 
-  /* Primary: Cyan */
-  --color-primary-50: #e0f7ff;
-  --color-primary-100: #b3eeff;
-  --color-primary-200: #80e5ff;
-  --color-primary-300: #4ddbff;
-  --color-primary-400: #00d0ff;
-  --color-primary-500: #00c4e6;
-  --color-primary-600: #009fba;
-  --color-primary-700: #007b8f;
-  --color-primary-800: #005866;
-  --color-primary-900: #003740;
-  --color-primary: var(--color-primary-500); /* default shade */
+  --color-surface: #151219;
+  --color-surface-dim: #151219;
+  --color-surface-bright: #3c3840;
+  --color-surface-container-lowest: #100d14;
+  --color-surface-container-low: #1d1a22;
+  --color-surface-container: #221e26;
+  --color-surface-container-high: #2c2830;
+  --color-surface-container-highest: #37333b;
 
-  /* Accent: Purple */
-  --color-accent-50: #f2e9fe;
-  --color-accent-100: #dac4fd;
-  --color-accent-200: #c19cfc;
-  --color-accent-300: #a36efa;
-  --color-accent-400: #8045f7;
-  --color-accent-500: #7B2FF7;   /* your main accent */
-  --color-accent-600: #6625d2;
-  --color-accent-700: #4f1ba8;
-  --color-accent-800: #39117c;
-  --color-accent-900: #240952;
-  --color-accent: var(--color-accent-500);
+  --color-primary: #5f2da6;           /* Deep Violet Core */
+  --color-primary-light: #d6baff;
+  --color-on-primary: #430089;
+  --color-primary-container: #5f2da6;
+  --color-on-primary-container: #cdadff;
+  --color-inverse-primary: #7343bb;
 
-  /* Surfaces (dark) */
-  --color-surface-50: #f0f0f5;
-  --color-surface-100: #dcdcf0;
-  ... (unused for dark, but included for completeness)
-  --color-surface-700: #2a2a3a;
-  --color-surface-800: #1a1a28;
-  --color-surface-900: #0d0d16;
-  --color-surface: #09090f;          /* deepest bg */
-  --color-surface-dim: #0d0d16;      /* slightly lifted */
-  --color-surface-bright: #1a1a28;   /* interactive surfaces */
-  --color-surface-container: #1e1e2e;
-  --color-surface-container-high: #28283a;
-  --color-surface-container-highest: #32324a;
+  --color-secondary: #5a358c;
+  --color-secondary-light: #d8b9ff;
+  --color-on-secondary: #401972;
+  --color-secondary-container: #5a358c;
+  --color-on-secondary-container: #cda8ff;
 
-  /* On-surface text colours (high contrast) */
-  --color-on-surface: #ffffff;
-  --color-on-surface-variant: #d1d1e0;
+  --color-tertiary: #583e7e;
+  --color-tertiary-light: #d7baff;
+  --color-on-tertiary: #3c2261;
+  --color-tertiary-container: #583e7e;
+  --color-on-tertiary-container: #ccaef6;
 
-  /* Outline / border */
-  --color-outline: #3a3a5c;
-  --color-outline-variant: #22223a;
+  --color-accent: #2dd4bf;            /* Neo-Mint CTA */
+  --color-accent-muted: #0d9488;
 
-  /* You can add semantic aliases */
-  --color-background: var(--color-surface);
-  --color-foreground: var(--color-on-surface);
+  --color-outline: #968e9e;
+  --color-outline-variant: #4a4452;
 
-  /* Typography (keep your Space Grotesk) */
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+
+  /* Typography */
   --font-sans: 'Space Grotesk', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Border radii */
-  --radius-sm: 0.125rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-full: 9999px;
+  --text-display: 72px;
+  --text-h1: 48px;
+  --text-h2: 32px;
+  --text-h3: 24px;
+  --text-body-lg: 18px;
+  --text-body-md: 16px;
+  --text-label-caps: 12px;
 
-  /* Spacing scale (8px unit) */
-  --spacing-unit: 0.5rem; /* 8px */
+  /* Spacing */
+  --spacing-section-gap: 160px;
+  --spacing-gutter: 32px;
+  --spacing-page-margin: 64px;
+
+  /* Animation */
+  --animate-fade-up: fade-up 0.6s ease-out;
 }
 
-/* 
-   .glass utility using Tailwind's @utility directive.
-   All the values now refer to the design tokens above.
-*/
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glass surface utility (Elevated floating layer) */
 @utility glass {
-  background: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
-  border: 1px solid var(--color-outline-variant);
-  box-shadow: 0 8px 32px -8px rgba(123, 47, 247, 0.15); /* subtle accent glow */
+  border: 1px solid rgba(139, 101, 191, 0.25);  /* #8B65BF at 25% */
+  box-shadow: 0 10px 40px -10px rgb(95 45 166 / 0.3);
+  border-radius: 0.75rem;
 }
 
-/* Optional: global overrides */
-body {
-  background-color: var(--color-surface);
-  color: var(--color-on-surface);
-  font-family: var(--font-sans);
+/* Base global styles */
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior: none;
+    font-family: var(--font-sans);
+  }
+
+  /* Focus ring – subtle violet glow */
+  *:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
 }
