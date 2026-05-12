@@ -3,19 +3,56 @@ Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 
 ────────────────────────────────────────────────────────────────────────────────
 
+├── 📁 content/
 ├── 📁 public/
+│   ├── 📁 hdr/
+│   ├── 📁 icons/
+│   ├── 📁 models/
+│   ├── 📁 textures/
 │   ├── 🖼️ file.svg
 │   ├── 🖼️ globe.svg
 │   ├── 🖼️ next.svg
 │   ├── 🖼️ vercel.svg
 │   └── 🖼️ window.svg
+├── 📁 shaders/
 ├── 📁 src/
 │   ├── 📁 app/
+│   │   ├── 📁 (marketing)/
+│   │   │   ├── 🎨 globals.css
+│   │   │   ├── 📄 layout.tsx
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📁 about/
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📁 contact/
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📁 expertise/
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📁 journey/
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📁 lab/
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📁 projects/
+│   │   │   ├── 📁 [slug]/
+│   │   │   │   └── 📄 page.tsx
+│   │   │   └── 📄 page.tsx
 │   │   ├── 🎨 globals.css
 │   │   ├── 📄 layout.tsx
 │   │   └── 📄 page.tsx
 │   ├── 📁 components/
 │   │   ├── 📁 3d/
+│   │   │   ├── 📁 core/
+│   │   │   │   ├── 📄 CameraRig.tsx
+│   │   │   │   ├── 📄 CanvasWrapper.tsx
+│   │   │   │   └── 📄 Scene.tsx
+│   │   │   ├── 📁 elements/
+│   │   │   │   ├── 📄 AgenticGraph.tsx
+│   │   │   │   ├── 📄 AgenticGraphImpl.tsx
+│   │   │   │   ├── 📄 HolographicOrb.tsx
+│   │   │   │   ├── 📄 NeuralNetwork.tsx
+│   │   │   │   ├── 📄 ParticleField.tsx
+│   │   │   │   └── 📄 ParticleFieldImpl.tsx
+│   │   │   ├── 📁 models/
+│   │   │   ├── 📁 shaders/
 │   │   │   ├── 📄 AgenticGraph.tsx
 │   │   │   ├── 📄 AgenticGraphImpl.tsx
 │   │   │   ├── 📄 ModelCard.tsx
@@ -23,10 +60,16 @@ Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 │   │   │   ├── 📄 ParticleField.tsx
 │   │   │   └── 📄 ParticleFieldImpl.tsx
 │   │   ├── 📁 animations/
+│   │   │   ├── 📄 ScrollProgress.tsx
 │   │   │   ├── 📄 ScrollReveal.tsx
 │   │   │   ├── 📄 StaggerChildren.tsx
-│   │   │   └── 📄 StaggerList.tsx
+│   │   │   ├── 📄 StaggerList.tsx
+│   │   │   └── 📄 TextReveal.tsx
+│   │   ├── 📁 common/
+│   │   │   └── 📄 MagneticButton.tsx
 │   │   ├── 📁 layout/
+│   │   │   ├── 📄 Cursor.tsx
+│   │   │   ├── 📄 Footer.tsx
 │   │   │   ├── 📄 Navbar.tsx
 │   │   │   └── 📄 SmoothScroll.tsx
 │   │   ├── 📁 sections/
@@ -44,20 +87,39 @@ Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 │   │       ├── 📄 GlassCard.tsx
 │   │       ├── 📄 ProjectCard.tsx
 │   │       ├── 📄 SectionSkeleton.tsx
-│   │       └── 📄 SkillCard.tsx
+│   │       ├── 📄 SkillCard.tsx
+│   │       └── 📄 Terminal.tsx
+│   ├── 📁 config/
+│   │   └── 📄 metadata.ts
+│   ├── 📁 constants/
+│   │   └── 📄 index.ts
 │   ├── 📁 hooks/
+│   │   ├── 📄 use-3d-interaction.ts
 │   │   ├── 📄 use-card-tilt.ts
 │   │   ├── 📄 use-media-query.ts
+│   │   ├── 📄 use-mouse-position.ts
 │   │   ├── 📄 use-reduced-motion.ts
 │   │   └── 📄 use-scroll-progress.ts
-│   └── 📁 lib/
-│       ├── 📄 data.ts
-│       └── 📄 utils.ts
+│   ├── 📁 lib/
+│   │   ├── 📄 data.ts
+│   │   ├── 📄 motion.ts
+│   │   ├── 📄 seo.ts
+│   │   ├── 📄 three.ts
+│   │   └── 📄 utils.ts
+│   ├── 📁 styles/
+│   │   ├── 🎨 fonts.css
+│   │   ├── 🎨 tailwind.css
+│   │   └── 🎨 theme.css
+│   └── 📁 types/
+│       ├── 📄 index.ts
+│       ├── 📄 project.ts
+│       └── 📄 three.d.ts
 ├── ⚙️ .gitignore
 ├── 📝 AGENTS.md
 ├── 📝 CLAUDE.md
 ├── 📝 README.md
 ├── 📄 eslint.config.mjs
+├── 📄 file tree.txt
 ├── 📄 next.config.ts
 ├── ⚙️ package-lock.json
 ├── ⚙️ package.json
