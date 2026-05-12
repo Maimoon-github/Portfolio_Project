@@ -34,8 +34,8 @@ export interface SocialLink {
 }
 
 export interface ContactInfo {
-  demoUrl?: string;
-  githubUrl?: string;
+  email: string;
+  github?: string;
   linkedin?: string;
   twitter?: string;
 }
@@ -505,6 +505,7 @@ export interface LabExperiment {
   component?: string; // Component name for dynamic imports
   tags: string[];
   demoUrl?: string;
+  githubUrl?: string;
 }
 
 export const labData = {
