@@ -577,3 +577,117 @@ export const labData = {
     { label: "OpenAI API", count: 6 },
   ],
 };
+
+// src/lib/data.ts – ADD TO EXISTING FILE
+
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  tags: string[];
+  category: "agentic-ai" | "data-science" | "mlops" | "web3" | "research";
+  image?: string;
+  demoUrl?: string;
+  githubUrl?: string;
+  featured?: boolean;
+}
+
+export const projectsData = {
+  introTitle: "Selected Projects & Experiments",
+  introDescription:
+    "A curated selection of AI‑driven projects spanning autonomous agents, production MLOps, data science pipelines, and experimental research.",
+
+  // Category labels for display
+  categoryLabels: {
+    "agentic-ai": "Agentic AI",
+    "data-science": "Data Science",
+    mlops: "MLOps",
+    web3: "Web3 / Blockchain",
+    research: "Research",
+  } as const,
+
+  // Main project list
+  projects: [
+    {
+      id: "agentic-workflow-engine",
+      title: "Agentic Workflow Engine",
+      description:
+        "A production‑ready multi‑agent orchestration system built with LangGraph, supporting durable execution, human‑in‑the‑loop checkpoints, and persistent memory across sessions.",
+      tags: ["LangGraph", "TypeScript", "Durable Execution", "MCP"],
+      category: "agentic-ai",
+      demoUrl: "#",
+      githubUrl: "#",
+      featured: true,
+    },
+    {
+      id: "llm-observability-platform",
+      title: "LLM Observability Platform",
+      description:
+        "End‑to‑end tracing and evaluation platform for LLM applications. Features real‑time metrics, latency tracking, cost analysis, and a custom evaluation harness for agentic systems.",
+      tags: ["OpenTelemetry", "ClickHouse", "LangSmith", "MLflow"],
+      category: "mlops",
+      demoUrl: "#",
+      githubUrl: "#",
+      featured: true,
+    },
+    {
+      id: "rag-knowledge-hub",
+      title: "RAG Knowledge Hub",
+      description:
+        "Enterprise multi‑source RAG system combining vector search, hybrid retrieval, and re‑ranking. Includes chunking strategies, evaluation pipelines, and A/B testing framework.",
+      tags: ["RAG", "LlamaIndex", "Vector DB", "Qdrant"],
+      category: "mlops",
+      demoUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      id: "causal-inference-suite",
+      title: "Causal Inference Suite",
+      description:
+        "A Python library for causal effect estimation and sensitivity analysis, used to measure the business impact of AI feature rollouts. Supports matching, difference‑in‑differences, and synthetic controls.",
+      tags: ["Python", "Causal Inference", "Jupyter", "Statistical Modeling"],
+      category: "data-science",
+      demoUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      id: "multi-agent-simulator",
+      title: "Multi‑Agent Economy Simulator",
+      description:
+        "Interactive simulation environment for reinforcement learning and agent‑based modeling. Designed to test coordination strategies, market dynamics, and emergent collaboration protocols.",
+      tags: ["RL", "Multi‑Agent Systems", "CrewAI", "Simulation"],
+      category: "agentic-ai",
+      demoUrl: "#",
+      githubUrl: "#",
+      featured: true,
+    },
+    {
+      id: "web3-agent-oracle",
+      title: "Web3 Agent Oracle",
+      description:
+        "Autonomous agent that monitors blockchain events, analyses on‑chain data, and triggers workflows in response to predefined conditions — bridging the gap between smart contracts and agentic logic.",
+      tags: ["Web3", "Ethers.js", "Agentic Workflows", "Solidity"],
+      category: "web3",
+      demoUrl: "#",
+      githubUrl: "#",
+    },
+    {
+      id: "fine-tuning-studio",
+      title: "LLM Fine‑Tuning Studio",
+      description:
+        "A streamlined interface for fine‑tuning small‑to‑medium LLMs, incorporating LoRA, QLoRA, and PEFT techniques. The platform automates data validation, training, and deployment to an internal inference endpoint.",
+      tags: ["LLM", "Fine‑Tuning", "PyTorch", "LoRA"],
+      category: "mlops",
+      demoUrl: "#",
+      githubUrl: "#",
+    },
+  ] as Project[],
+
+  // Call to action
+  cta: {
+    heading: "Have a project in mind?",
+    description: "From agent architectures to production AI pipelines — let’s build something extraordinary together.",
+    buttonText: "Start a Conversation",
+    href: "/contact",
+  },
+};
