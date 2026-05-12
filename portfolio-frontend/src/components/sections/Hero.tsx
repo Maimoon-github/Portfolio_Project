@@ -5,6 +5,16 @@ import { motion, type Variants } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 import { ParticleField } from '@/components/3d/ParticleField';
 
+interface HeroProps {
+  subtitle: string;
+  titlePrefix?: string;
+  titleHighlight: string;
+  titleSuffix?: string;
+  description: string;
+  ctaPrimary: string;
+  ctaSecondary: string;
+}
+
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -25,10 +35,17 @@ const itemVariants: Variants = {
   },
 };
 
-export function Hero() {
+export function Hero({
+  subtitle,
+  titlePrefix = 'Building',
+  titleHighlight,
+  titleSuffix = 'intelligence',
+  description,
+  ctaPrimary = 'View Work',
+  ctaSecondary = 'Get in Touch',
+}: HeroProps) {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* 3D Background Layer – z‑isolated behind content */}
       <div className="absolute inset-0 z-0">
         <ParticleField />
       </div>
@@ -43,26 +60,25 @@ export function Hero() {
           variants={itemVariants}
           className="mb-4 font-mono text-sm uppercase tracking-[0.3em] text-[var(--color-primary-light)]"
         >
-          Data Scientist · AI Agent Architect · MLOps Engineer
+          {subtitle}
         </motion.p>
 
         <motion.h1
           variants={itemVariants}
           className="text-5xl font-bold leading-tight tracking-tight sm:text-7xl lg:text-8xl"
         >
-          Building{' '}
+          {titlePrefix}{' '}
           <span className="text-[var(--color-accent)]">
-            autonomous
+            {titleHighlight}
           </span>{' '}
-          intelligence
+          {titleSuffix}
         </motion.h1>
 
         <motion.p
           variants={itemVariants}
           className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-on-background)]/60"
         >
-          I design agentic workflows, deploy production ML systems, and turn
-          complex data into strategic advantage.
+          {description}
         </motion.p>
 
         <motion.div
@@ -73,13 +89,13 @@ export function Hero() {
             href="#workflow"
             className="inline-flex items-center rounded-lg bg-[var(--color-accent)] px-8 py-3 font-semibold text-[var(--color-background)] transition-all hover:scale-105 hover:shadow-lg hover:shadow-[var(--color-accent)]/30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
           >
-            View Work
+            {ctaPrimary}
           </a>
           <a
             href="#contact"
             className="inline-flex items-center rounded-lg border border-[var(--color-outline-variant)] px-8 py-3 font-medium text-[var(--color-on-background)] transition-all hover:border-[var(--color-primary)] hover:text-[var(--color-primary-light)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
           >
-            Get in Touch
+            {ctaSecondary}
           </a>
         </motion.div>
 

@@ -3,16 +3,13 @@
 
 import Link from 'next/link';
 
-const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/#about' },
-  { label: 'Skills', href: '/#skills' },
-  { label: 'Workflow', href: '/#workflow' },
-  { label: 'Projects', href: '/#projects' },
-  { label: 'Contact', href: '/#contact' },
-];
+interface FooterProps {
+  navLinks: { label: string; href: string }[];
+  copyrightName: string;
+  copyrightYear?: number;
+}
 
-export default function Footer() {
+export default function Footer({ navLinks, copyrightName, copyrightYear = new Date().getFullYear() }: FooterProps) {
   return (
     <footer className="border-t border-outline-variant/20 px-gutter py-12 mt-section-gap">
       <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-6">
@@ -31,7 +28,7 @@ export default function Footer() {
           </ul>
         </nav>
         <p className="text-sm text-on-background/40">
-          © {new Date().getFullYear()} Alex Kern. All rights reserved.
+          © {copyrightYear} {copyrightName}. All rights reserved.
         </p>
       </div>
     </footer>
