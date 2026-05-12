@@ -9,7 +9,16 @@ interface UseCardTiltOptions {
   perspective?: number;
 }
 
-export function useCardTilt<T extends HTMLElement>({ maxTilt = 8, perspective = 600 }: UseCardTiltOptions = {}) {
+/**
+ * Creates a 3D tilt effect on a card element with dynamic glare.
+ * @param options.maxTilt - Maximum rotation in degrees (default 8)
+ * @param options.perspective - CSS perspective value in pixels (default 600)
+ * @returns style object, onMouseMove, onMouseLeave handlers for the target element
+ */
+export function useCardTilt<T extends HTMLElement>({
+  maxTilt = 8,
+  perspective = 600,
+}: UseCardTiltOptions = {}) {
   const x = useMotionValue(0.5);
   const y = useMotionValue(0.5);
 
@@ -27,7 +36,6 @@ export function useCardTilt<T extends HTMLElement>({ maxTilt = 8, perspective = 
 
   const onMouseMove = useCallback(
     (e: React.MouseEvent<T>) => {
-
       const rect = e.currentTarget.getBoundingClientRect();
       const xVal = (e.clientX - rect.left) / rect.width;
       const yVal = (e.clientY - rect.top) / rect.height;

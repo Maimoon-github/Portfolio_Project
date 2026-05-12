@@ -1,9 +1,13 @@
 // src/hooks/use-reduced-motion.ts
 'use client';
 
-import { useReducedMotion } from 'framer-motion';
+import { useReducedMotion as useFramerReducedMotion } from 'framer-motion';
 
-export function useRespectMotion() {
-  const prefersReduced = useReducedMotion() ?? false;
-  return prefersReduced;
+/**
+ * Hook that returns true if the user prefers reduced motion.
+ * Uses framer-motion's built-in detection.
+ */
+export function useReducedMotion(): boolean {
+  const prefersReduced = useFramerReducedMotion();
+  return prefersReduced ?? false;
 }

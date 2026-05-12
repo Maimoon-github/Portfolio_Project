@@ -3,7 +3,12 @@
 
 import { useSyncExternalStore } from 'react';
 
-export function useMediaQuery(query: string) {
+/**
+ * Reactive media query hook.
+ * @param query - CSS media query string, e.g., '(min-width: 768px)'
+ * @returns boolean indicating if the query matches
+ */
+export function useMediaQuery(query: string): boolean {
   return useSyncExternalStore(
     (callback) => {
       const media = window.matchMedia(query);
@@ -11,6 +16,6 @@ export function useMediaQuery(query: string) {
       return () => media.removeEventListener('change', callback);
     },
     () => window.matchMedia(query).matches,
-    () => false // SSR initial value
+    () => false // SSR fallback
   );
 }
