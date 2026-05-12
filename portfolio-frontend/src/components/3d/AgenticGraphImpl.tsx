@@ -51,7 +51,7 @@ function Graph() {
   return (
     <group ref={groupRef}>
       {edgeGeometry.map((points, i) => (
-        <Line key={i} points={points} color="#ffffff20" lineWidth={1} />
+        <Line key={i} points={points} color="#ffffff15" lineWidth={1} />
       ))}
       {nodes.map((node) => (
         <group key={node.id} position={node.position}>
@@ -61,15 +61,15 @@ function Graph() {
             onPointerOut={() => setHovered(null)}
           >
             <meshStandardMaterial
-              color={hovered === node.id ? '#fff' : node.color}
+              color={hovered === node.id ? '#ffffff' : node.color}
               emissive={node.color}
-              emissiveIntensity={0.5}
+              emissiveIntensity={hovered === node.id ? 1 : 0.5}
               roughness={0.3}
               metalness={0.2}
             />
           </Sphere>
           <Html distanceFactor={3.5} center style={{ pointerEvents: 'none' }}>
-            <span className="text-xs font-mono text-white bg-black/50 px-2 py-1 rounded-full whitespace-nowrap">
+            <span className="text-[10px] font-mono text-white bg-black/60 px-2 py-1 rounded-full whitespace-nowrap backdrop-blur-sm">
               {node.label}
             </span>
           </Html>
@@ -81,9 +81,9 @@ function Graph() {
 
 export default function AgenticGraphImpl() {
   return (
-    <Canvas camera={{ position: [0, 0.5, 6], fov: 55 }} dpr={[1, 2]}>
+    <Canvas camera={{ position: [0, 0.5, 6], fov: 55 }} dpr={[1, 2]} gl={{ antialias: false }}>
       <ambientLight intensity={0.3} />
-      <pointLight position={[5, 5, 5]} intensity={0.5} />
+      <pointLight position={[5, 5, 5]} intensity={0.6} />
       <Graph />
       <OrbitControls enableZoom={false} enablePan={false} />
     </Canvas>
