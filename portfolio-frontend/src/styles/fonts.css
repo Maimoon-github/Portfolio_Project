@@ -1,0 +1,26 @@
+/* fonts.css – Typeface declarations and variable font setup */
+
+/* Space Grotesk – variable font (weight 300–700) */
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/fonts/SpaceGrotesk-Variable.woff2") format("woff2-variations");
+  font-weight: 300 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* JetBrains Mono – static weight 400 (regular) and 600 (code emphasis) */
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/JetBrainsMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/JetBrainsMono-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+/* Fallback system fonts are already defined in globals.css --font-sans / --font-mono */
