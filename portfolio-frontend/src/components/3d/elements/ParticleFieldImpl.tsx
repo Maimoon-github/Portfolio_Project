@@ -37,7 +37,6 @@ export function ParticleFieldImpl({ count = 1800, radius = 6, size = 0.06 }: Par
   }, [count, radius]);
 
   const primaryColor = '#5f2da6';   // --color-primary
-  const lightColor = '#d6baff';     // --color-primary-light
 
   useFrame((_, delta) => {
     if (prefersReduced) return;
@@ -60,3 +59,5 @@ export function ParticleFieldImpl({ count = 1800, radius = 6, size = 0.06 }: Par
     </Points>
   );
 }
+
+export default ParticleFieldImpl;

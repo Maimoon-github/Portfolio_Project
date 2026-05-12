@@ -58,7 +58,7 @@ export function Hero({
       >
         <motion.p
           variants={itemVariants}
-          className="mb-4 font-mono text-sm uppercase tracking-[0.3em] text-[var(--color-primary-light)]"
+          className="mb-4 font-mono text-sm uppercase tracking-[0.3em] text-primary-light"
         >
           {subtitle}
         </motion.p>
@@ -68,7 +68,7 @@ export function Hero({
           className="text-5xl font-bold leading-tight tracking-tight sm:text-7xl lg:text-8xl"
         >
           {titlePrefix}{' '}
-          <span className="text-[var(--color-accent)]">
+          <span className="text-accent">
             {titleHighlight}
           </span>{' '}
           {titleSuffix}
@@ -76,7 +76,7 @@ export function Hero({
 
         <motion.p
           variants={itemVariants}
-          className="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-on-background)]/60"
+          className="mx-auto mt-6 max-w-2xl text-lg text-on-background/60"
         >
           {description}
         </motion.p>
@@ -87,13 +87,13 @@ export function Hero({
         >
           <a
             href="#workflow"
-            className="inline-flex items-center rounded-lg bg-[var(--color-accent)] px-8 py-3 font-semibold text-[var(--color-background)] transition-all hover:scale-105 hover:shadow-lg hover:shadow-[var(--color-accent)]/30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
+            className="inline-flex items-center rounded-lg bg-accent px-8 py-3 font-semibold text-background transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             {ctaPrimary}
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center rounded-lg border border-[var(--color-outline-variant)] px-8 py-3 font-medium text-[var(--color-on-background)] transition-all hover:border-[var(--color-primary)] hover:text-[var(--color-primary-light)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
+            className="inline-flex items-center rounded-lg border border-outline-variant px-8 py-3 font-medium text-on-background transition-all hover:border-primary hover:text-primary-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             {ctaSecondary}
           </a>
@@ -104,7 +104,7 @@ export function Hero({
           className="mt-24 animate-bounce"
           aria-hidden="true"
         >
-          <ArrowDown className="mx-auto text-[var(--color-on-background)]/40" />
+          <ArrowDown className="mx-auto text-on-background/40" />
         </motion.div>
       </motion.div>
     </section>

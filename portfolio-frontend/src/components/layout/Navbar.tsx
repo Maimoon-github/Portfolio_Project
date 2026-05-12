@@ -43,7 +43,7 @@ export function Navbar() {
       >
         <Link
           href="/"
-          className="font-mono text-xl font-bold tracking-tight text-primary hover:text-accent transition-colors"
+          className="font-mono text-xl font-bold tracking-tight text-primary hover:text-accent transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded"
         >
           &lt;AK /&gt;
         </Link>
@@ -52,7 +52,7 @@ export function Navbar() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="text-sm uppercase tracking-widest text-on-background/70 hover:text-primary transition-colors"
+                className="text-sm uppercase tracking-widest text-on-background/70 hover:text-primary transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded"
               >
                 {item.label}
               </Link>
