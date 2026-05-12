@@ -13,26 +13,21 @@ interface ParticleFieldImplProps {
   size?: number;
 }
 
-export function ParticleFieldImpl({
-  count = 2000,
-  radius = 5,
-  size = 0.08,
-}: ParticleFieldImplProps) {
+export function ParticleFieldImpl({ count = 1800, radius = 6, size = 0.06 }: ParticleFieldImplProps) {
   const pointsRef = useRef<THREE.Points>(null);
   const prefersReduced = useReducedMotion();
 
-  // Generate random positions inside a sphere
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      // Uniform distribution in sphere (reject method would be more uniform, but this is fine)
+      // Uniform distribution in a sphere with flattened Y axis for atmospheric spread
       const u = Math.random();
       const v = Math.random();
       const theta = 2 * Math.PI * u;
       const phi = Math.acos(2 * v - 1);
-      const r = radius * Math.cbrt(Math.random()); // cubic root for uniform volume
+      const r = radius * Math.cbrt(Math.random());
       const x = r * Math.sin(phi) * Math.cos(theta);
-      const y = r * Math.sin(phi) * Math.sin(theta) * 0.6; // flatten a bit
+      const y = r * Math.sin(phi) * Math.sin(theta) * 0.4;
       const z = r * Math.cos(phi);
       pos[i * 3] = x;
       pos[i * 3 + 1] = y;
@@ -41,39 +36,22 @@ export function ParticleFieldImpl({
     return pos;
   }, [count, radius]);
 
-  // TLS colours – primary (#5f2da6) and primary-light (#d6baff)
   const primaryColor = '#5f2da6';   // --color-primary
   const lightColor = '#d6baff';     // --color-primary-light
 
-  // Optional random colour per particle (mix of both)
-  const colors = useMemo(() => {
-    const cols = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      const mixFactor = Math.random();
-      const r = mixFactor * 0.37 + (1 - mixFactor) * 0.84; // approximate RGB mixing (loose)
-      const g = mixFactor * 0.18 + (1 - mixFactor) * 0.73;
-      const b = mixFactor * 0.65 + (1 - mixFactor) * 1.0;
-      cols[i * 3] = r;
-      cols[i * 3 + 1] = g;
-      cols[i * 3 + 2] = b;
-    }
-    return cols;
-  }, [count]);
-
-  // Rotate group on each frame (unless reduced motion)
   useFrame((_, delta) => {
     if (prefersReduced) return;
     if (pointsRef.current) {
-      pointsRef.current.rotation.y += delta * 0.2;
+      pointsRef.current.rotation.y += delta * 0.15;
       pointsRef.current.rotation.x += delta * 0.05;
     }
   });
 
   return (
-    <Points ref={pointsRef} positions={positions} colors={colors} stride={3}>
+    <Points ref={pointsRef} positions={positions}>
       <PointMaterial
         transparent
-        vertexColors
+        color={primaryColor}
         size={size}
         sizeAttenuation
         depthWrite={false}
