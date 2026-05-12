@@ -30,6 +30,34 @@ export interface ModelCardImplProps {
   depth?: number;
 }
 
+// src/components/3d/elements/ModelCardImpl.tsx (updated framework configurations)
+export const FRAMEWORK_CONFIG = {
+  langgraph: {
+    baseColor: '#5f2da6',          // --color-primary
+    emissiveColor: '#d6baff',      // --color-primary-light
+    borderColor: '#8b65bf',        // Mystical Black Lotus Stop 3
+    themeHex: '#5F2DA6',
+    // LangGraph-specific: Durable execution + HITL + Memory + Production
+    floatingOrbitConfig: { count: 8, radius: 1.15, size: 0.055 }
+  },
+  autogen: {
+    baseColor: '#4e3473',          // --color-secondary equivalent
+    emissiveColor: '#cdadff',      // --color-on-primary-container
+    borderColor: '#7343bb',        // --color-inverse-primary
+    themeHex: '#4E3473',
+    // AutoGen-specific: Multi-party conversational + event‑driven
+    floatingRingsConfig: { radius: 1.25, tube: 0.022 }
+  },
+  crewai: {
+    baseColor: '#583e7e',          // --color-tertiary
+    emissiveColor: '#ccaef6',      // --color-on-tertiary-container
+    borderColor: '#8b65bf',        // Mystical Black Lotus Stop 3
+    themeHex: '#583E7E',
+    // CrewAI-specific: Role‑playing teams + enterprise observability
+    orbitingNodesConfig: { count: 4, radius: 1.2, size: 0.07 }
+  }
+} as const;
+
 /**
  * Renders an individual 3D Model Card panel for an AI Agent Framework.
  */
