@@ -2,24 +2,23 @@
 'use client';
 
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useMemo, useRef } from 'react';
+import { useRef } from 'react';
+
 import * as THREE from 'three';
 import { Points, PointMaterial } from '@react-three/drei';
 
+const count = 2000;
+const staticPositions = new Float32Array(count * 3);
+for (let i = 0; i < count * 3; i += 3) {
+  staticPositions[i] = (Math.random() - 0.5) * 12;     // x
+  staticPositions[i + 1] = (Math.random() - 0.5) * 12; // y
+  staticPositions[i + 2] = (Math.random() - 0.5) * 12; // z
+}
+
 function DataStream() {
   const ref = useRef<THREE.Points>(null!);
-  const count = 2000;
+  const positions = staticPositions;
 
-  // Memoized positions – never recalculated
-  const [positions] = useMemo(() => {
-    const pos = new Float32Array(count * 3);
-    for (let i = 0; i < count * 3; i += 3) {
-      pos[i] = (Math.random() - 0.5) * 12;               // x
-      pos[i + 1] = (Math.random() - 0.5) * 12;           // y
-      pos[i + 2] = (Math.random() - 0.5) * 12;           // z
-    }
-    return [pos];
-  }, []);
 
   // Low‑cost continuous rotation
   useFrame((_, delta) => {

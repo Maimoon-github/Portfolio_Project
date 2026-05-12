@@ -2,7 +2,7 @@
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { AgenticGraph } from '@/components/3d/AgenticGraph';
 
-export function AgenticWorkflow() {
+export default function AgenticWorkflow() {
   return (
     <section id="workflow" className="py-section-gap px-gutter max-w-7xl mx-auto">
       <ScrollReveal>

@@ -29,7 +29,7 @@ const projects = [
   },
 ];
 
-export function Projects() {
+export default function Projects() {
   return (
     <section id="projects" className="py-section-gap px-gutter max-w-7xl mx-auto">
       <ScrollReveal>

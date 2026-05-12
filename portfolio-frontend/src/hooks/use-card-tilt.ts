@@ -9,7 +9,7 @@ interface UseCardTiltOptions {
   perspective?: number;
 }
 
-export function useCardTilt({ maxTilt = 8, perspective = 600 }: UseCardTiltOptions = {}) {
+export function useCardTilt<T extends HTMLElement>({ maxTilt = 8, perspective = 600 }: UseCardTiltOptions = {}) {
   const x = useMotionValue(0.5);
   const y = useMotionValue(0.5);
 
@@ -26,7 +26,8 @@ export function useCardTilt({ maxTilt = 8, perspective = 600 }: UseCardTiltOptio
   const glareY = useTransform(y, [0, 1], ['0%', '100%']);
 
   const onMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
+    (e: React.MouseEvent<T>) => {
+
       const rect = e.currentTarget.getBoundingClientRect();
       const xVal = (e.clientX - rect.left) / rect.width;
       const yVal = (e.clientY - rect.top) / rect.height;

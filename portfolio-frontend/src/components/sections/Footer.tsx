@@ -10,7 +10,7 @@ const navLinks = [
   { label: 'Contact', href: '/#contact' },
 ];
 
-export function Footer() {
+export default function Footer() {
   return (
     <footer className="border-t border-outline-variant/20 px-gutter py-12 mt-section-gap">
       <div className="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-6">

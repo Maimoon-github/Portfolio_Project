@@ -27,7 +27,7 @@ const domains = [
   },
 ];
 
-export function Skills() {
+export default function Skills() {
   return (
     <section id="skills" className="py-section-gap px-gutter max-w-7xl mx-auto">
       <ScrollReveal>

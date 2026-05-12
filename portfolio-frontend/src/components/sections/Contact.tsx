@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 
-export function Contact() {
+export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {

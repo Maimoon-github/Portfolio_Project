@@ -18,10 +18,11 @@ export function ProjectCard({ title, description, tags, href, className }: Proje
   const prefersReducedMotion = useReducedMotion();
   const tiltDisabled = prefersReducedMotion ?? false;
 
-  const { style, onMouseMove, onMouseLeave } = useCardTilt({
+  const { style, onMouseMove, onMouseLeave } = useCardTilt<HTMLAnchorElement>({
     maxTilt: 10,
     perspective: 800,
   });
+
 
   return (
     <motion.a

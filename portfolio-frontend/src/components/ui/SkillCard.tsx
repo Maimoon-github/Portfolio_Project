@@ -18,10 +18,11 @@ export function SkillCard({ icon: Icon, title, description, className }: SkillCa
   const prefersReducedMotion = useReducedMotion();
   const tiltDisabled = prefersReducedMotion ?? false;
 
-  const { style, onMouseMove, onMouseLeave } = useCardTilt({
+  const { style, onMouseMove, onMouseLeave } = useCardTilt<HTMLDivElement>({
     maxTilt: 10,
     perspective: 800,
   });
+
 
   return (
     <motion.div
@@ -48,7 +49,7 @@ export function SkillCard({ icon: Icon, title, description, className }: SkillCa
           }}
           initial={{ '--angle': '0deg' }}
           whileHover={{ '--angle': '360deg' }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+          transition={{ duration: 2, repeat: Infinity, ease: [0, 0, 1, 1] }}
         />
       )}
 
@@ -68,7 +69,7 @@ export function SkillCard({ icon: Icon, title, description, className }: SkillCa
                   !tiltDisabled
                     ? {
                         y: [0, -6, 0],
-                        transition: { duration: 4, repeat: Infinity, ease: 'easeInOut' },
+                        transition: { duration: 4, repeat: Infinity, ease: [0.42, 0, 0.58, 1] },
                       }
                     : {}
                 }
