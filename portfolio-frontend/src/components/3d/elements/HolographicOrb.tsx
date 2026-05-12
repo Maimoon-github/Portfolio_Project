@@ -29,7 +29,7 @@ export function HolographicOrb({
   const [time, setTime] = useState(0);
 
   // Generate particle positions around the sphere
-  const particlePositions = useMemo(() => {
+  const [particlePositions] = useState(() => {
     const positions = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
       // Spherical distribution with some randomness in radius
@@ -44,7 +44,7 @@ export function HolographicOrb({
       positions[i * 3 + 2] = z;
     }
     return positions;
-  }, [particleCount, radius]);
+  });
 
   // TLS colours
   const primaryColor = '#5f2da6';

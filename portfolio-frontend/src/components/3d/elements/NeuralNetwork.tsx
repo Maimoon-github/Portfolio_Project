@@ -1,9 +1,9 @@
 // src/components/3d/elements/NeuralNetwork.tsx
 'use client';
 
-import { useRef, useMemo } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Sphere, LineBasicMaterial } from '@react-three/drei';
+import { Sphere } from '@react-three/drei';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import * as THREE from 'three';
 
@@ -80,8 +80,9 @@ export function NeuralNetwork({
     <group ref={groupRef}>
       {/* Edges */}
       {lineGeometries.map((geom, idx) => (
-        <line key={`edge-${idx}`} geometry={geom}>
-          <lineBasicMaterial color={primaryColor} transparent opacity={0.4} />
+        <line key={`edge-${idx}`}>
+          <bufferGeometry attach="geometry" {...geom} />
+          <lineBasicMaterial attach="material" color={primaryColor} transparent opacity={0.3} />
         </line>
       ))}
 

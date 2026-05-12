@@ -1,7 +1,7 @@
 // src/hooks/use-3d-interaction.ts
 'use client';
 
-import { useState, useEffect, useCallback, RefObject } from 'react';
+import { useState, useEffect, useCallback, RefObject, useMemo } from 'react';
 import { useMousePosition } from './use-mouse-position';
 
 interface NormalizedMouse {
@@ -35,27 +35,27 @@ export function use3DMouseInteraction(): NormalizedMouse {
  * @param objects - Array of Meshes to intersect
  * @returns current hovered object index and a handler for mouse move
  */
-import { Raycaster, Vector2, Object3D, Intersection } from 'three';
+import { Raycaster, Vector2, Object3D, Camera } from 'three';
 
 export function useRaycaster<T extends Object3D>(
   objects: T[],
-  camera: RefObject<THREE.Camera>,
-  canvasRef: RefObject<HTMLCanvasElement>
+  camera: RefObject<Camera | null>,
+  canvasRef: RefObject<HTMLCanvasElement | null>
 ): {
   hoveredIndex: number | null;
   onMouseMove: (event: MouseEvent) => void;
 } {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const raycaster = new Raycaster();
-  const mouse = new Vector2();
+  const raycaster = useMemo(() => new Raycaster(), []);
 
   const onMouseMove = useCallback(
     (event: MouseEvent) => {
       if (!canvasRef.current || !camera.current) return;
 
       const rect = canvasRef.current.getBoundingClientRect();
-      mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-      mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      const mouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      const mouseY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      const mouse = new Vector2(mouseX, mouseY);
 
       raycaster.setFromCamera(mouse, camera.current);
       const intersects = raycaster.intersectObjects(objects);

@@ -1,7 +1,7 @@
 // src/components/3d/elements/ParticleFieldImpl.tsx
 'use client';
 
-import { useRef, useMemo } from 'react';
+import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
@@ -17,7 +17,7 @@ export function ParticleFieldImpl({ count = 1800, radius = 6, size = 0.06 }: Par
   const pointsRef = useRef<THREE.Points>(null);
   const prefersReduced = useReducedMotion();
 
-  const positions = useMemo(() => {
+  const [positions] = useState(() => {
     const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
       // Uniform distribution in a sphere with flattened Y axis for atmospheric spread
@@ -34,7 +34,7 @@ export function ParticleFieldImpl({ count = 1800, radius = 6, size = 0.06 }: Par
       pos[i * 3 + 2] = z;
     }
     return pos;
-  }, [count, radius]);
+  });
 
   const primaryColor = '#5f2da6';   // --color-primary
 
