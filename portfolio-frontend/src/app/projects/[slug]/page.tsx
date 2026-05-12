@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const categoryLabel = projectsData.categoryLabels[project.category] || project.category;
+  const categoryLabel = projectsData.categoryLabels[project.category as keyof typeof projectsData.categoryLabels] || project.category;
 
   return {
     title: `${project.title} | ${categoryLabel} | Alex Kern Portfolio`,

@@ -28,7 +28,7 @@ const itemVariants: Variants = {
 
 interface ProjectCardProps {
   title: string;
-  description: string;
+  shortDescription: string;
   tags: string[];
   category: string;
   demoUrl?: string;
@@ -38,7 +38,7 @@ interface ProjectCardProps {
 
 function ProjectCard({
   title,
-  description,
+  shortDescription,
   tags,
   category,
   demoUrl,
@@ -69,7 +69,7 @@ function ProjectCard({
           {title}
         </h3>
         <p className="text-xs font-mono text-on-background/50 mb-2">{categoryLabel}</p>
-        <p className="text-sm text-on-background/70 leading-relaxed mb-4">{description}</p>
+        <p className="text-sm text-on-background/70 leading-relaxed mb-4">{shortDescription}</p>
 
         {/* Tag cloud */}
         <div className="flex flex-wrap gap-2 mb-4">
@@ -106,7 +106,7 @@ function ProjectCard({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-sm text-on-background/60 hover:text-primary-light transition-colors"
             >
-              <Github className="w-3.5 h-3.5" />
+              <Code className="w-3.5 h-3.5" />
               Source
             </a>
           )}
@@ -142,8 +142,8 @@ export default function ProjectsPage() {
       results = results.filter(
         (project) =>
           project.title.toLowerCase().includes(query) ||
-          project.description.toLowerCase().includes(query) ||
-          project.tags.some((tag) => tag.toLowerCase().includes(query))
+          project.shortDescription.toLowerCase().includes(query) ||
+          project.tags.some((tag: string) => tag.toLowerCase().includes(query))
       );
     }
 

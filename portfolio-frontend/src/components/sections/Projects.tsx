@@ -1,19 +1,27 @@
 // src/components/sections/Projects.tsx
 import { ProjectCard } from '@/components/ui/ProjectCard';
 
-export default function Projects() {
+interface ProjectsProps {
+  heading?: string;
+  items?: any[]; // Replace with correct typing if available
+}
+
+export default function Projects({ heading, items = [] }: ProjectsProps) {
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <ProjectCard
-        id="agentic-workflow-engine"
-        slug="agentic-workflow-engine"
-        title="Agentic Workflow Engine"
-        shortDescription="Production‑ready multi‑agent orchestration system with durable execution and human‑in‑the‑loop capabilities."
-        technologies={[{ name: "LangGraph" }, { name: "TypeScript" }, { name: "PostgreSQL" }]}
-        featured
-        demoUrl="https://demo.example.com"
-        githubUrl="https://github.com/example/workflow-engine"
-      />
+      {heading && <h2 className="col-span-full text-2xl font-bold">{heading}</h2>}
+      {items.map((item) => (
+        <ProjectCard
+          key={item.id}
+          id={item.id}
+          slug={item.slug || item.id}
+          title={item.title}
+          shortDescription={item.shortDescription || item.description}
+          technologies={item.technologies || item.tags?.map((t: string) => ({ name: t })) || []}
+          demoUrl={item.demoUrl}
+          githubUrl={item.githubUrl}
+        />
+      ))}
     </section>
   );
 }
