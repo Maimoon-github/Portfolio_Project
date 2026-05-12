@@ -1,11 +1,11 @@
+// src/components/layout/Navbar.tsx
 'use client';
 
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { useRef, useState } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-
-const links = ['About', 'Skills', 'Workflow', 'Projects', 'Contact'];
+import { NAVIGATION_ITEMS } from '@/constants';
 
 export function Navbar() {
   const { scrollY } = useScroll();
@@ -23,7 +23,7 @@ export function Navbar() {
   return (
     <motion.header
       className={cn(
-        'fixed top-0 z-50 w-full transition-colors',
+        'fixed top-0 z-50 w-full transition-colors duration-300',
         scrolled ? 'glass-header' : 'bg-transparent'
       )}
     >
@@ -31,17 +31,20 @@ export function Navbar() {
         aria-label="Main navigation"
         className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"
       >
-        <Link href="/" className="font-mono text-xl font-bold tracking-tight text-primary">
+        <Link
+          href="/"
+          className="font-mono text-xl font-bold tracking-tight text-primary hover:text-accent transition-colors"
+        >
           &lt;AK /&gt;
         </Link>
         <ul className="hidden md:flex gap-8" role="list">
-          {links.map((text) => (
-            <li key={text}>
+          {NAVIGATION_ITEMS.map((item) => (
+            <li key={item.href}>
               <Link
-                href={`#${text.toLowerCase()}`}
-                className="text-sm uppercase tracking-widest text-white/70 hover:text-primary transition-colors"
+                href={item.href}
+                className="text-sm uppercase tracking-widest text-on-background/70 hover:text-primary transition-colors"
               >
-                {text}
+                {item.label}
               </Link>
             </li>
           ))}
