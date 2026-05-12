@@ -1,0 +1,69 @@
+File Tree: portfolio-frontend
+Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
+
+────────────────────────────────────────────────────────────────────────────────
+
+├── 📁 public/
+│   ├── 🖼️ file.svg
+│   ├── 🖼️ globe.svg
+│   ├── 🖼️ next.svg
+│   ├── 🖼️ vercel.svg
+│   └── 🖼️ window.svg
+├── 📁 src/
+│   ├── 📁 app/
+│   │   ├── 🎨 globals.css
+│   │   ├── 📄 layout.tsx
+│   │   └── 📄 page.tsx
+│   ├── 📁 components/
+│   │   ├── 📁 3d/
+│   │   │   ├── 📄 AgenticGraph.tsx
+│   │   │   ├── 📄 AgenticGraphImpl.tsx
+│   │   │   ├── 📄 ModelCard.tsx
+│   │   │   ├── 📄 ModelCardImpl.tsx
+│   │   │   ├── 📄 ParticleField.tsx
+│   │   │   └── 📄 ParticleFieldImpl.tsx
+│   │   ├── 📁 animations/
+│   │   │   ├── 📄 ScrollReveal.tsx
+│   │   │   ├── 📄 StaggerChildren.tsx
+│   │   │   └── 📄 StaggerList.tsx
+│   │   ├── 📁 layout/
+│   │   │   ├── 📄 Navbar.tsx
+│   │   │   └── 📄 SmoothScroll.tsx
+│   │   ├── 📁 sections/
+│   │   │   ├── 📄 About.tsx
+│   │   │   ├── 📄 AgenticWorkflow.tsx
+│   │   │   ├── 📄 Contact.tsx
+│   │   │   ├── 📄 Footer.tsx
+│   │   │   ├── 📄 Hero.tsx
+│   │   │   ├── 📄 Projects.tsx
+│   │   │   └── 📄 Skills.tsx
+│   │   ├── 📁 seo/
+│   │   │   └── 📄 StructuredData.tsx
+│   │   └── 📁 ui/
+│   │       ├── 📄 Button.tsx
+│   │       ├── 📄 GlassCard.tsx
+│   │       ├── 📄 ProjectCard.tsx
+│   │       ├── 📄 SectionSkeleton.tsx
+│   │       └── 📄 SkillCard.tsx
+│   ├── 📁 hooks/
+│   │   ├── 📄 use-card-tilt.ts
+│   │   ├── 📄 use-media-query.ts
+│   │   ├── 📄 use-reduced-motion.ts
+│   │   └── 📄 use-scroll-progress.ts
+│   └── 📁 lib/
+│       ├── 📄 data.ts
+│       └── 📄 utils.ts
+├── ⚙️ .gitignore
+├── 📝 AGENTS.md
+├── 📝 CLAUDE.md
+├── 📝 README.md
+├── 📄 eslint.config.mjs
+├── 📄 next.config.ts
+├── ⚙️ package-lock.json
+├── ⚙️ package.json
+├── 📄 package.json.bak
+├── 📄 postcss.config.mjs
+├── 📄 tailwind.config.ts
+└── ⚙️ tsconfig.json
+
+────────────────────────────────────────────────────────────────────────────────
