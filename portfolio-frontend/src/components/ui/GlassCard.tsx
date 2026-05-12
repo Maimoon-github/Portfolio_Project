@@ -1,10 +1,12 @@
-import { cn } from "@/lib/utils";
-import React from "react";
+// src/components/ui/GlassCard.tsx
+import { cn } from '@/lib/utils';
+import type { ReactNode } from 'react';
 
-export function GlassCard({ className, children }: { className?: string; children: React.ReactNode }) {
-  return (
-    <div className={cn("bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl", className)}>
-      {children}
-    </div>
-  );
+interface GlassCardProps {
+  className?: string;
+  children: ReactNode;
+}
+
+export function GlassCard({ className, children }: GlassCardProps) {
+  return <div className={cn('glass-card p-6', className)}>{children}</div>;
 }
