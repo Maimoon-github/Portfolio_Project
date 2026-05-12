@@ -1,3 +1,5 @@
+'use client';
+
 export default function About() {
   return (
     <section id="about" className="py-section-gap px-gutter max-w-7xl mx-auto">

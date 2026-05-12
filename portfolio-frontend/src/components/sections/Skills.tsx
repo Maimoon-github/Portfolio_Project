@@ -1,4 +1,6 @@
 // src/components/sections/Skills.tsx
+'use client';
+
 import { StaggerList } from '@/components/animations/StaggerList';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { SkillCard } from '@/components/ui/SkillCard';

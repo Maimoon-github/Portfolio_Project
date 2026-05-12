@@ -1,4 +1,6 @@
 // src/components/ui/GlassCard.tsx
+'use client';
+
 import { cn } from '@/lib/utils';
 import type { ReactNode } from 'react';
 

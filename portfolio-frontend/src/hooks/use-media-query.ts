@@ -1,3 +1,6 @@
+// src/hooks/use-media-query.ts
+'use client';
+
 import { useSyncExternalStore } from 'react';
 
 export function useMediaQuery(query: string) {
@@ -11,4 +14,3 @@ export function useMediaQuery(query: string) {
     () => false // SSR initial value
   );
 }
-

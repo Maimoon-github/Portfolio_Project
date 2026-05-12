@@ -1,4 +1,6 @@
 // src/components/sections/AgenticWorkflow.tsx
+'use client';
+
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { AgenticGraph } from '@/components/3d/AgenticGraph';
 

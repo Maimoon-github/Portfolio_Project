@@ -1,4 +1,6 @@
 // src/components/seo/StructuredData.tsx
+'use client';
+
 export function StructuredData() {
   const jsonLd = {
     '@context': 'https://schema.org',

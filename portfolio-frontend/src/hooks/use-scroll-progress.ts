@@ -1,3 +1,6 @@
+// src/hooks/use-scroll-progress.ts
+'use client';
+
 import { useState, useEffect } from 'react';
 
 export function useScrollProgress() {
