@@ -36,3 +36,47 @@ export default function Home() {
     </main>
   );
 }
+
+
+
+
+// inside a page (e.g., src/app/(marketing)/page.tsx or AgenticWorkflow section)
+import { CanvasWrapper } from '@/components/3d/core/CanvasWrapper';
+import { Scene } from '@/components/3d/core/Scene';
+import { CameraRig } from '@/components/3d/core/CameraRig';
+
+export default function AgenticWorkflowSection() {
+  return (
+    <section className="h-screen w-full relative">
+      <CanvasWrapper>
+        <Scene>
+          <CameraRig enableOrbit autoRotate autoRotateSpeed={0.8} />
+          <ModelCard
+            framework="langgraph"
+            title="LangGraph"
+            description="Durable, stateful orchestration framework for long-running agents."
+            features={['StateGraph abstraction', 'Human‑in‑the‑loop', 'Persistent memory']}
+            icon={<></>}
+            position={[-2.5, 0, 0]}
+          />
+          <ModelCard
+            framework="autogen"
+            title="AutoGen"
+            description="Multi‑agent conversation framework with dynamic task graphs."
+            features={['Modular agent design', 'Interruptible flows', 'Event‑driven']}
+            icon={<></>}
+            position={[0, 0, 0]}
+          />
+          <ModelCard
+            framework="crewai"
+            title="CrewAI"
+            description="Role‑based multi‑agent collaboration platform."
+            features={['Task decomposition', 'Execution pipelines', 'Observability']}
+            icon={<></>}
+            position={[2.5, 0, 0]}
+          />
+        </Scene>
+      </CanvasWrapper>
+    </section>
+  );
+}
