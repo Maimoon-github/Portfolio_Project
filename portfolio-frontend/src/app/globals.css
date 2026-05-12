@@ -1,26 +1,28 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Cyberpunk Primary/Accent */
+  --color-primary: #00E5FF;
+  --color-accent: #5F2DA6;
+
+  /* Mystical Black Lotus Surface */
+  --color-surface: #151219;
+  --color-surface-dim: #1d1a22;
+  --color-surface-bright: #3c3840;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-surface text-white antialiased;
+    overscroll-behavior: none; /* essential for Lenis smooth scroll */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg rounded-xl;
+  }
 }
