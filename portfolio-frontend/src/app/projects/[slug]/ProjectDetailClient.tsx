@@ -3,28 +3,21 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useRef } from 'react';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { StaggerList } from '@/components/animations/StaggerList';
-import { cn } from '@/lib/utils';
 import { ArrowLeft, ExternalLink, Github, Calendar, Users, Building2 } from 'lucide-react';
-import type { Project, ArchitectureHighlight, ImplementationPhase, ProjectMetric } from '@/types/project';
+import type { Project } from '@/types/project';
 import { projectsData } from '@/lib/data';
 
-// Client component for interactive parts of the detail page
 export function ProjectDetailClient({ project }: { project: Project }) {
   const categoryLabel = projectsData.categoryLabels[project.category] || project.category;
-
-  // For metrics display (data from enriched project object)
-  // Note: In a real implementation, these would come from project.metrics array
-  const metrics: ProjectMetric[] = project.metrics || [];
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="space-y-section-gap"
+      className="space-y-12"
     >
       {/* Back Navigation */}
       <div className="mb-8">
@@ -39,7 +32,7 @@ export function ProjectDetailClient({ project }: { project: Project }) {
 
       {/* Hero Section */}
       <ScrollReveal>
-        <div className="space-y-6">
+        <div className="space-y-4">
           <div className="flex flex-wrap gap-3 items-center">
             <span className="px-3 py-1 rounded-full bg-primary/20 text-primary-light text-xs font-mono">
               {categoryLabel}
@@ -50,14 +43,14 @@ export function ProjectDetailClient({ project }: { project: Project }) {
               </span>
             )}
           </div>
-          <h1 className="text-h1 md:text-display font-bold bg-gradient-to-r from-primary-light via-primary to-accent bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary-light via-primary to-accent bg-clip-text text-transparent">
             {project.title}
           </h1>
-          <p className="text-body-lg text-on-background/70 max-w-3xl">
+          <p className="text-lg text-on-background/70 max-w-3xl">
             {project.fullDescription || project.shortDescription}
           </p>
 
-          {/* Client/Industry/Role metadata */}
+          {/* Metadata row */}
           <div className="flex flex-wrap gap-6 pt-4 border-t border-outline-variant/20">
             {project.client && (
               <div className="flex items-center gap-2 text-sm text-on-background/60">
@@ -78,45 +71,36 @@ export function ProjectDetailClient({ project }: { project: Project }) {
               </div>
             )}
             {project.role && (
-              <div className="text-sm text-on-background/60">
-                Role: {project.role}
-              </div>
+              <div className="text-sm text-on-background/60">Role: {project.role}</div>
             )}
           </div>
         </div>
       </ScrollReveal>
 
-      {/* Problem & Solution Section (2-column layout) */}
+      {/* Problem & Solution (2‑col) */}
       <ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Problem */}
           <div className="glass-card p-6">
-            <h2 className="text-h3 font-semibold text-primary-light mb-4">The Challenge</h2>
-            <p className="text-body-md text-on-background/70 leading-relaxed">
-              {project.problemStatement || 'Not specified.'}
-            </p>
+            <h2 className="text-xl font-semibold text-primary-light mb-2">The Challenge</h2>
+            <p className="text-on-background/70">{project.problemStatement || 'Not specified.'}</p>
           </div>
-
-          {/* Solution */}
           <div className="glass-card p-6">
-            <h2 className="text-h3 font-semibold text-primary-light mb-4">The Solution</h2>
-            <p className="text-body-md text-on-background/70 leading-relaxed">
-              {project.solution || project.fullDescription || project.shortDescription}
-            </p>
+            <h2 className="text-xl font-semibold text-primary-light mb-2">The Solution</h2>
+            <p className="text-on-background/70">{project.solution || project.fullDescription || project.shortDescription}</p>
           </div>
         </div>
       </ScrollReveal>
 
-      {/* Architecture Highlights Section */}
+      {/* Architecture Highlights (if exists) */}
       {project.architectureHighlights && project.architectureHighlights.length > 0 && (
         <ScrollReveal>
-          <div className="space-y-6">
-            <h2 className="text-h2 font-semibold text-center">Architecture Highlights</h2>
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold text-center">Architecture Highlights</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {project.architectureHighlights.map((item: ArchitectureHighlight, idx: number) => (
-                <div key={idx} className="glass-card p-5 hover:shadow-[0_0_16px_var(--color-primary)] transition-all">
-                  <h3 className="text-h3 font-semibold text-primary-light mb-2">{item.title}</h3>
-                  <p className="text-sm text-on-background/70 leading-relaxed">{item.description}</p>
+              {project.architectureHighlights.map((item, idx) => (
+                <div key={idx} className="glass-card p-4">
+                  <h3 className="text-lg font-semibold text-primary-light mb-1">{item.title}</h3>
+                  <p className="text-sm text-on-background/70">{item.description}</p>
                 </div>
               ))}
             </div>
@@ -124,16 +108,13 @@ export function ProjectDetailClient({ project }: { project: Project }) {
         </ScrollReveal>
       )}
 
-      {/* Technology Stack — Visual Tech Radar */}
+      {/* Technology Stack */}
       <ScrollReveal>
-        <div className="space-y-6">
-          <h2 className="text-h2 font-semibold text-center">Technology Stack</h2>
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold text-center">Technology Stack</h2>
           <div className="flex flex-wrap justify-center gap-3">
-            {project.technologies.map((tech) => (
-              <span
-                key={tech.name}
-                className="px-4 py-2 glass rounded-full text-sm font-mono text-on-background/80"
-              >
+            {project.technologies.map(tech => (
+              <span key={tech.name} className="px-4 py-2 glass rounded-full text-sm font-mono">
                 {tech.name}
               </span>
             ))}
@@ -141,13 +122,13 @@ export function ProjectDetailClient({ project }: { project: Project }) {
         </div>
       </ScrollReveal>
 
-      {/* Key Features — Staggered List */}
+      {/* Key Features (staggered list) */}
       {project.keyFeatures && project.keyFeatures.length > 0 && (
         <ScrollReveal>
-          <div className="space-y-6">
-            <h2 className="text-h2 font-semibold text-center">Key Features</h2>
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold text-center">Key Features</h2>
             <StaggerList stagger={0.08} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {project.keyFeatures.map((feature: string, idx: number) => (
+              {project.keyFeatures.map((feature, idx) => (
                 <div key={idx} className="glass-card p-4 flex items-start gap-3">
                   <span className="text-accent text-lg select-none">▹</span>
                   <span className="text-sm text-on-background/80">{feature}</span>
@@ -161,19 +142,17 @@ export function ProjectDetailClient({ project }: { project: Project }) {
       {/* Implementation Roadmap */}
       {project.implementationPhases && project.implementationPhases.length > 0 && (
         <ScrollReveal>
-          <div className="space-y-6">
-            <h2 className="text-h2 font-semibold text-center">Implementation Roadmap</h2>
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold text-center">Implementation Roadmap</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {project.implementationPhases.map((phase: ImplementationPhase, idx: number) => (
+              {project.implementationPhases.map((phase, idx) => (
                 <div key={idx} className="glass-card p-5 relative">
                   <div className="absolute -top-3 left-4 px-2 py-0.5 bg-primary/20 text-primary-light text-[10px] font-mono rounded-full">
                     {phase.phase}
                   </div>
-                  <h3 className="text-h3 font-semibold text-primary-light mt-2 mb-1">{phase.title}</h3>
-                  {phase.duration && (
-                    <p className="text-xs font-mono text-on-background/50 mb-3">{phase.duration}</p>
-                  )}
-                  <p className="text-sm text-on-background/70 leading-relaxed">{phase.description}</p>
+                  <h3 className="text-lg font-semibold text-primary-light mt-2 mb-1">{phase.title}</h3>
+                  {phase.duration && <p className="text-xs text-on-background/50 mb-2">{phase.duration}</p>}
+                  <p className="text-sm text-on-background/70">{phase.description}</p>
                 </div>
               ))}
             </div>
@@ -181,16 +160,16 @@ export function ProjectDetailClient({ project }: { project: Project }) {
         </ScrollReveal>
       )}
 
-      {/* Metrics / Results Dashboard */}
-      {metrics.length > 0 && (
+      {/* Metrics Dashboard */}
+      {project.metrics && project.metrics.length > 0 && (
         <ScrollReveal>
-          <div className="space-y-6">
-            <h2 className="text-h2 font-semibold text-center">Key Metrics</h2>
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold text-center">Key Metrics</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {metrics.map((metric: ProjectMetric, idx: number) => (
+              {project.metrics.map((metric, idx) => (
                 <div key={idx} className="glass-card p-4 text-center">
                   <div className="text-2xl font-bold text-accent">{metric.value}</div>
-                  <div className="text-xs text-on-background/60 mt-1">{metric.label}</div>
+                  <div className="text-xs text-on-background/60">{metric.label}</div>
                   {metric.trend && (
                     <div className={`text-[10px] mt-1 ${metric.trend === 'up' ? 'text-accent' : 'text-error'}`}>
                       {metric.trend === 'up' ? '↑' : '↓'} Trend
@@ -203,16 +182,16 @@ export function ProjectDetailClient({ project }: { project: Project }) {
         </ScrollReveal>
       )}
 
-      {/* Results / Outcomes */}
+      {/* Results */}
       {project.results && project.results.length > 0 && (
         <ScrollReveal>
-          <div className="glass-card p-8">
-            <h2 className="text-h2 font-semibold text-center mb-6">Outcomes & Impact</h2>
-            <ul className="space-y-3">
-              {project.results.map((result: string, idx: number) => (
-                <li key={idx} className="flex items-start gap-3">
+          <div className="glass-card p-6">
+            <h2 className="text-2xl font-semibold text-center mb-4">Outcomes & Impact</h2>
+            <ul className="space-y-2">
+              {project.results.map((result, idx) => (
+                <li key={idx} className="flex items-start gap-2">
                   <span className="text-accent text-lg select-none">✦</span>
-                  <span className="text-body-md text-on-background/80">{result}</span>
+                  <span className="text-on-background/80">{result}</span>
                 </li>
               ))}
             </ul>
@@ -224,7 +203,7 @@ export function ProjectDetailClient({ project }: { project: Project }) {
       {project.links && project.links.length > 0 && (
         <ScrollReveal>
           <div className="flex flex-wrap justify-center gap-4">
-            {project.links.map((link) => (
+            {project.links.map(link => (
               <a
                 key={link.type}
                 href={link.url}
@@ -233,30 +212,30 @@ export function ProjectDetailClient({ project }: { project: Project }) {
                 className="inline-flex items-center gap-2 px-6 py-3 glass rounded-lg hover:shadow-[0_0_12px_var(--color-primary)] transition-all"
               >
                 {link.type === 'github' ? <Github className="w-4 h-4" /> : <ExternalLink className="w-4 h-4" />}
-                {link.label || `View ${link.type === 'github' ? 'Source' : 'Live Demo'}`}
+                {link.label || (link.type === 'github' ? 'Source' : 'Live Demo')}
               </a>
             ))}
           </div>
         </ScrollReveal>
       )}
 
-      {/* Call to Action */}
+      {/* CTA */}
       <ScrollReveal>
-        <section className="relative overflow-hidden rounded-2xl glass p-10 text-center">
+        <div className="relative overflow-hidden rounded-2xl glass p-8 text-center">
           <div className="absolute inset-0 opacity-10 bg-gradient-to-br from-primary to-accent" />
           <div className="relative z-10">
-            <h2 className="text-h2 font-semibold mb-4">Interested in a similar solution?</h2>
-            <p className="text-body-lg text-on-background/70 max-w-2xl mx-auto mb-8">
-              Let's discuss how we can bring this expertise to your AI initiatives.
+            <h2 className="text-2xl font-semibold mb-3">Interested in a similar solution?</h2>
+            <p className="text-on-background/70 max-w-xl mx-auto mb-6">
+              Let’s discuss how we can bring this expertise to your AI initiatives.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center rounded-lg bg-accent px-8 py-3 font-semibold text-background transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/30"
+              className="inline-flex items-center rounded-lg bg-accent px-6 py-2 font-semibold text-background transition-all hover:scale-105 hover:shadow-lg hover:shadow-accent/30"
             >
               Start a Conversation
             </Link>
           </div>
-        </section>
+        </div>
       </ScrollReveal>
     </motion.div>
   );

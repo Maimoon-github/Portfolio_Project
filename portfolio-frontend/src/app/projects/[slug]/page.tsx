@@ -4,7 +4,6 @@ import { Metadata } from 'next';
 import { projectsData } from '@/lib/data';
 import { ProjectDetailClient } from './ProjectDetailClient';
 
-// Type for dynamic route params
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -40,7 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-// Generate static paths for all projects at build time (SSG)
+// Pre‑generate all static paths at build time
 export async function generateStaticParams() {
   return projectsData.projects.map((project) => ({
     slug: project.slug,
@@ -53,7 +52,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   const project = projectsData.projects.find(p => p.slug === slug);
 
   if (!project) {
-    notFound();
+    notFound(); // Triggers Next.js built‑in 404 page
   }
 
   return <ProjectDetailClient project={project} />;
