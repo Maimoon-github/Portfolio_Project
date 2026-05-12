@@ -691,3 +691,115 @@ export const projectsData = {
     href: "/contact",
   },
 };
+
+// src/lib/data.ts – ADD TO EXISTING FILE
+
+export interface ArchitectureHighlight {
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+export interface ImplementationPhase {
+  phase: string;
+  title: string;
+  description: string;
+  duration?: string;
+}
+
+export interface ProjectMetric {
+  label: string;
+  value: string;
+  trend?: 'up' | 'down' | 'neutral';
+}
+
+// Extend existing projects array with case study fields
+export const projectsData = {
+  // ... existing fields
+  projects: [
+    {
+      id: "agentic-workflow-engine",
+      slug: "agentic-workflow-engine",
+      title: "Agentic Workflow Engine",
+      category: "agentic-ai",
+      client: "FinTech Enterprise",
+      industry: "Financial Services",
+      timeline: "6 months",
+      role: "Lead AI Architect",
+      shortDescription: "A production‑ready multi‑agent orchestration system built with LangGraph, supporting durable execution, human‑in‑the‑loop checkpoints, and persistent memory across sessions.",
+      fullDescription: "The Agentic Workflow Engine is a production-grade orchestration layer built to coordinate multiple specialised AI agents across complex business processes for a Fortune 500 financial services client. It supports durable execution with checkpoint-based recovery, human‑in‑the‑loop state inspection, and persistent short‑term and long‑term memory across sessions.",
+      problemStatement: "The client faced significant challenges orchestrating multiple autonomous agents across different business domains—fraud detection, customer support, and compliance. Individual agents were highly capable but lacked coordination, leading to inconsistent state management, duplicate work, and no ability to resume long-running workflows after failures.",
+      solution: "Built a graph-based orchestration framework using LangGraph that treats agent workflows as stateful graphs rather than linear pipelines. Designed a durable execution system with checkpoint‑based recovery, human‑in‑the‑loop inspection points, and a combined short‑term working memory with long‑term persistent vector store. The platform now scales across 200+ daily workflows with full observability.",
+      architectureHighlights: [
+        {
+          title: "Graph‑Based Orchestration",
+          description: "LangGraph nodes represent specialised agents, edges define conditional routing between them based on state transitions.",
+          icon: "GraphQL"
+        },
+        {
+          title: "Durable Execution",
+          description: "Checkpoint‑based recovery ensures workflows survive any failure and resume from the exact point of interruption.",
+          icon: "Database"
+        },
+        {
+          title: "Human‑in‑the‑Loop",
+          description: "Breakpoints allow human inspectors to review, override, or resume state before critical decisions.",
+          icon: "Users"
+        }
+      ],
+      implementationPhases: [
+        {
+          phase: "Phase 1",
+          title: "Discovery & Architecture",
+          description: "Mapped 35+ business processes to agent graph, defined state schemas, and established human handoff protocols.",
+          duration: "6 weeks"
+        },
+        {
+          phase: "Phase 2",
+          title: "Core Engine Development",
+          description: "Built custom LangGraph runtime with checkpointing, persistent storage integration, and observability hooks.",
+          duration: "10 weeks"
+        },
+        {
+          phase: "Phase 3",
+          title: "Agent Fleet Integration",
+          description: "Connected fraud detection, customer service, and compliance agents to unified orchestration layer.",
+          duration: "8 weeks"
+        }
+      ],
+      keyFeatures: [
+        "Checkpoint‑based recovery: workflows survive any failure",
+        "Human‑in‑the‑loop state inspection and override",
+        "Short‑term working memory + long‑term persistent memory",
+        "Production‑ready deployment platform with 200+ daily workflows"
+      ],
+      dataFlowDescription: "User input → Orchestrator Agent → Task decomposition → Specialist agents via graph edges → Shared state → Conditional routing → Human review (if confidence low) → Output generation",
+      results: [
+        "Reduced workflow failures by 87% with durable execution",
+        "Decreased manual intervention by 64%",
+        "Process completion time improved by 53%",
+        "Scaled from prototype to 200+ daily workflows in 4 months"
+      ],
+      metrics: [
+        { label: "Failure Reduction", value: "87%", trend: "up" },
+        { label: "Manual Intervention Reduction", value: "64%", trend: "up" },
+        { label: "Completion Time Improvement", value: "53%", trend: "up" },
+        { label: "Daily Workflows", value: "200+", trend: "up" }
+      ],
+      technologies: [
+        { name: "LangGraph", icon: "🧠" },
+        { name: "TypeScript", icon: "📘" },
+        { name: "PostgreSQL", icon: "🐘" },
+        { name: "Redis", icon: "⚡" },
+        { name: "Docker", icon: "🐳" },
+        { name: "Kubernetes", icon: "⎈" }
+      ],
+      images: [{ src: "/projects/agentic-workflow-hero.jpg", alt: "Agentic Workflow Architecture" }],
+      links: [{ type: "demo", url: "#", label: "Live Demo" }, { type: "github", url: "#", label: "Source Code" }],
+      featured: true,
+      order: 1,
+      status: "completed"
+    },
+    // ... similarly enrich other projects
+  ]
+};
