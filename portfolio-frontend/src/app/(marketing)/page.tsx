@@ -1,4 +1,5 @@
 // src/app/(marketing)/page.tsx
+'use client';
 import { Hero } from '@/components/sections/Hero';
 import dynamic from 'next/dynamic';
 import { SectionSkeleton } from '@/components/ui/SectionSkeleton';
