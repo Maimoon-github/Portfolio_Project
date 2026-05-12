@@ -213,7 +213,7 @@ export function ProjectDetailClient({ project }: { project: Project }) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 glass rounded-lg hover:shadow-[0_0_12px_var(--color-primary)] transition-all"
               >
-                {link.type === 'github' ? <Github className="w-4 h-4" /> : <ExternalLink className="w-4 h-4" />}
+                {link.type === 'github' ? <Code className="w-4 h-4" /> : <ExternalLink className="w-4 h-4" />}
                 {link.label || (link.type === 'github' ? 'Source' : 'Live Demo')}
               </a>
             ))}
