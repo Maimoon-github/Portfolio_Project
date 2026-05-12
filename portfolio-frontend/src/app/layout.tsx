@@ -9,26 +9,19 @@ export const metadata: Metadata = {
   title: 'Alex Kern | Data Scientist & AI Agent Architect',
   description:
     'Portfolio of Alex Kern – designing intelligent agentic workflows and production ML systems.',
-  openGraph: {
-    images: ['/og-image.jpg'],
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-  },
+  openGraph: { images: ['/og-image.jpg'], type: 'website' },
+  twitter: { card: 'summary_large_image' },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <head>
-        <StructuredData />
-      </head>
+    <html lang="en">
       <body>
         <SmoothScroll>
           <Navbar />
           <main>{children}</main>
         </SmoothScroll>
+        <StructuredData />
       </body>
     </html>
   );

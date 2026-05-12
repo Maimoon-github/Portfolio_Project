@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
@@ -10,21 +10,31 @@ const links = ['About', 'Skills', 'Workflow', 'Projects', 'Contact'];
 export function Navbar() {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
+  const isScrolledRef = useRef(false);
 
-  useMotionValueEvent(scrollY, 'change', (latest) => setScrolled(latest > 50));
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    const newScrolled = latest > 50;
+    if (newScrolled !== isScrolledRef.current) {
+      isScrolledRef.current = newScrolled;
+      setScrolled(newScrolled);
+    }
+  });
 
   return (
     <motion.header
       className={cn(
         'fixed top-0 z-50 w-full transition-colors',
-        scrolled ? 'glass' : 'bg-transparent'
+        scrolled ? 'glass-header' : 'bg-transparent'
       )}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <nav
+        aria-label="Main navigation"
+        className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"
+      >
         <Link href="/" className="font-mono text-xl font-bold tracking-tight text-primary">
           &lt;AK /&gt;
         </Link>
-        <ul className="hidden md:flex gap-8">
+        <ul className="hidden md:flex gap-8" role="list">
           {links.map((text) => (
             <li key={text}>
               <Link

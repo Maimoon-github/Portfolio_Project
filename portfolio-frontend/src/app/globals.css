@@ -82,9 +82,40 @@
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
-  border: 1px solid rgba(139, 101, 191, 0.25);  /* #8B65BF at 25% */
+  border: 1px solid rgba(139, 101, 191, 0.25);
   box-shadow: 0 10px 40px -10px rgb(95 45 166 / 0.3);
-  border-radius: 0.75rem;
+}
+
+/* Cards / panels – use for containers */
+@utility glass-card {
+  @apply glass rounded-lg;
+}
+
+/* Fixed header – no rounded corners */
+@utility glass-header {
+  @apply glass border-b border-outline-variant/20;
+}
+
+/* Button with accent-mint glow */
+@utility glass-btn {
+  @apply glass rounded-lg px-6 py-3 text-white font-medium transition-all duration-300 hover:shadow-lg hover:shadow-accent-muted/20;
+}
+
+/* Link with hover accent glow */
+@utility glass-link {
+  @apply text-primary-light transition-all duration-300 hover:text-accent hover:shadow-sm hover:shadow-accent/20;
+}
+
+/* Avatar ring */
+@utility glass-avatar {
+  @apply p-0.5 rounded-full transition-all duration-300 hover:p-1 hover:shadow-lg hover:shadow-primary/20;
+}
+
+@media (max-width: 768px) {
+  .glass {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
 }
 
 /* Base global styles */
