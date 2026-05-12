@@ -29,7 +29,7 @@ export function ParticleFieldImpl({ count = 1800, radius = 6, size = 0.06 }: Par
       const x = r * Math.sin(phi) * Math.cos(theta);
       const y = r * Math.sin(phi) * Math.sin(theta) * 0.4;
       const z = r * Math.cos(phi);
-      pos[i * 3] = x;
+      pos[i * 3] = x;\
       pos[i * 3 + 1] = y;
       pos[i * 3 + 2] = z;
     }
