@@ -1,3 +1,4 @@
+// src/components/seo/StructuredData.tsx
 export function StructuredData() {
   const jsonLd = {
     '@context': 'https://schema.org',

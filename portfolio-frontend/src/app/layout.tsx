@@ -1,3 +1,4 @@
+// src/app/layout.tsx
 import type { Metadata } from 'next';
 import { SmoothScroll } from '@/components/layout/SmoothScroll';
 import { Navbar } from '@/components/layout/Navbar';
@@ -9,19 +10,26 @@ export const metadata: Metadata = {
   title: 'Alex Kern | Data Scientist & AI Agent Architect',
   description:
     'Portfolio of Alex Kern – designing intelligent agentic workflows and production ML systems.',
-  openGraph: { images: ['/og-image.jpg'], type: 'website' },
-  twitter: { card: 'summary_large_image' },
+  openGraph: {
+    images: ['/og-image.jpg'],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <StructuredData />
+      </head>
       <body>
         <SmoothScroll>
           <Navbar />
           <main>{children}</main>
         </SmoothScroll>
-        <StructuredData />
       </body>
     </html>
   );
