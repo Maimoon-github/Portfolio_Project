@@ -1,5 +1,6 @@
 // src/lib/data.ts
 import { Brain, Server, Network, Workflow } from 'lucide-react';
+import type { Project as FullProject } from '@/types/project';
 
 export interface Skill {
   icon: any; // Lucide icon component
@@ -568,7 +569,7 @@ export const labData = {
       status: "active",
       tags: ["TensorFlow.js", "PoseNet", "Three.js", "Webcam"],
     },
-  ],
+  ] as LabExperiment[],
 
   techHighlights: [
     { label: "React Three Fiber", count: 18 },
@@ -592,8 +593,6 @@ export const projectsData = {
     web3: "Web3 / Blockchain",
     research: "Research",
   } as const,
-
-import type { Project } from '@/types/project';
 
   projects: [
     // 1. Agentic Workflow Engine (Agentic AI)
@@ -996,7 +995,7 @@ import type { Project } from '@/types/project';
       order: 6,
       status: "completed",
     },
-  ],
+  ] as FullProject[],
 
   // Call to Action
   cta: {
