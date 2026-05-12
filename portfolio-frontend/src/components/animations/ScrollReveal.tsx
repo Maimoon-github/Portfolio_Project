@@ -1,21 +1,30 @@
 // src/components/animations/ScrollReveal.tsx
 'use client';
 
-import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { useReducedMotion } from '@/hooks/use-reduced-motion';
 
 interface ScrollRevealProps {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  duration?: number;
+  yOffset?: number;
 }
 
-export function ScrollReveal({ children, className, delay = 0 }: ScrollRevealProps) {
+export function ScrollReveal({
+  children,
+  className,
+  delay = 0,
+  duration = 0.6,
+  yOffset = 20,
+}: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
-  const noMotion = useReducedMotion() ?? false;
+  const prefersReduced = useReducedMotion();
 
-  if (noMotion) {
+  if (prefersReduced) {
     return (
       <div ref={ref} className={className}>
         {children}
@@ -26,9 +35,9 @@ export function ScrollReveal({ children, className, delay = 0 }: ScrollRevealPro
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 60 }}
+      initial={{ opacity: 0, y: yOffset }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay, ease: 'easeOut' }}
+      transition={{ duration, delay, ease: 'easeOut' }}
       className={className}
     >
       {children}
