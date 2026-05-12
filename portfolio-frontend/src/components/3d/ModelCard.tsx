@@ -1,4 +1,5 @@
-// src/components/3d/ModelCard.tsx
+'use client';
+
 import dynamic from 'next/dynamic';
 
 export const ModelCard = dynamic(() => import('./ModelCardImpl'), {

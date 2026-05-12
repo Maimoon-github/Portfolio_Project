@@ -1,4 +1,5 @@
-// src/components/3d/AgenticGraph.tsx
+'use client';
+
 import dynamic from 'next/dynamic';
 
 export const AgenticGraph = dynamic(() => import('./AgenticGraphImpl'), {

@@ -1,4 +1,5 @@
-// src/components/3d/ParticleField.tsx
+'use client';
+
 import dynamic from 'next/dynamic';
 
 export const ParticleField = dynamic(() => import('./ParticleFieldImpl'), {
