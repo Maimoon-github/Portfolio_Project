@@ -13,7 +13,7 @@ export interface AgenticGraphImplProps {
 }
 
 export function AgenticGraphImpl({ nodeCount = 6, linkCount = 12 }: AgenticGraphImplProps = {}) {
-  const fgRef = useRef<any>();
+  const fgRef = useRef<any>(null);
   const prefersReduced = useReducedMotion();
 
   // --- Data Generation ---

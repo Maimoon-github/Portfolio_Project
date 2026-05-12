@@ -593,6 +593,8 @@ export const projectsData = {
     research: "Research",
   } as const,
 
+import type { Project } from '@/types/project';
+
   projects: [
     // 1. Agentic Workflow Engine (Agentic AI)
     {
