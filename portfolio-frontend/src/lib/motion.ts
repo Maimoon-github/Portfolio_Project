@@ -1,5 +1,5 @@
 // src/lib/motion.ts
-import { Variants, MotionProps, TargetAndTransition, Transition } from 'framer-motion';
+import { Variants, MotionProps, Transition } from 'framer-motion';
 
 /**
  * Standard viewport presets for scroll-triggered animations.

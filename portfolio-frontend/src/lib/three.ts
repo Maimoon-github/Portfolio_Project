@@ -1,6 +1,6 @@
 // src/lib/three.ts
 import * as THREE from 'three';
-import { Camera, Scene, WebGLRenderer } from 'three';
+import { Camera, WebGLRenderer } from 'three';
 
 /**
  * Default camera settings for immersive 3D scenes.

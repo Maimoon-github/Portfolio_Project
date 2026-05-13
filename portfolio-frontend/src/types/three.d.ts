@@ -1,10 +1,10 @@
 // src/types/three.d.ts
-import { Object3D, Material, BufferGeometry } from 'three';
+// Removed unused imports
 
 // Extend Three.js core types if needed for custom shader materials or global properties
 declare module 'three' {
   interface ShaderMaterialParameters {
-    uniforms?: Record<string, any>;
+    uniforms?: Record<string, unknown>;
     vertexShader?: string;
     fragmentShader?: string;
   }
@@ -43,7 +43,7 @@ declare global {
     interface IntrinsicElements extends ThreeElements {
       // Add custom elements if needed, e.g., for shader materials
       shaderMaterial: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        uniforms?: Record<string, any>;
+        uniforms?: Record<string, unknown>;
         vertexShader?: string;
         fragmentShader?: string;
       };
