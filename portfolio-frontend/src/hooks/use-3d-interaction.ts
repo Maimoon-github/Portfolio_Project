@@ -16,17 +16,22 @@ interface NormalizedMouse {
  */
 export function use3DMouseInteraction(): NormalizedMouse {
   const { x, y } = useMousePosition();
-  const [normalized, setNormalized] = useState<NormalizedMouse>({ x: 0, y: 0 });
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
-    const normX = (x - centerX) / centerX;
-    const normY = (centerY - y) / centerY; // invert Y for 3D space
-    setNormalized({ x: normX, y: normY });
-  }, [x, y]);
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    const handleResize = () => setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-  return normalized;
+  const centerX = windowSize.width / 2;
+  const centerY = windowSize.height / 2;
+  
+  const normX = centerX ? (x - centerX) / centerX : 0;
+  const normY = centerY ? (centerY - y) / centerY : 0; // invert Y for 3D space
+
+  return { x: normX, y: normY };
 }
 
 /**

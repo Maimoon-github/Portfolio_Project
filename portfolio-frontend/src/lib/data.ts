@@ -2,8 +2,10 @@
 import { Brain, Server, Network, Workflow } from 'lucide-react';
 import type { Project as FullProject } from '@/types/project';
 
+import type { ElementType } from 'react';
+
 export interface Skill {
-  icon: any; // Lucide icon component
+  icon: ElementType; // Lucide icon component
   title: string;
   description: string;
 }
@@ -145,7 +147,7 @@ export const portfolioData = {
       { label: 'Contact', href: '/#contact' }
     ]
   }
-} as any; // Type assertion as a quick fix to resolve missing properties for now, alternatively we could define a strong type for portfolioData
+};
 
 // src/lib/data.ts – ADD TO EXISTING FILE
 
