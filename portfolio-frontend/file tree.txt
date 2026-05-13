@@ -24,6 +24,7 @@ Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 │   │   │   ├── 📄 layout.tsx
 │   │   │   └── 📄 page.tsx
 │   │   ├── 📁 contact/
+│   │   │   ├── 📄 layout.tsx
 │   │   │   └── 📄 page.tsx
 │   │   ├── 📁 expertise/
 │   │   │   ├── 📄 layout.tsx
@@ -41,7 +42,9 @@ Root path: c:\Users\Aurum\vscode\Portfolio_Project\portfolio-frontend
 │   │   │   ├── 📄 layout.tsx
 │   │   │   └── 📄 page.tsx
 │   │   ├── 🎨 globals.css
-│   │   └── 📄 layout.tsx
+│   │   ├── 📄 layout.tsx
+│   │   ├── 📄 robots.ts
+│   │   └── 📄 sitemap.ts
 │   ├── 📁 components/
 │   │   ├── 📁 3d/
 │   │   │   ├── 📁 core/
