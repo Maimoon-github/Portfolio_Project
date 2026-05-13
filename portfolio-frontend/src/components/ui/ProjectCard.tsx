@@ -13,7 +13,7 @@ export interface ProjectCardProps {
   slug: string;
   title: string;
   shortDescription: string;
-  technologies: ProjectTechnology[];
+  technologies?: ProjectTechnology[]; // Make optional
   featured?: boolean;
   className?: string;
   demoUrl?: string;
@@ -21,21 +21,12 @@ export interface ProjectCardProps {
   onClick?: () => void;
 }
 
-/**
- * A glass‑morphism card component with 3D tilt effect for displaying project summaries.
- * Features:
- * - Interactive 3D tilt based on cursor position (disabled for reduced motion)
- * - Glass‑morphism styling using TLS `glass-card` utilities
- * - Technology tag display with responsive wrapping
- * - Optional external links for live demo and source code
- * - Optional onClick handler for parent‑controlled interactions
- */
 export function ProjectCard({
   id,
   slug,
   title,
   shortDescription,
-  technologies,
+  technologies = [], // Default to empty array
   featured = false,
   className,
   demoUrl,
@@ -83,7 +74,6 @@ export function ProjectCard({
         className="glass-card p-6 h-full flex flex-col transition-all duration-300 hover:shadow-[0_0_15px_var(--color-accent-muted)]"
         style={tiltDisabled ? undefined : style}
       >
-        {/* Header: Title + Featured Badge */}
         <div className="flex justify-between items-start gap-3 mb-3">
           <h3
             className="text-h3 font-semibold text-[var(--color-on-background)] group-hover:text-[var(--color-primary-light)] transition-colors"
@@ -101,7 +91,6 @@ export function ProjectCard({
           )}
         </div>
 
-        {/* Description */}
         <p
           className="text-sm text-[var(--color-on-background)]/70 mb-6 flex-1 leading-relaxed"
           style={tiltDisabled ? undefined : { transform: 'translateZ(20px)' }}
@@ -109,7 +98,6 @@ export function ProjectCard({
           {shortDescription}
         </p>
 
-        {/* Technology Tags */}
         <div
           className="flex flex-wrap gap-2 mb-6"
           style={tiltDisabled ? undefined : { transform: 'translateZ(10px)' }}
@@ -129,7 +117,6 @@ export function ProjectCard({
           )}
         </div>
 
-        {/* Action Row: External Links or View Details */}
         <div
           className="flex items-center justify-between mt-auto pt-2 border-t border-[var(--color-outline-variant)]/20"
           style={tiltDisabled ? undefined : { transform: 'translateZ(15px)' }}
@@ -169,7 +156,6 @@ export function ProjectCard({
         </div>
       </motion.div>
 
-      {/* Glare Overlay for enhanced depth - only active when tilt enabled */}
       {!tiltDisabled && (
         <div
           className="absolute inset-0 rounded-lg overflow-hidden pointer-events-none z-20"

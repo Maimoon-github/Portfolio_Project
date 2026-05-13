@@ -3,13 +3,12 @@
 
 import dynamic from 'next/dynamic';
 import type { ModelCardImplProps } from './ModelCardImpl';
-import { SectionSkeleton } from '@/components/ui/SectionSkeleton';
 
 const ModelCardImpl = dynamic(
   () => import('./ModelCardImpl').then((mod) => mod.ModelCardImpl),
   {
     ssr: false,
-    loading: () => <SectionSkeleton />,
+    loading: () => null, // Return null to avoid rendering a <div> inside the R3F canvas
   }
 );
 

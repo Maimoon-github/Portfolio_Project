@@ -1,10 +1,27 @@
 // src/app/layout.tsx
 import type { Metadata, Viewport } from 'next';
 import { ReactNode } from 'react';
+import { Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import { SmoothScroll } from '@/components/layout/SmoothScroll';
 import { Navbar } from '@/components/layout/Navbar';
 import { StructuredData } from '@/components/seo/StructuredData';
 import './globals.css';
+
+// Configure Space Grotesk (variable font) with CSS variable
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+});
+
+// Configure JetBrains Mono (static weights) with CSS variable
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  weight: ['400', '600'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://alexkern.dev'),
@@ -64,14 +81,10 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
       <head>
         <StructuredData />
       </head>
-      {/* 
-        body classes are defensive; globals.css already sets background, color, font-family.
-        These classes guarantee TLS tokens even if base layer is overridden.
-      */}
       <body className="bg-background text-on-background font-sans antialiased">
         <SmoothScroll>
           <Navbar />
