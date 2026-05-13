@@ -3,7 +3,8 @@
 
 import { motion, type Variants } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
-import { ParticleField } from '@/components/3d/ParticleField';
+import { Canvas } from '@react-three/fiber';
+import { ParticleField } from '@/components/3d/elements/ParticleField';
 
 interface HeroProps {
   subtitle: string;
@@ -46,8 +47,14 @@ export function Hero({
 }: HeroProps) {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Full‑screen Canvas for particle background */}
       <div className="absolute inset-0 z-0">
-        <ParticleField />
+        <Canvas
+          camera={{ position: [0, 0, 5], fov: 45 }}
+          style={{ background: 'transparent' }}
+        >
+          <ParticleField />
+        </Canvas>
       </div>
 
       <motion.div

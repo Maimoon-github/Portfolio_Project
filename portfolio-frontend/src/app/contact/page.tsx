@@ -7,6 +7,7 @@ import { ScrollReveal } from '@/components/animations/ScrollReveal';
 import { cn } from '@/lib/utils';
 import { Mail, MapPin, Briefcase, Code, MessageCircle } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import { Canvas } from '@react-three/fiber';
 
 // Dynamically import the particle field to avoid SSR and reduce initial bundle
 const ParticleField = dynamic(
@@ -75,8 +76,10 @@ export default function ContactPage() {
         ref={heroRef}
         className="relative min-h-[40vh] flex items-center justify-center overflow-hidden rounded-2xl glass"
       >
-        <div className="absolute inset-0 z-0 opacity-30">
-          <ParticleField />
+        <div className="absolute inset-0 z-0">
+          <Canvas camera={{ position: [0, 0, 5], fov: 45 }} style={{ background: 'transparent' }}>
+            <ParticleField />
+          </Canvas>
         </div>
 
         <div className="relative z-10 max-w-4xl px-6 text-center">
@@ -108,7 +111,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Form & Info Grid */}
+      {/* Rest of the form remains unchanged */}
       <ScrollReveal>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Form Card */}

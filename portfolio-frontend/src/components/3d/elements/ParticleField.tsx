@@ -2,11 +2,10 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { SectionSkeleton } from '@/components/ui/SectionSkeleton';
 
 const ParticleFieldImpl = dynamic(() => import('./ParticleFieldImpl').then(mod => mod.ParticleFieldImpl), {
   ssr: false,
-  loading: () => <SectionSkeleton />,
+  loading: () => null, // No HTML elements inside R3F canvas
 });
 
 export function ParticleField() {
