@@ -1,11 +1,9 @@
 // src/lib/data.ts
-import { Brain, Server, Network, Workflow } from 'lucide-react';
+import { Brain, Server, Network, Workflow, type LucideIcon } from 'lucide-react';
 import type { Project as FullProject } from '@/types/project';
 
-import type { ElementType } from 'react';
-
 export interface Skill {
-  icon: ElementType; // Lucide icon component
+  icon: LucideIcon; // Lucide icon component
   title: string;
   description: string;
 }
@@ -127,7 +125,7 @@ export const portfolioData = {
         ],
         position: [2.8, 0, 0]
       }
-    ]
+    ] as AgentFramework[]
   },
   contact: {
     heading: 'Let’s Connect',
