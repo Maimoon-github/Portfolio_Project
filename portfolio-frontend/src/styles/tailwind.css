@@ -1,6 +1,0 @@
-/* tailwind.css – Entry point for Tailwind v4
-   Imports all TLS layers. This file is imported once in app/layout.tsx.
-*/
-
-@import "src\app\globals.css";
-/* globals.css already includes @tailwind directives and all tokens */
