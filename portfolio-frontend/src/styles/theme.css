@@ -1,0 +1,131 @@
+/* src/styles/theme.css */
+/* ═══════════════════════════════════════════════════════════════════
+   THEME CSS — Semantic Aliases + Component Tokens
+   These extend globals.css tokens with component-specific meanings.
+   Reference these in components, never raw palette values.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+
+  /* ── Page Background Layers ── */
+  --bg-page:              var(--color-background);
+  --bg-elevated:          var(--color-surface-container-low);
+  --bg-overlay:           rgba(16, 13, 20, 0.85);
+  --bg-modal-backdrop:    rgba(13, 10, 19, 0.90);
+
+  /* ── Gradient Definitions ── */
+  --gradient-primary:
+    linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  --gradient-accent:
+    linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-muted) 100%);
+  --gradient-hero:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(95, 45, 166, 0.30) 0%, transparent 70%);
+  --gradient-surface:
+    linear-gradient(180deg, var(--color-surface-container-low) 0%,
+                            var(--color-surface-container-lowest) 100%);
+  --gradient-card-border:
+    linear-gradient(135deg, rgba(139,101,191,0.40) 0%,
+                             rgba(95,45,166,0.10) 50%,
+                             rgba(45,212,191,0.25) 100%);
+  --gradient-text-hero:
+    linear-gradient(135deg, #FFFFFF 0%, var(--color-primary-light) 50%,
+                             var(--color-accent) 100%);
+  --gradient-timeline-line:
+    linear-gradient(180deg, var(--color-primary) 0%,
+                             var(--color-accent) 100%);
+
+  /* ── Header ── */
+  --header-height:               72px;
+  --header-height-scrolled:      56px;
+  --header-bg:                   var(--color-surface-container-lowest);
+  --header-border:               var(--color-glass-border);
+
+  /* ── Navigation ── */
+  --nav-link-color:              var(--color-outline);
+  --nav-link-hover:              var(--color-on-background);
+  --nav-link-active:             var(--color-primary-light);
+  --nav-link-active-bg:          rgba(95, 45, 166, 0.12);
+
+  /* ── Buttons ── */
+  --btn-primary-bg:              var(--color-primary);
+  --btn-primary-hover:           var(--color-secondary);
+  --btn-primary-text:            #FFFFFF;
+  --btn-accent-bg:               var(--color-accent);
+  --btn-accent-hover:            var(--color-accent-muted);
+  --btn-accent-text:             var(--color-on-accent);
+  --btn-ghost-border:            var(--color-outline-variant);
+  --btn-ghost-hover-border:      var(--color-primary);
+  --btn-ghost-hover-text:        var(--color-primary-light);
+  --btn-radius:                  var(--radius-full);
+  --btn-padding-y:               12px;
+  --btn-padding-x:               28px;
+  --btn-font-size:               var(--text-body-sm);
+  --btn-font-weight:             600;
+  --btn-letter-spacing:          var(--tracking-wide);
+
+  /* ── Cards ── */
+  --card-bg:                     rgba(28, 24, 34, 0.65);
+  --card-border:                 var(--color-glass-border);
+  --card-border-hover:           var(--color-glass-border-hover);
+  --card-shadow:                 var(--shadow-md);
+  --card-shadow-hover:           var(--shadow-lg);
+  --card-radius:                 var(--radius-lg);
+  --card-padding:                var(--spacing-card-pad);
+
+  /* ── Inputs ── */
+  --input-bg:                    var(--color-surface-container-low);
+  --input-border:                var(--color-outline-variant);
+  --input-border-focus:          var(--color-primary);
+  --input-text:                  var(--color-on-background);
+  --input-placeholder:           var(--color-outline);
+  --input-radius:                var(--radius-md);
+  --input-padding:               14px 18px;
+
+  /* ── Tags / Badges ── */
+  --tag-bg:                      rgba(95, 45, 166, 0.15);
+  --tag-border:                  rgba(95, 45, 166, 0.30);
+  --tag-text:                    var(--color-primary-light);
+  --tag-bg-accent:               rgba(45, 212, 191, 0.12);
+  --tag-border-accent:           rgba(45, 212, 191, 0.30);
+  --tag-text-accent:             var(--color-accent);
+
+  /* ── Timeline ── */
+  --timeline-line:               var(--color-outline-variant);
+  --timeline-dot:                var(--color-primary);
+  --timeline-dot-active:         var(--color-accent);
+  --timeline-dot-size:           14px;
+  --timeline-line-width:         2px;
+
+  /* ── Progress Bars ── */
+  --progress-bg:                 var(--color-surface-container-high);
+  --progress-fill:               var(--gradient-primary);
+  --progress-radius:             var(--radius-full);
+  --progress-height:             6px;
+
+  /* ── Tooltips ── */
+  --tooltip-bg:                  var(--color-surface-container-highest);
+  --tooltip-border:              var(--color-glass-border);
+  --tooltip-text:                var(--color-on-background);
+  --tooltip-radius:              var(--radius-sm);
+
+  /* ── Scroll Progress Bar ── */
+  --scroll-bar-bg:               var(--gradient-primary);
+  --scroll-bar-height:           3px;
+
+  /* ── Skeleton ── */
+  --skeleton-base:               var(--color-surface-container);
+  --skeleton-shimmer:
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(139, 101, 191, 0.08) 50%,
+      transparent 100%);
+  --skeleton-radius:             var(--radius-md);
+}
+
+/* ── Dark-mode future-proofing (tokens auto-override) ── */
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Override surface tokens here if light mode is introduced */
+    /* Currently intentionally dark-only per design specification */
+  }
+}

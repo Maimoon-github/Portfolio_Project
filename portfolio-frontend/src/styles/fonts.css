@@ -1,0 +1,79 @@
+/* src/styles/fonts.css */
+/* ═══════════════════════════════════════════════════════════════════
+   FONT DECLARATIONS — Space Grotesk + JetBrains Mono
+   Strategy: Self-hosted woff2 variable fonts with display:swap
+   Preload:  Both fonts preloaded in app/layout.tsx via <link rel="preload">
+   Subset:   latin only — saves ~60% file size
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Space Grotesk Variable — Primary Display + Body Font ── */
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/fonts/SpaceGrotesk-Variable.woff2') format('woff2') tech(variations),
+       url('/fonts/SpaceGrotesk-Variable.woff2') format('woff2-variations');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+                 U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ── JetBrains Mono Variable — Monospace Code + Labels ── */
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono-Variable.woff2') format('woff2') tech(variations),
+       url('/fonts/JetBrainsMono-Variable.woff2') format('woff2-variations');
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+                 U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ── Italic variant (JetBrains Mono) — used in code blocks ── */
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/JetBrainsMono-Italic-Variable.woff2') format('woff2') tech(variations),
+       url('/fonts/JetBrainsMono-Italic-Variable.woff2') format('woff2-variations');
+  font-weight: 100 800;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+                 U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/*
+  Implementation Notes for app/layout.tsx:
+  ─────────────────────────────────────────
+  Add these preload links in the <head> for critical font loading:
+
+  <link rel="preload" as="font" type="font/woff2"
+        href="/fonts/SpaceGrotesk-Variable.woff2" crossOrigin="anonymous" />
+  <link rel="preload" as="font" type="font/woff2"
+        href="/fonts/JetBrainsMono-Variable.woff2" crossOrigin="anonymous" />
+
+  Alternatively, use Next.js localFont() in layout.tsx:
+  ─────────────────────────────────────────────────────
+  import localFont from 'next/font/local';
+
+  const spaceGrotesk = localFont({
+    src: [{ path: '../public/fonts/SpaceGrotesk-Variable.woff2',
+            weight: '300 700', style: 'normal' }],
+    variable: '--font-sans',
+    display: 'swap',
+    preload: true,
+    fallback: ['system-ui', 'sans-serif'],
+  });
+
+  const jetbrainsMono = localFont({
+    src: [{ path: '../public/fonts/JetBrainsMono-Variable.woff2',
+            weight: '100 800', style: 'normal' }],
+    variable: '--font-mono',
+    display: 'swap',
+    preload: true,
+    fallback: ['monospace'],
+  });
+*/

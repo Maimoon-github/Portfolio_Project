@@ -1,0 +1,28 @@
+/* src/styles/tailwind.css */
+/* ═══════════════════════════════════════════════════════════════════
+   TAILWIND CSS v4 ENTRYPOINT
+   Import order is load order — preserve exactly.
+   ═══════════════════════════════════════════════════════════════════ */
+
+@import "tailwindcss";
+@import "./globals.css";
+@import "./fonts.css";
+@import "./theme.css";
+@import "./mdx.css";
+
+/*
+  Tailwind v4 Configuration Notes:
+  ─────────────────────────────────
+  In Tailwind v4, configuration moves into globals.css via @theme.
+  No tailwind.config.js is required for token-level customisation.
+  Custom @utility classes defined in globals.css are auto-registered.
+  All --color-*, --font-*, --text-*, --spacing-*, --radius-* tokens
+  defined in @theme are automatically available as Tailwind utilities:
+
+  bg-[var(--color-primary)]           → works natively
+  text-[var(--color-on-background)]   → works natively
+  rounded-[var(--radius-lg)]          → works natively
+
+  For third-party plugin compat, add to package.json:
+  "tailwindcss": "^4.0.0"
+*/
