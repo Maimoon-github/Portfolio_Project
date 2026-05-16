@@ -70,8 +70,7 @@ Root path: /home/maimoon-ai-system/Antigravity code/Portfolio_Project/frontend
 │   │   │   ├── 📄 Navbar.tsx
 │   │   │   ├── 📄 PopupModal.tsx
 │   │   │   ├── 📄 ProjectCard.tsx
-│   │   │   ├── 📄 TerminalPanel.tsx
-│   │   │   └── 📄 ToolCard.tsx
+│   │   │   └── 📄 TerminalPanel.tsx
 │   │   ├── 📁 contact/
 │   │   │   └── 📄 page.tsx
 │   │   ├── 📁 courses/
@@ -86,18 +85,6 @@ Root path: /home/maimoon-ai-system/Antigravity code/Portfolio_Project/frontend
 │   │   │   └── 📄 useTyping.ts
 │   │   ├── 📁 knowledge/
 │   │   │   └── 📄 page.tsx
-│   │   ├── 📁 login/
-│   │   │   └── 📄 page.tsx
-│   │   ├── 📁 pages/
-│   │   │   ├── 📄 Blog.tsx
-│   │   │   ├── 📄 BlogPost.tsx
-│   │   │   ├── 📄 Contact.tsx
-│   │   │   ├── 📄 Courses.tsx
-│   │   │   ├── 📄 Home.tsx
-│   │   │   ├── 📄 Knowledge.tsx
-│   │   │   ├── 📄 Login.tsx
-│   │   │   ├── 📄 ProjectDetail.tsx
-│   │   │   └── 📄 Projects.tsx
 │   │   ├── 📁 projects/
 │   │   │   ├── 📁 [slug]/
 │   │   │   │   └── 📄 page.tsx
@@ -123,6 +110,7 @@ Root path: /home/maimoon-ai-system/Antigravity code/Portfolio_Project/frontend
 ├── 📝 ATTRIBUTIONS.md
 ├── 📝 README.md
 ├── 📝 frontend Tree.md
+├── 📝 frontend file tree.md
 ├── 📄 next-env.d.ts
 ├── 📄 next.config.ts
 ├── ⚙️ package-lock.json
