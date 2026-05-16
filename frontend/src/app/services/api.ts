@@ -270,18 +270,36 @@ export async function getProject(slug: string): Promise<ProjectDetail> {
 }
 
 // Blog
-export async function getBlogPosts(category?: string): Promise<Paginated<PostList>> {
-  const query = qs({ category });
-  const res = await apiFetch(`${API_BASE}/blog/${query ? `?${query}` : ""}`);
-  if (!res.ok) throw new Error(`Failed to load blog posts (${res.status})`);
+// export async function getBlogPosts(category?: string): Promise<Paginated<PostList>> {
+//   const query = qs({ category });
+//   const res = await apiFetch(`${API_BASE}/blog/${query ? `?${query}` : ""}`);
+//   if (!res.ok) throw new Error(`Failed to load blog posts (${res.status})`);
+//   return res.json();
+// }
+
+// export async function getBlogPost(slug: string): Promise<PostDetail> {
+//   const res = await apiFetch(`${API_BASE}/blog/${slug}/`);
+//   if (!res.ok) throw new Error(`Failed to load blog post ${slug}`);
+//   return res.json();
+// }
+
+
+// src/app/services/api.ts
+export async function getBlogPosts(category?: string) {
+  const url = category && category !== 'All' 
+    ? `${API_BASE}/blog/posts/?category=${encodeURIComponent(category)}`
+    : `${API_BASE}/blog/posts/`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('Failed to fetch posts');
   return res.json();
 }
 
-export async function getBlogPost(slug: string): Promise<PostDetail> {
-  const res = await apiFetch(`${API_BASE}/blog/${slug}/`);
-  if (!res.ok) throw new Error(`Failed to load blog post ${slug}`);
+export async function getBlogPost(slug: string) {
+  const res = await fetch(`${API_BASE}/blog/posts/${slug}/`);
+  if (!res.ok) throw new Error('Failed to fetch post');
   return res.json();
 }
+
 
 // Knowledge
 // Add to api.ts
@@ -294,12 +312,6 @@ export async function getCourses() {
 export async function getCourse(slug: string): Promise<CourseDetail> {
   const res = await apiFetch(`${API_BASE}/knowledge/courses/${slug}/`);
   if (!res.ok) throw new Error(`Failed to load course ${slug}`);
-  return res.json();
-}
-
-export async function getTools(): Promise<Tool[]> {
-  const res = await apiFetch(`${API_BASE}/courses/tools/`);
-  if (!res.ok) throw new Error(`Failed to load tools`);
   return res.json();
 }
 
