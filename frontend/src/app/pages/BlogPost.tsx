@@ -6,8 +6,7 @@ import { BlogCard } from "../components/BlogCard";
 import { getBlogPost, getBlogPosts } from "../services/api";
 import { PostDetail, PostList } from "../types/api";
 
-export function BlogPost() {
-  const { slug } = useParams<{ slug: string }>();
+export function BlogPost({ slug }: { slug: string }) {
   const [post, setPost] = useState<PostDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [related, setRelated] = useState<PostList[]>([]);
@@ -45,7 +44,7 @@ export function BlogPost() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center" style={{ background: "#081A04" }}>
         <p style={{ color: "#9199A5" }}>Post not found.</p>
-        <Link to="/blog" className="mt-4 text-sm" style={{ color: "#A4FBCC", textDecoration: "none" }}>
+        <Link href="/blog" className="mt-4 text-sm" style={{ color: "#A4FBCC", textDecoration: "none" }}>
           ← Back to Blog
         </Link>
       </div>

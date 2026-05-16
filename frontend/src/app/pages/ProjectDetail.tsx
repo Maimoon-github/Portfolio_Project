@@ -92,7 +92,7 @@ function NotFoundState() {
     >
       <span style={{ color: "#9199A5", fontSize: "0.9rem" }}>Project not found.</span>
       <Link
-        to="/projects"
+        href="/projects"
         className="inline-flex items-center gap-2 text-sm px-4 py-2 rounded-lg"
         style={{
           color: "#A4FBCC",
