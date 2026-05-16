@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from "react";
 import { Mail, Github, Linkedin, Twitter, Send, CheckCircle, MapPin, Clock } from "lucide-react";
 import { PROFILE } from "../data";

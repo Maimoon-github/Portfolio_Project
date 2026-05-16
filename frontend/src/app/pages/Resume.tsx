@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from "react";
 import { Download, MapPin, Mail, Github, Linkedin, ExternalLink } from "lucide-react";
 import { PROFILE } from "../data";

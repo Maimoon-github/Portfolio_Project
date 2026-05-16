@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from "react";
 import { BlogCard } from "../components/BlogCard";
 import { Rss } from "lucide-react";

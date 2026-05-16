@@ -1,3 +1,5 @@
+'use client';
+
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
@@ -17,16 +19,13 @@ export function BlogPost({ slug }: { slug: string }) {
     getBlogPost(slug)
       .then((data) => {
         setPost(data);
-        // Fetch other posts to find related ones
-        return getBlogPosts();
-      })
-      .then((data) => {
-        if (post) {
-          const filtered = data.results.filter(
-            (p) => p.slug !== slug && p.category?.name === post.category?.name
+        const fetchedPost = data;
+        return getBlogPosts().then((allPosts) => {
+          const filtered = allPosts.results.filter(
+            (p) => p.slug !== slug && p.category?.name === fetchedPost.category?.name
           );
           setRelated(filtered.slice(0, 3));
-        }
+        });
       })
       .catch(console.error)
       .finally(() => setLoading(false));

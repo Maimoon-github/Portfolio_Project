@@ -1,3 +1,5 @@
+'use client';
+
 // import { useState, useEffect, useRef, FC, ReactNode, ChangeEvent } from "react";
 
 // // ─── Constants ────────────────────────────────────────────────────────────────

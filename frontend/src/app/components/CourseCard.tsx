@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useRef } from "react";
 import { Course, Lesson } from "../types/api";
 import { PopupModal } from "./PopupModal";

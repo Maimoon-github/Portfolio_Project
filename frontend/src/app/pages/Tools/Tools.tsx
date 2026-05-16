@@ -1,3 +1,5 @@
+'use client';
+
 // frontend/src/app/pages/Tools/Tools.tsx
 import { useState, useEffect } from "react";
 import { ToolCard } from "../../components/ToolCard";

@@ -1,3 +1,5 @@
+'use client';
+
 import { ReactNode, useEffect, useRef, useCallback } from "react";
 import { X } from "lucide-react";
 
