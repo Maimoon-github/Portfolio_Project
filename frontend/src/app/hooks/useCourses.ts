@@ -1,4 +1,4 @@
-import useSWR from "swr";
+import { useSWR } from "swr";
 import { getCourses, getCourse } from "../services/api";
 import { Course, Paginated } from "../types/api";
 
