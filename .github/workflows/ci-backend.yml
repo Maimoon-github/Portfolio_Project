@@ -1,0 +1,55 @@
+name: CI — Backend
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest pytest-django pytest-asyncio
+
+      - name: Run migrations
+        run: |
+          python manage.py migrate --settings=config.settings.local
+        env:
+          DATABASE_URL: postgres://test:test@localhost:5432/test
+
+      - name: Run tests
+        run: pytest --cov=apps --cov-report=xml
+        env:
+          DATABASE_URL: postgres://test:test@localhost:5432/test
+
+      - name: Lint (flake8)
+        run: |
+          pip install flake8
+          flake8 apps/ config/ --count --show-source --statistics

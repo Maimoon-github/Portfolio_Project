@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" rx="6" fill="#000"/>
+  <text x="16" y="22" font-size="18" fill="#fff" text-anchor="middle" font-family="Arial" font-weight="bold">A</text>
+</svg>
+
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background -->
+  <rect width="100" height="100" rx="20" fill="#000"/>
+  
+  <!-- 'A' Letter - Geometric Style -->
+  <path d="M 20 80 L 50 20 L 80 80 Z" fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="50" y1="20" x2="50" y2="80" stroke="white" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Tech Accent (Binary) -->
+  <text x="25" y="55" font-size="16" fill="#333" font-family="Courier">01</text>
+  <text x="60" y="45" font-size="16" fill="#333" font-family="Courier">10</text>
+</svg>

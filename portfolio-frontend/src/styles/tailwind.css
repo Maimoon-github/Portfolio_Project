@@ -1,0 +1,311 @@
+/* ============================================================
+   tailwind.css — Mystical Black Lotus Design System
+   Tailwind CSS v3 entry: directives + @layer overrides
+   Maps design tokens → Tailwind utility classes.
+   Config must reference: tailwind.config.ts for full extension.
+   ============================================================ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── @layer base: token-driven element defaults ──────────────── */
+@layer base {
+  html {
+    @apply scroll-smooth antialiased;
+    font-family: var(--font-family-primary);
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+  }
+
+  h1 {
+    font-size: var(--type-h1-size);
+    font-weight: var(--type-h1-weight);
+    line-height: var(--type-h1-lh);
+    letter-spacing: var(--type-h1-ls);
+  }
+
+  h2 {
+    font-size: var(--type-h2-size);
+    font-weight: var(--type-h2-weight);
+    line-height: var(--type-h2-lh);
+    letter-spacing: var(--type-h2-ls);
+  }
+
+  h3 {
+    font-size: var(--type-h3-size);
+    font-weight: var(--type-h3-weight);
+    line-height: var(--type-h3-lh);
+    letter-spacing: var(--type-h3-ls);
+  }
+
+  p {
+    color: var(--color-on-surface-variant);
+  }
+
+  a {
+    color: var(--color-primary);
+    @apply transition-colors duration-[120ms];
+  }
+
+  a:hover {
+    color: var(--color-primary-fixed);
+  }
+
+  ::selection {
+    background-color: rgba(95, 45, 166, 0.35);
+    color: var(--color-on-surface);
+  }
+}
+
+/* ── @layer components: design system component classes ──────── */
+@layer components {
+
+  /* Container */
+  .container-lotus {
+    @apply w-full mx-auto px-8;
+    max-width: var(--layout-container-max);
+  }
+
+  /* Sections */
+  .section-lotus {
+    padding-block: var(--space-section);
+  }
+
+  /* Display type */
+  .type-display {
+    font-size: var(--type-display-size);
+    font-weight: var(--type-display-weight);
+    line-height: var(--type-display-lh);
+    letter-spacing: var(--type-display-ls);
+    color: var(--color-on-surface);
+  }
+
+  .type-label-caps {
+    font-size: var(--type-label-caps-size);
+    font-weight: var(--type-label-caps-weight);
+    line-height: var(--type-label-caps-lh);
+    letter-spacing: var(--type-label-caps-ls);
+    @apply uppercase;
+    color: var(--color-on-surface-variant);
+  }
+
+  /* Gradient text */
+  .text-gradient-violet {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary)           0%,
+      var(--color-mid-purple)        50%,
+      var(--color-primary-container) 100%
+    );
+    @apply bg-clip-text text-transparent;
+  }
+
+  /* Glow text */
+  .text-glow-primary {
+    text-shadow:
+      0 0 20px rgba(95, 45, 166, 0.60),
+      0 0 60px rgba(95, 45, 166, 0.20);
+  }
+
+  .text-glow-neo {
+    text-shadow:
+      0 0 16px rgba(0, 229, 160, 0.70),
+      0 0 48px rgba(0, 229, 160, 0.25);
+  }
+
+  /* ── Button: Primary (Neo-Mint) ── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 cursor-pointer;
+    @apply uppercase tracking-[0.15em] text-[12px] font-semibold;
+    @apply px-6 py-3 rounded-[var(--radius-sm)];
+    background-color: var(--color-neo-mint);
+    color: #0a0a0a;
+    box-shadow: var(--shadow-glow-neo);
+    transition:
+      transform var(--duration-fast) var(--ease-spring),
+      box-shadow var(--duration-base) var(--ease-out-expo);
+  }
+
+  .btn-primary:hover {
+    transform: var(--scale-hover);
+    box-shadow: 0 0 32px -4px rgba(0, 229, 160, 0.55);
+  }
+
+  .btn-primary:active {
+    transform: var(--scale-press);
+  }
+
+  /* ── Button: Ghost ── */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 cursor-pointer;
+    @apply uppercase tracking-[0.15em] text-[12px] font-semibold;
+    @apply px-6 py-3 rounded-[var(--radius-sm)] bg-transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary-container);
+    transition:
+      transform var(--duration-fast) var(--ease-spring),
+      box-shadow var(--duration-base) var(--ease-out-expo),
+      border-color var(--duration-base) var(--ease-out-expo);
+  }
+
+  .btn-ghost:hover {
+    transform: var(--scale-hover);
+    box-shadow: var(--shadow-glow-md);
+    border-color: var(--color-primary);
+  }
+
+  .btn-ghost:active {
+    transform: var(--scale-press);
+  }
+
+  /* ── Card: Glassmorphic ── */
+  .card-glass {
+    @apply relative rounded-[var(--radius-xl)];
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    transition:
+      transform var(--duration-base) var(--ease-out-expo),
+      box-shadow var(--duration-base) var(--ease-out-expo);
+  }
+
+  .card-glass::before {
+    content: '';
+    @apply absolute inset-0 rounded-[inherit] pointer-events-none;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      var(--glass-border-start) 0%,
+      var(--glass-border-end) 100%
+    );
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+  }
+
+  .card-glass:hover {
+    transform: var(--scale-hover);
+    box-shadow: var(--shadow-glow-md);
+  }
+
+  /* ── Input ── */
+  .input-lotus {
+    @apply w-full bg-transparent;
+    font-family: var(--font-family-primary);
+    font-size: var(--type-body-md-size);
+    color: var(--color-on-surface);
+    background-color: var(--color-deep-navy);
+    border: none;
+    border-bottom: 1px solid var(--color-deep-moss);
+    @apply rounded-none py-3 outline-none;
+    caret-color: var(--color-primary);
+    transition:
+      border-color var(--duration-base) var(--ease-out-expo),
+      box-shadow var(--duration-base) var(--ease-out-expo);
+  }
+
+  .input-lotus::placeholder {
+    color: var(--color-outline);
+  }
+
+  .input-lotus:focus {
+    border-bottom-color: var(--color-primary-container);
+    box-shadow: 0 1px 0 0 var(--color-primary-container);
+  }
+
+  /* ── Chip / Tag ── */
+  .chip-lotus {
+    @apply inline-flex items-center gap-1 whitespace-nowrap;
+    @apply uppercase text-[12px] font-semibold tracking-[0.15em];
+    color: var(--color-on-surface-variant);
+    background-color: var(--color-deep-navy);
+    border: 1px solid var(--color-deep-moss);
+    border-radius: var(--radius-sm);
+    padding: var(--space-1) var(--space-3);
+  }
+
+  /* ── Progress bar ── */
+  .progress-lotus {
+    @apply w-full h-[2px] overflow-hidden;
+    background-color: var(--color-surface-container-high);
+    border-radius: var(--radius-full);
+  }
+
+  .progress-lotus-bar {
+    @apply h-full;
+    background-color: var(--color-neo-mint);
+    border-radius: var(--radius-full);
+    transition: width var(--duration-slow) var(--ease-out-expo);
+  }
+}
+
+/* ── @layer utilities: atomic single-purpose helpers ─────────── */
+@layer utilities {
+
+  /* Glow box shadows */
+  .shadow-glow-sm  { box-shadow: var(--shadow-glow-sm); }
+  .shadow-glow-md  { box-shadow: var(--shadow-glow-md); }
+  .shadow-glow-lg  { box-shadow: var(--shadow-glow-lg); }
+  .shadow-glow-neo { box-shadow: var(--shadow-glow-neo); }
+
+  /* Glassmorphism */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+  }
+
+  /* Section gap */
+  .py-section { padding-block: var(--space-section); }
+
+  /* Gradient border (requires position: relative + overflow: hidden) */
+  .border-gradient-violet {
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+  }
+
+  .border-gradient-violet::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      var(--glass-border-start) 0%,
+      var(--glass-border-end) 100%
+    );
+    z-index: -1;
+  }
+
+  /* Atmospheric noise overlay */
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+  }
+
+  /* Interactive scale states */
+  .hover-scale:hover { transform: var(--scale-hover); }
+  .active-scale:active { transform: var(--scale-press); }
+
+  /* Easing utilities (for inline style usage) */
+  .ease-expo  { transition-timing-function: var(--ease-out-expo); }
+  .ease-spring { transition-timing-function: var(--ease-spring); }
+
+  /* Disabled state */
+  .disabled-state {
+    opacity: var(--opacity-disabled);
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  /* Focus ring */
+  .focus-ring:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+}
