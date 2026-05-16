@@ -22,10 +22,10 @@ export const TerminalPanel: React.FC<TerminalPanelProps> = ({
   lines = DefaultLines,
   className = "",
   speed = 28,
-  pause = 900,
+  pauseDelay = 900,
   loop = true,
 }) => {
-  const { text, isPlaying, play, pause, reset } = useTyping({ lines, speed, pause, loop });
+  const { text, isPlaying, play, pause, reset } = useTyping({ lines, speed, pause: pauseDelay, loop });
 
   const handleCopy = async () => {
     try {
