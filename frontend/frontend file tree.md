@@ -1,0 +1,134 @@
+File Tree: frontend
+Root path: /home/maimoon-ai-system/Antigravity code/Portfolio_Project/frontend
+
+────────────────────────────────────────────────────────────────────────────────
+
+├── 📁 guidelines/
+│   └── 📝 Guidelines.md
+├── 📁 src/
+│   ├── 📁 app/
+│   │   ├── 📁 blog/
+│   │   │   ├── 📁 [slug]/
+│   │   │   │   └── 📄 page.tsx
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📁 components/
+│   │   │   ├── 📁 figma/
+│   │   │   │   └── 📄 ImageWithFallback.tsx
+│   │   │   ├── 📁 ui/
+│   │   │   │   ├── 📄 accordion.tsx
+│   │   │   │   ├── 📄 alert-dialog.tsx
+│   │   │   │   ├── 📄 alert.tsx
+│   │   │   │   ├── 📄 aspect-ratio.tsx
+│   │   │   │   ├── 📄 avatar.tsx
+│   │   │   │   ├── 📄 badge.tsx
+│   │   │   │   ├── 📄 breadcrumb.tsx
+│   │   │   │   ├── 📄 button.tsx
+│   │   │   │   ├── 📄 calendar.tsx
+│   │   │   │   ├── 📄 card.tsx
+│   │   │   │   ├── 📄 carousel.tsx
+│   │   │   │   ├── 📄 chart.tsx
+│   │   │   │   ├── 📄 checkbox.tsx
+│   │   │   │   ├── 📄 collapsible.tsx
+│   │   │   │   ├── 📄 command.tsx
+│   │   │   │   ├── 📄 context-menu.tsx
+│   │   │   │   ├── 📄 dialog.tsx
+│   │   │   │   ├── 📄 drawer.tsx
+│   │   │   │   ├── 📄 dropdown-menu.tsx
+│   │   │   │   ├── 📄 form.tsx
+│   │   │   │   ├── 📄 hover-card.tsx
+│   │   │   │   ├── 📄 input-otp.tsx
+│   │   │   │   ├── 📄 input.tsx
+│   │   │   │   ├── 📄 label.tsx
+│   │   │   │   ├── 📄 menubar.tsx
+│   │   │   │   ├── 📄 navigation-menu.tsx
+│   │   │   │   ├── 📄 pagination.tsx
+│   │   │   │   ├── 📄 popover.tsx
+│   │   │   │   ├── 📄 progress.tsx
+│   │   │   │   ├── 📄 radio-group.tsx
+│   │   │   │   ├── 📄 resizable.tsx
+│   │   │   │   ├── 📄 scroll-area.tsx
+│   │   │   │   ├── 📄 select.tsx
+│   │   │   │   ├── 📄 separator.tsx
+│   │   │   │   ├── 📄 sheet.tsx
+│   │   │   │   ├── 📄 sidebar.tsx
+│   │   │   │   ├── 📄 skeleton.tsx
+│   │   │   │   ├── 📄 slider.tsx
+│   │   │   │   ├── 📄 sonner.tsx
+│   │   │   │   ├── 📄 switch.tsx
+│   │   │   │   ├── 📄 table.tsx
+│   │   │   │   ├── 📄 tabs.tsx
+│   │   │   │   ├── 📄 textarea.tsx
+│   │   │   │   ├── 📄 toggle-group.tsx
+│   │   │   │   ├── 📄 toggle.tsx
+│   │   │   │   ├── 📄 tooltip.tsx
+│   │   │   │   ├── 📄 use-mobile.ts
+│   │   │   │   └── 📄 utils.ts
+│   │   │   ├── 📄 BlogCard.tsx
+│   │   │   ├── 📄 CourseCard.tsx
+│   │   │   ├── 📄 FloatingOrb.tsx
+│   │   │   ├── 📄 Footer.tsx
+│   │   │   ├── 📄 Navbar.tsx
+│   │   │   ├── 📄 PopupModal.tsx
+│   │   │   ├── 📄 ProjectCard.tsx
+│   │   │   ├── 📄 TerminalPanel.tsx
+│   │   │   └── 📄 ToolCard.tsx
+│   │   ├── 📁 contact/
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📁 courses/
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📁 data/
+│   │   │   └── 📄 index.ts
+│   │   ├── 📁 hooks/
+│   │   │   ├── 📄 useCourses.ts
+│   │   │   ├── 📄 useKnowledge.ts
+│   │   │   ├── 📄 useProjects.ts
+│   │   │   ├── 📄 useResume.ts
+│   │   │   └── 📄 useTyping.ts
+│   │   ├── 📁 knowledge/
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📁 login/
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📁 pages/
+│   │   │   ├── 📄 Blog.tsx
+│   │   │   ├── 📄 BlogPost.tsx
+│   │   │   ├── 📄 Contact.tsx
+│   │   │   ├── 📄 Courses.tsx
+│   │   │   ├── 📄 Home.tsx
+│   │   │   ├── 📄 Knowledge.tsx
+│   │   │   ├── 📄 Login.tsx
+│   │   │   ├── 📄 ProjectDetail.tsx
+│   │   │   └── 📄 Projects.tsx
+│   │   ├── 📁 projects/
+│   │   │   ├── 📁 [slug]/
+│   │   │   │   └── 📄 page.tsx
+│   │   │   └── 📄 page.tsx
+│   │   ├── 📁 services/
+│   │   │   └── 📄 api.ts
+│   │   ├── 📁 types/
+│   │   │   └── 📄 api.ts
+│   │   ├── 📄 config.ts
+│   │   ├── 📄 layout.tsx
+│   │   ├── 📄 not-found.tsx
+│   │   ├── 📄 page.tsx
+│   │   └── 📄 providers.tsx
+│   ├── 📁 imports/
+│   │   └── 📝 ai-agent-portfolio-architectur.md
+│   ├── 📁 styles/
+│   │   ├── 🎨 fonts.css
+│   │   ├── 🎨 index.css
+│   │   ├── 🎨 tailwind.css
+│   │   └── 🎨 theme.css
+│   └── 📁 types/
+│       └── 📄 generated.ts
+├── 📝 ATTRIBUTIONS.md
+├── 📝 README.md
+├── 📝 frontend Tree.md
+├── 📄 next-env.d.ts
+├── 📄 next.config.ts
+├── ⚙️ package-lock.json
+├── ⚙️ package.json
+├── 📄 postcss.config.mjs
+├── ⚙️ tsconfig.json
+└── 📄 tsconfig.tsbuildinfo
+
+────────────────────────────────────────────────────────────────────────────────
