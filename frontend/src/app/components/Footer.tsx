@@ -118,8 +118,6 @@ export function Footer() {
                 {[
                   { label: "Projects", path: "/projects" },
                   { label: "Courses", path: "/courses" },
-                  { label: "Tools", path: "/tools" },
-                  { label: "Resume", path: "/resume" },
                   { label: "Blog", path: "/blog" },
                   { label: "Knowledge Base", path: "/knowledge" },
                   { label: "Contact", path: "/contact" },

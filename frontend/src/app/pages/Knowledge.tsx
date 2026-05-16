@@ -24,7 +24,7 @@ export function Knowledge() {
             Knowledge Base
           </h1>
           <p className="max-w-2xl" style={{ color: "#9199A5" }}>
-            Long-form resources to level up your AI and MLOps skills — structured courses, curated tools, and my personal stack recommendations.
+            Long-form resources to level up your AI and MLOps skills — structured courses and my personal stack recommendations.
           </p>
         </div>
 
@@ -38,13 +38,6 @@ export function Knowledge() {
                 description: "Structured, hands-on courses pulled from the Django API.",
                 count: `${knowledge.data.courses.length} courses`,
                 anchor: "/courses",
-              },
-              {
-                icon: <Wrench size={24} style={{ color: "#A4FBCC" }} />,
-                title: "Tools",
-                description: "Calculators and frameworks surfaced from the backend.",
-                count: `${knowledge.data.tools.length} tools`,
-                anchor: "/tools",
               }
             ].map((tile) => (
               <a
@@ -103,20 +96,6 @@ export function Knowledge() {
           </div>
         </section>
 
-        <section id="tools" className="mb-16">
-          <div className="flex items-center gap-3 mb-8">
-            <Wrench size={18} style={{ color: "#A4FBCC" }} />
-            <h2 style={{ color: "#F2F2F2", fontSize: "1.3rem", fontWeight: 700 }}>Tools</h2>
-          </div>
-          <div className="text-sm mb-8" style={{ color: "#9199A5" }}>
-            Browse or open the calculator hub for interactive tools.
-          </div>
-          <div className="mt-4 text-center">
-            <Link href="/tools" className="text-sm text-[#A4FBCC] underline">
-              Go to Tool Hub →
-            </Link>
-          </div>
-        </section>
       </div>
     </div>
   );

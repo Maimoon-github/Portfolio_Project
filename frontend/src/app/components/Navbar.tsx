@@ -10,10 +10,8 @@ import { getTokens, logout } from "../services/api";
 const NAV_LINKS = [
   { label: "Projects", path: "/projects" },
   { label: "Blog", path: "/blog" },
-  { label: "Resume", path: "/resume" },
   { label: "Courses", path: "/courses" },
   { label: "Knowledge", path: "/knowledge" },
-  { label: "Tools", path: "/tools" },
   { label: "Contact", path: "/contact" },
 ];
 
@@ -144,18 +142,20 @@ export function Navbar() {
               </Link>
             ))}
 
-            <a
-              href={PROFILE.resumeUrl}
-              className="nav-resume-btn text-sm px-4 py-2 rounded-lg"
-              style={{
-                border: "1px solid rgba(164, 251, 204, 0.35)",
-                color: "#A4FBCC",
-                textDecoration: "none",
-                background: "transparent",
-              }}
-            >
-              Resume PDF
-            </a>
+            {PROFILE.resumeUrl && (
+              <a
+                href={PROFILE.resumeUrl}
+                className="nav-resume-btn text-sm px-4 py-2 rounded-lg"
+                style={{
+                  border: "1px solid rgba(164, 251, 204, 0.35)",
+                  color: "#A4FBCC",
+                  textDecoration: "none",
+                  background: "transparent",
+                }}
+              >
+                Resume PDF
+              </a>
+            )}
 
             {authenticated ? (
               <button

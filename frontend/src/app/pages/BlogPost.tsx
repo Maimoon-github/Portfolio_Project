@@ -297,10 +297,7 @@ export function BlogPost({ slug }: { slug: string }) {
                 {PROFILE.bio}
               </p>
               <div className="flex gap-3 mt-3">
-                <Link href="/resume" className="text-xs" style={{ color: "#A4FBCC", textDecoration: "none" }}>
-                  View Resume →
-                </Link>
-                <Link href="/contact" className="text-xs" style={{ color: "#9199A5", textDecoration: "none" }}>
+                <Link href="/contact" className="text-xs" style={{ color: "#A4FBCC", textDecoration: "none" }}>
                   Get in Touch →
                 </Link>
               </div>

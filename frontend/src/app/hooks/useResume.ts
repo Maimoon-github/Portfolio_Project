@@ -1,3 +1,4 @@
+"use client";
 import useSWR from "swr";
 import { getResume } from "../services/api";
 import { ResumeData } from "../types/api";
