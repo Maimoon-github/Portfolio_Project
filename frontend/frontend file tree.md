@@ -15,12 +15,6 @@ Root path: /home/maimoon-ai-system/Antigravity code/Portfolio_Project/frontend
 │   │   │   └── 📄 page.tsx
 │   │   ├── 📁 courses/
 │   │   │   └── 📄 page.tsx
-│   │   ├── 📁 hooks/
-│   │   │   ├── 📄 useCourses.ts
-│   │   │   ├── 📄 useKnowledge.ts
-│   │   │   ├── 📄 useProjects.ts
-│   │   │   ├── 📄 useResume.ts
-│   │   │   └── 📄 useTyping.ts
 │   │   ├── 📁 knowledge/
 │   │   │   └── 📄 page.tsx
 │   │   ├── 📁 projects/
@@ -111,6 +105,11 @@ Root path: /home/maimoon-ai-system/Antigravity code/Portfolio_Project/frontend
 │   │       └── 📄 utils.ts
 │   ├── 📁 data/
 │   │   └── 📄 index.ts
+│   ├── 📁 hooks/
+│   │   ├── 📄 useCourses.ts
+│   │   ├── 📄 useKnowledge.ts
+│   │   ├── 📄 useProjects.ts
+│   │   └── 📄 useTyping.ts
 │   ├── 📁 imports/
 │   │   └── 📝 ai-agent-portfolio-architectur.md
 │   ├── 📁 services/

@@ -998,13 +998,13 @@
 
 
 import { getProjects, getBlogPosts } from '@/services/api';
-import { FeaturedProjects } from '@/app/components/FeaturedProjects';
-import { RecentBlogPosts } from '@/app/components/RecentBlogPosts';
-import { ServicesSection } from '@/app/components/ServicesSection';
-import { TechMarquee } from '@/app/components/TechMarquee';
-import { StatsSection } from '@/app/components/StatsSection';
-import { CTASection } from '@/app/components/CTASection';
-import { HeroSection } from '@/app/components/HeroSection';
+import { FeaturedProjects } from '@/components/sections/FeaturedProjects';
+import { RecentBlogPosts } from '@/components/sections/RecentBlogPosts';
+import { ServicesSection } from '@/components/sections/ServicesSection';
+import { TechMarquee } from '@/components/sections/TechMarquee';
+import { StatsSection } from '@/components/sections/StatsSection';      
+import { CTASection } from '@/components/sections/CTASection';
+import { HeroSection } from '@/components/sections/HeroSection';
 
 // Metadata for SEO
 export const metadata = {
