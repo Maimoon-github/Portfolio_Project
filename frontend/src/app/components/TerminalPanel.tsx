@@ -6,7 +6,7 @@ type TerminalPanelProps = {
   lines?: string[];
   className?: string;
   speed?: number;
-  pause?: number;
+  pauseDelay?: number;
   loop?: boolean;
 };
 
