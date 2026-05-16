@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import Link from "next/link";
 import { Terminal, Home, ArrowLeft } from "lucide-react";
 
 export function NotFound() {
@@ -30,7 +30,7 @@ export function NotFound() {
 
       <div className="flex gap-3">
         <Link
-          to="/"
+          href="/"
           className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm transition-all duration-200"
           style={{
             background: "#A4FBCC",

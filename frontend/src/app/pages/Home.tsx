@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Link } from "react-router";
+import Link from "next/link";
 import {
   Brain, GitBranch, BarChart2, Server,
   ArrowRight, Github, Linkedin, Twitter,
@@ -476,14 +476,14 @@ export function Home() {
             {/* CTAs */}
             <div style={{ ...heroFade(0.35), display: "flex", flexWrap: "wrap", gap: "12px", marginBottom: "2.5rem" }}>
               <Link
-                to="/projects"
+                href="/projects"
                 className="btn-primary flex items-center gap-2 px-6 py-3 rounded-lg"
                 style={{ background: C.mint, color: "#081A04", fontWeight: 700, textDecoration: "none", fontSize: "0.9rem" }}
               >
                 View Projects <ArrowRight size={16} />
               </Link>
               <Link
-                to="/blog"
+                href="/blog"
                 className="btn-outline flex items-center gap-2 px-6 py-3 rounded-lg"
                 style={{ border: `1px solid rgba(164,251,204,0.28)`, color: C.mint, textDecoration: "none", fontSize: "0.9rem" }}
               >
@@ -677,7 +677,7 @@ export function Home() {
                 </h2>
               </div>
               <Link
-                to="/projects"
+                href="/projects"
                 className="hidden sm:flex items-center gap-1 text-sm link-hover"
                 style={{ color: C.grey, textDecoration: "none" }}
               >
@@ -702,7 +702,7 @@ export function Home() {
           </div>
 
           <div className="mt-8 text-center sm:hidden">
-            <Link to="/projects" className="text-sm" style={{ color: C.mint, textDecoration: "none" }}>
+            <Link href="/projects" className="text-sm" style={{ color: C.mint, textDecoration: "none" }}>
               View all projects →
             </Link>
           </div>
@@ -848,7 +848,7 @@ export function Home() {
                 </h2>
               </div>
               <Link
-                to="/blog"
+                href="/blog"
                 className="hidden sm:flex items-center gap-1 text-sm link-hover"
                 style={{ color: C.grey, textDecoration: "none" }}
               >
@@ -907,7 +907,7 @@ export function Home() {
           </p>
           <div style={{ display: "flex", justifyContent: "center", gap: "12px", flexWrap: "wrap" }}>
             <Link
-              to="/contact"
+              href="/contact"
               className="btn-primary inline-flex items-center gap-2 px-8 py-3 rounded-lg"
               style={{ background: C.mint, color: "#081A04", fontWeight: 700, textDecoration: "none", fontSize: "0.9rem" }}
             >

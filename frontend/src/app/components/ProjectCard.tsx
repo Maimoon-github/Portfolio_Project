@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Link } from "react-router";
+import Link from "next/link";
 import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
 import { Project } from "../types/api";
 

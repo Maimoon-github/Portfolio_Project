@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import Link from "next/link";
 import { Github, Linkedin, Twitter, Terminal, ArrowUpRight, ChevronUp } from "lucide-react";
 import { PROFILE } from "../data";
 
@@ -160,7 +160,7 @@ export function Footer() {
                 <ArrowUpRight size={12} />
               </a>
               <Link
-                to="/contact"
+                href="/contact"
                 className="text-xs px-4 py-2.5 rounded-lg inline-block"
                 style={{
                   border: "1px solid rgba(164, 251, 204, 0.3)",

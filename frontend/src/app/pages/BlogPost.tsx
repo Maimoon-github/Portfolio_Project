@@ -193,7 +193,7 @@ export function BlogPost({ slug }: { slug: string }) {
       <div className="max-w-3xl mx-auto px-6">
         {/* Back */}
         <Link
-          to="/blog"
+          href="/blog"
           className="inline-flex items-center gap-2 text-sm mb-8 transition-colors duration-200"
           style={{ color: "#9199A5", textDecoration: "none" }}
           onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#A4FBCC")}
@@ -298,10 +298,10 @@ export function BlogPost({ slug }: { slug: string }) {
                 {PROFILE.bio}
               </p>
               <div className="flex gap-3 mt-3">
-                <Link to="/resume" className="text-xs" style={{ color: "#A4FBCC", textDecoration: "none" }}>
+                <Link href="/resume" className="text-xs" style={{ color: "#A4FBCC", textDecoration: "none" }}>
                   View Resume →
                 </Link>
-                <Link to="/contact" className="text-xs" style={{ color: "#9199A5", textDecoration: "none" }}>
+                <Link href="/contact" className="text-xs" style={{ color: "#9199A5", textDecoration: "none" }}>
                   Get in Touch →
                 </Link>
               </div>

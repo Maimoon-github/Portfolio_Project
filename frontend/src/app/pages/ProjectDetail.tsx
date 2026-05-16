@@ -291,7 +291,7 @@ export function ProjectDetail({ slug }: { slug: string }) {
 
           {/* Back nav */}
           <Link
-            to="/projects"
+            href="/projects"
             className="inline-flex items-center gap-2 text-sm mb-10 detail-fade"
             style={{
               color: "#9199A5",

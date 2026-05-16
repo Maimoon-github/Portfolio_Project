@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Link } from "react-router";
+import Link from "next/link";
 import { Tool } from "../types/api";
 import { PopupModal } from "./PopupModal";
 import { Wrench } from "lucide-react";

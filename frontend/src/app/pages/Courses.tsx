@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useCourses } from "../hooks/useCourses";
 import { CourseCard } from "../components/CourseCard";
-import { Link } from "react-router";
+import Link from "next/link";
 import { Course } from "../types/api";
 
 export function Courses() {

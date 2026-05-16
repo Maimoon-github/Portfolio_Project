@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useRouter } from "next/navigation";
 import { login } from "../services/api";
 
 export function Login() {

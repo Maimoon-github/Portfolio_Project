@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import Link from "next/link";
 import { BookOpen, Wrench, ChevronRight } from "lucide-react";
 import { useKnowledge } from "../hooks/useKnowledge";
 import { CourseCard } from "../components/CourseCard";
@@ -96,7 +96,7 @@ export function Knowledge() {
             </div>
           )}
           <div className="mt-8 text-center">
-            <Link to="/courses" className="text-sm text-[#A4FBCC] underline">
+            <Link href="/courses" className="text-sm text-[#A4FBCC] underline">
               View all courses →
             </Link>
           </div>
@@ -111,7 +111,7 @@ export function Knowledge() {
             Browse or open the calculator hub for interactive tools.
           </div>
           <div className="mt-4 text-center">
-            <Link to="/tools" className="text-sm text-[#A4FBCC] underline">
+            <Link href="/tools" className="text-sm text-[#A4FBCC] underline">
               Go to Tool Hub →
             </Link>
           </div>
