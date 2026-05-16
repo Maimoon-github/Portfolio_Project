@@ -12,6 +12,9 @@ Root path: /home/maimoon-ai-system/Antigravity code/Portfolio_Project/frontend
 │   │   │   │   └── 📄 page.tsx
 │   │   │   └── 📄 page.tsx
 │   │   ├── 📁 components/
+│   │   │   ├── 📁 blog/
+│   │   │   │   ├── 📄 CategoryFilter.tsx
+│   │   │   │   └── 📄 MarkdownContent.tsx
 │   │   │   ├── 📁 forms/
 │   │   │   │   └── 📄 ContactForm.tsx
 │   │   │   ├── 📁 layout/
@@ -23,6 +26,7 @@ Root path: /home/maimoon-ai-system/Antigravity code/Portfolio_Project/frontend
 │   │   │   │   ├── 📄 CoursesGrid.tsx
 │   │   │   │   ├── 📄 FeaturedProjects.tsx
 │   │   │   │   ├── 📄 HeroSection.tsx
+│   │   │   │   ├── 📄 ProjectsGrid.tsx
 │   │   │   │   ├── 📄 RecentBlogPosts.tsx
 │   │   │   │   ├── 📄 ServicesSection.tsx
 │   │   │   │   ├── 📄 StatsSection.tsx

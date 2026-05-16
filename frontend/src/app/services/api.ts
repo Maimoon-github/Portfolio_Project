@@ -256,18 +256,36 @@ export function logout() {
 }
 
 // Projects
-export async function getProjects(category?: string): Promise<Paginated<ProjectList>> {
-  const query = qs({ category });
-  const res = await apiFetch(`${API_BASE}/projects/${query ? `?${query}` : ""}`);
-  if (!res.ok) throw new Error(`Failed to load projects (${res.status})`);
+// export async function getProjects(category?: string): Promise<Paginated<ProjectList>> {
+//   const query = qs({ category });
+//   const res = await apiFetch(`${API_BASE}/projects/${query ? `?${query}` : ""}`);
+//   if (!res.ok) throw new Error(`Failed to load projects (${res.status})`);
+//   return res.json();
+// }
+
+// export async function getProject(slug: string): Promise<ProjectDetail> {
+//   const res = await apiFetch(`${API_BASE}/projects/${slug}/`);
+//   if (!res.ok) throw new Error(`Failed to load project ${slug}`);
+//   return res.json();
+// }
+
+
+// src/app/services/api.ts
+export async function getProjects(category?: string) {
+  const url = category && category !== 'All' 
+    ? `${API_BASE}/projects/?category=${encodeURIComponent(category)}`
+    : `${API_BASE}/projects/`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('Failed to fetch projects');
   return res.json();
 }
 
-export async function getProject(slug: string): Promise<ProjectDetail> {
-  const res = await apiFetch(`${API_BASE}/projects/${slug}/`);
-  if (!res.ok) throw new Error(`Failed to load project ${slug}`);
+export async function getProject(slug: string) {
+  const res = await fetch(`${API_BASE}/projects/${slug}/`);
+  if (!res.ok) throw new Error('Failed to fetch project');
   return res.json();
 }
+
 
 // Blog
 // export async function getBlogPosts(category?: string): Promise<Paginated<PostList>> {
