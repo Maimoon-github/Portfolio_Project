@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X, Terminal, LogIn, LogOut } from "lucide-react";
 import { PROFILE } from "../data";
 import { getTokens, logout } from "../services/api";
@@ -17,7 +18,7 @@ const NAV_LINKS = [
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -27,7 +28,7 @@ export function Navbar() {
 
   useEffect(() => {
     setMenuOpen(false);
-  }, [location.pathname]);
+  }, [pathname]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -36,14 +37,14 @@ export function Navbar() {
   }, [menuOpen]);
 
   const isActive = (path: string) =>
-    location.pathname === path || location.pathname.startsWith(path + "/");
+    pathname === path || pathname.startsWith(path + "/");
 
-  const navigate = useNavigate();
+  const router = useRouter();
   const authenticated = !!getTokens();
 
   const handleLogout = () => {
     logout();
-    navigate("/");
+    router.push("/");
   };
 
   return (
@@ -88,7 +89,7 @@ export function Navbar() {
       >
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group" style={{ textDecoration: "none" }}>
+          <Link href="/" className="flex items-center gap-2.5 group" style={{ textDecoration: "none" }}>
             <div
               className="w-8 h-8 rounded-lg flex items-center justify-center"
               style={{
@@ -122,7 +123,7 @@ export function Navbar() {
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.path}
-                to={link.path}
+                href={link.path}
                 className={`text-sm relative py-1 ${isActive(link.path) ? "nav-link-active" : ""}`}
                 style={{
                   color: isActive(link.path) ? "#A4FBCC" : "#9199A5",
@@ -166,7 +167,7 @@ export function Navbar() {
               </button>
             ) : (
               <Link
-                to="/login"
+                href="/login"
                 className="text-sm flex items-center gap-1.5 transition-colors duration-200"
                 style={{ color: "#9199A5", textDecoration: "none" }}
                 onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "#F2F2F2")}
@@ -207,7 +208,7 @@ export function Navbar() {
               {NAV_LINKS.map((link, i) => (
                 <Link
                   key={link.path}
-                  to={link.path}
+                  href={link.path}
                   className="text-sm py-3 px-3 rounded-lg"
                   style={{
                     color: isActive(link.path) ? "#A4FBCC" : "#9199A5",
@@ -247,7 +248,7 @@ export function Navbar() {
                 </button>
               ) : (
                 <Link
-                  to="/login"
+                  href="/login"
                   className="w-full text-left flex items-center gap-1.5 mt-3 py-2 px-3"
                   style={{ color: "#9199A5", textDecoration: "none" }}
                 >
