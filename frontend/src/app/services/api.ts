@@ -283,17 +283,11 @@ export async function getBlogPost(slug: string): Promise<PostDetail> {
   return res.json();
 }
 
-// Resume
-export async function getResume(): Promise<ResumeData> {
-  const res = await apiFetch(`${API_BASE}/resume/`);
-  if (!res.ok) throw new Error(`Failed to load resume`);
-  return res.json();
-}
-
 // Knowledge
-export async function getCourses(): Promise<Paginated<CourseList>> {
-  const res = await apiFetch(`${API_BASE}/knowledge/courses/`);
-  if (!res.ok) throw new Error(`Failed to load courses`);
+// Add to api.ts
+export async function getCourses() {
+  const res = await fetch(`${API_BASE}/courses/`);
+  if (!res.ok) throw new Error('Failed to fetch courses');
   return res.json();
 }
 
