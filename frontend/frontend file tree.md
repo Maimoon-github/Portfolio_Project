@@ -12,67 +12,78 @@ Root path: /home/maimoon-ai-system/Antigravity code/Portfolio_Project/frontend
 │   │   │   │   └── 📄 page.tsx
 │   │   │   └── 📄 page.tsx
 │   │   ├── 📁 components/
-│   │   │   ├── 📁 figma/
-│   │   │   │   └── 📄 ImageWithFallback.tsx
-│   │   │   ├── 📁 ui/
-│   │   │   │   ├── 📄 accordion.tsx
-│   │   │   │   ├── 📄 alert-dialog.tsx
-│   │   │   │   ├── 📄 alert.tsx
-│   │   │   │   ├── 📄 aspect-ratio.tsx
-│   │   │   │   ├── 📄 avatar.tsx
-│   │   │   │   ├── 📄 badge.tsx
-│   │   │   │   ├── 📄 breadcrumb.tsx
-│   │   │   │   ├── 📄 button.tsx
-│   │   │   │   ├── 📄 calendar.tsx
-│   │   │   │   ├── 📄 card.tsx
-│   │   │   │   ├── 📄 carousel.tsx
-│   │   │   │   ├── 📄 chart.tsx
-│   │   │   │   ├── 📄 checkbox.tsx
-│   │   │   │   ├── 📄 collapsible.tsx
-│   │   │   │   ├── 📄 command.tsx
-│   │   │   │   ├── 📄 context-menu.tsx
-│   │   │   │   ├── 📄 dialog.tsx
-│   │   │   │   ├── 📄 drawer.tsx
-│   │   │   │   ├── 📄 dropdown-menu.tsx
-│   │   │   │   ├── 📄 form.tsx
-│   │   │   │   ├── 📄 hover-card.tsx
-│   │   │   │   ├── 📄 input-otp.tsx
-│   │   │   │   ├── 📄 input.tsx
-│   │   │   │   ├── 📄 label.tsx
-│   │   │   │   ├── 📄 menubar.tsx
-│   │   │   │   ├── 📄 navigation-menu.tsx
-│   │   │   │   ├── 📄 pagination.tsx
-│   │   │   │   ├── 📄 popover.tsx
-│   │   │   │   ├── 📄 progress.tsx
-│   │   │   │   ├── 📄 radio-group.tsx
-│   │   │   │   ├── 📄 resizable.tsx
-│   │   │   │   ├── 📄 scroll-area.tsx
-│   │   │   │   ├── 📄 select.tsx
-│   │   │   │   ├── 📄 separator.tsx
-│   │   │   │   ├── 📄 sheet.tsx
-│   │   │   │   ├── 📄 sidebar.tsx
-│   │   │   │   ├── 📄 skeleton.tsx
-│   │   │   │   ├── 📄 slider.tsx
-│   │   │   │   ├── 📄 sonner.tsx
-│   │   │   │   ├── 📄 switch.tsx
-│   │   │   │   ├── 📄 table.tsx
-│   │   │   │   ├── 📄 tabs.tsx
-│   │   │   │   ├── 📄 textarea.tsx
-│   │   │   │   ├── 📄 toggle-group.tsx
-│   │   │   │   ├── 📄 toggle.tsx
-│   │   │   │   ├── 📄 tooltip.tsx
-│   │   │   │   ├── 📄 use-mobile.ts
-│   │   │   │   └── 📄 utils.ts
-│   │   │   ├── 📄 BlogCard.tsx
-│   │   │   ├── 📄 CourseCard.tsx
-│   │   │   ├── 📄 FeaturedProjects.tsx
-│   │   │   ├── 📄 FloatingOrb.tsx
-│   │   │   ├── 📄 Footer.tsx
-│   │   │   ├── 📄 HeroSection.tsx
-│   │   │   ├── 📄 Navbar.tsx
-│   │   │   ├── 📄 PopupModal.tsx
-│   │   │   ├── 📄 ProjectCard.tsx
-│   │   │   └── 📄 TerminalPanel.tsx
+│   │   │   ├── 📁 forms/
+│   │   │   │   └── 📄 ContactForm.tsx
+│   │   │   ├── 📁 layout/
+│   │   │   │   ├── 📄 Footer.tsx
+│   │   │   │   ├── 📄 Navbar.tsx
+│   │   │   │   └── 📄 providers.tsx
+│   │   │   ├── 📁 sections/
+│   │   │   │   ├── 📄 CTASection.tsx
+│   │   │   │   ├── 📄 FeaturedProjects.tsx
+│   │   │   │   ├── 📄 HeroSection.tsx
+│   │   │   │   ├── 📄 RecentBlogPosts.tsx
+│   │   │   │   ├── 📄 ServicesSection.tsx
+│   │   │   │   ├── 📄 StatsSection.tsx
+│   │   │   │   └── 📄 TechMarquee.tsx
+│   │   │   ├── 📁 shared/
+│   │   │   │   ├── 📄 BlogCard.tsx
+│   │   │   │   ├── 📄 CourseCard.tsx
+│   │   │   │   ├── 📄 FloatingOrb.tsx
+│   │   │   │   ├── 📄 ImageWithFallback.tsx
+│   │   │   │   ├── 📄 PopupModal.tsx
+│   │   │   │   ├── 📄 ProjectCard.tsx
+│   │   │   │   ├── 📄 TerminalPanel.tsx
+│   │   │   │   └── 📄 TypingText.tsx
+│   │   │   └── 📁 ui/
+│   │   │       ├── 📄 accordion.tsx
+│   │   │       ├── 📄 alert-dialog.tsx
+│   │   │       ├── 📄 alert.tsx
+│   │   │       ├── 📄 aspect-ratio.tsx
+│   │   │       ├── 📄 avatar.tsx
+│   │   │       ├── 📄 badge.tsx
+│   │   │       ├── 📄 breadcrumb.tsx
+│   │   │       ├── 📄 button.tsx
+│   │   │       ├── 📄 calendar.tsx
+│   │   │       ├── 📄 card.tsx
+│   │   │       ├── 📄 carousel.tsx
+│   │   │       ├── 📄 chart.tsx
+│   │   │       ├── 📄 checkbox.tsx
+│   │   │       ├── 📄 collapsible.tsx
+│   │   │       ├── 📄 command.tsx
+│   │   │       ├── 📄 context-menu.tsx
+│   │   │       ├── 📄 dialog.tsx
+│   │   │       ├── 📄 drawer.tsx
+│   │   │       ├── 📄 dropdown-menu.tsx
+│   │   │       ├── 📄 form.tsx
+│   │   │       ├── 📄 hover-card.tsx
+│   │   │       ├── 📄 input-otp.tsx
+│   │   │       ├── 📄 input.tsx
+│   │   │       ├── 📄 label.tsx
+│   │   │       ├── 📄 menubar.tsx
+│   │   │       ├── 📄 navigation-menu.tsx
+│   │   │       ├── 📄 pagination.tsx
+│   │   │       ├── 📄 popover.tsx
+│   │   │       ├── 📄 progress.tsx
+│   │   │       ├── 📄 radio-group.tsx
+│   │   │       ├── 📄 resizable.tsx
+│   │   │       ├── 📄 scroll-area.tsx
+│   │   │       ├── 📄 select.tsx
+│   │   │       ├── 📄 separator.tsx
+│   │   │       ├── 📄 sheet.tsx
+│   │   │       ├── 📄 sidebar.tsx
+│   │   │       ├── 📄 skeleton.tsx
+│   │   │       ├── 📄 slider.tsx
+│   │   │       ├── 📄 sonner.tsx
+│   │   │       ├── 📄 switch.tsx
+│   │   │       ├── 📄 table.tsx
+│   │   │       ├── 📄 tabs.tsx
+│   │   │       ├── 📄 textarea.tsx
+│   │   │       ├── 📄 toggle-group.tsx
+│   │   │       ├── 📄 toggle.tsx
+│   │   │       ├── 📄 tooltip.tsx
+│   │   │       ├── 📄 use-mobile.ts
+│   │   │       └── 📄 utils.ts
 │   │   ├── 📁 contact/
 │   │   │   └── 📄 page.tsx
 │   │   ├── 📁 courses/
@@ -98,8 +109,7 @@ Root path: /home/maimoon-ai-system/Antigravity code/Portfolio_Project/frontend
 │   │   ├── 📄 config.ts
 │   │   ├── 📄 layout.tsx
 │   │   ├── 📄 not-found.tsx
-│   │   ├── 📄 page.tsx
-│   │   └── 📄 providers.tsx
+│   │   └── 📄 page.tsx
 │   ├── 📁 imports/
 │   │   └── 📝 ai-agent-portfolio-architectur.md
 │   ├── 📁 styles/
