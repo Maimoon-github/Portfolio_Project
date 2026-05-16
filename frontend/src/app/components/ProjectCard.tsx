@@ -116,7 +116,7 @@ export function ProjectCard({ project, featured = false, onClick }: ProjectCardP
               {project.title}
             </h3>
           ) : (
-            <Link to={`/projects/${project.slug}`} style={{ textDecoration: "none" }}>
+            <Link href={`/projects/${project.slug}`} style={{ textDecoration: "none" }}>
               <h3
                 className="leading-snug cursor-pointer"
                 style={{
@@ -183,7 +183,7 @@ export function ProjectCard({ project, featured = false, onClick }: ProjectCardP
               </button>
             ) : (
               <Link
-                to={`/projects/${project.slug}`}
+                href={`/projects/${project.slug}`}
                 className="text-sm flex items-center gap-1.5"
                 style={{
                   color: "#A4FBCC",

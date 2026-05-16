@@ -126,7 +126,7 @@ export function Footer() {
                 ].map((link) => (
                   <li key={link.path}>
                     <Link
-                      to={link.path}
+                      href={link.path}
                       className="footer-link text-sm"
                       style={{ color: "#9199A5", textDecoration: "none" }}
                     >
