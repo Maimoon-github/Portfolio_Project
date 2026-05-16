@@ -1,0 +1,152 @@
+/* src/styles/mdx.css */
+/* ═══════════════════════════════════════════════════════════════════
+   MDX PROSE STYLES
+   Applied within .prose wrapper in PostBody.tsx
+   All values reference Design Truth Layer tokens.
+   ═══════════════════════════════════════════════════════════════════ */
+
+.prose {
+  color: var(--color-on-background);
+  font-family: var(--font-sans);
+  font-size: var(--text-body-lg);
+  line-height: var(--leading-relaxed);
+  max-width: 72ch;
+
+  /* ── Headings ── */
+  & h1, & h2, & h3, & h4 {
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-on-background);
+    margin-top: 2.5em;
+    margin-bottom: 0.75em;
+    scroll-margin-top: calc(var(--header-height) + 24px);
+  }
+
+  & h2 {
+    font-size: var(--text-h2);
+    background: var(--gradient-text-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid var(--color-outline-variant);
+  }
+
+  & h3 { font-size: var(--text-h3); color: var(--color-primary-light); }
+  & h4 { font-size: var(--text-h4); color: var(--color-on-background); }
+
+  /* ── Paragraphs ── */
+  & p {
+    margin-bottom: 1.5em;
+    color: var(--color-on-background);
+    opacity: 0.85;
+  }
+
+  /* ── Links ── */
+  & a {
+    color: var(--color-accent);
+    text-underline-offset: 3px;
+    text-decoration: underline;
+    text-decoration-color: rgba(45, 212, 191, 0.40);
+    transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+
+    &:hover {
+      color: var(--color-primary-light);
+      text-decoration-color: rgba(214, 186, 255, 0.60);
+    }
+  }
+
+  /* ── Code (inline) ── */
+  & code:not(pre code) {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: var(--color-surface-container-high);
+    color: var(--color-accent);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-outline-variant);
+  }
+
+  /* ── Code blocks ── */
+  & pre {
+    background: var(--color-surface-container-lowest);
+    border: 1px solid var(--color-outline-variant);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    overflow-x: auto;
+    margin: 2em 0;
+    box-shadow: var(--shadow-md);
+
+    & code {
+      font-family: var(--font-mono);
+      font-size: var(--text-body-sm);
+      line-height: 1.7;
+      color: var(--color-on-background);
+    }
+  }
+
+  /* ── Blockquote ── */
+  & blockquote {
+    margin: 2em 0;
+    padding: 20px 24px;
+    border-left: 3px solid var(--color-primary);
+    background: rgba(95, 45, 166, 0.08);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-style: italic;
+    color: var(--color-primary-light);
+  }
+
+  /* ── Lists ── */
+  & ul, & ol {
+    padding-left: 1.5em;
+    margin-bottom: 1.5em;
+
+    & li {
+      margin-bottom: 0.5em;
+      color: var(--color-on-background);
+      opacity: 0.85;
+
+      &::marker { color: var(--color-primary); }
+    }
+  }
+
+  /* ── Tables ── */
+  & table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2em 0;
+    font-size: var(--text-body-sm);
+
+    & th {
+      background: var(--color-surface-container-high);
+      color: var(--color-primary-light);
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--color-primary);
+    }
+
+    & td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--color-outline-variant);
+    }
+
+    & tr:hover td { background: rgba(95, 45, 166, 0.06); }
+  }
+
+  /* ── Horizontal rule ── */
+  & hr {
+    border: none;
+    height: 1px;
+    background: var(--gradient-card-border);
+    margin: 3em 0;
+  }
+
+  /* ── Images ── */
+  & img {
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-glass-border);
+    box-shadow: var(--shadow-lg);
+    margin: 2em auto;
+  }
+}
