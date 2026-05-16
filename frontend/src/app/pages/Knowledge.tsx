@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BookOpen, Wrench, ChevronRight } from "lucide-react";
 import { useKnowledge } from "../hooks/useKnowledge";
+import { Course } from "../types/api";
 import { CourseCard } from "../components/CourseCard";
 
 export function Knowledge() {
@@ -90,7 +91,7 @@ export function Knowledge() {
           {knowledge.error && <p style={{ color: "#E55353" }}>Unable to fetch courses.</p>}
           {knowledge.data && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {knowledge.data.courses.map((course) => (
+              {knowledge.data.courses.map((course: Course) => (
                 <CourseCard key={course.id} course={course} />
               ))}
             </div>

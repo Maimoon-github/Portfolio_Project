@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Download, MapPin, Mail, Github, Linkedin, ExternalLink } from "lucide-react";
 import { PROFILE } from "../data";
 import { useResume } from "../hooks/useResume";
-import { ResumeData } from "../types/api"; 
+import { ResumeData, SkillCategory } from "../types/api"; 
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
@@ -38,7 +38,7 @@ export function Resume() {
     if (!resume) return;
     // transform payload exactly as before
     const sk: Record<string, string[]> = {};
-    resume.skills.forEach((cat) => {
+    resume.skills.forEach((cat: SkillCategory) => {
       sk[cat.name] = cat.skills.map((s) => s.name);
     });
     setSkills(sk);

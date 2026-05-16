@@ -15,7 +15,7 @@ export function Login() {
     setError(null);
     try {
       await login(username, password);
-      navigate("/");
+      router.push("/");
     } catch (err: any) {
       setError(err.message || "Login failed");
     }
