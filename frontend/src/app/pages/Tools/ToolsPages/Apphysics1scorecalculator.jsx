@@ -1,3 +1,5 @@
+'use client';
+
 // import { useState, useEffect, useRef } from "react";
 
 // // ─── Score threshold lookup (composite 0–100 → AP 1–5) ───────────────────────
