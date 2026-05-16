@@ -653,7 +653,7 @@ function getScoreLabel(score) {
 // ─── Animated Counter ───────────────────────────────────────────────────────
 function AnimatedNumber({ value, duration = 400 }) {
   const [display, setDisplay] = useState(value);
-  const raf = useRef(null);
+  const raf = useRef<number | null>(null);
 
   useEffect(() => {
     const start = display;
@@ -666,7 +666,9 @@ function AnimatedNumber({ value, duration = 400 }) {
       if (t < 1) raf.current = requestAnimationFrame(animate);
     };
     raf.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(raf.current);
+    return () => {
+      if (raf.current) cancelAnimationFrame(raf.current);
+    };
   }, [value]);
 
   return <span>{display}</span>;
@@ -742,7 +744,7 @@ function ScoreBadge({ score, label, composite, max, subscript }) {
 }
 
 // ─── Slider Input ────────────────────────────────────────────────────────────
-function SliderInput({ label, hint, tag, value, max, onChange }) {
+function SliderInput({ label, hint, tag = "", value, max, onChange }) {
   const pct = (value / max) * 100;
   const tagColor = tag === "AB" ? "#A4FBCC" : "#7dd3fc";
 
@@ -1052,6 +1054,7 @@ export default function APCalcBCCalculator() {
               label={getScoreLabel(bcScore)}
               composite={composite}
               max={108}
+              subscript={false}
             />
 
             <ScoreBadge

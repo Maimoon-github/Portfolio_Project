@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Download, MapPin, Mail, Github, Linkedin, ExternalLink } from "lucide-react";
 import { PROFILE } from "../data";
 import { useResume } from "../hooks/useResume";
-import { ResumeData, SkillCategory } from "../types/api"; 
+import { ResumeData, SkillCategory, Skill, Experience, Education, Certification } from "../types/api"; 
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
@@ -39,11 +39,11 @@ export function Resume() {
     // transform payload exactly as before
     const sk: Record<string, string[]> = {};
     resume.skills.forEach((cat: SkillCategory) => {
-      sk[cat.name] = cat.skills.map((s) => s.name);
+      sk[cat.name] = cat.skills.map((s: Skill) => s.name);
     });
     setSkills(sk);
 
-    const exp = resume.experience.map((e) => ({
+    const exp = resume.experience.map((e: Experience) => ({
       id: e.id,
       title: e.title,
       company: e.company,
@@ -55,11 +55,11 @@ export function Resume() {
         ? new Date(e.end_date).toLocaleDateString("en-US", { month: "short", year: "numeric" })
         : "",
       type: e.current ? "Full-time" : "",
-      bullets: e.achievements ? e.achievements.split("\n").map((l) => l.trim()).filter(Boolean) : [],
+      bullets: e.achievements ? e.achievements.split("\n").map((l: string) => l.trim()).filter(Boolean) : [],
     }));
     setExperience(exp);
 
-    const edu = resume.education.map((e) => ({
+    const edu = resume.education.map((e: Education) => ({
       id: e.id,
       degree: e.degree,
       concentration: "",
@@ -69,7 +69,7 @@ export function Resume() {
     }));
     setEducation(edu);
 
-    const cert = resume.certifications.map((c) => ({
+    const cert = resume.certifications.map((c: Certification) => ({
       id: c.id,
       name: c.name,
       issuer: c.issuing_organization,
@@ -209,7 +209,7 @@ export function Resume() {
                   </div>
                 </div>
                 <ul className="flex flex-col gap-2">
-                  {job.bullets.map((bullet, i) => (
+                  {job.bullets.map((bullet: string, i: number) => (
                     <li key={i} className="flex items-start gap-2 text-sm" style={{ color: "#9199A5" }}>
                       <span className="mt-2 w-1 h-1 rounded-full flex-shrink-0" style={{ background: "#A4FBCC" }} />
                       {bullet}
