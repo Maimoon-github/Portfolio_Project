@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ArrowRight, Github, Linkedin, Twitter, ChevronDown } from 'lucide-react';
 import { PROFILE } from '@/app/data';
 import { TypingText } from './TypingText';
-import { TerminalPanel } from './TerminalPanel';
+import { TerminalPanel } from '../shared/TerminalPanel';
 
 export function HeroSection() {
   const [heroMounted, setHeroMounted] = useState(false);

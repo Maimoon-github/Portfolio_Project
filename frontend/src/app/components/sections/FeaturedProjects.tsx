@@ -121,7 +121,7 @@
 
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { ProjectCard } from './ProjectCard';
+import { ProjectCard } from '../shared/ProjectCard';
 import type { Project } from '@/app/types/api';
 import { useState, useEffect, useRef } from 'react';
 
