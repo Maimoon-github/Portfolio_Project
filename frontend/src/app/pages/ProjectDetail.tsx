@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import {
   ArrowLeft,
@@ -244,8 +244,7 @@ function ProjectSidebar({ project }: SidebarProps) {
 }
 
 // ─── Main component ────────────────────────────────────────────────────────────
-export function ProjectDetail() {
-  const { slug } = useParams<{ slug: string }>();
+export function ProjectDetail({ slug }: { slug: string }) {
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
   const [allProjects, setAllProjects] = useState<Project[]>([]);

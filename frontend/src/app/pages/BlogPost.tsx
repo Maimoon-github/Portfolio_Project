@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
 import { PROFILE } from "../data";
