@@ -1,0 +1,1 @@
+# Wagtail admin hooks: custom SnippetViewSet for Category/Tag, any admin panels

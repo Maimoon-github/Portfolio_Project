@@ -1,0 +1,1 @@
+# ProjectAdmin: list_display, prepopulate_from slug, readonly thumbnail, ordering

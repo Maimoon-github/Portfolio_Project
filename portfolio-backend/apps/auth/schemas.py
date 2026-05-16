@@ -1,0 +1,1 @@
+# TokenPairOut (access, refresh), UserOut, LoginIn — Ninja Pydantic schemas
