@@ -26,8 +26,8 @@ export function CategoryFilter({ activeCategory }: CategoryFilterProps) {
           onClick={() => handleCategoryClick(cat)}
           className={`text-sm px-4 py-2 rounded-lg transition-all duration-200 ${
             activeCategory === cat
-              ? 'bg-[#A4FBCC] text-[#0A2E1A] font-semibold shadow-[0_0_12px_rgba(164,251,204,0.3)]'
-              : 'bg-[rgba(164,251,204,0.06)] text-[#B0C4B0] border border-[rgba(164,251,204,0.15)] hover:border-[rgba(164,251,204,0.35)] hover:text-[#A4FBCC]'
+              ? 'bg-[var(--color-accent)] text-[var(--color-on-accent)] font-semibold'
+              : 'bg-[var(--color-surface-container-low)] text-[var(--color-outline)] border border-[var(--color-glass-border)] hover:border-[var(--color-glass-border-hover)] hover:text-[var(--color-accent)]'
           }`}
         >
           {cat}

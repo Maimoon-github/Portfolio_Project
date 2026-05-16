@@ -337,10 +337,6 @@
 
 
 
-
-
-
-
 'use client';
 
 import { useState, useEffect } from "react";
@@ -364,7 +360,7 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -377,122 +373,70 @@ export function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
-  const isActive = (path: string) =>
-    pathname === path || pathname.startsWith(path + "/");
+  const isActive = (path: string) => pathname === path || pathname.startsWith(path + "/");
 
   return (
-    <>
-      <style jsx>{`
-        @keyframes navLogoGlow {
-          0%, 100% { box-shadow: 0 0 8px rgba(45,212,191,0.15); }
-          50%      { box-shadow: 0 0 16px rgba(45,212,191,0.30); }
-        }
-        @keyframes mobileMenuSlide {
-          from { opacity: 0; transform: translateY(-8px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        .nav-link-active::after {
-          content: '';
-          position: absolute;
-          bottom: -2px;
-          left: 0;
-          right: 0;
-          height: 2px;
-          background: var(--color-accent);
-          border-radius: 1px;
-          box-shadow: 0 0 8px var(--color-accent);
-        }
-      `}</style>
+    <header
+      className={`fixed top-0 left-0 right-0 z-header transition-all duration-350 ${
+        scrolled ? 'bg-surface-container-lowest/80 backdrop-blur-lg border-b border-glass-border' : 'bg-transparent'
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2.5 group no-underline">
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-accent/10 border border-accent/30">
+            <Terminal size={16} className="text-accent" />
+          </div>
+          <span className="text-sm tracking-wider font-mono">
+            <span className="text-accent group-hover:opacity-80 transition-opacity">{PROFILE.initials}</span>
+            <span className="text-outline">://</span>
+            <span className="text-on-background">portfolio</span>
+          </span>
+        </Link>
 
-      <header
-        className="fixed top-0 left-0 right-0 z-header transition-all duration-350"
-        style={{
-          background: scrolled ? "var(--color-surface-container-lowest)" : "transparent",
-          borderBottom: scrolled ? "1px solid var(--color-glass-border)" : "1px solid transparent",
-          backdropFilter: scrolled ? "blur(16px) saturate(1.2)" : "none",
-        }}
-      >
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5 group no-underline">
-            <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center"
-              style={{
-                background: "rgba(45,212,191,0.12)",
-                border: "1px solid rgba(45,212,191,0.3)",
-                animation: "navLogoGlow 3s ease-in-out infinite",
-              }}
+        <nav className="hidden md:flex items-center gap-7">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.path}
+              href={link.path}
+              className={`text-sm relative py-1 ${
+                isActive(link.path)
+                  ? 'text-accent font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent'
+                  : 'text-outline font-normal hover:text-accent transition-colors'
+              }`}
             >
-              <Terminal size={16} className="text-accent" />
-            </div>
-            <span className="text-sm tracking-wider font-mono">
-              <span className="text-accent group-hover:opacity-80 transition-opacity">
-                {PROFILE.initials}
-              </span>
-              <span className="text-outline">://</span>
-              <span className="text-on-background">portfolio</span>
-            </span>
-          </Link>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
 
-          <nav className="hidden md:flex items-center gap-7">
+        <button
+          className="md:hidden p-2 rounded-lg transition-colors text-accent"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </div>
+
+      {menuOpen && (
+        <div className="md:hidden px-6 pb-6 pt-2 bg-surface-container-lowest border-t border-glass-border">
+          <nav className="flex flex-col gap-1">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.path}
                 href={link.path}
-                className={`text-sm relative py-1 ${isActive(link.path) ? "nav-link-active" : ""}`}
-                style={{
-                  color: isActive(link.path) ? "var(--color-accent)" : "var(--color-outline)",
-                  fontWeight: isActive(link.path) ? 600 : 400,
-                  transition: "color 0.2s ease",
-                }}
+                className={`text-sm py-3 px-3 rounded-lg ${
+                  isActive(link.path)
+                    ? 'text-accent font-semibold bg-accent/10 border-l-2 border-accent'
+                    : 'text-outline font-normal hover:text-accent transition-colors'
+                }`}
               >
                 {link.label}
               </Link>
             ))}
           </nav>
-
-          <button
-            className="md:hidden p-2 rounded-lg transition-colors"
-            style={{
-              color: "var(--color-accent)",
-              background: menuOpen ? "rgba(45,212,191,0.08)" : "transparent",
-            }}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
         </div>
-
-        {menuOpen && (
-          <div
-            className="md:hidden px-6 pb-6 pt-2"
-            style={{
-              background: "var(--color-surface-container-lowest)",
-              borderTop: "1px solid var(--color-glass-border)",
-              animation: "mobileMenuSlide 0.25s ease forwards",
-            }}
-          >
-            <nav className="flex flex-col gap-1">
-              {NAV_LINKS.map((link, i) => (
-                <Link
-                  key={link.path}
-                  href={link.path}
-                  className="text-sm py-3 px-3 rounded-lg transition-all"
-                  style={{
-                    color: isActive(link.path) ? "var(--color-accent)" : "var(--color-outline)",
-                    fontWeight: isActive(link.path) ? 600 : 400,
-                    background: isActive(link.path) ? "rgba(45,212,191,0.06)" : "transparent",
-                    borderLeft: isActive(link.path) ? "2px solid var(--color-accent)" : "2px solid transparent",
-                    animationDelay: `${i * 40}ms`,
-                  }}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-        )}
-      </header>
-    </>
+      )}
+    </header>
   );
 }
