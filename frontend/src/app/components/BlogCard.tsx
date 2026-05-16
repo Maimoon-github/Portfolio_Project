@@ -121,7 +121,7 @@ export function BlogCard({ post, large = false }: BlogCardProps) {
         </div>
 
         {/* Title */}
-        <Link to={`/blog/${post.slug}`} className="relative" style={{ textDecoration: "none" }}>
+        <Link href={`/blog/${post.slug}`} className="relative" style={{ textDecoration: "none" }}>
           <h2
             className={`leading-snug cursor-pointer ${large ? "text-xl" : "text-base"}`}
             style={{
@@ -149,7 +149,7 @@ export function BlogCard({ post, large = false }: BlogCardProps) {
             ))}
           </div>
           <Link
-            to={`/blog/${post.slug}`}
+            href={`/blog/${post.slug}`}
             className="flex items-center gap-1.5 text-xs font-medium"
             style={{
               color: "#A4FBCC",

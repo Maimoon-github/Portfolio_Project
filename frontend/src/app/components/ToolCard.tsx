@@ -195,7 +195,7 @@ export function ToolCard({ tool, index }: ToolCardProps) {
           <div className="mt-6">
             {tool.website_url.startsWith("/") ? (
               <Link
-                to={tool.website_url}
+                href={tool.website_url}
                 className="inline-flex items-center gap-2 text-sm px-4 py-2.5 rounded-lg"
                 style={{
                   background: "rgba(164,251,204,0.10)",
