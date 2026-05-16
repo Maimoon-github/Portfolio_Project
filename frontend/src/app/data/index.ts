@@ -72,6 +72,11 @@ export const SKILLS = {
   ],
 };
 
+export const SERVICES = [
+  { id: '1', title: 'Agentic AI', description: 'Multi‑agent systems, LangGraph workflows, autonomous agents.', icon: 'Brain' },
+  // ... others
+];
+
 export const TOOLS: Tool[] = [
   {
     id: "ap-bio",
