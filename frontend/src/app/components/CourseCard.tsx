@@ -25,6 +25,8 @@ export function CourseCard({ course }: CourseCardProps) {
   const { course: detailedCourse, loading, error } = useCourse(open ? course.slug : "");
 
   const diffColors = DIFFICULTY_COLORS[course.difficulty] || DIFFICULTY_COLORS.Beginner;
+  const courseDescription = (course as { description?: string }).description;
+  const detailedCourseDescription = detailedCourse ? (detailedCourse as { description?: string }).description : undefined;
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!cardRef.current) return;
@@ -112,9 +114,15 @@ export function CourseCard({ course }: CourseCardProps) {
         </div>
 
         {/* Description */}
-        <p className="relative text-sm leading-relaxed flex-1" style={{ color: "#9199A5" }}>
-          {course.description}
-        </p>
+        {courseDescription ? (
+          <p className="relative text-sm leading-relaxed flex-1" style={{ color: "#9199A5" }}>
+            {courseDescription}
+          </p>
+        ) : (
+          <p className="relative text-sm leading-relaxed flex-1" style={{ color: "#9199A5" }}>
+            Keep learning with this structured course.
+          </p>
+        )}
 
         {/* Meta row */}
         <div
@@ -206,9 +214,9 @@ export function CourseCard({ course }: CourseCardProps) {
               )}
             </div>
 
-            {detailedCourse.description && (
+            {detailedCourseDescription && (
               <p className="mt-5 text-sm leading-relaxed" style={{ color: "#9199A5" }}>
-                {detailedCourse.description}
+                {detailedCourseDescription}
               </p>
             )}
 

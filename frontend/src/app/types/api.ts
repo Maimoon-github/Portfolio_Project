@@ -163,7 +163,8 @@
 
 
 // Re-export types from generated OpenAPI schema
-export type { components, paths } from '../generated';
+import type { components, paths } from '../../types/generated';
+export type { components, paths };
 
 // Convenience aliases for commonly used types
 export type Paginated<T = any> = {
