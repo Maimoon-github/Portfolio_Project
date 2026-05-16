@@ -1,0 +1,683 @@
+refactor: remove unused and deprecated codebase files
+
+feat: implement skill management framework with validation scripts, documentation, and evaluation tools
+
+feat: add grok_report.pdf to documentation directory
+
+feat: initialize skill evaluation framework and project structure with benchmarking and reporting tools
+
+feat: initialize project structure with React, Tailwind CSS, and comprehensive UI component library
+
+feat: implement full-stack blog system with Wagtail backend, Ninja API, and Next.js frontend components
+
+feat: implement Project, Skill, and Experience models and update roadmap status
+
+feat: initialize portfolio backend models, admin configuration, and frontend UI components for projects and skills
+
+feat: implement backend API structure for auth, blog, calculators, and portfolio modules
+
+chore: initial Next.js 15 + shadcn/ui setup + GitHub Actions CI
+chore: initial Django 5 + Wagtail 6 + Django Ninja setup + GitHub Actions CI
+
+feat: initialize Django backend with modular app structure
+
+- create Django project configuration (config)
+- add apps directory for modular organization
+- create core apps: portfolio, blog, calculators, core
+- set up initial app structure with models, views, and migrations
+- add base project files (manage.py, settings, urls, asgi/wsgi)
+
+feat: initialize frontend with Next.js and shadcn/ui
+
+- set up Next.js project structure
+- configure TypeScript, ESLint, and PostCSS
+- initialize shadcn/ui with Radix and Nova preset
+- add base UI components (button)
+- add global styles and utility functions
+
+chore: remove unused file and associated references
+
+feat: initialize project structure with frontend, backend repositories, and roadmap documentation
+
+chore: remove project scaffolding, docker configurations, and update .gitignore
+
+feat: implement root layout and Wagtail-integrated API services for blog and tools
+
+feat: initialize frontend application structure with core pages, layouts, and routing modules
+
+feat: initialize portfolio frontend with UI components, sections, and layout structure
+
+refactor: remove unused legacy configuration files and associated helper utilities
+
+feat: initialize project structure with Next.js app router and landing page components
+
+Refactor code structure for improved readability and maintainability
+
+feat: Revamp marketing pages with new contact and home layouts
+
+- Implemented a new ContactPage component with a structured inquiry form and project nature selection.
+- Removed obsolete layout files from the marketing and tools sections.
+- Updated the global CSS to enhance theming and color variables.
+- Modified the RootLayout to apply background and text colors consistently.
+- Created a NotFound page with a detailed error message and navigation options.
+- Redesigned the Home page to feature architectural themes and improved call-to-action sections.
+- Enhanced the Footer component with navigation links and branding information.
+- Revamped the Header component to include a responsive navigation menu.
+- Introduced reusable Input and Label components for form handling.
+
+Refactor code structure for improved readability and maintainability
+
+Refactor code structure for improved readability and maintainability
+
+feat: Enhance blog SEO features with custom validation, new fields, and admin improvements
+
+feat: Refactor page models to inherit from BasePage and add canonical URL and OG image fields for blog, pages, and tools
+
+feat: Add initial migrations for accounts, blog, pages, and tools apps; update settings for Wagtail and session management
+
+feat: Implement accounts app with custom user model, JWT authentication, and DRF serializers
+
+feat: Add Wagtail page models and admin configuration for marketing site
+
+feat: Implement Wagtail hooks for blog and tools applications
+
+- Added ISR revalidation hooks in `wagtail_hooks.py` for both blog and tools apps to trigger Next.js cache purging on publish/unpublish actions.
+- Introduced admin configurations for blog and tools apps using Wagtail ModelAdmin for enhanced management in the admin interface.
+- Created signals for cache invalidation on blog post and tool page publish/unpublish events.
+- Developed serializers for tools app to facilitate API responses and input validation for calculator computations.
+- Established a compute endpoint in the tools app, returning a 501 status to indicate client-side management of calculator logic.
+- Updated settings to include `wagtail_modeladmin` and added necessary dependencies in requirements.
+
+Add placeholder pages for tool and category routes
+
+- Created new page files for dynamic tool and category routes.
+- Each page currently contains a content placeholder for future development.
+
+chore: update code structure for better readability and maintainability
+
+feat: enhance layout and SEO for portfolio site
+
+- Updated layout.tsx to include new font styles, header, footer, and toast notifications.
+- Improved metadata configuration for better SEO, including Open Graph and Twitter card support.
+- Added viewport settings for responsive design.
+- Created sitemap.ts and robots.ts for better search engine indexing.
+- Implemented StreamField component to render Wagtail StreamField blocks.
+- Developed CalculatorShell component for consistent calculator layouts.
+- Added CompoundInterest calculator with input handling and result formatting.
+- Introduced utility functions for formatting currency, percentages, and dates.
+- Implemented hooks for debouncing input and fetching calculator results.
+- Enhanced API client for better error handling and fetching logic.
+- Updated Tailwind CSS configuration for improved styling and responsiveness.
+- Added middleware for route protection based on authentication status.
+- Created a package.json for managing scripts and dependencies in a monorepo setup.
+
+feat: initialize backend and frontend structure with calculators and API endpoints
+
+- Added new calculator modules for health, productivity, and scientific calculations.
+- Implemented DRF endpoint for calculator computations in backend.
+- Created initial migrations and serializers for tools app.
+- Set up development and production settings for Django.
+- Configured Docker Compose for backend and frontend services.
+- Established Next.js API routes for authentication and revalidation.
+- Created foundational components and pages for frontend application.
+- Integrated Tailwind CSS for styling.
+
+Refactor code structure for improved readability and maintainability
+
+feat: add initial structure for accounts, blog, core, pages, and tools apps
+
+feat: add environment configuration files for Django and Next.js setup
+
+Refactor code structure for improved readability and maintainability
+
+feat: add global styles, layout, and home page for Next.js app
+
+- Created globals.css for global styles and theming.
+- Implemented layout.tsx to define the root layout with font imports.
+- Developed page.tsx as the home page with initial content and layout.
+- Added tsconfig.json for TypeScript configuration.
+
+Add frontend configuration and Nginx setup for deployment
+
+- Create tsconfig.json for TypeScript configuration in the frontend.
+- Add vite.config.ts for Vite configuration, including React and Tailwind CSS support.
+- Set up Dockerfile for Nginx, removing the default configuration and adding a custom one.
+- Create maimoonamin.com.conf for Nginx server configuration, including upstream settings, security headers, and routing for Django API and static files.
+- Add nginx.conf for Nginx main configuration, including performance optimizations, logging, and rate limiting.
+
+feat: add Wagtail settings URL configuration to enable settings menu
+
+feat: implement blog functionality with Wagtail CMS, including models, views, serializers, and templates
+
+feat: restructure comments and cms apps, update imports, and add initial files
+
+Add development and production settings, URL configuration, and core utilities
+
+- Created development.py and production.py for environment-specific settings.
+- Added URL routing in urls.py for admin, API, Wagtail, and SPA.
+- Implemented core mixins for timestamps, slugs, and SEO metadata.
+- Introduced pagination and permissions utilities for API views.
+- Added utility functions for slug generation, email sending, and HTML sanitization.
+- Created build script for production deployment.
+- Updated requirements files for base, development, and production dependencies.
+- Added index.html template for serving the React frontend.
+- Included logging configuration for better error tracking in production.
+- Established file structure for backend_v2 with necessary directories and files.
+
+feat: initialize backend project structure with Wagtail CMS, production settings, and core dependencies
+
+chore: Remove SEO app references and delete unused logo file
+
+Refactor SEO application: remove URLs and views, update sidebar styles and scripts
+
+- Deleted `urls.py` and `views.py` from the SEO app to streamline the application structure.
+- Updated the admin sidebar with new CSS and JS files for improved SEO analysis functionality.
+- Modified the admin change form template to integrate the new sidebar for live SEO metrics.
+- Added new static files for the admin sidebar, including styles and scripts.
+- Updated `requirements/base.txt` to include Wagtail dependencies for enhanced functionality.
+
+feat(seo): Add SEO sidebar for live analysis and metrics display
+
+Refactor code structure for improved readability and maintainability
+
+Refactor code structure for improved readability and maintainability
+
+Remove unused static files and update staticfiles.json to reflect changes
+
+feat(seo): Add initial migration for PostSEO model and update SEO score filter
+
+feat(seo): Implement Celery tasks for SEO analysis, cache management, and maintenance
+
+- Added `tasks.py` with asynchronous tasks for SEO score computation, bulk reanalysis, cache invalidation, sitemap generation, orphan post detection, and audit log cleanup.
+- Introduced URL routing in `urls.py` for sitemap and API endpoints, including a dashboard view for SEO management.
+- Created views in `views.py` for SEO analysis display, dashboard statistics, and handling slug-based redirects.
+- Integrated logging for error handling and task monitoring.
+- Ensured all tasks are idempotent and designed for safe retries with exponential backoff.
+
+Fix: Update settings and URL routing for improved media handling and React SPA integration
+
+Fix ALLOWED_HOSTS configuration and update URL routing for React app
+
+Update project file tree path and remove pnpm-lock.yaml from documentation
+
+chore: Update database file to reflect recent changes
+
+Fix STATICFILES_STORAGE conflict with STORAGES for Render
+
+Fix production settings for Render: ALLOWED_HOSTS + CORS
+
+chore: Update database file to reflect recent changes
+
+fix: Correct API_BASE URL to remove unnecessary version segment
+
+fix: Update API_BASE URL to point to the correct backend endpoint
+
+fix: Update Pillow version to 12.0.0 for image processing compatibility
+
+chore: Update production requirements to include base and development dependencies
+
+Update API base URL and change build output directory
+
+- Updated the API_BASE constant to use the full backend URL for deployment.
+- Changed the output directory for built files from Django's static directory to 'dist' for better organization.
+
+Merge branch 'main' of https://github.com/Maimoon-github/Portfolio_Project
+
+feat: Implement Dockerized production deployment with Nginx, Django, Cloudflare tunnel, and an automated deployment script.
+
+Delete .venv directory
+Add .gitignore to prevent large files
+
+Add .gitignore to prevent large files
+
+feat: Add production deployment setup including build script, settings, and SPA serving.
+
+Clean commit without large WebSite.zip
+
+feat: Implement initial portfolio website structure including frontend pages, components, and backend APIs for blog, projects, and resume.
+
+feat: Implement initial API routing with authentication, documentation, and serializers for blog and projects applications.
+
+feat: initialize blog application with models, admin configurations, and URL routing.
+
+Remove a file.
+
+feat: Implement the initial blog application with core models, admin configurations, and related utilities.
+
+feat: implement a comprehensive comment system including user submission, replies, and staff moderation.
+
+feat: implement a new Django blog application including models, views, templates, and tests.
+
+feat: Implement project display and detail pages with reusable components, data hooks, and a popup modal.
+
+feat: Initialize full-stack portfolio project with Django backend, React frontend, and OpenAPI client generation.
+
+docs: Refactor project tree documentation by creating separate frontend and backend_v2 tree files.
+
+feat: Add initial Navbar and Footer components and a backend SQLite database.
+
+feat: Add initial backend project structure including blog, contact, knowledge, projects, and resume applications.
+
+chore: backend v2 deleted.
+
+feat: Implement initial Django URL routing including admin, API endpoints for various apps, debug toolbar, media serving, and a single-page application catch-all.
+
+feat: Initialize Django backend with DRF, API routing, and base settings for portfolio applications.
+
+feat: Implement environment-specific Django settings for development and production.
+
+feat: initialize Django REST API project with core app structure, API routing, and environment configuration.
+
+feat: Implement structured dependency management using `base.txt`, `development.txt`, and `production.txt` files.
+
+feat: implement resume app with models, serializers, and an aggregated API endpoint for resume data.
+
+feat: Implement new projects application with API endpoints for project management, including models, serializers, views, and tests.
+
+feat: implement initial knowledge app with models, views, URLs, admin, and tests for courses, tools, and resources.
+
+feat: Implement contact form submission functionality with honeypot protection, admin management, and email notification.
+
+feat: implement blog application with models, views, serializers, and tests for posts, categories, and tags.
+
+feat: Set up core API routing, documentation, and authentication endpoints.
+
+feat: Add core utilities, model mixins, pagination, and permissions.
+
+feat: Initialize new Django project structure with core backend files and multiple applications.
+
+feat: Initialize Django backend project with development settings, URL routing, and core dependencies.
+
+feat: Initialize project environment with virtual environment, SQLite database, and compiled Django application files.
+
+feat: Initialize frontend application with Blog and Knowledge pages, routing, and core dependencies.
+
+feat: Add knowledge base, courses, tools, projects, and resume sections with corresponding frontend pages, components, hooks, and a new backend API.
+
+docs: Document frontend project tree structure.
+
+feat: Implement Contact and Login pages and establish core frontend project structure with API service.
+
+feat: Add frontend configuration and blog post page, alongside various Python virtual environment and pip vendor files.
+
+feat: Implement initial API endpoints and data models for projects, blog, contact, knowledge, and resume modules.
+
+feat: Add initial `index.html` template for the application's main page.
+
+feat: Add pytest configuration for the Django project, including settings module, file patterns, and plugins.
+
+feat: Add example environment configuration file for Django settings.
+
+feat: Implement the initial knowledge application including models, serializers, views, and admin integration for courses, tools, and resources.
+
+feat: Implement a new contact form submission system with dedicated models, API endpoint, and admin integration.
+
+feat: Add resume application including models, serializers, views, and admin for skills, experience, education, and certifications.
+
+feat: Implement initial blog application with models, serializers, views, URLs, admin, and filters.
+
+feat: Add projects application with models, serializers, views, URLs, admin, and filters.
+
+-
+
+feat: Add core utilities, model mixins, pagination, and permissions.
+
+feat: Add comprehensive documentation detailing the responsibilities, functional roles, and interactions of backend files and directories.
+
+feat: implement contact form submission module with API, model, admin, and tests.
+
+feat: implement resume application with models, admin, serializers, API views, and tests for skills, experience, education, and certifications.
+
+feat: Implement blog application with models, serializers, admin integration, filters, views, and tests.
+
+test: Add comprehensive tests for projects app models and API views.
+
+feat: implement projects management module with models, admin, API endpoints, serializers, and filtering.
+
+feat: add core utilities for slug generation, email, and HTML sanitization, along with model mixins, pagination, and custom permissions.
+
+feat: Initialize base Django project settings including installed apps, middleware, database, static files, DRF, JWT, and Spectacular configurations.
+
+feat: introduce separate Django settings for development and production environments.
+
+chore: Remove a file from the project.
+
+feat: Initialize Django project with core settings, REST Framework, JWT, CORS, Whitenoise, and DRF Spectacular.
+
+feat: add backend file responsibility reference documentation
+
+feat: create initial backend structure with necessary files and directories
+
+refactor: reorganize backend requirements into separate files for base, development, and production
+
+docs: Add frontend and backend directory structure documentation.
+
+docs: Rename 'File Tree.md' to 'Portfolio_Project Tree.md'.
+
+Adds various Python bytecode files, a frontend package lock file, and a SQLite database.
+
+refactor: restructure project by moving frontend and backend configuration files into dedicated subdirectories.
+
+feat: Initialize new frontend application with core pages, UI components, routing, and a suite of calculator tools.
+
+feat: Configure Vite development server with API proxy and build output for Django static files.
+
+feat: Add API routes for health check, JWT authentication, OpenAPI documentation, and item management.
+
+feat: add health check endpoint and user-scoped CRUD API for items
+
+feat: Add `ItemSerializer` for `Item` model, including read-only owner and owner username fields.
+
+feat: add Item model for managing user-owned items.
+
+feat: Configure main URL patterns for the Django project, including admin, API, and SPA routing.
+
+feat: initialize Django project settings including DRF, JWT, CORS, Whitenoise, and static file configurations.
+
+feat: Initialize Django project structure and 'api' app.
+
+feat: Initialize the Django project structure with default settings, URLs, ASGI, WSGI, and management script.
+
+feat: Add AP Physics 1, AP Biology, and Linear Feet calculators along with their documentation.
+
+feat: Add an interactive AP Chemistry Score Calculator with a new React component and corresponding documentation.
+
+feat: Add Pokémon catch rate calculator component with data layers and UI for displaying results.
+
+feat: Implement the Linear Feet Calculator tool and its corresponding documentation.
+
+feat: add AP Statistics score calculator with interactive UI and documentation.
+
+feat: Add AP Calculus BC and AP World score calculators with their respective documentation.
+
+feat: Add AP Biology and AP Calculus BC score calculator documentation and component placeholders.
+
+feat: implement Tools page with interactive tool cards, category filtering, and dynamic hover effects.
+
+feat: Add initial portfolio data structures and core page components for Home and Tools.
+
+feat: Outline portfolio project architecture, design, and SEO details, and update Vite dependency.
+
+feat: Establish initial project structure, core application pages, and a comprehensive set of UI components.
+
+chore: update .gitignore
+
+Merge branch 'main' of https://github.com/Maimoon-github/Portfolio_Project
+
+feat: Add initial project setup archive and configure git ignore rules for development files.
+
+Implement feature X to enhance user experience and fix bug Y in module Z
+
+feat: Introduce foundational UI components, layout, NotFound page, and routing, alongside a refactored Button component.
+
+feat: Implement initial project structure with core layout, UI components, routing, and a 404 page.
+
+feat: Add Vitest configuration for React component testing with JSDOM environment and coverage setup.
+
+feat: Introduce comprehensive Vite configuration for React, including plugins, path aliases, dev server, and optimized build settings.
+
+build: Add tsconfig.node.json to configure TypeScript for Node.js environments.
+
+build: Add root tsconfig.json to enable TypeScript project references.
+
+feat: add `tsconfig.app.json` to configure TypeScript for the application.
+
+feat: initialize project with package.json, defining dependencies, scripts, and metadata.
+
+feat: Initialize project with basic HTML structure and ESLint configuration for React, TypeScript, and Vite.
+
+feat: Add .prettierignore to exclude files from Prettier formatting.
+
+chore: Add .gitignore file to exclude unnecessary files from version control.
+
+feat: Add ESLint configuration for React, TypeScript, and Vite, including rules for code style, accessibility, and import sorting.
+
+feat: Introduce .env.example template and initialize .env with development configuration.
+
+feat: Add `vite-env.d.ts` for TypeScript declarations of static asset imports.
+
+feat: Add main `index.css` to import global style layers in correct cascade order.
+
+feat: add foundational global app styles including root layout, smooth scrolling, and print styles
+
+feat: Initialize React application entry point with App component and global styles.
+
+feat: add initial application setup with routing, error boundary, analytics, and theme management.
+
+feat: Add Zod schemas and initial data for tools, blog posts, projects, and resume.
+
+feat: add core utility functions for animations, class name joining, constants, and number formatting.
+
+feat: add core type definitions for project, resume, tool, blog, and common data structures.
+
+feat: Introduce comprehensive styling system with semantic design tokens, dark theme, and foundational global styles.
+
+feat: introduce a new analytics service for tracking page views, CTA clicks, and errors.
+
+feat: implement contact form submission and analytics tracking services.
+
+feat: introduce a new 'Tools' page with category filtering and a custom grid layout for tool cards.
+
+feat: Add a new Sitemap page component with styling and route configuration.
+
+feat: implement new Resume page with comprehensive layout, styling, and print-specific adjustments.
+
+feat: implement Projects page with filterable project archive and styling.
+
+feat: introduce ProjectDetail page with comprehensive project display, data fetching, loading/error states, and styling.
+
+feat: Add Portfolio page with project display, category filtering, and dedicated styling.
+
+feat: introduce Home page with core sections and styling for a new portfolio site.
+
+feat: add documentation page with search, filters, and tutorial templates.
+
+feat: introduce documentation section with dynamic tutorial pages featuring markdown rendering and code highlighting.
+
+feat: implement Contact page with interactive form, client-side validation, and dedicated styling.
+
+feat: Add a new "Colophon" page detailing the site's design system, typography, tools, and ethics.
+
+feat: introduce blog functionality with a listing page, category filtering, and individual post views.
+
+feat: Introduce a new blog section with a listing page, category filtering, and individual post views.
+
+feat: Add new About page component with structured content sections and dedicated styling.
+
+feat: Add new custom hooks for project filtering, reduced motion preference, scroll position tracking, and theme management.
+
+feat: Add initial navigation, routing, and SEO configurations.
+
+feat: Introduce ToolCard UI component and establish initial site navigation, routing, and SEO configurations.
+
+feat: add ProjectCard UI component with styling, types, variants, and tests
+
+feat: Implement a complete navigation system including desktop, mobile, and dropdown components with associated styles and types.
+
+feat: add HeroKPIStrip UI component with KPICard, types, and styling.
+
+feat: Introduce FormInput UI component with styling, error handling, and support for various input types including textarea.
+
+feat: add new Footer UI component with styling, types, and implementation.
+
+feat: Add new `DataTable` and `FilterBar` UI components with their respective styles and types.
+
+feat: introduce new Card UI component with styling, types, and accent/hover effects.
+
+feat: add Button UI component with type definitions, styling, and unit tests for various states and interactions.
+
+feat: Add new Badge UI component with default and accent variants.
+
+feat: Add `Badge` UI component, core layout components (`Header`, `Layout`, `PageWrapper`, `SectionContainer`), and comprehensive `src` directory documentation.
+
+feat: add Sitemap and Colophon pages and a File Tree markdown document
+
+feat(project): implement complete Data Specialist portfolio with bulletproof-react architecture
+
+This commit establishes the production-ready foundation for "The Data Specialist" portfolio, following bulletproof-react architecture and the custom design system (Lapis Deep, Gold Fleck, Inter/JetBrains Mono). All core infrastructure, UI components, pages, data layer, and documentation are included.
+
+Infrastructure:
+- Configure Vite 5 with path aliases, code splitting, and asset handling
+- Set up strict TypeScript (split tsconfig.app.json / tsconfig.node.json) with path aliases (@/*)
+- Integrate ESLint (flat config) with TypeScript, React, accessibility rules, and Prettier
+- Add Vitest with jsdom, jest-dom, and coverage provider (v8)
+- Provide root config files (.gitignore, .env.example, etc.) and public assets (favicon, manifest, robots.txt)
+
+Design System (CSS Modules + tokens):
+- Create global style layers: variables.css (raw tokens), tokens.css (semantic aliases), animations.css, typography.css, dark.css theme
+- Define full "Data Specialist" color palette (--color-primary-deep, --color-accent-gold, etc.), 8px spacing scale, and motion durations
+- Implement responsive utilities, reduced‑motion preferences, and accessible focus‑visible styles
+
+UI Components (src/components/ui/):
+- Build reusable, typed primitives: Button (variants, loading state, icons), FilterBar (ARIA radiogroup, keyboard nav), ProjectCard (compact/detailed variants, metrics, badges), DataTable (sortable, generic), SectionContainer (padding/background variants)
+- Each component follows the folder convention: .tsx, .module.css, .types.ts, .test.tsx, index.ts
+
+Pages (src/pages/):
+- Implement all routes from the Navigation Structure: Home (with six sections), About, Resume, Portfolio (curated), Projects (archive), ProjectDetail, Tools, Blog (listing + post), Documentation (listing + tutorial), Contact
+- Use lazy loading for route‑level code splitting
+- Compose pages from layout primitives (Layout, PageWrapper, SectionContainer) and UI components
+
+Data Layer (src/data/ & src/types/):
+- Centralise TypeScript types in src/types/ (project.types.ts, blog.types.ts, tool.types.ts, resume.types.ts, navigation.types.ts, common.types.ts) with barrel export
+- Provide typed mock data in src/data/ (projects.ts, tools.ts, blog.ts, resume.ts) matching the interfaces
+- Add Zod schemas (project.schema.ts, tool.schema.ts, blog.schema.ts) for runtime validation and future CMS migration
+
+Utilities & Hooks (src/utils/, src/hooks/):
+- Create pure utility functions: formatMetric (number formatting), cn (conditional class joining), constants (centralised strings)
+- Build custom hooks: useTheme (localStorage + data-theme), useScrollPosition (throttled, direction), useFilteredProjects (memoized filtering), useReducedMotion (matchMedia)
+
+Services & Config (src/services/, src/config/):
+- Abstract side effects: contact.service.ts (fetch with retry, abort, ApiError), analytics.service.ts (provider‑agnostic page/CTA/error tracking)
+- Centralise configuration: routes.ts (typed route map), navigation.ts (primary/secondary nav from blueprint), seo.ts (default and page‑specific metadata)
+
+Documentation (docs/):
+- Provide handoff materials: css-variables.md (token reference), component-specs.md (props, states, usage), html-snippets.md (reusable patterns), json-schemas.md (data structures)
+- Add architecture overview (decisions, folder structure) and SEO strategy (keywords, silos, structured data)
+
+This foundation fully implements "The Data Specialist" brand, ensures accessibility (WCAG AA), and is optimised for performance (Core Web Vitals) and developer experience. No breaking changes – the project is ready for further feature development or CMS integration.
+
+---
+
+---
+
+docs: scaffold React + TypeScript project architecture for Data Specialist Portfolio
+
+- Define full src/ directory structure (components, pages, types, services, hooks, utils, config)
+- Convert JSX/JS codebase plan to strict TypeScript (.tsx/.ts) with co-located types
+- Add tsconfig split (app/node) for Vite + TypeScript compatibility
+- Establish design token system in styles/ (variables.css, tokens.css, themes/dark.css)
+- Document component folder convention (Component.tsx, .module.css, .types.ts, .test.tsx, index.ts)
+- Add services/ layer for contact form and analytics decoupled from UI
+- Add config/ layer for typed routes, navigation, and SEO metadata
+- Set up test infrastructure: Vitest (unit), React Testing Library, Playwright (e2e)
+- Include design/ folder with Figma source files and token exports
+- Add CLI scaffolding steps and npm scripts reference
+
+Refs: react-ts-project-structure-ME.md, design-brief.json
+
+docs: scaffold React + TypeScript project architecture for Data Specialist Portfolio
+
+- Define full src/ directory structure (components, pages, types, services, hooks, utils, config)
+- Convert JSX/JS codebase plan to strict TypeScript (.tsx/.ts) with co-located types
+- Add tsconfig split (app/node) for Vite + TypeScript compatibility
+- Establish design token system in styles/ (variables.css, tokens.css, themes/dark.css)
+- Document component folder convention (Component.tsx, .module.css, .types.ts, .test.tsx, index.ts)
+- Add services/ layer for contact form and analytics decoupled from UI
+- Add config/ layer for typed routes, navigation, and SEO metadata
+- Set up test infrastructure: Vitest (unit), React Testing Library, Playwright (e2e)
+- Include design/ folder with Figma source files and token exports
+- Add CLI scaffolding steps and npm scripts reference
+
+Refs: react-ts-project-structure-ME.md, design-brief.json
+
+deleted each thing for new begining
+
+feat: add Docker deployment guide and update deployment script; streamline setup process and provide detailed instructions for users
+
+feat: refactor Dockerfile and nginx configuration; streamline build process and improve service management with supervisord
+
+feat: enhance Docker setup and health check endpoints; add health check view and update nginx configuration for improved service monitoring
+
+feat: update Dockerfile and supervisord configuration for improved frontend build and logging; allow all hosts in Django settings
+
+Add Docker Compose and Supervisor configuration files
+
+- Created a new docker-compose.yml file for container orchestration.
+- Added supervisord.conf to manage Nginx and Django processes.
+- Configured Nginx to run in the foreground and set up Gunicorn for Django.
+- Included logging for both Nginx and Django processes.
+
+Add Docker configuration and GitHub Actions workflow
+
+feat: integrate TinyMCE for rich text editing in admin forms; update models to allow blank thumbnails for blog, course, and project; add new migration files
+
+Resolve merge conflicts
+
+refactor: update sample data creation script and admin configurations for courses and projects; add enrollment and lesson completion models
+
+Fix backend functionality and restore frontend-backend synchronization
+
+Co-authored-by: Maimoon-github <102782444+Maimoon-github@users.noreply.github.com>
+
+Initial assessment and planning
+
+Co-authored-by: Maimoon-github <102782444+Maimoon-github@users.noreply.github.com>
+
+Initial plan
+Checkpoint from VS Code for coding agent session
+
+Complete Content Management System
+
+Blog posts with categories, tags, and SEO optimization
+Project portfolio with technology stack filtering
+News system with priority-based organization
+Hierarchical page management with MPTT
+Course management for LMS functionality
+User authentication and profile management
+Frontend-Backend Synchronization
+
+Resolved content visibility issues between Django and React
+Consistent content filtering with published/admin managers
+Real-time content sync monitoring via dashboard API
+SEO optimization with structured data for all content types
+Comprehensive API System
+
+RESTful APIs for all content types
+JWT authentication for secure access
+Admin and public endpoint separation
+Advanced filtering, search, and pagination
+Complete API documentation with Swagger UI
+Dashboard & Monitoring
+
+Content synchronization status monitoring
+Analytics and performance metrics
+Health check endpoints
+Admin management tools
+
+the code implimentation in the backend of each apps and the adjusments for seo paramitors etc.
+
+fix: update .gitignore to include Thumbs.db and ensure node_modules is listed correctly
+
+feat: add .gitignore file to exclude dependencies, environment files, logs, and OS files
+
+feat: initialize project structure with main entry point and global styles
+
+- Added main.tsx as the entry point for the React application.
+- Created globals.css for global styles and theme variables.
+- Established a file tree structure for components, styles, and utilities.
+- Configured Vite for React with necessary plugins and path aliases.
+
+feat: Initialize LMS backend project structure with core, users, courses, news, pages, and projects apps
+
+- Created core API URLs and viewsets for content management.
+- Added courses app with models for Category, Tag, Course, Lesson, and Enrollment.
+- Established news app with models for NewsCategory and NewsItem.
+- Implemented pages app with hierarchical Page model and serializers.
+- Developed projects app with Project and Technology models.
+- Configured Django settings for REST framework, JWT authentication, and CORS.
+- Set up user management with custom User model and profile handling.
+- Created initial URL routing for all apps and integrated API documentation.
+- Added logging configuration for content access and publication events.
+- Established initial directory structure for media files and logs.
+
+Initial commit

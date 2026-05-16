@@ -1,0 +1,237 @@
+4e2aca1 refactor: remove unused and deprecated codebase files
+41a9242 feat: implement skill management framework with validation scripts, documentation, and evaluation tools
+9439af1 feat: add grok_report.pdf to documentation directory
+49e7d82 feat: initialize skill evaluation framework and project structure with benchmarking and reporting tools
+c178863 feat: initialize project structure with React, Tailwind CSS, and comprehensive UI component library
+2c87ef4 feat: implement full-stack blog system with Wagtail backend, Ninja API, and Next.js frontend components
+da1541f feat: implement Project, Skill, and Experience models and update roadmap status
+7ba24b6 feat: initialize portfolio backend models, admin configuration, and frontend UI components for projects and skills
+9b457d6 feat: implement backend API structure for auth, blog, calculators, and portfolio modules
+6bb64aa chore: initial Next.js 15 + shadcn/ui setup + GitHub Actions CI chore: initial Django 5 + Wagtail 6 + Django Ninja setup + GitHub Actions CI
+a1876ae feat: initialize Django backend with modular app structure
+419352d feat: initialize frontend with Next.js and shadcn/ui
+dcf47aa chore: remove unused file and associated references
+9bd3408 feat: initialize project structure with frontend, backend repositories, and roadmap documentation
+0b3cc6d chore: remove project scaffolding, docker configurations, and update .gitignore
+de1b64d feat: implement root layout and Wagtail-integrated API services for blog and tools
+2b28b73 feat: initialize frontend application structure with core pages, layouts, and routing modules
+201e74d feat: initialize portfolio frontend with UI components, sections, and layout structure
+b33f47b refactor: remove unused legacy configuration files and associated helper utilities
+2631f25 feat: initialize project structure with Next.js app router and landing page components
+7555e1f Refactor code structure for improved readability and maintainability
+7936c02 feat: Revamp marketing pages with new contact and home layouts
+20ff27b Refactor code structure for improved readability and maintainability
+736c124 Refactor code structure for improved readability and maintainability
+4ebb648 feat: Enhance blog SEO features with custom validation, new fields, and admin improvements
+5291962 feat: Refactor page models to inherit from BasePage and add canonical URL and OG image fields for blog, pages, and tools
+f65edcb feat: Add initial migrations for accounts, blog, pages, and tools apps; update settings for Wagtail and session management
+e145679 feat: Implement accounts app with custom user model, JWT authentication, and DRF serializers
+bc0d0fb feat: Add Wagtail page models and admin configuration for marketing site
+707aae9 feat: Implement Wagtail hooks for blog and tools applications
+0b1d5af Add placeholder pages for tool and category routes
+acfa568 chore: update code structure for better readability and maintainability
+d720184 feat: enhance layout and SEO for portfolio site
+6396f32 feat: initialize backend and frontend structure with calculators and API endpoints
+5330f11 Refactor code structure for improved readability and maintainability
+57ebb04 feat: add initial structure for accounts, blog, core, pages, and tools apps
+5660e20 feat: add environment configuration files for Django and Next.js setup
+3181720 Refactor code structure for improved readability and maintainability
+d9bcbdd feat: add global styles, layout, and home page for Next.js app
+4c1cfe1 Add frontend configuration and Nginx setup for deployment
+874eea1 feat: add Wagtail settings URL configuration to enable settings menu
+52877e1 feat: implement blog functionality with Wagtail CMS, including models, views, serializers, and templates
+0dd56f9 feat: restructure comments and cms apps, update imports, and add initial files
+8ba4530 Add development and production settings, URL configuration, and core utilities
+5769825 feat: initialize backend project structure with Wagtail CMS, production settings, and core dependencies
+3667901 chore: Remove SEO app references and delete unused logo file
+28847be Refactor SEO application: remove URLs and views, update sidebar styles and scripts
+e9d85f4 feat(seo): Add SEO sidebar for live analysis and metrics display
+cce6818 Refactor code structure for improved readability and maintainability
+f408137 Refactor code structure for improved readability and maintainability
+569aae7 Remove unused static files and update staticfiles.json to reflect changes
+a810586 feat(seo): Add initial migration for PostSEO model and update SEO score filter
+0468c08 feat(seo): Implement Celery tasks for SEO analysis, cache management, and maintenance
+caca706 Fix: Update settings and URL routing for improved media handling and React SPA integration
+539fe03 Fix ALLOWED_HOSTS configuration and update URL routing for React app
+88774f4 Update project file tree path and remove pnpm-lock.yaml from documentation
+46cc7d3 chore: Update database file to reflect recent changes
+6048457 Fix STATICFILES_STORAGE conflict with STORAGES for Render
+8f41921 Fix production settings for Render: ALLOWED_HOSTS + CORS
+39fc966 chore: Update database file to reflect recent changes
+abd4d4e fix: Correct API_BASE URL to remove unnecessary version segment
+5e96e0f fix: Update API_BASE URL to point to the correct backend endpoint
+b889d1a fix: Update Pillow version to 12.0.0 for image processing compatibility
+1e21b45 chore: Update production requirements to include base and development dependencies
+6f0d2a1 Update API base URL and change build output directory
+60f8f50 Merge branch 'main' of https://github.com/Maimoon-github/Portfolio_Project
+dc8d011 feat: Implement Dockerized production deployment with Nginx, Django, Cloudflare tunnel, and an automated deployment script.
+11a748c Delete .venv directory
+8ce613f Add .gitignore to prevent large files
+5e6125a Add .gitignore to prevent large files
+aa458e0 feat: Add production deployment setup including build script, settings, and SPA serving.
+5087f7c Clean commit without large WebSite.zip
+acd1a46 feat: Implement initial portfolio website structure including frontend pages, components, and backend APIs for blog, projects, and resume.
+7330c55 feat: Implement initial API routing with authentication, documentation, and serializers for blog and projects applications.
+4f97269 feat: initialize blog application with models, admin configurations, and URL routing.
+f05359f Remove a file.
+35fce03 feat: Implement the initial blog application with core models, admin configurations, and related utilities.
+8453f97 feat: implement a comprehensive comment system including user submission, replies, and staff moderation.
+c7fb400 feat: implement a new Django blog application including models, views, templates, and tests.
+097b481 feat: Implement project display and detail pages with reusable components, data hooks, and a popup modal.
+4a2ece5 feat: Initialize full-stack portfolio project with Django backend, React frontend, and OpenAPI client generation.
+6e52ad8 docs: Refactor project tree documentation by creating separate frontend and backend_v2 tree files.
+39da285 feat: Add initial Navbar and Footer components and a backend SQLite database.
+dabef54 feat: Add initial backend project structure including blog, contact, knowledge, projects, and resume applications.
+ef03627 chore: backend v2 deleted.
+eef39c8 feat: Implement initial Django URL routing including admin, API endpoints for various apps, debug toolbar, media serving, and a single-page application catch-all.
+8819ba9 feat: Initialize Django backend with DRF, API routing, and base settings for portfolio applications.
+8ff9c37 feat: Implement environment-specific Django settings for development and production.
+b65e56f feat: initialize Django REST API project with core app structure, API routing, and environment configuration.
+a3aa6e5 feat: Implement structured dependency management using `base.txt`, `development.txt`, and `production.txt` files.
+758f549 feat: implement resume app with models, serializers, and an aggregated API endpoint for resume data.
+574e80e feat: Implement new projects application with API endpoints for project management, including models, serializers, views, and tests.
+e1c3dbd feat: implement initial knowledge app with models, views, URLs, admin, and tests for courses, tools, and resources.
+815ad24 feat: Implement contact form submission functionality with honeypot protection, admin management, and email notification.
+50d8071 feat: implement blog application with models, views, serializers, and tests for posts, categories, and tags.
+0043d80 feat: Set up core API routing, documentation, and authentication endpoints.
+5164596 feat: Add core utilities, model mixins, pagination, and permissions.
+9c9ee8b feat: Initialize new Django project structure with core backend files and multiple applications.
+9f7625b feat: Initialize Django backend project with development settings, URL routing, and core dependencies.
+43abe81 feat: Initialize project environment with virtual environment, SQLite database, and compiled Django application files.
+59907fe feat: Initialize frontend application with Blog and Knowledge pages, routing, and core dependencies.
+78e5a22 feat: Add knowledge base, courses, tools, projects, and resume sections with corresponding frontend pages, components, hooks, and a new backend API.
+fbc2e99 docs: Document frontend project tree structure.
+7f3f5b3 feat: Implement Contact and Login pages and establish core frontend project structure with API service.
+19e7749 feat: Add frontend configuration and blog post page, alongside various Python virtual environment and pip vendor files.
+08524d8 feat: Implement initial API endpoints and data models for projects, blog, contact, knowledge, and resume modules.
+7849d28 feat: Add initial `index.html` template for the application's main page.
+f29db16 feat: Add pytest configuration for the Django project, including settings module, file patterns, and plugins.
+df70520 feat: Add example environment configuration file for Django settings.
+70754a7 feat: Implement the initial knowledge application including models, serializers, views, and admin integration for courses, tools, and resources.
+9d1676b feat: Implement a new contact form submission system with dedicated models, API endpoint, and admin integration.
+ec1cced feat: Add resume application including models, serializers, views, and admin for skills, experience, education, and certifications.
+b372573 feat: Implement initial blog application with models, serializers, views, URLs, admin, and filters.
+94abbdc feat: Add projects application with models, serializers, views, URLs, admin, and filters.
+d14d0b8 -
+778462a feat: Add core utilities, model mixins, pagination, and permissions.
+7d81a22 feat: Add comprehensive documentation detailing the responsibilities, functional roles, and interactions of backend files and directories.
+340c3af feat: implement contact form submission module with API, model, admin, and tests.
+aaa03df feat: implement resume application with models, admin, serializers, API views, and tests for skills, experience, education, and certifications.
+f9e8fc2 feat: Implement blog application with models, serializers, admin integration, filters, views, and tests.
+3034444 test: Add comprehensive tests for projects app models and API views.
+d3d8a88 feat: implement projects management module with models, admin, API endpoints, serializers, and filtering.
+7e4812f feat: add core utilities for slug generation, email, and HTML sanitization, along with model mixins, pagination, and custom permissions.
+cb9c9f3 feat: Initialize base Django project settings including installed apps, middleware, database, static files, DRF, JWT, and Spectacular configurations.
+11d0bca feat: introduce separate Django settings for development and production environments.
+2bdc4a5 chore: Remove a file from the project.
+abebf75 feat: Initialize Django project with core settings, REST Framework, JWT, CORS, Whitenoise, and DRF Spectacular.
+e4c978a feat: add backend file responsibility reference documentation
+f37710a feat: create initial backend structure with necessary files and directories
+f7ac491 refactor: reorganize backend requirements into separate files for base, development, and production
+6bbe556 docs: Add frontend and backend directory structure documentation.
+f19e70e docs: Rename 'File Tree.md' to 'Portfolio_Project Tree.md'.
+9220118 Adds various Python bytecode files, a frontend package lock file, and a SQLite database.
+8835264 refactor: restructure project by moving frontend and backend configuration files into dedicated subdirectories.
+cd9459a feat: Initialize new frontend application with core pages, UI components, routing, and a suite of calculator tools.
+605876b feat: Configure Vite development server with API proxy and build output for Django static files.
+c710170 feat: Add API routes for health check, JWT authentication, OpenAPI documentation, and item management.
+85d4006 feat: add health check endpoint and user-scoped CRUD API for items
+86b8ccf feat: Add `ItemSerializer` for `Item` model, including read-only owner and owner username fields.
+1f8184f feat: add Item model for managing user-owned items.
+e17fae2 feat: Configure main URL patterns for the Django project, including admin, API, and SPA routing.
+993114a feat: initialize Django project settings including DRF, JWT, CORS, Whitenoise, and static file configurations.
+768b10d feat: Initialize Django project structure and 'api' app.
+a641880 feat: Initialize the Django project structure with default settings, URLs, ASGI, WSGI, and management script.
+2e01f07 feat: Add AP Physics 1, AP Biology, and Linear Feet calculators along with their documentation.
+fa49425 feat: Add an interactive AP Chemistry Score Calculator with a new React component and corresponding documentation.
+98286f4 feat: Add Pokémon catch rate calculator component with data layers and UI for displaying results.
+073a1c1 feat: Implement the Linear Feet Calculator tool and its corresponding documentation.
+db9f393 feat: add AP Statistics score calculator with interactive UI and documentation.
+a152565 feat: Add AP Calculus BC and AP World score calculators with their respective documentation.
+27ebc7f feat: Add AP Biology and AP Calculus BC score calculator documentation and component placeholders.
+07cc91a feat: implement Tools page with interactive tool cards, category filtering, and dynamic hover effects.
+47bd5ed feat: Add initial portfolio data structures and core page components for Home and Tools.
+b37897f feat: Outline portfolio project architecture, design, and SEO details, and update Vite dependency.
+aa2dcb0 feat: Establish initial project structure, core application pages, and a comprehensive set of UI components.
+2c713de chore: update .gitignore
+54b7f6a Merge branch 'main' of https://github.com/Maimoon-github/Portfolio_Project
+acf72ba feat: Add initial project setup archive and configure git ignore rules for development files.
+e43e7b5 Implement feature X to enhance user experience and fix bug Y in module Z
+a5a8a03 feat: Introduce foundational UI components, layout, NotFound page, and routing, alongside a refactored Button component.
+483b600 feat: Implement initial project structure with core layout, UI components, routing, and a 404 page.
+8e152f2 feat: Add Vitest configuration for React component testing with JSDOM environment and coverage setup.
+449e4c6 feat: Introduce comprehensive Vite configuration for React, including plugins, path aliases, dev server, and optimized build settings.
+c30bf39 build: Add tsconfig.node.json to configure TypeScript for Node.js environments.
+3df15d9 build: Add root tsconfig.json to enable TypeScript project references.
+e8c0fb3 feat: add `tsconfig.app.json` to configure TypeScript for the application.
+5a4076e feat: initialize project with package.json, defining dependencies, scripts, and metadata.
+55db1ca feat: Initialize project with basic HTML structure and ESLint configuration for React, TypeScript, and Vite.
+06c894a feat: Add .prettierignore to exclude files from Prettier formatting.
+a567e21 chore: Add .gitignore file to exclude unnecessary files from version control.
+f1e8584 feat: Add ESLint configuration for React, TypeScript, and Vite, including rules for code style, accessibility, and import sorting.
+bab6180 feat: Introduce .env.example template and initialize .env with development configuration.
+836cc88 feat: Add `vite-env.d.ts` for TypeScript declarations of static asset imports.
+99adde4 feat: Add main `index.css` to import global style layers in correct cascade order.
+1c779ea feat: add foundational global app styles including root layout, smooth scrolling, and print styles
+4dd945e feat: Initialize React application entry point with App component and global styles.
+e386e59 feat: add initial application setup with routing, error boundary, analytics, and theme management.
+7f2cffa feat: Add Zod schemas and initial data for tools, blog posts, projects, and resume.
+6709fcb feat: add core utility functions for animations, class name joining, constants, and number formatting.
+2e1d66e feat: add core type definitions for project, resume, tool, blog, and common data structures.
+dda345f feat: Introduce comprehensive styling system with semantic design tokens, dark theme, and foundational global styles.
+a588d05 feat: introduce a new analytics service for tracking page views, CTA clicks, and errors.
+5ff3c94 feat: implement contact form submission and analytics tracking services.
+66866d5 feat: introduce a new 'Tools' page with category filtering and a custom grid layout for tool cards.
+d5f4d94 feat: Add a new Sitemap page component with styling and route configuration.
+2985d81 feat: implement new Resume page with comprehensive layout, styling, and print-specific adjustments.
+d25c8ee feat: implement Projects page with filterable project archive and styling.
+3a4bfb5 feat: introduce ProjectDetail page with comprehensive project display, data fetching, loading/error states, and styling.
+9d91090 feat: Add Portfolio page with project display, category filtering, and dedicated styling.
+cdc6e0c feat: introduce Home page with core sections and styling for a new portfolio site.
+91e89ab feat: add documentation page with search, filters, and tutorial templates.
+a2e0efe feat: introduce documentation section with dynamic tutorial pages featuring markdown rendering and code highlighting.
+0e3c432 feat: implement Contact page with interactive form, client-side validation, and dedicated styling.
+4a37cdb feat: Add a new "Colophon" page detailing the site's design system, typography, tools, and ethics.
+faf8503 feat: introduce blog functionality with a listing page, category filtering, and individual post views.
+a76a5d6 feat: Introduce a new blog section with a listing page, category filtering, and individual post views.
+9e31f8e feat: Add new About page component with structured content sections and dedicated styling.
+25f42c3 feat: Add new custom hooks for project filtering, reduced motion preference, scroll position tracking, and theme management.
+b438530 feat: Add initial navigation, routing, and SEO configurations.
+34362ac feat: Introduce ToolCard UI component and establish initial site navigation, routing, and SEO configurations.
+a79c7cd feat: add ProjectCard UI component with styling, types, variants, and tests
+106d119 feat: Implement a complete navigation system including desktop, mobile, and dropdown components with associated styles and types.
+d3dc1f3 feat: add HeroKPIStrip UI component with KPICard, types, and styling.
+bea0b30 feat: Introduce FormInput UI component with styling, error handling, and support for various input types including textarea.
+730b4a1 feat: add new Footer UI component with styling, types, and implementation.
+d4e1e6e feat: Add new `DataTable` and `FilterBar` UI components with their respective styles and types.
+10397e6 feat: introduce new Card UI component with styling, types, and accent/hover effects.
+108132a feat: add Button UI component with type definitions, styling, and unit tests for various states and interactions.
+c0fb55e feat: Add new Badge UI component with default and accent variants.
+954738f feat: Add `Badge` UI component, core layout components (`Header`, `Layout`, `PageWrapper`, `SectionContainer`), and comprehensive `src` directory documentation.
+d5ab239 feat: add Sitemap and Colophon pages and a File Tree markdown document
+694e509 feat(project): implement complete Data Specialist portfolio with bulletproof-react architecture
+d7983d3 ---
+bdf09b9 ---
+74f6a00 docs: scaffold React + TypeScript project architecture for Data Specialist Portfolio
+6f4de80 docs: scaffold React + TypeScript project architecture for Data Specialist Portfolio
+5b1fd9c deleted each thing for new begining
+90e3a36 feat: add Docker deployment guide and update deployment script; streamline setup process and provide detailed instructions for users
+0bcdbd0 feat: refactor Dockerfile and nginx configuration; streamline build process and improve service management with supervisord
+e6b96b7 feat: enhance Docker setup and health check endpoints; add health check view and update nginx configuration for improved service monitoring
+68f7084 feat: update Dockerfile and supervisord configuration for improved frontend build and logging; allow all hosts in Django settings
+4f61980 Add Docker Compose and Supervisor configuration files
+a853aa2 Add Docker configuration and GitHub Actions workflow
+0febed4 feat: integrate TinyMCE for rich text editing in admin forms; update models to allow blank thumbnails for blog, course, and project; add new migration files
+4d35984 Resolve merge conflicts
+7d79b82 refactor: update sample data creation script and admin configurations for courses and projects; add enrollment and lesson completion models
+3e46715 Fix backend functionality and restore frontend-backend synchronization
+8076fd8 Initial assessment and planning
+f991879 Initial plan
+9033dcb Checkpoint from VS Code for coding agent session
+b76d171 Complete Content Management System
+d86abd6 the code implimentation in the backend of each apps and the adjusments for seo paramitors etc.
+edf8f85 fix: update .gitignore to include Thumbs.db and ensure node_modules is listed correctly
+26e0466 feat: add .gitignore file to exclude dependencies, environment files, logs, and OS files
+4b0200d feat: initialize project structure with main entry point and global styles
+904b111 feat: Initialize LMS backend project structure with core, users, courses, news, pages, and projects apps
+59f0fdb Initial commit

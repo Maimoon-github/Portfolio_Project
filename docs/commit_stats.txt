@@ -1,0 +1,470 @@
+4e2aca1 refactor: remove unused and deprecated codebase files
+ 80 files changed, 16566 deletions(-)
+41a9242 feat: implement skill management framework with validation scripts, documentation, and evaluation tools
+ 18 files changed, 0 insertions(+), 0 deletions(-)
+9439af1 feat: add grok_report.pdf to documentation directory
+ 91 files changed, 13683 deletions(-)
+49e7d82 feat: initialize skill evaluation framework and project structure with benchmarking and reporting tools
+ 20 files changed, 10591 insertions(+), 3 deletions(-)
+c178863 feat: initialize project structure with React, Tailwind CSS, and comprehensive UI component library
+ 79 files changed, 10891 insertions(+)
+2c87ef4 feat: implement full-stack blog system with Wagtail backend, Ninja API, and Next.js frontend components
+ 16 files changed, 1295 insertions(+), 2 deletions(-)
+da1541f feat: implement Project, Skill, and Experience models and update roadmap status
+ 2 files changed, 18 insertions(+), 8 deletions(-)
+7ba24b6 feat: initialize portfolio backend models, admin configuration, and frontend UI components for projects and skills
+ 30 files changed, 898 insertions(+), 75 deletions(-)
+9b457d6 feat: implement backend API structure for auth, blog, calculators, and portfolio modules
+ 5 files changed, 6 insertions(+), 6 deletions(-)
+6bb64aa chore: initial Next.js 15 + shadcn/ui setup + GitHub Actions CI chore: initial Django 5 + Wagtail 6 + Django Ninja setup + GitHub Actions CI
+ 3 files changed, 114 insertions(+)
+a1876ae feat: initialize Django backend with modular app structure
+ 36 files changed, 381 insertions(+)
+419352d feat: initialize frontend with Next.js and shadcn/ui
+ 21 files changed, 11762 insertions(+)
+dcf47aa chore: remove unused file and associated references
+ 2 files changed, 2 deletions(-)
+9bd3408 feat: initialize project structure with frontend, backend repositories, and roadmap documentation
+ 4 files changed, 1339 insertions(+)
+0b3cc6d chore: remove project scaffolding, docker configurations, and update .gitignore
+ 435 files changed, 142 insertions(+), 60796 deletions(-)
+de1b64d feat: implement root layout and Wagtail-integrated API services for blog and tools
+ 4 files changed, 93 insertions(+), 32 deletions(-)
+2b28b73 feat: initialize frontend application structure with core pages, layouts, and routing modules
+ 26 files changed, 1011 insertions(+), 3317 deletions(-)
+201e74d feat: initialize portfolio frontend with UI components, sections, and layout structure
+ 16 files changed, 723 insertions(+), 401 deletions(-)
+b33f47b refactor: remove unused legacy configuration files and associated helper utilities
+ 34 files changed, 5250 deletions(-)
+2631f25 feat: initialize project structure with Next.js app router and landing page components
+ 29 files changed, 2273 insertions(+), 314 deletions(-)
+7555e1f Refactor code structure for improved readability and maintainability
+ 78 files changed, 5428 insertions(+), 5674 deletions(-)
+7936c02 feat: Revamp marketing pages with new contact and home layouts
+ 15 files changed, 615 insertions(+), 114 deletions(-)
+20ff27b Refactor code structure for improved readability and maintainability
+ 40 files changed, 5505 insertions(+)
+736c124 Refactor code structure for improved readability and maintainability
+ 4 files changed, 116 insertions(+), 15 deletions(-)
+4ebb648 feat: Enhance blog SEO features with custom validation, new fields, and admin improvements
+ 7 files changed, 536 insertions(+), 11 deletions(-)
+5291962 feat: Refactor page models to inherit from BasePage and add canonical URL and OG image fields for blog, pages, and tools
+ 7 files changed, 130 insertions(+), 18 deletions(-)
+f65edcb feat: Add initial migrations for accounts, blog, pages, and tools apps; update settings for Wagtail and session management
+ 11 files changed, 286 insertions(+), 25 deletions(-)
+e145679 feat: Implement accounts app with custom user model, JWT authentication, and DRF serializers
+ 14 files changed, 281 insertions(+), 15 deletions(-)
+bc0d0fb feat: Add Wagtail page models and admin configuration for marketing site
+ 5 files changed, 433 insertions(+)
+707aae9 feat: Implement Wagtail hooks for blog and tools applications
+ 18 files changed, 1453 insertions(+), 116 deletions(-)
+0b1d5af Add placeholder pages for tool and category routes
+ 22 files changed, 2846 insertions(+), 6955 deletions(-)
+acfa568 chore: update code structure for better readability and maintainability
+ 6 files changed, 10263 insertions(+), 39 deletions(-)
+d720184 feat: enhance layout and SEO for portfolio site
+ 50 files changed, 2339 insertions(+), 790 deletions(-)
+6396f32 feat: initialize backend and frontend structure with calculators and API endpoints
+ 113 files changed, 1178 insertions(+), 44 deletions(-)
+5330f11 Refactor code structure for improved readability and maintainability
+ 2 files changed, 2270 insertions(+)
+57ebb04 feat: add initial structure for accounts, blog, core, pages, and tools apps
+ 15 files changed, 0 insertions(+), 0 deletions(-)
+5660e20 feat: add environment configuration files for Django and Next.js setup
+ 2 files changed, 88 insertions(+)
+3181720 Refactor code structure for improved readability and maintainability
+ 2 files changed, 3496 insertions(+)
+d9bcbdd feat: add global styles, layout, and home page for Next.js app
+ 25 files changed, 7195 insertions(+)
+4c1cfe1 Add frontend configuration and Nginx setup for deployment
+ 250 files changed, 1166 insertions(+), 1153 deletions(-)
+874eea1 feat: add Wagtail settings URL configuration to enable settings menu
+ 1 file changed, 3 insertions(+)
+52877e1 feat: implement blog functionality with Wagtail CMS, including models, views, serializers, and templates
+ 11 files changed, 506 insertions(+), 11 deletions(-)
+0dd56f9 feat: restructure comments and cms apps, update imports, and add initial files
+ 13 files changed, 28 insertions(+), 8 deletions(-)
+8ba4530 Add development and production settings, URL configuration, and core utilities
+ 173 files changed, 0 insertions(+), 0 deletions(-)
+5769825 feat: initialize backend project structure with Wagtail CMS, production settings, and core dependencies
+ 4 files changed, 149 insertions(+), 39 deletions(-)
+3667901 chore: Remove SEO app references and delete unused logo file
+ 3 files changed, 7 deletions(-)
+28847be Refactor SEO application: remove URLs and views, update sidebar styles and scripts
+ 36 files changed, 15 insertions(+), 11850 deletions(-)
+e9d85f4 feat(seo): Add SEO sidebar for live analysis and metrics display
+ 3 files changed, 356 insertions(+)
+cce6818 Refactor code structure for improved readability and maintainability
+ 2 files changed, 11 insertions(+), 683 deletions(-)
+f408137 Refactor code structure for improved readability and maintainability
+ 2 files changed, 769 deletions(-)
+569aae7 Remove unused static files and update staticfiles.json to reflect changes
+ 661 files changed, 77418 deletions(-)
+a810586 feat(seo): Add initial migration for PostSEO model and update SEO score filter
+ 6 files changed, 155 insertions(+), 23 deletions(-)
+0468c08 feat(seo): Implement Celery tasks for SEO analysis, cache management, and maintenance
+ 37 files changed, 11559 insertions(+), 50 deletions(-)
+caca706 Fix: Update settings and URL routing for improved media handling and React SPA integration
+ 3 files changed, 61 insertions(+), 28 deletions(-)
+539fe03 Fix ALLOWED_HOSTS configuration and update URL routing for React app
+ 2 files changed, 11 insertions(+), 4 deletions(-)
+88774f4 Update project file tree path and remove pnpm-lock.yaml from documentation
+ 3 files changed, 716 insertions(+), 7 deletions(-)
+46cc7d3 chore: Update database file to reflect recent changes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+6048457 Fix STATICFILES_STORAGE conflict with STORAGES for Render
+ 108 files changed, 281 insertions(+), 779 deletions(-)
+8f41921 Fix production settings for Render: ALLOWED_HOSTS + CORS
+ 1 file changed, 42 insertions(+), 30 deletions(-)
+39fc966 chore: Update database file to reflect recent changes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+abd4d4e fix: Correct API_BASE URL to remove unnecessary version segment
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+5e96e0f fix: Update API_BASE URL to point to the correct backend endpoint
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+b889d1a fix: Update Pillow version to 12.0.0 for image processing compatibility
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+1e21b45 chore: Update production requirements to include base and development dependencies
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+6f0d2a1 Update API base URL and change build output directory
+ 5 files changed, 243 insertions(+), 4736 deletions(-)
+60f8f50 Merge branch 'main' of https://github.com/Maimoon-github/Portfolio_Project
+dc8d011 feat: Implement Dockerized production deployment with Nginx, Django, Cloudflare tunnel, and an automated deployment script.
+ 10 files changed, 333 insertions(+), 208 deletions(-)
+11a748c Delete .venv directory
+ 782 files changed, 124464 deletions(-)
+8ce613f Add .gitignore to prevent large files
+ 1 file changed, 35 insertions(+), 1 deletion(-)
+5e6125a Add .gitignore to prevent large files
+ 1 file changed, 21 insertions(+)
+aa458e0 feat: Add production deployment setup including build script, settings, and SPA serving.
+ 4 files changed, 146 insertions(+), 37 deletions(-)
+5087f7c Clean commit without large WebSite.zip
+ 696 files changed, 83773 insertions(+), 5430 deletions(-)
+acd1a46 feat: Implement initial portfolio website structure including frontend pages, components, and backend APIs for blog, projects, and resume.
+ 35 files changed, 6230 insertions(+), 939 deletions(-)
+7330c55 feat: Implement initial API routing with authentication, documentation, and serializers for blog and projects applications.
+ 8 files changed, 34 insertions(+), 76 deletions(-)
+4f97269 feat: initialize blog application with models, admin configurations, and URL routing.
+ 7 files changed, 51 insertions(+), 31 deletions(-)
+f05359f Remove a file.
+ 21 files changed, 806 deletions(-)
+35fce03 feat: Implement the initial blog application with core models, admin configurations, and related utilities.
+ 16 files changed, 806 insertions(+), 148 deletions(-)
+8453f97 feat: implement a comprehensive comment system including user submission, replies, and staff moderation.
+ 20 files changed, 372 insertions(+)
+c7fb400 feat: implement a new Django blog application including models, views, templates, and tests.
+ 22 files changed, 806 insertions(+)
+097b481 feat: Implement project display and detail pages with reusable components, data hooks, and a popup modal.
+ 6 files changed, 1108 insertions(+), 383 deletions(-)
+4a2ece5 feat: Initialize full-stack portfolio project with Django backend, React frontend, and OpenAPI client generation.
+ 19 files changed, 1224 insertions(+), 177 deletions(-)
+6e52ad8 docs: Refactor project tree documentation by creating separate frontend and backend_v2 tree files.
+ 3 files changed, 157 insertions(+), 7 deletions(-)
+39da285 feat: Add initial Navbar and Footer components and a backend SQLite database.
+ 3 files changed, 3 insertions(+)
+dabef54 feat: Add initial backend project structure including blog, contact, knowledge, projects, and resume applications.
+ 146 files changed, 0 insertions(+), 0 deletions(-)
+ef03627 chore: backend v2 deleted.
+ 149 files changed, 4672 deletions(-)
+eef39c8 feat: Implement initial Django URL routing including admin, API endpoints for various apps, debug toolbar, media serving, and a single-page application catch-all.
+ 3 files changed, 52 insertions(+), 5 deletions(-)
+8819ba9 feat: Initialize Django backend with DRF, API routing, and base settings for portfolio applications.
+ 63 files changed, 102 insertions(+), 1 deletion(-)
+8ff9c37 feat: Implement environment-specific Django settings for development and production.
+ 7 files changed, 309 insertions(+), 123 deletions(-)
+b65e56f feat: initialize Django REST API project with core app structure, API routing, and environment configuration.
+ 11 files changed, 53 insertions(+)
+a3aa6e5 feat: Implement structured dependency management using `base.txt`, `development.txt`, and `production.txt` files.
+ 3 files changed, 33 insertions(+)
+758f549 feat: implement resume app with models, serializers, and an aggregated API endpoint for resume data.
+ 10 files changed, 394 insertions(+), 8 deletions(-)
+574e80e feat: Implement new projects application with API endpoints for project management, including models, serializers, views, and tests.
+ 12 files changed, 579 insertions(+), 8 deletions(-)
+e1c3dbd feat: implement initial knowledge app with models, views, URLs, admin, and tests for courses, tools, and resources.
+ 9 files changed, 330 insertions(+), 9 deletions(-)
+815ad24 feat: Implement contact form submission functionality with honeypot protection, admin management, and email notification.
+ 10 files changed, 165 insertions(+), 8 deletions(-)
+50d8071 feat: implement blog application with models, views, serializers, and tests for posts, categories, and tags.
+ 12 files changed, 426 insertions(+), 8 deletions(-)
+0043d80 feat: Set up core API routing, documentation, and authentication endpoints.
+ 1 file changed, 40 insertions(+)
+5164596 feat: Add core utilities, model mixins, pagination, and permissions.
+ 5 files changed, 200 insertions(+)
+9c9ee8b feat: Initialize new Django project structure with core backend files and multiple applications.
+ 50 files changed, 307 insertions(+)
+9f7625b feat: Initialize Django backend project with development settings, URL routing, and core dependencies.
+ 7 files changed, 146 insertions(+), 11 deletions(-)
+43abe81 feat: Initialize project environment with virtual environment, SQLite database, and compiled Django application files.
+ 743 files changed, 7888 insertions(+), 22515 deletions(-)
+59907fe feat: Initialize frontend application with Blog and Knowledge pages, routing, and core dependencies.
+ 6 files changed, 4591 insertions(+), 36 deletions(-)
+78e5a22 feat: Add knowledge base, courses, tools, projects, and resume sections with corresponding frontend pages, components, hooks, and a new backend API.
+ 21 files changed, 687 insertions(+), 598 deletions(-)
+fbc2e99 docs: Document frontend project tree structure.
+ 1 file changed, 10 insertions(+)
+7f3f5b3 feat: Implement Contact and Login pages and establish core frontend project structure with API service.
+ 6 files changed, 354 insertions(+), 27 deletions(-)
+19e7749 feat: Add frontend configuration and blog post page, alongside various Python virtual environment and pip vendor files.
+ 862 files changed, 140209 insertions(+), 43 deletions(-)
+08524d8 feat: Implement initial API endpoints and data models for projects, blog, contact, knowledge, and resume modules.
+ 25 files changed, 197 insertions(+), 69 deletions(-)
+7849d28 feat: Add initial `index.html` template for the application's main page.
+ 1 file changed, 20 insertions(+)
+f29db16 feat: Add pytest configuration for the Django project, including settings module, file patterns, and plugins.
+ 1 file changed, 5 insertions(+)
+df70520 feat: Add example environment configuration file for Django settings.
+ 1 file changed, 28 insertions(+)
+70754a7 feat: Implement the initial knowledge application including models, serializers, views, and admin integration for courses, tools, and resources.
+ 6 files changed, 245 insertions(+)
+9d1676b feat: Implement a new contact form submission system with dedicated models, API endpoint, and admin integration.
+ 5 files changed, 29 insertions(+), 29 deletions(-)
+ec1cced feat: Add resume application including models, serializers, views, and admin for skills, experience, education, and certifications.
+ 6 files changed, 127 insertions(+), 63 deletions(-)
+b372573 feat: Implement initial blog application with models, serializers, views, URLs, admin, and filters.
+ 6 files changed, 110 insertions(+), 124 deletions(-)
+94abbdc feat: Add projects application with models, serializers, views, URLs, admin, and filters.
+ 7 files changed, 110 insertions(+), 96 deletions(-)
+d14d0b8 -
+ 1 file changed, 2 deletions(-)
+778462a feat: Add core utilities, model mixins, pagination, and permissions.
+ 4 files changed, 117 insertions(+), 49 deletions(-)
+7d81a22 feat: Add comprehensive documentation detailing the responsibilities, functional roles, and interactions of backend files and directories.
+ 1 file changed, 1422 insertions(+), 314 deletions(-)
+340c3af feat: implement contact form submission module with API, model, admin, and tests.
+ 7 files changed, 139 insertions(+)
+aaa03df feat: implement resume application with models, admin, serializers, API views, and tests for skills, experience, education, and certifications.
+ 9 files changed, 236 insertions(+)
+f9e8fc2 feat: Implement blog application with models, serializers, admin integration, filters, views, and tests.
+ 9 files changed, 336 insertions(+)
+3034444 test: Add comprehensive tests for projects app models and API views.
+ 2 files changed, 256 insertions(+)
+d3d8a88 feat: implement projects management module with models, admin, API endpoints, serializers, and filtering.
+ 8 files changed, 180 insertions(+)
+7e4812f feat: add core utilities for slug generation, email, and HTML sanitization, along with model mixins, pagination, and custom permissions.
+ 5 files changed, 97 insertions(+)
+cb9c9f3 feat: Initialize base Django project settings including installed apps, middleware, database, static files, DRF, JWT, and Spectacular configurations.
+ 1 file changed, 5 insertions(+)
+11d0bca feat: introduce separate Django settings for development and production environments.
+ 2 files changed, 69 insertions(+)
+2bdc4a5 chore: Remove a file from the project.
+ 32 files changed, 412 deletions(-)
+abebf75 feat: Initialize Django project with core settings, REST Framework, JWT, CORS, Whitenoise, and DRF Spectacular.
+ 5 files changed, 277 insertions(+)
+e4c978a feat: add backend file responsibility reference documentation
+ 1 file changed, 545 insertions(+)
+f37710a feat: create initial backend structure with necessary files and directories
+ 76 files changed, 128 insertions(+)
+f7ac491 refactor: reorganize backend requirements into separate files for base, development, and production
+ 4 files changed, 623 insertions(+)
+6bbe556 docs: Add frontend and backend directory structure documentation.
+ 2 files changed, 144 insertions(+)
+f19e70e docs: Rename 'File Tree.md' to 'Portfolio_Project Tree.md'.
+ 2 files changed, 25 insertions(+), 115 deletions(-)
+9220118 Adds various Python bytecode files, a frontend package lock file, and a SQLite database.
+ 13 files changed, 5514 insertions(+)
+8835264 refactor: restructure project by moving frontend and backend configuration files into dedicated subdirectories.
+ 8 files changed, 35 insertions(+), 5690 deletions(-)
+cd9459a feat: Initialize new frontend application with core pages, UI components, routing, and a suite of calculator tools.
+ 97 files changed, 4 insertions(+), 3 deletions(-)
+605876b feat: Configure Vite development server with API proxy and build output for Django static files.
+ 1 file changed, 30 insertions(+), 9 deletions(-)
+c710170 feat: Add API routes for health check, JWT authentication, OpenAPI documentation, and item management.
+ 1 file changed, 23 insertions(+)
+85d4006 feat: add health check endpoint and user-scoped CRUD API for items
+ 1 file changed, 24 insertions(+), 2 deletions(-)
+86b8ccf feat: Add `ItemSerializer` for `Item` model, including read-only owner and owner username fields.
+ 1 file changed, 11 insertions(+)
+1f8184f feat: add Item model for managing user-owned items.
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+e17fae2 feat: Configure main URL patterns for the Django project, including admin, API, and SPA routing.
+ 1 file changed, 14 insertions(+), 1 deletion(-)
+993114a feat: initialize Django project settings including DRF, JWT, CORS, Whitenoise, and static file configurations.
+ 1 file changed, 90 insertions(+), 24 deletions(-)
+768b10d feat: Initialize Django project structure and 'api' app.
+ 15 files changed, 19 insertions(+), 1 deletion(-)
+a641880 feat: Initialize the Django project structure with default settings, URLs, ASGI, WSGI, and management script.
+ 7 files changed, 205 insertions(+)
+2e01f07 feat: Add AP Physics 1, AP Biology, and Linear Feet calculators along with their documentation.
+ 5 files changed, 1227 insertions(+)
+fa49425 feat: Add an interactive AP Chemistry Score Calculator with a new React component and corresponding documentation.
+ 2 files changed, 447 insertions(+)
+98286f4 feat: Add Pokémon catch rate calculator component with data layers and UI for displaying results.
+ 2 files changed, 787 insertions(+)
+073a1c1 feat: Implement the Linear Feet Calculator tool and its corresponding documentation.
+ 2 files changed, 499 insertions(+)
+db9f393 feat: add AP Statistics score calculator with interactive UI and documentation.
+ 2 files changed, 546 insertions(+)
+a152565 feat: Add AP Calculus BC and AP World score calculators with their respective documentation.
+ 3 files changed, 1184 insertions(+)
+27ebc7f feat: Add AP Biology and AP Calculus BC score calculator documentation and component placeholders.
+ 3 files changed, 129 insertions(+)
+07cc91a feat: implement Tools page with interactive tool cards, category filtering, and dynamic hover effects.
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+47bd5ed feat: Add initial portfolio data structures and core page components for Home and Tools.
+ 3 files changed, 1763 insertions(+), 288 deletions(-)
+b37897f feat: Outline portfolio project architecture, design, and SEO details, and update Vite dependency.
+ 5 files changed, 6223 insertions(+), 247 deletions(-)
+aa2dcb0 feat: Establish initial project structure, core application pages, and a comprehensive set of UI components.
+ 87 files changed, 9384 insertions(+), 726 deletions(-)
+2c713de chore: update .gitignore
+ 207 files changed, 210 insertions(+), 24754 deletions(-)
+54b7f6a Merge branch 'main' of https://github.com/Maimoon-github/Portfolio_Project
+acf72ba feat: Add initial project setup archive and configure git ignore rules for development files.
+ 2 files changed, 4 insertions(+)
+e43e7b5 Implement feature X to enhance user experience and fix bug Y in module Z
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+a5a8a03 feat: Introduce foundational UI components, layout, NotFound page, and routing, alongside a refactored Button component.
+ 29 files changed, 956 insertions(+), 537 deletions(-)
+483b600 feat: Implement initial project structure with core layout, UI components, routing, and a 404 page.
+ 2 files changed, 1499 insertions(+), 9 deletions(-)
+8e152f2 feat: Add Vitest configuration for React component testing with JSDOM environment and coverage setup.
+ 1 file changed, 36 insertions(+), 35 deletions(-)
+449e4c6 feat: Introduce comprehensive Vite configuration for React, including plugins, path aliases, dev server, and optimized build settings.
+ 1 file changed, 100 insertions(+), 102 deletions(-)
+c30bf39 build: Add tsconfig.node.json to configure TypeScript for Node.js environments.
+ 1 file changed, 29 insertions(+), 16 deletions(-)
+3df15d9 build: Add root tsconfig.json to enable TypeScript project references.
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+e8c0fb3 feat: add `tsconfig.app.json` to configure TypeScript for the application.
+ 1 file changed, 32 insertions(+), 17 deletions(-)
+5a4076e feat: initialize project with package.json, defining dependencies, scripts, and metadata.
+ 1 file changed, 15 insertions(+), 4 deletions(-)
+55db1ca feat: Initialize project with basic HTML structure and ESLint configuration for React, TypeScript, and Vite.
+ 2 files changed, 42 insertions(+), 17 deletions(-)
+06c894a feat: Add .prettierignore to exclude files from Prettier formatting.
+ 1 file changed, 92 insertions(+), 5 deletions(-)
+a567e21 chore: Add .gitignore file to exclude unnecessary files from version control.
+ 1 file changed, 126 insertions(+), 82 deletions(-)
+f1e8584 feat: Add ESLint configuration for React, TypeScript, and Vite, including rules for code style, accessibility, and import sorting.
+ 1 file changed, 69 insertions(+), 42 deletions(-)
+bab6180 feat: Introduce .env.example template and initialize .env with development configuration.
+ 3 files changed, 43 insertions(+), 30 deletions(-)
+836cc88 feat: Add `vite-env.d.ts` for TypeScript declarations of static asset imports.
+ 1 file changed, 56 insertions(+), 15 deletions(-)
+99adde4 feat: Add main `index.css` to import global style layers in correct cascade order.
+ 1 file changed, 7 insertions(+), 66 deletions(-)
+1c779ea feat: add foundational global app styles including root layout, smooth scrolling, and print styles
+ 1 file changed, 59 insertions(+), 30 deletions(-)
+4dd945e feat: Initialize React application entry point with App component and global styles.
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+e386e59 feat: add initial application setup with routing, error boundary, analytics, and theme management.
+ 1 file changed, 81 insertions(+), 60 deletions(-)
+7f2cffa feat: Add Zod schemas and initial data for tools, blog posts, projects, and resume.
+ 7 files changed, 8 insertions(+), 49 deletions(-)
+6709fcb feat: add core utility functions for animations, class name joining, constants, and number formatting.
+ 5 files changed, 10 insertions(+)
+2e1d66e feat: add core type definitions for project, resume, tool, blog, and common data structures.
+ 7 files changed, 14 insertions(+)
+dda345f feat: Introduce comprehensive styling system with semantic design tokens, dark theme, and foundational global styles.
+ 6 files changed, 16 insertions(+), 46 deletions(-)
+a588d05 feat: introduce a new analytics service for tracking page views, CTA clicks, and errors.
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+5ff3c94 feat: implement contact form submission and analytics tracking services.
+ 3 files changed, 7 insertions(+), 1 deletion(-)
+66866d5 feat: introduce a new 'Tools' page with category filtering and a custom grid layout for tool cards.
+ 4 files changed, 55 insertions(+), 292 deletions(-)
+d5f4d94 feat: Add a new Sitemap page component with styling and route configuration.
+ 3 files changed, 242 insertions(+)
+2985d81 feat: implement new Resume page with comprehensive layout, styling, and print-specific adjustments.
+ 3 files changed, 28 insertions(+), 54 deletions(-)
+d25c8ee feat: implement Projects page with filterable project archive and styling.
+ 4 files changed, 11 insertions(+), 13 deletions(-)
+3a4bfb5 feat: introduce ProjectDetail page with comprehensive project display, data fetching, loading/error states, and styling.
+ 3 files changed, 70 insertions(+), 12 deletions(-)
+9d91090 feat: Add Portfolio page with project display, category filtering, and dedicated styling.
+ 3 files changed, 10 insertions(+), 4 deletions(-)
+cdc6e0c feat: introduce Home page with core sections and styling for a new portfolio site.
+ 10 files changed, 196 insertions(+), 807 deletions(-)
+91e89ab feat: add documentation page with search, filters, and tutorial templates.
+ 4 files changed, 465 insertions(+), 230 deletions(-)
+a2e0efe feat: introduce documentation section with dynamic tutorial pages featuring markdown rendering and code highlighting.
+ 5 files changed, 141 insertions(+), 631 deletions(-)
+0e3c432 feat: implement Contact page with interactive form, client-side validation, and dedicated styling.
+ 3 files changed, 51 insertions(+), 86 deletions(-)
+4a37cdb feat: Add a new "Colophon" page detailing the site's design system, typography, tools, and ethics.
+ 3 files changed, 278 insertions(+)
+faf8503 feat: introduce blog functionality with a listing page, category filtering, and individual post views.
+ 3 files changed, 321 insertions(+), 85 deletions(-)
+a76a5d6 feat: Introduce a new blog section with a listing page, category filtering, and individual post views.
+ 6 files changed, 318 insertions(+), 455 deletions(-)
+9e31f8e feat: Add new About page component with structured content sections and dedicated styling.
+ 3 files changed, 37 insertions(+), 19 deletions(-)
+25f42c3 feat: Add new custom hooks for project filtering, reduced motion preference, scroll position tracking, and theme management.
+ 5 files changed, 46 insertions(+), 52 deletions(-)
+b438530 feat: Add initial navigation, routing, and SEO configurations.
+ 3 files changed, 156 insertions(+), 76 deletions(-)
+34362ac feat: Introduce ToolCard UI component and establish initial site navigation, routing, and SEO configurations.
+ 7 files changed, 306 insertions(+), 1 deletion(-)
+a79c7cd feat: add ProjectCard UI component with styling, types, variants, and tests
+ 6 files changed, 203 insertions(+), 192 deletions(-)
+106d119 feat: Implement a complete navigation system including desktop, mobile, and dropdown components with associated styles and types.
+ 7 files changed, 610 insertions(+)
+d3dc1f3 feat: add HeroKPIStrip UI component with KPICard, types, and styling.
+ 5 files changed, 146 insertions(+)
+bea0b30 feat: Introduce FormInput UI component with styling, error handling, and support for various input types including textarea.
+ 7 files changed, 224 insertions(+)
+730b4a1 feat: add new Footer UI component with styling, types, and implementation.
+ 4 files changed, 246 insertions(+)
+d4e1e6e feat: Add new `DataTable` and `FilterBar` UI components with their respective styles and types.
+ 10 files changed, 217 insertions(+), 436 deletions(-)
+10397e6 feat: introduce new Card UI component with styling, types, and accent/hover effects.
+ 4 files changed, 86 insertions(+)
+108132a feat: add Button UI component with type definitions, styling, and unit tests for various states and interactions.
+ 5 files changed, 43 insertions(+), 7 deletions(-)
+c0fb55e feat: Add new Badge UI component with default and accent variants.
+ 4 files changed, 29 insertions(+), 38 deletions(-)
+954738f feat: Add `Badge` UI component, core layout components (`Header`, `Layout`, `PageWrapper`, `SectionContainer`), and comprehensive `src` directory documentation.
+ 11 files changed, 1029 insertions(+), 186 deletions(-)
+d5ab239 feat: add Sitemap and Colophon pages and a File Tree markdown document
+ 7 files changed, 253 insertions(+)
+694e509 feat(project): implement complete Data Specialist portfolio with bulletproof-react architecture
+ 122 files changed, 17371 insertions(+), 78 deletions(-)
+d7983d3 ---
+ 5 files changed, 0 insertions(+), 0 deletions(-)
+bdf09b9 ---
+ 1 file changed, 11 deletions(-)
+74f6a00 docs: scaffold React + TypeScript project architecture for Data Specialist Portfolio
+ 157 files changed, 22 insertions(+), 1 deletion(-)
+6f4de80 docs: scaffold React + TypeScript project architecture for Data Specialist Portfolio
+ 16 files changed, 3425 insertions(+)
+5b1fd9c deleted each thing for new begining
+ 225 files changed, 726 insertions(+), 36693 deletions(-)
+90e3a36 feat: add Docker deployment guide and update deployment script; streamline setup process and provide detailed instructions for users
+ 3 files changed, 213 insertions(+)
+0bcdbd0 feat: refactor Dockerfile and nginx configuration; streamline build process and improve service management with supervisord
+ 5 files changed, 35 insertions(+), 137 deletions(-)
+e6b96b7 feat: enhance Docker setup and health check endpoints; add health check view and update nginx configuration for improved service monitoring
+ 6 files changed, 153 insertions(+), 34 deletions(-)
+68f7084 feat: update Dockerfile and supervisord configuration for improved frontend build and logging; allow all hosts in Django settings
+ 3 files changed, 33 insertions(+), 21 deletions(-)
+4f61980 Add Docker Compose and Supervisor configuration files
+ 7 files changed, 112 insertions(+), 16 deletions(-)
+a853aa2 Add Docker configuration and GitHub Actions workflow
+ 4 files changed, 95 insertions(+)
+0febed4 feat: integrate TinyMCE for rich text editing in admin forms; update models to allow blank thumbnails for blog, course, and project; add new migration files
+ 18 files changed, 170 insertions(+), 65 deletions(-)
+4d35984 Resolve merge conflicts
+7d79b82 refactor: update sample data creation script and admin configurations for courses and projects; add enrollment and lesson completion models
+ 6 files changed, 535 insertions(+), 27 deletions(-)
+3e46715 Fix backend functionality and restore frontend-backend synchronization
+ 8 files changed, 190 insertions(+), 74 deletions(-)
+8076fd8 Initial assessment and planning
+ 1 file changed, 220 insertions(+)
+f991879 Initial plan
+9033dcb Checkpoint from VS Code for coding agent session
+ 78 files changed, 8310 insertions(+), 267 deletions(-)
+b76d171 Complete Content Management System
+ 15 files changed, 2471 insertions(+), 18 deletions(-)
+d86abd6 the code implimentation in the backend of each apps and the adjusments for seo paramitors etc.
+ 16 files changed, 1452 insertions(+), 15 deletions(-)
+edf8f85 fix: update .gitignore to include Thumbs.db and ensure node_modules is listed correctly
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+26e0466 feat: add .gitignore file to exclude dependencies, environment files, logs, and OS files
+ 1 file changed, 15 insertions(+)
+4b0200d feat: initialize project structure with main entry point and global styles
+ 80 files changed, 21288 insertions(+)
+904b111 feat: Initialize LMS backend project structure with core, users, courses, news, pages, and projects apps
+ 49 files changed, 2101 insertions(+)
+59f0fdb Initial commit
+ 1 file changed, 1 insertion(+)
