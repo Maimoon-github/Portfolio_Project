@@ -65,8 +65,10 @@ Root path: /home/maimoon-ai-system/Antigravity code/Portfolio_Project/frontend
 │   │   │   │   └── 📄 utils.ts
 │   │   │   ├── 📄 BlogCard.tsx
 │   │   │   ├── 📄 CourseCard.tsx
+│   │   │   ├── 📄 FeaturedProjects.tsx
 │   │   │   ├── 📄 FloatingOrb.tsx
 │   │   │   ├── 📄 Footer.tsx
+│   │   │   ├── 📄 HeroSection.tsx
 │   │   │   ├── 📄 Navbar.tsx
 │   │   │   ├── 📄 PopupModal.tsx
 │   │   │   ├── 📄 ProjectCard.tsx
@@ -102,14 +104,15 @@ Root path: /home/maimoon-ai-system/Antigravity code/Portfolio_Project/frontend
 │   │   └── 📝 ai-agent-portfolio-architectur.md
 │   ├── 📁 styles/
 │   │   ├── 🎨 fonts.css
-│   │   ├── 🎨 index.css
+│   │   ├── 🎨 globals.css
+│   │   ├── 🎨 mdx.css
 │   │   ├── 🎨 tailwind.css
 │   │   └── 🎨 theme.css
 │   └── 📁 types/
 │       └── 📄 generated.ts
 ├── 📝 ATTRIBUTIONS.md
+├── 📄 Mystical-black-lotus.txt
 ├── 📝 README.md
-├── 📝 frontend Tree.md
 ├── 📝 frontend file tree.md
 ├── 📄 next-env.d.ts
 ├── 📄 next.config.ts
