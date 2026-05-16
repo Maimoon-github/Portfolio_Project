@@ -520,8 +520,8 @@
 
 
 
-import { getProjects } from '@/app/services/api';
-import { ProjectsGrid } from '@/app/components/sections/ProjectsGrid';
+import { getProjects } from '@/services/api';
+import { ProjectsGrid } from '@/components/sections/ProjectsGrid';
 import { Project } from '@/app/types/api';
 
 export const metadata = {
@@ -537,7 +537,7 @@ interface PageProps {
 export default async function ProjectsPage({ searchParams }: PageProps) {
   const { category } = await searchParams;
   const activeCategory = category && category !== 'All' ? category : 'All';
-  
+
   let projects: Project[] = [];
   let error = false;
 

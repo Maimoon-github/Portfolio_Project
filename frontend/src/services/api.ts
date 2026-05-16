@@ -165,7 +165,7 @@
 
 
 
-import { API_BASE } from "../config";
+import { API_BASE } from "../app/config";
 import {
   ProjectList,
   ProjectDetail,
@@ -272,7 +272,7 @@ export function logout() {
 
 // src/app/services/api.ts
 export async function getProjects(category?: string) {
-  const url = category && category !== 'All' 
+  const url = category && category !== 'All'
     ? `${API_BASE}/projects/?category=${encodeURIComponent(category)}`
     : `${API_BASE}/projects/`;
   const res = await fetch(url);
@@ -304,7 +304,7 @@ export async function getProject(slug: string) {
 
 // src/app/services/api.ts
 export async function getBlogPosts(category?: string) {
-  const url = category && category !== 'All' 
+  const url = category && category !== 'All'
     ? `${API_BASE}/blog/posts/?category=${encodeURIComponent(category)}`
     : `${API_BASE}/blog/posts/`;
   const res = await fetch(url);

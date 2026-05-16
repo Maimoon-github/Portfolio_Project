@@ -460,7 +460,7 @@
 
 
 
-import { ContactForm } from '@/app/components/forms/ContactForm';
+import { ContactForm } from '@/components/forms/ContactForm';
 
 export const metadata = {
   title: 'Contact',

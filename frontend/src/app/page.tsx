@@ -997,7 +997,7 @@
 
 
 
-import { getProjects, getBlogPosts } from '@/app/services/api';
+import { getProjects, getBlogPosts } from '@/services/api';
 import { FeaturedProjects } from '@/app/components/FeaturedProjects';
 import { RecentBlogPosts } from '@/app/components/RecentBlogPosts';
 import { ServicesSection } from '@/app/components/ServicesSection';

@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { ProjectCard } from '@/app/components/shared/ProjectCard';
-import { PopupModal } from '@/app/components/shared/PopupModal';
+import { ProjectCard } from '@/components/shared/ProjectCard';
+import { PopupModal } from '@/components/shared/PopupModal';
 import type { Project } from '@/app/types/api';
 
 const CATEGORIES = ['All', 'AI/ML', 'MLOps', 'Frontend'];
@@ -34,11 +34,10 @@ export function ProjectsGrid({ projects, activeCategory }: ProjectsGridProps) {
             <button
               key={cat}
               onClick={() => handleCategoryChange(cat)}
-              className={`relative text-sm px-4 py-2 rounded-lg transition-all duration-200 ${
-                isActive
+              className={`relative text-sm px-4 py-2 rounded-lg transition-all duration-200 ${isActive
                   ? 'bg-[#A4FBCC] text-[#0A2E1A] font-semibold shadow-[0_0_12px_rgba(164,251,204,0.3)]'
                   : 'bg-[rgba(164,251,204,0.06)] text-[#B0C4B0] border border-[rgba(164,251,204,0.15)] hover:border-[rgba(164,251,204,0.35)] hover:text-[#A4FBCC]'
-              }`}
+                }`}
             >
               {cat}
             </button>

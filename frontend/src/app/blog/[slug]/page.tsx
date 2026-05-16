@@ -419,9 +419,9 @@
 
 
 
-import { getBlogPost, getBlogPosts } from '@/app/services/api';
-import { BlogCard } from '@/app/components/shared/BlogCard';
-import { MarkdownContent } from '@/app/components/blog/MarkdownContent';
+import { getBlogPost, getBlogPosts } from '@/services/api';
+import { BlogCard } from '@/components/shared/BlogCard';
+import { MarkdownContent } from '@/components/blog/MarkdownContent';
 import { Calendar, Clock, Tag, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -478,10 +478,10 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   const formattedDate = post.publish_date
     ? new Date(post.publish_date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-      })
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    })
     : '';
 
   const tagNames = post.tags?.map((tag: { name: string }) => tag.name) || [];

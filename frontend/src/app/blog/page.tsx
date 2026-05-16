@@ -237,9 +237,9 @@
 
 
 
-import { getBlogPosts } from '@/app/services/api';
-import { BlogCard } from '@/app/components/shared/BlogCard';
-import { CategoryFilter } from '@/app/components/blog/CategoryFilter';
+import { getBlogPosts } from '@/services/api';
+import { BlogCard } from '@/components/shared/BlogCard';
+import { CategoryFilter } from '@/components/blog/CategoryFilter';
 import { Rss } from 'lucide-react';
 import type { PostList } from '@/app/types/api';
 
@@ -255,10 +255,10 @@ interface PageProps {
 export default async function BlogPage({ searchParams }: PageProps) {
   const { category } = await searchParams;
   const activeCategory = category && category !== 'All' ? category : 'All';
-  
+
   let posts: PostList[] = [];
   let error = false;
-  
+
   try {
     const data = await getBlogPosts(activeCategory === 'All' ? undefined : activeCategory);
     posts = data.results || data;

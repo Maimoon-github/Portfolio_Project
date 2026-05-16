@@ -1,6 +1,6 @@
 "use client";
 import useSWR from "swr";
-import { getKnowledge, getTools } from "../services/api";
+import { getKnowledge, getTools } from "../../services/api";
 import { KnowledgeData, Tool } from "../types/api";
 
 export function useKnowledge() {

@@ -1,6 +1,6 @@
 "use client";
 import useSWR from "swr";
-import { getProjects, getProject } from "../services/api";
+import { getProjects, getProject } from "../../services/api";
 import { Paginated, Project } from "../types/api";
 
 export function useProjects(category?: string) {

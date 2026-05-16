@@ -139,8 +139,8 @@
 
 
 
-import { getCourses } from '@/app/services/api';
-import { CoursesGrid } from '@/app/components/sections/CoursesGrid';
+import { getCourses } from '@/services/api';
+import { CoursesGrid } from '@/components/sections/CoursesGrid';
 import type { Course } from '@/app/types/api';
 
 export const metadata = {

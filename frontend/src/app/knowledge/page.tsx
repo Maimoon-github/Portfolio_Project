@@ -198,8 +198,8 @@
 
 
 
-import { getCourses } from '@/app/services/api';
-import { CourseCard } from '@/app/components/shared/CourseCard';
+import { getCourses } from '@/services/api';
+import { CourseCard } from '@/components/shared/CourseCard';
 import { BookOpen, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import type { Course } from '@/app/types/api';

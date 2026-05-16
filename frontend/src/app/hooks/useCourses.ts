@@ -1,6 +1,6 @@
 "use client";
 import useSWR from "swr";
-import { getCourses, getCourse } from "../services/api";
+import { getCourses, getCourse } from "../../services/api";
 import { Course, Paginated } from "../types/api";
 
 export function useCourses() {

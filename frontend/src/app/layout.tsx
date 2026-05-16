@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import '../styles/index.css';
 import { Navbar } from '@/app/components/Navbar';
 import { Footer } from '@/app/components/Footer';
-import { Providers } from '@/app/components/layout/providers';
+import { Providers } from '@/components/layout/providers';
 
 export const metadata: Metadata = {
   title: {

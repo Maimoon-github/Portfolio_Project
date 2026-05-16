@@ -610,11 +610,11 @@
 
 
 
-import { getProject, getProjects } from '@/app/services/api';
+import { getProject, getProjects } from '@/services/api';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Calendar, Clock, User, Tag, ExternalLink, Github } from 'lucide-react';
 import Link from 'next/link';
-import { ProjectCard } from '@/app/components/shared/ProjectCard';
+import { ProjectCard } from '@/components/shared/ProjectCard';
 import { PROFILE } from '@/app/data';
 
 interface PageProps {
