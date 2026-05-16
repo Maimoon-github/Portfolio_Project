@@ -298,14 +298,14 @@ export async function getCourse(slug: string): Promise<CourseDetail> {
 }
 
 export async function getTools(): Promise<Tool[]> {
-  const res = await apiFetch(`${API_BASE}/knowledge/tools/`);
+  const res = await apiFetch(`${API_BASE}/courses/tools/`);
   if (!res.ok) throw new Error(`Failed to load tools`);
   return res.json();
 }
 
 export async function getKnowledge(): Promise<KnowledgeData> {
-  const res = await apiFetch(`${API_BASE}/knowledge/`);
-  if (!res.ok) throw new Error(`Failed to load knowledge overview`);
+  const res = await fetch(`${API_BASE}/knowledge/`);
+  if (!res.ok) throw new Error('Failed to fetch knowledge');
   return res.json();
 }
 

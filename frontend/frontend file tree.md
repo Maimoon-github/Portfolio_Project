@@ -20,6 +20,7 @@ Root path: /home/maimoon-ai-system/Antigravity code/Portfolio_Project/frontend
 │   │   │   │   └── 📄 providers.tsx
 │   │   │   ├── 📁 sections/
 │   │   │   │   ├── 📄 CTASection.tsx
+│   │   │   │   ├── 📄 CoursesGrid.tsx
 │   │   │   │   ├── 📄 FeaturedProjects.tsx
 │   │   │   │   ├── 📄 HeroSection.tsx
 │   │   │   │   ├── 📄 RecentBlogPosts.tsx
