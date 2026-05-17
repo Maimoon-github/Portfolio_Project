@@ -1,5 +1,6 @@
 // central configuration values
 // export const API_BASE = "/api/v1";
+'use client'; 
 
 // src/app/config.ts
 export const API_BASE = process.env.NEXT_PUBLIC_API_BASE ?? '/api/v1';
